@@ -1,1 +1,13 @@
-PHZlY3RvciB4bWxuczphbmRyb2lkPSJodHRwOi8vc2NoZW1hcy5hbmRyb2lkLmNvbS9hcGsvcmVzL2FuZHJvaWQiIGFuZHJvaWQ6d2lkdGg9IjEwOGRwIiBhbmRyb2lkOmhlaWdodD0iMTA4ZHAiIGFuZHJvaWQ6dmlld3BvcnRXaWR0aD0iMTA4IiBhbmRyb2lkOnZpZXdwb3J0SGVpZ2h0PSIxMDgiPgogICAgPHBhdGggYW5kcm9pZDpmaWxsQ29sb3I9IiM1QjVDRTIiIGFuZHJvaWQ6cGF0aERhdGE9Ik0wLDBoMTA4djEwOGgtMTA4eiIvPgogICAgPHBhdGggYW5kcm9pZDpmaWxsQ29sb3I9IiNGRkZGRkYiIGFuZHJvaWQ6cGF0aERhdGE9Ik0yNCwyNmg2MHYxMmgtNjB6TTI0LDQ4aDYwdjEyaC02MHpNMjQsNzBoNDJ2MTJoLTQyeiIvPgo8L3ZlY3Rvcj4K
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#7B1FA2"
+        android:pathData="M0,0h108v108h-108z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,30h48v48h-48z" />
+</vector>
