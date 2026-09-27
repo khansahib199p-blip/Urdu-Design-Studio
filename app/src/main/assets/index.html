@@ -648,138 +648,525 @@ placeholder="اپنا اردو متن یہاں لکھیں..."
 </div>
 
 <script>
+(function(){
 
-/* =====================
-   BASIC
-===================== */
-
-const canvas=document.getElementById("canvas");
-const panel=document.getElementById("panel");
-const empty=document.getElementById("empty");
-
+let canvas=document.getElementById("canvas");
 let selected=null;
-let history=[];
-let historyPos=-1;
+let undoStack=[];
+let redoStack=[];
+let moving=null;
+let resizing=null;
 
-function updateEmpty(){
-
-let objs=canvas.querySelectorAll(".obj");
-
-empty.style.display=objs.length?"none":"flex";
-
+function saveState(){
+    undoStack.push(canvas.innerHTML);
+    if(undoStack.length>30) undoStack.shift();
+    redoStack=[];
 }
 
-
-/* =====================
-   HISTORY
-===================== */
-
-function snapshot(){
-
-let html=canvas.innerHTML;
-
-history=history.slice(0,historyPos+1);
-
-history.push(html);
-
-historyPos++;
-
-if(history.length>30){
-history.shift();
-historyPos--;
+function select(o){
+    document.querySelectorAll(".obj").forEach(x=>x.classList.remove("selected"));
+    selected=o;
+    if(o) o.classList.add("selected");
 }
 
+function makeObject(type){
+    let o=document.createElement("div");
+
+    o.className="obj "+type;
+    o.style.position="absolute";
+    o.style.left="90px";
+    o.style.top="170px";
+    o.style.zIndex="10";
+
+    if(type==="textObj"){
+        o.innerText="نیا اردو متن";
+        o.contentEditable="true";
+        o.style.fontSize="30px";
+        o.style.color="#222";
+        o.style.background="transparent";
+        o.style.padding="8px";
+        o.style.minWidth="100px";
+        o.style.direction="rtl";
+    }
+
+    if(type==="rect"){
+        o.style.width="130px";
+        o.style.height="100px";
+        o.style.background="#713bff44";
+        o.style.border="3px solid #713bff";
+        o.style.borderRadius="10px";
+    }
+
+    if(type==="circle"){
+        o.style.width="120px";
+        o.style.height="120px";
+        o.style.background="#ff4e9b44";
+        o.style.border="3px solid #ff4e9b";
+        o.style.borderRadius="50%";
+    }
+
+    if(type==="line"){
+        o.style.width="170px";
+        o.style.height="6px";
+        o.style.background="#713bff";
+        o.style.borderRadius="5px";
+    }
+
+    canvas.appendChild(o);
+    addControls(o);
+    select(o);
+    saveState();
+
+    return o;
 }
 
-function restore(html){
+function addControls(o){
 
-canvas.innerHTML=html;
+    let resize=document.createElement("div");
+    resize.className="handle resize";
+    o.appendChild(resize);
 
-selected=null;
+    o.addEventListener("pointerdown",function(e){
 
-canvas.querySelectorAll(".obj").forEach(o=>{
-setupObject(o);
-});
+        if(e.target===resize) return;
 
-updateEmpty();
+        e.stopPropagation();
+        select(o);
 
-panel.classList.remove("show");
+        moving={
+            o:o,
+            x:e.clientX,
+            y:e.clientY,
+            left:parseFloat(o.style.left)||0,
+            top:parseFloat(o.style.top)||0
+        };
 
-}
+        o.setPointerCapture(e.pointerId);
+    });
 
-function undo(){
+    o.addEventListener("pointermove",function(e){
 
-if(historyPos<=0)return;
+        if(!moving || moving.o!==o) return;
 
-historyPos--;
+        let nx=moving.left+(e.clientX-moving.x);
+        let ny=moving.top+(e.clientY-moving.y);
 
-restore(history[historyPos]);
+        o.style.left=Math.max(0,nx)+"px";
+        o.style.top=Math.max(0,ny)+"px";
+    });
 
-}
+    o.addEventListener("pointerup",function(){
 
-function redo(){
+        if(moving){
+            moving=null;
+            saveState();
+        }
+    });
 
-if(historyPos>=history.length-1)return;
+    resize.addEventListener("pointerdown",function(e){
 
-historyPos++;
+        e.stopPropagation();
 
-restore(history[historyPos]);
+        resizing={
+            o:o,
+            x:e.clientX,
+            y:e.clientY,
+            w:o.offsetWidth,
+            h:o.offsetHeight
+        };
+    });
 
-}
+    resize.addEventListener("pointermove",function(e){
 
+        if(!resizing || resizing.o!==o) return;
 
-/* =====================
-   SELECT
-===================== */
+        let w=Math.max(40,
+            resizing.w+(e.clientX-resizing.x));
 
-function selectObject(o){
+        let h=Math.max(30,
+            resizing.h+(e.clientY-resizing.y));
 
-canvas.querySelectorAll(".obj")
-.forEach(x=>x.classList.remove("selected"));
+        o.style.width=w+"px";
+        o.style.height=h+"px";
+    });
 
-selected=o;
+    resize.addEventListener("pointerup",function(){
 
-if(o){
+        if(resizing){
+            resizing=null;
+            saveState();
+        }
+    });
 
-o.classList.add("selected");
-
-updatePanel();
-
-}
-
-}
-
-
-/* =====================
-   OBJECT CREATION
-===================== */
-
-function baseObject(cls){
-
-const o=document.createElement("div");
-
-o.className="obj "+cls;
-
-o.style.left="105px";
-o.style.top="170px";
-
-canvas.appendChild(o);
-
-setupObject(o);
-
-selectObject(o);
-
-updateEmpty();
-
-snapshot();
-
-return o;
-
+    o.addEventListener("click",function(e){
+        e.stopPropagation();
+        select(o);
+    });
 }
 
 
 /* TEXT */
 
-function addText(){
+window.addText=function(){
 
-document.getElementById("
+    let modal=document.getElementById("textModal");
+
+    if(modal){
+        modal.classList.add("show");
+
+        let box=document.getElementById("newText");
+
+        if(box){
+            box.value="";
+            setTimeout(function(){
+                box.focus();
+            },300);
+        }
+    }else{
+        let text=prompt("اپنا اردو متن لکھیں","نیا اردو متن");
+
+        if(text){
+            let o=makeObject("textObj");
+            o.innerText=text;
+        }
+    }
+};
+
+window.closeText=function(){
+
+    let modal=document.getElementById("textModal");
+
+    if(modal) modal.classList.remove("show");
+};
+
+window.createText=function(){
+
+    let box=document.getElementById("newText");
+
+    let text=box ? box.value.trim() : "";
+
+    if(!text) text="نیا اردو متن";
+
+    let o=makeObject("textObj");
+
+    o.innerText=text;
+
+    closeText();
+
+    o.focus();
+};
+
+
+/* SHAPES */
+
+window.addRect=function(){
+    makeObject("rect");
+};
+
+window.addCircle=function(){
+    makeObject("circle");
+};
+
+window.addLine=function(){
+    makeObject("line");
+};
+
+
+/* IMAGE */
+
+window.pickImage=function(){
+
+    let input=document.getElementById("imageInput");
+
+    if(input) input.click();
+};
+
+let imageInput=document.getElementById("imageInput");
+
+if(imageInput){
+
+    imageInput.addEventListener("change",function(){
+
+        let file=this.files[0];
+
+        if(!file) return;
+
+        let reader=new FileReader();
+
+        reader.onload=function(e){
+
+            let img=document.createElement("img");
+
+            img.className="obj imageObj";
+            img.src=e.target.result;
+
+            img.style.position="absolute";
+            img.style.left="70px";
+            img.style.top="120px";
+            img.style.width="190px";
+            img.style.height="auto";
+            img.style.zIndex="10";
+            img.style.objectFit="contain";
+
+            canvas.appendChild(img);
+
+            addControls(img);
+            select(img);
+            saveState();
+        };
+
+        reader.readAsDataURL(file);
+        this.value="";
+    });
+}
+
+
+/* DELETE */
+
+window.deleteSelected=function(){
+
+    if(!selected){
+        alert("پہلے کسی چیز کو منتخب کریں");
+        return;
+    }
+
+    selected.remove();
+    selected=null;
+
+    saveState();
+};
+
+
+/* COPY */
+
+window.duplicate=function(){
+
+    if(!selected){
+        alert("پہلے کسی چیز کو منتخب کریں");
+        return;
+    }
+
+    let copy=selected.cloneNode(true);
+
+    copy.style.left=
+        ((parseFloat(selected.style.left)||0)+25)+"px";
+
+    copy.style.top=
+        ((parseFloat(selected.style.top)||0)+25)+"px";
+
+    copy.dataset.ready="";
+
+    canvas.appendChild(copy);
+
+    addControls(copy);
+    select(copy);
+
+    saveState();
+};
+
+
+/* LAYERS */
+
+window.front=function(){
+
+    if(!selected) return;
+
+    selected.style.zIndex="999";
+    saveState();
+};
+
+window.back=function(){
+
+    if(!selected) return;
+
+    selected.style.zIndex="1";
+    saveState();
+};
+
+
+/* PANEL */
+
+window.togglePanel=function(){
+
+    let p=document.getElementById("panel");
+
+    if(!selected){
+
+        alert("پہلے کسی متن یا شکل کو منتخب کریں");
+        return;
+    }
+
+    if(p) p.classList.toggle("show");
+};
+
+
+/* UNDO */
+
+window.undo=function(){
+
+    if(undoStack.length===0) return;
+
+    redoStack.push(canvas.innerHTML);
+
+    let old=undoStack.pop();
+
+    canvas.innerHTML=old;
+
+    selected=null;
+
+    canvas.querySelectorAll(".obj").forEach(function(o){
+        addControls(o);
+    });
+};
+
+
+/* REDO */
+
+window.redo=function(){
+
+    if(redoStack.length===0) return;
+
+    undoStack.push(canvas.innerHTML);
+
+    let next=redoStack.pop();
+
+    canvas.innerHTML=next;
+
+    selected=null;
+
+    canvas.querySelectorAll(".obj").forEach(function(o){
+        addControls(o);
+    });
+};
+
+
+/* SAVE */
+
+window.saveDesign=function(){
+
+    localStorage.setItem(
+        "UDS_DESIGN",
+        canvas.innerHTML
+    );
+
+    alert("ڈیزائن محفوظ ہوگیا ✓");
+};
+
+
+/* CANVAS */
+
+canvas.addEventListener("click",function(e){
+
+    if(e.target===canvas){
+        select(null);
+    }
+});
+
+
+/* COLOR */
+
+let color=document.getElementById("color");
+
+if(color){
+
+    color.addEventListener("input",function(){
+
+        if(!selected) return;
+
+        if(selected.classList.contains("textObj")){
+            selected.style.color=this.value;
+        }else{
+            selected.style.borderColor=this.value;
+        }
+    });
+
+    color.addEventListener("change",saveState);
+}
+
+
+/* FONT SIZE */
+
+let size=document.getElementById("size");
+
+if(size){
+
+    size.addEventListener("input",function(){
+
+        if(!selected) return;
+
+        selected.style.fontSize=this.value+"px";
+
+        let v=document.getElementById("sizeVal");
+
+        if(v) v.innerText=this.value;
+    });
+
+    size.addEventListener("change",saveState);
+}
+
+
+/* FONT */
+
+let font=document.getElementById("font");
+
+if(font){
+
+    font.addEventListener("change",function(){
+
+        if(!selected) return;
+
+        selected.style.fontFamily=this.value;
+
+        saveState();
+    });
+}
+
+
+/* WEIGHT */
+
+let weight=document.getElementById("weight");
+
+if(weight){
+
+    weight.addEventListener("change",function(){
+
+        if(!selected) return;
+
+        selected.style.fontWeight=this.value;
+
+        saveState();
+    });
+}
+
+
+/* RADIUS */
+
+let radius=document.getElementById("radius");
+
+if(radius){
+
+    radius.addEventListener("input",function(){
+
+        if(!selected) return;
+
+        selected.style.borderRadius=this.value+"px";
+
+        let v=document.getElementById("radiusVal");
+
+        if(v) v.innerText=this.value;
+    });
+
+    radius.addEventListener("change",saveState);
+}
+
+
+/* START */
+
+canvas.querySelectorAll(".obj").forEach(function(o){
+    addControls(o);
+});
+
+saveState();
+
+})();
+</script>
