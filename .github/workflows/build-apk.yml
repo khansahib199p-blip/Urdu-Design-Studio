@@ -1,1 +1,29 @@
-bmFtZTogQnVpbGQgQW5kcm9pZCBBUEsKCm9uOgogIHdvcmtmbG93X2Rpc3BhdGNoOgogIHB1c2g6CiAgICBicmFuY2hlczogWyBtYWluIF0KCmpvYnM6CiAgYnVpbGQ6CiAgICBydW5zLW9uOiB1YnVudHUtbGF0ZXN0CiAgICBzdGVwczoKICAgICAgLSBuYW1lOiBDaGVja291dAogICAgICAgIHVzZXM6IGFjdGlvbnMvY2hlY2tvdXRAdjQKCiAgICAgIC0gbmFtZTogU2V0IHVwIEphdmEKICAgICAgICB1c2VzOiBhY3Rpb25zL3NldHVwLWphdmFAdjQKICAgICAgICB3aXRoOgogICAgICAgICAgZGlzdHJpYnV0aW9uOiB0ZW11cmluCiAgICAgICAgICBqYXZhLXZlcnNpb246ICcxNycKCiAgICAgIC0gbmFtZTogSW5zdGFsbCBHcmFkbGUKICAgICAgICBydW46IHwKICAgICAgICAgIGN1cmwgLUwgLS1mYWlsIC1vIC90bXAvZ3JhZGxlLnppcCBodHRwczovL3NlcnZpY2VzLmdyYWRsZS5vcmcvZGlzdHJpYnV0aW9ucy9ncmFkbGUtOC4xMS4xLWJpbi56aXAKICAgICAgICAgIHVuemlwIC1xIC90bXAvZ3JhZGxlLnppcCAtZCAvdG1wCiAgICAgICAgICBlY2hvICIvdG1wL2dyYWRsZS04LjExLjEvYmluIiA+PiAiJEdJVEhVQl9QQVRIIgoKICAgICAgLSBuYW1lOiBCdWlsZCBkZWJ1ZyBBUEsKICAgICAgICBydW46IGdyYWRsZSAtLW5vLWRhZW1vbiBhc3NlbWJsZURlYnVnCgogICAgICAtIG5hbWU6IFVwbG9hZCBBUEsKICAgICAgICB1c2VzOiBhY3Rpb25zL3VwbG9hZC1hcnRpZmFjdEB2NAogICAgICAgIHdpdGg6CiAgICAgICAgICBuYW1lOiBVcmR1LURlc2lnbi1TdHVkaW8tZGVidWctYXBrCiAgICAgICAgICBwYXRoOiBhcHAvYnVpbGQvb3V0cHV0cy9hcGsvZGVidWcvYXBwLWRlYnVnLmFwawogICAgICAgICAgaWYtbm8tZmlsZXMtZm91bmQ6IGVycm9yCg==
+name: Build Android APK
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Build APK
+        run: gradle assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Urdu-Design-Studio-APK
+          path: app/build/outputs/apk/debug/app-debug.apk
