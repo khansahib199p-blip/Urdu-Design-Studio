@@ -8,290 +8,445 @@
 <style>
 *{box-sizing:border-box}
 
-body{
-    margin:0;
-    background:#10111d;
-    color:#fff;
-    font-family:Arial,"Noto Nastaliq Urdu",sans-serif;
-    overflow:hidden;
+html,body{
+margin:0;
+width:100%;
+height:100%;
+overflow:hidden;
+font-family:Arial,"Noto Nastaliq Urdu","Noto Naskh Arabic",sans-serif;
+background:#0b0d18;
+color:#fff;
 }
+
+button,input,textarea,select{font-family:inherit}
 
 .app{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
+height:100vh;
+display:flex;
+flex-direction:column;
+background:
+radial-gradient(circle at 50% -20%,#5e2aa0 0,#17152d 38%,#090b15 100%);
 }
 
-/* HEADER */
-.header{
-    height:58px;
-    background:linear-gradient(135deg,#6a2cff,#b52cff);
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 10px;
-    box-shadow:0 3px 15px #0008;
+/* TOP BAR */
+
+.topbar{
+height:64px;
+min-height:64px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:7px 10px;
+background:rgba(30,20,55,.92);
+border-bottom:1px solid #ffffff18;
+box-shadow:0 5px 20px #0008;
 }
 
-.logo{
-    font-size:19px;
-    font-weight:bold;
+.brand{
+display:flex;
+align-items:center;
+gap:8px;
+font-size:19px;
+font-weight:800;
+white-space:nowrap;
 }
 
-.headerBtns{
-    display:flex;
-    gap:6px;
+.brandIcon{
+width:42px;
+height:42px;
+border-radius:13px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#8d4dff,#d92cff);
+box-shadow:0 5px 18px #922cff55;
+font-size:23px;
 }
 
-.header button{
-    width:40px;
-    height:40px;
-    border:0;
-    border-radius:12px;
-    background:#ffffff22;
-    color:white;
-    font-size:20px;
+.topTools{
+display:flex;
+gap:6px;
+direction:ltr;
 }
 
-/* WORKSPACE */
-.workspace{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    overflow:hidden;
+.topBtn{
+width:43px;
+height:43px;
+border:1px solid #ffffff12;
+border-radius:13px;
+background:#ffffff0d;
+color:#fff;
+font-size:19px;
 }
 
-/* CANVAS AREA */
-.canvasArea{
-    flex:1;
-    padding:12px;
-    overflow:auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:
-      radial-gradient(circle at 20% 20%,#30245b 0,#10111d 45%),
-      #10111d;
+.topBtn:active{
+transform:scale(.92);
+background:#8b3dff;
+}
+
+/* WORK AREA */
+
+.work{
+flex:1;
+display:flex;
+min-height:0;
+}
+
+.side{
+width:62px;
+min-width:62px;
+background:#121425;
+border-left:1px solid #ffffff0c;
+display:flex;
+flex-direction:column;
+align-items:center;
+padding:8px 6px;
+gap:7px;
+}
+
+.sideBtn{
+width:49px;
+height:49px;
+border:1px solid #ffffff0d;
+border-radius:15px;
+background:#1e2136;
+color:#fff;
+font-size:20px;
+}
+
+.sideBtn.active{
+background:linear-gradient(145deg,#743cff,#b72cff);
+box-shadow:0 6px 18px #7c32ff55;
+}
+
+/* CANVAS */
+
+.stage{
+flex:1;
+min-width:0;
+position:relative;
+overflow:auto;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:18px;
 }
 
 .canvas{
-    position:relative;
-    width:340px;
-    height:500px;
-    background:#fff;
-    color:#111;
-    border-radius:4px;
-    box-shadow:0 10px 35px #0009;
-    overflow:hidden;
+position:relative;
+width:340px;
+height:500px;
+flex:none;
+background:#fff;
+box-shadow:0 15px 45px #000b;
+overflow:hidden;
+border-radius:5px;
 }
 
-/* OBJECTS */
+.grid{
+position:absolute;
+inset:0;
+background-image:
+linear-gradient(#00000008 1px,transparent 1px),
+linear-gradient(90deg,#00000008 1px,transparent 1px);
+background-size:20px 20px;
+pointer-events:none;
+}
+
+.empty{
+position:absolute;
+inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#aaa;
+font-size:20px;
+pointer-events:none;
+}
+
+/* OBJECT */
+
 .obj{
-    position:absolute;
-    min-width:50px;
-    min-height:35px;
-    cursor:move;
-    user-select:none;
-    touch-action:none;
+position:absolute;
+touch-action:none;
+user-select:none;
+cursor:move;
 }
 
 .obj.selected{
-    outline:2px solid #7c3cff;
-    outline-offset:2px;
+outline:2px solid #7c3cff;
+outline-offset:3px;
 }
 
 .textObj{
-    padding:5px 10px;
-    font-size:28px;
-    direction:rtl;
-    text-align:center;
-    white-space:pre-wrap;
+padding:5px 10px;
+min-width:60px;
+min-height:40px;
+font-size:30px;
+color:#171717;
+text-align:center;
+direction:rtl;
+white-space:pre-wrap;
+line-height:1.35;
+background:transparent;
 }
 
-.shape{
-    border:3px solid #7b35ff;
-    background:#d7c7ff66;
+.textObj:focus{
+outline:2px solid #7c3cff;
+}
+
+.rect{
+width:120px;
+height:100px;
+background:#a477ff44;
+border:3px solid #713bff;
+border-radius:12px;
 }
 
 .circle{
-    border-radius:50%;
+width:120px;
+height:120px;
+background:#ff5ca844;
+border:3px solid #ff4e9b;
+border-radius:50%;
 }
 
 .line{
-    height:4px!important;
-    min-height:4px!important;
-    background:#7b35ff;
-    border:0;
+width:160px;
+height:5px;
+background:#673bff;
+border-radius:5px;
 }
 
-/* RESIZE HANDLE */
+/* HANDLES */
+
 .handle{
-    display:none;
-    position:absolute;
-    width:18px;
-    height:18px;
-    border-radius:50%;
-    background:#7b35ff;
-    border:3px solid white;
-    z-index:20;
+position:absolute;
+width:17px;
+height:17px;
+border-radius:50%;
+background:#7c3cff;
+border:3px solid white;
+box-shadow:0 2px 7px #0008;
+z-index:20;
+display:none;
 }
 
 .selected .handle{
-    display:block;
+display:block;
 }
 
-.handle.br{
-    right:-10px;
-    bottom:-10px;
-    cursor:nwse-resize;
+.resize{
+right:-10px;
+bottom:-10px;
+cursor:nwse-resize;
 }
 
-.handle.rotate{
-    left:50%;
-    top:-28px;
-    transform:translateX(-50%);
-    cursor:grab;
+.rotate{
+left:50%;
+top:-29px;
+transform:translateX(-50%);
+cursor:grab;
 }
 
-/* TOOLBAR */
-.toolbar{
-    background:#181927;
-    border-top:1px solid #33354a;
-    padding:8px;
+/* BOTTOM */
+
+.bottom{
+background:rgba(18,20,37,.98);
+border-top:1px solid #ffffff12;
+padding:8px;
 }
 
-.tools{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:7px;
+.toolGrid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:7px;
 }
 
 .tool{
-    border:0;
-    border-radius:12px;
-    padding:11px 4px;
-    background:#292b40;
-    color:white;
-    font-size:13px;
+height:62px;
+border:1px solid #ffffff0c;
+border-radius:16px;
+background:linear-gradient(145deg,#24273e,#191b2e);
+color:#fff;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:3px;
+font-size:12px;
+box-shadow:0 4px 12px #0004;
+}
+
+.tool .ico{
+font-size:22px;
+line-height:22px;
 }
 
 .tool:active{
-    transform:scale(.94);
-    background:#7139d9;
+transform:scale(.94);
+background:linear-gradient(145deg,#773dff,#b92cff);
 }
 
-/* PROPERTY PANEL */
+/* PANEL */
+
 .panel{
-    display:none;
-    background:#202234;
-    border-top:1px solid #3a3d55;
-    padding:10px;
-    max-height:190px;
-    overflow:auto;
+position:absolute;
+left:8px;
+right:8px;
+bottom:8px;
+z-index:50;
+background:rgba(25,27,45,.98);
+border:1px solid #ffffff18;
+border-radius:20px;
+padding:14px;
+box-shadow:0 15px 45px #000c;
+display:none;
+max-height:310px;
+overflow:auto;
 }
 
 .panel.show{
-    display:block;
+display:block;
+}
+
+.panelTitle{
+font-size:17px;
+font-weight:bold;
+margin-bottom:10px;
+display:flex;
+justify-content:space-between;
+}
+
+.close{
+border:0;
+background:#ffffff12;
+color:#fff;
+border-radius:9px;
+width:32px;
+height:32px;
 }
 
 .row{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin-bottom:9px;
+display:flex;
+align-items:center;
+gap:8px;
+margin:8px 0;
 }
 
 .row label{
-    font-size:13px;
-    width:75px;
-    color:#ddd;
+width:72px;
+font-size:13px;
+color:#ddd;
 }
 
-input,select,textarea{
-    flex:1;
-    border:1px solid #484b68;
-    border-radius:9px;
-    background:#111321;
-    color:white;
-    padding:8px;
+.row input[type="range"]{
+flex:1;
+accent-color:#9a4cff;
 }
 
-textarea{
-    min-height:55px;
-    resize:none;
+.color{
+width:48px!important;
+height:38px;
+padding:2px;
+border:0;
+background:none;
 }
 
-/* FONT BUTTONS */
-.fontButtons{
-    display:flex;
-    gap:6px;
-    overflow:auto;
+select{
+flex:1;
+padding:9px;
+border-radius:10px;
+background:#10121f;
+color:#fff;
+border:1px solid #ffffff18;
 }
 
-.fontBtn{
-    min-width:70px;
-    border:0;
-    padding:8px;
-    border-radius:9px;
-    background:#34374f;
-    color:white;
+.mini{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:7px;
 }
 
-/* MODAL */
+.mini button{
+padding:9px;
+border:0;
+border-radius:10px;
+background:#2b2e46;
+color:#fff;
+}
+
 .modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:#000b;
-    z-index:100;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
+position:fixed;
+inset:0;
+background:#000b;
+z-index:100;
+display:none;
+align-items:center;
+justify-content:center;
+padding:20px;
 }
 
 .modal.show{
-    display:flex;
+display:flex;
 }
 
 .modalBox{
-    width:100%;
-    max-width:400px;
-    background:#202234;
-    border-radius:20px;
-    padding:18px;
+width:100%;
+max-width:390px;
+background:#202338;
+border:1px solid #ffffff18;
+border-radius:22px;
+padding:18px;
+box-shadow:0 20px 60px #000;
 }
 
 .modalTitle{
-    font-size:20px;
-    font-weight:bold;
-    margin-bottom:15px;
+font-size:19px;
+font-weight:bold;
+margin-bottom:12px;
 }
 
-.bigBtn{
-    width:100%;
-    border:0;
-    border-radius:12px;
-    padding:13px;
-    margin-top:8px;
-    background:linear-gradient(135deg,#7139df,#b52cff);
-    color:white;
-    font-size:16px;
+.textArea{
+width:100%;
+min-height:100px;
+resize:none;
+background:#10121e;
+border:1px solid #ffffff20;
+border-radius:13px;
+padding:12px;
+color:#fff;
+font-size:21px;
+direction:rtl;
 }
 
-.closeBtn{
-    background:#383b50;
+.modalBtns{
+display:flex;
+gap:8px;
+margin-top:12px;
 }
 
-/* EMPTY */
-.empty{
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#999;
-    font-size:18px;
-    pointer-events:none;
+.modalBtns button{
+flex:1;
+padding:12px;
+border:0;
+border-radius:12px;
+color:#fff;
+background:#35384f;
+}
+
+.modalBtns .ok{
+background:linear-gradient(135deg,#753cff,#bd2cff);
+}
+
+/* SMALL SCREEN */
+
+@media(max-width:500px){
+.brand{font-size:16px}
+.side{display:none}
+.stage{padding:12px}
+.canvas{width:330px;height:480px}
+.tool{height:58px}
 }
 </style>
 </head>
@@ -300,186 +455,331 @@ textarea{
 
 <div class="app">
 
-<header class="header">
-    <div class="logo">🎨 اردو ڈیزائن اسٹوڈیو</div>
+<!-- TOP -->
 
-    <div class="headerBtns">
-        <button onclick="undo()">↶</button>
-        <button onclick="redo()">↷</button>
-        <button onclick="saveDesign()">💾</button>
-    </div>
-</header>
+<div class="topbar">
 
-<div class="workspace">
+<div class="brand">
+<div class="brandIcon">🎨</div>
+<div>اردو ڈیزائن اسٹوڈیو</div>
+</div>
 
-<div class="canvasArea">
-
-    <div class="canvas" id="canvas">
-
-        <div class="empty" id="empty">
-            اپنا ڈیزائن یہاں بنائیں
-        </div>
-
-    </div>
+<div class="topTools">
+<button class="topBtn" onclick="undo()">↶</button>
+<button class="topBtn" onclick="redo()">↷</button>
+<button class="topBtn" onclick="saveDesign()">💾</button>
+</div>
 
 </div>
 
-<!-- PROPERTY PANEL -->
+<!-- WORK -->
+
+<div class="work">
+
+<div class="side">
+
+<button class="sideBtn active" onclick="openTools()">🛠️</button>
+<button class="sideBtn" onclick="togglePanel()">⚙️</button>
+<button class="sideBtn" onclick="deleteSelected()">🗑️</button>
+
+</div>
+
+<div class="stage">
+
+<div class="canvas" id="canvas">
+
+<div class="grid"></div>
+
+<div class="empty" id="empty">
+اپنا ڈیزائن یہاں بنائیں
+</div>
+
+</div>
+
+<!-- EDIT PANEL -->
 
 <div class="panel" id="panel">
 
-    <div class="row">
-        <label>متن</label>
-        <textarea id="textInput"
-        placeholder="اردو متن لکھیں..."></textarea>
-    </div>
+<div class="panelTitle">
+<span>✦ آبجیکٹ کی ترمیم</span>
+<button class="close" onclick="togglePanel()">×</button>
+</div>
 
-    <div class="row">
-        <label>سائز</label>
-        <input id="fontSize"
-        type="range"
-        min="10"
-        max="100"
-        value="28">
-        <span id="fontSizeValue">28</span>
-    </div>
+<div class="row">
+<label>رنگ</label>
+<input class="color" id="color" type="color" value="#713bff">
+</div>
 
-    <div class="row">
-        <label>رنگ</label>
-        <input id="colorInput" type="color" value="#111111">
-    </div>
+<div class="row">
+<label>سائز</label>
+<input id="size" type="range" min="10" max="100" value="30">
+<span id="sizeVal">30</span>
+</div>
 
-    <div class="row">
-        <label>فونٹ</label>
-        <select id="fontInput">
-            <option value="Arial">Arial</option>
-            <option value="Noto Nastaliq Urdu">Noto Nastaliq Urdu</option>
-            <option value="serif">Serif</option>
-            <option value="sans-serif">Sans Serif</option>
-        </select>
-    </div>
+<div class="row">
+<label>فونٹ</label>
+<select id="font">
+<option>Arial</option>
+<option>Noto Nastaliq Urdu</option>
+<option>Noto Naskh Arabic</option>
+<option>serif</option>
+<option>sans-serif</option>
+</select>
+</div>
 
-    <div class="row">
-        <label>گولائی</label>
-        <input id="radiusInput"
-        type="range"
-        min="0"
-        max="100"
-        value="0">
-        <span id="radiusValue">0</span>
-    </div>
+<div class="row">
+<label>موٹائی</label>
+<select id="weight">
+<option value="400">Normal</option>
+<option value="600">Semi Bold</option>
+<option value="700">Bold</option>
+</select>
+</div>
+
+<div class="row">
+<label>گولائی</label>
+<input id="radius" type="range" min="0" max="100" value="0">
+<span id="radiusVal">0</span>
+</div>
+
+<div class="mini">
+<button onclick="duplicate()">📋 کاپی</button>
+<button onclick="deleteSelected()">🗑 حذف</button>
+<button onclick="front()">⬆️ اوپر</button>
+<button onclick="back()">⬇️ نیچے</button>
+</div>
+
+</div>
+
+</div>
 
 </div>
 
 <!-- TOOLS -->
 
-<div class="toolbar">
+<div class="bottom">
 
-<div class="tools">
+<div class="toolGrid">
 
-<button class="tool" onclick="addText()">📝<br>متن</button>
+<button class="tool" onclick="addText()">
+<span class="ico">📝</span>
+متن
+</button>
 
-<button class="tool" onclick="addRect()">⬜<br>مربع</button>
+<button class="tool" onclick="addRect()">
+<span class="ico">▣</span>
+مربع
+</button>
 
-<button class="tool" onclick="addCircle()">⚪<br>دائرہ</button>
+<button class="tool" onclick="addCircle()">
+<span class="ico">●</span>
+دائرہ
+</button>
 
-<button class="tool" onclick="addLine()">➖<br>لائن</button>
+<button class="tool" onclick="addLine()">
+<span class="ico">━</span>
+لائن
+</button>
 
-<button class="tool" onclick="addImage()">🖼️<br>تصویر</button>
+<button class="tool" onclick="pickImage()">
+<span class="ico">▧</span>
+تصویر
+</button>
 
-<button class="tool" onclick="duplicate()">📋<br>کاپی</button>
+<button class="tool" onclick="togglePanel()">
+<span class="ico">⚙</span>
+ترمیم
+</button>
 
-<button class="tool" onclick="deleteSelected()">🗑️<br>حذف</button>
+<button class="tool" onclick="duplicate()">
+<span class="ico">⧉</span>
+کاپی
+</button>
 
-<button class="tool" onclick="bringFront()">⬆️<br>اوپر</button>
+<button class="tool" onclick="deleteSelected()">
+<span class="ico">⌫</span>
+حذف
+</button>
 
-<button class="tool" onclick="sendBack()">⬇️<br>نیچے</button>
+<button class="tool" onclick="front()">
+<span class="ico">↑</span>
+اوپر
+</button>
 
-<button class="tool" onclick="togglePanel()">⚙️<br>ترمیم</button>
+<button class="tool" onclick="back()">
+<span class="ico">↓</span>
+نیچے
+</button>
 
 </div>
 
 </div>
 
 </div>
+
+<input id="imageInput" type="file" accept="image/*" hidden>
+
+<!-- TEXT MODAL -->
+
+<div class="modal" id="textModal">
+
+<div class="modalBox">
+
+<div class="modalTitle">
+📝 نیا اردو متن
 </div>
 
-<input
-    type="file"
-    id="imageInput"
-    accept="image/*"
-    style="display:none"
->
+<textarea
+id="newText"
+class="textArea"
+placeholder="اپنا اردو متن یہاں لکھیں..."
+></textarea>
+
+<div class="modalBtns">
+
+<button onclick="closeText()">منسوخ</button>
+
+<button class="ok" onclick="createText()">شامل کریں</button>
+
+</div>
+
+</div>
+
+</div>
 
 <script>
 
-/* =========================
-   VARIABLES
-========================= */
+/* =====================
+   BASIC
+===================== */
 
-const canvas = document.getElementById("canvas");
-const panel = document.getElementById("panel");
-const empty = document.getElementById("empty");
+const canvas=document.getElementById("canvas");
+const panel=document.getElementById("panel");
+const empty=document.getElementById("empty");
 
-let selected = null;
-let history = [];
-let historyIndex = -1;
+let selected=null;
+let history=[];
+let historyPos=-1;
 
-let objectCounter = 0;
+function updateEmpty(){
 
+let objs=canvas.querySelectorAll(".obj");
 
-/* =========================
-   HISTORY
-========================= */
+empty.style.display=objs.length?"none":"flex";
 
-function saveHistory(){
-
-    const state = canvas.innerHTML;
-
-    history = history.slice(0,historyIndex + 1);
-
-    history.push(state);
-
-    historyIndex++;
-
-    if(history.length > 30){
-        history.shift();
-        historyIndex--;
-    }
 }
 
-function restoreState(state){
 
-    canvas.innerHTML = state;
+/* =====================
+   HISTORY
+===================== */
 
-    selected = null;
+function snapshot(){
 
-    document.querySelectorAll(".obj").forEach(obj=>{
-        makeSelectable(obj);
-    });
+let html=canvas.innerHTML;
 
-    updateEmpty();
+history=history.slice(0,historyPos+1);
+
+history.push(html);
+
+historyPos++;
+
+if(history.length>30){
+history.shift();
+historyPos--;
+}
+
+}
+
+function restore(html){
+
+canvas.innerHTML=html;
+
+selected=null;
+
+canvas.querySelectorAll(".obj").forEach(o=>{
+setupObject(o);
+});
+
+updateEmpty();
+
+panel.classList.remove("show");
 
 }
 
 function undo(){
 
-    if(historyIndex <= 0) return;
+if(historyPos<=0)return;
 
-    historyIndex--;
+historyPos--;
 
-    restoreState(history[historyIndex]);
+restore(history[historyPos]);
+
 }
 
 function redo(){
 
-    if(historyIndex >= history.length - 1) return;
+if(historyPos>=history.length-1)return;
 
-    historyIndex++;
+historyPos++;
 
-    restoreState(history[historyIndex]);
+restore(history[historyPos]);
+
 }
 
 
-/* =========================
-  
+/* =====================
+   SELECT
+===================== */
+
+function selectObject(o){
+
+canvas.querySelectorAll(".obj")
+.forEach(x=>x.classList.remove("selected"));
+
+selected=o;
+
+if(o){
+
+o.classList.add("selected");
+
+updatePanel();
+
+}
+
+}
+
+
+/* =====================
+   OBJECT CREATION
+===================== */
+
+function baseObject(cls){
+
+const o=document.createElement("div");
+
+o.className="obj "+cls;
+
+o.style.left="105px";
+o.style.top="170px";
+
+canvas.appendChild(o);
+
+setupObject(o);
+
+selectObject(o);
+
+updateEmpty();
+
+snapshot();
+
+return o;
+
+}
+
+
+/* TEXT */
+
+function addText(){
+
+document.getElementById("
