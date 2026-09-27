@@ -6,6 +6,67 @@
 <title>Urdu Design Studio</title>
 
 <style>
+    /* ===== URDU DESIGN STUDIO - PROFESSIONAL UI BASE ===== */
+
+:root{
+  --primary:#6c3df4;
+  --primary2:#8b5cf6;
+  --bg:#f7f7fb;
+  --card:#ffffff;
+  --text:#202124;
+  --muted:#777b85;
+  --radius:22px;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+body{
+  background:var(--bg) !important;
+  color:var(--text);
+}
+
+button{
+  border:0;
+  font-family:inherit;
+  cursor:pointer;
+}
+
+.uds-card{
+  background:#fff;
+  border-radius:var(--radius);
+  box-shadow:0 6px 25px rgba(40,30,80,.08);
+}
+
+.uds-icon{
+  width:54px;
+  height:54px;
+  object-fit:contain;
+  border-radius:16px;
+}
+
+.uds-section-title{
+  font-size:21px;
+  font-weight:800;
+  margin:22px 0 12px;
+}
+
+.uds-small-text{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.uds-gradient-btn{
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  color:#fff;
+  border-radius:18px;
+  min-height:54px;
+  font-size:17px;
+  font-weight:800;
+  box-shadow:0 8px 20px rgba(108,61,244,.25);
+}
 *{box-sizing:border-box}
 
 html,body{
