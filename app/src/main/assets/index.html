@@ -2,82 +2,484 @@
 <html lang="ur" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
 <title>Urdu Design Studio</title>
+
 <style>
 *{box-sizing:border-box}
+
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:linear-gradient(135deg,#15152b,#302060);
-color:white;
-text-align:center;
+    margin:0;
+    background:#10111d;
+    color:#fff;
+    font-family:Arial,"Noto Nastaliq Urdu",sans-serif;
+    overflow:hidden;
 }
+
+.app{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+/* HEADER */
 .header{
-padding:25px 15px;
-font-size:28px;
-font-weight:bold;
+    height:58px;
+    background:linear-gradient(135deg,#6a2cff,#b52cff);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 10px;
+    box-shadow:0 3px 15px #0008;
 }
-.subtitle{color:#ddd;margin-bottom:20px}
-.tools{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
-padding:20px;
+
+.logo{
+    font-size:19px;
+    font-weight:bold;
 }
-button{
-border:0;
-border-radius:18px;
-padding:22px 10px;
-font-size:19px;
-font-weight:bold;
-color:white;
-background:linear-gradient(135deg,#7b4cff,#d43cff);
-box-shadow:0 5px 15px #0005;
+
+.headerBtns{
+    display:flex;
+    gap:6px;
 }
-button:active{transform:scale(.96)}
+
+.header button{
+    width:40px;
+    height:40px;
+    border:0;
+    border-radius:12px;
+    background:#ffffff22;
+    color:white;
+    font-size:20px;
+}
+
+/* WORKSPACE */
+.workspace{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+/* CANVAS AREA */
+.canvasArea{
+    flex:1;
+    padding:12px;
+    overflow:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+      radial-gradient(circle at 20% 20%,#30245b 0,#10111d 45%),
+      #10111d;
+}
+
 .canvas{
-margin:10px 20px;
-height:220px;
-border-radius:20px;
-background:white;
-color:#222;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:28px;
+    position:relative;
+    width:340px;
+    height:500px;
+    background:#fff;
+    color:#111;
+    border-radius:4px;
+    box-shadow:0 10px 35px #0009;
+    overflow:hidden;
+}
+
+/* OBJECTS */
+.obj{
+    position:absolute;
+    min-width:50px;
+    min-height:35px;
+    cursor:move;
+    user-select:none;
+    touch-action:none;
+}
+
+.obj.selected{
+    outline:2px solid #7c3cff;
+    outline-offset:2px;
+}
+
+.textObj{
+    padding:5px 10px;
+    font-size:28px;
+    direction:rtl;
+    text-align:center;
+    white-space:pre-wrap;
+}
+
+.shape{
+    border:3px solid #7b35ff;
+    background:#d7c7ff66;
+}
+
+.circle{
+    border-radius:50%;
+}
+
+.line{
+    height:4px!important;
+    min-height:4px!important;
+    background:#7b35ff;
+    border:0;
+}
+
+/* RESIZE HANDLE */
+.handle{
+    display:none;
+    position:absolute;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:#7b35ff;
+    border:3px solid white;
+    z-index:20;
+}
+
+.selected .handle{
+    display:block;
+}
+
+.handle.br{
+    right:-10px;
+    bottom:-10px;
+    cursor:nwse-resize;
+}
+
+.handle.rotate{
+    left:50%;
+    top:-28px;
+    transform:translateX(-50%);
+    cursor:grab;
+}
+
+/* TOOLBAR */
+.toolbar{
+    background:#181927;
+    border-top:1px solid #33354a;
+    padding:8px;
+}
+
+.tools{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:7px;
+}
+
+.tool{
+    border:0;
+    border-radius:12px;
+    padding:11px 4px;
+    background:#292b40;
+    color:white;
+    font-size:13px;
+}
+
+.tool:active{
+    transform:scale(.94);
+    background:#7139d9;
+}
+
+/* PROPERTY PANEL */
+.panel{
+    display:none;
+    background:#202234;
+    border-top:1px solid #3a3d55;
+    padding:10px;
+    max-height:190px;
+    overflow:auto;
+}
+
+.panel.show{
+    display:block;
+}
+
+.row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:9px;
+}
+
+.row label{
+    font-size:13px;
+    width:75px;
+    color:#ddd;
+}
+
+input,select,textarea{
+    flex:1;
+    border:1px solid #484b68;
+    border-radius:9px;
+    background:#111321;
+    color:white;
+    padding:8px;
+}
+
+textarea{
+    min-height:55px;
+    resize:none;
+}
+
+/* FONT BUTTONS */
+.fontButtons{
+    display:flex;
+    gap:6px;
+    overflow:auto;
+}
+
+.fontBtn{
+    min-width:70px;
+    border:0;
+    padding:8px;
+    border-radius:9px;
+    background:#34374f;
+    color:white;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:#000b;
+    z-index:100;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modalBox{
+    width:100%;
+    max-width:400px;
+    background:#202234;
+    border-radius:20px;
+    padding:18px;
+}
+
+.modalTitle{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.bigBtn{
+    width:100%;
+    border:0;
+    border-radius:12px;
+    padding:13px;
+    margin-top:8px;
+    background:linear-gradient(135deg,#7139df,#b52cff);
+    color:white;
+    font-size:16px;
+}
+
+.closeBtn{
+    background:#383b50;
+}
+
+/* EMPTY */
+.empty{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#999;
+    font-size:18px;
+    pointer-events:none;
 }
 </style>
 </head>
+
 <body>
 
-<div class="header">اردو ڈیزائن اسٹوڈیو</div>
-<div class="subtitle">اپنا خوبصورت اردو ڈیزائن بنائیں</div>
+<div class="app">
 
-<div class="canvas" id="canvas">یہاں ڈیزائن بنائیں</div>
+<header class="header">
+    <div class="logo">🎨 اردو ڈیزائن اسٹوڈیو</div>
 
-<div class="tools">
-<button onclick="addText()">📝 متن</button>
-<button onclick="addShape()">⬜ شکل</button>
-<button onclick="changeColor()">🎨 رنگ</button>
-<button onclick="clearCanvas()">🗑 صاف کریں</button>
+    <div class="headerBtns">
+        <button onclick="undo()">↶</button>
+        <button onclick="redo()">↷</button>
+        <button onclick="saveDesign()">💾</button>
+    </div>
+</header>
+
+<div class="workspace">
+
+<div class="canvasArea">
+
+    <div class="canvas" id="canvas">
+
+        <div class="empty" id="empty">
+            اپنا ڈیزائن یہاں بنائیں
+        </div>
+
+    </div>
+
 </div>
 
-<script>
-function addText(){
-document.getElementById("canvas").innerHTML="نیا اردو متن";
-}
-function addShape(){
-document.getElementById("canvas").innerHTML="◆";
-}
-function changeColor(){
-document.getElementById("canvas").style.background=
-"#"+Math.floor(Math.random()*16777215).toString(16);
-}
-function clearCanvas(){
-document.getElementById("canvas").innerHTML="یہاں ڈیزائن بنائیں";
-}
-</script>
+<!-- PROPERTY PANEL -->
 
-</body>
-</html>
+<div class="panel" id="panel">
+
+    <div class="row">
+        <label>متن</label>
+        <textarea id="textInput"
+        placeholder="اردو متن لکھیں..."></textarea>
+    </div>
+
+    <div class="row">
+        <label>سائز</label>
+        <input id="fontSize"
+        type="range"
+        min="10"
+        max="100"
+        value="28">
+        <span id="fontSizeValue">28</span>
+    </div>
+
+    <div class="row">
+        <label>رنگ</label>
+        <input id="colorInput" type="color" value="#111111">
+    </div>
+
+    <div class="row">
+        <label>فونٹ</label>
+        <select id="fontInput">
+            <option value="Arial">Arial</option>
+            <option value="Noto Nastaliq Urdu">Noto Nastaliq Urdu</option>
+            <option value="serif">Serif</option>
+            <option value="sans-serif">Sans Serif</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <label>گولائی</label>
+        <input id="radiusInput"
+        type="range"
+        min="0"
+        max="100"
+        value="0">
+        <span id="radiusValue">0</span>
+    </div>
+
+</div>
+
+<!-- TOOLS -->
+
+<div class="toolbar">
+
+<div class="tools">
+
+<button class="tool" onclick="addText()">📝<br>متن</button>
+
+<button class="tool" onclick="addRect()">⬜<br>مربع</button>
+
+<button class="tool" onclick="addCircle()">⚪<br>دائرہ</button>
+
+<button class="tool" onclick="addLine()">➖<br>لائن</button>
+
+<button class="tool" onclick="addImage()">🖼️<br>تصویر</button>
+
+<button class="tool" onclick="duplicate()">📋<br>کاپی</button>
+
+<button class="tool" onclick="deleteSelected()">🗑️<br>حذف</button>
+
+<button class="tool" onclick="bringFront()">⬆️<br>اوپر</button>
+
+<button class="tool" onclick="sendBack()">⬇️<br>نیچے</button>
+
+<button class="tool" onclick="togglePanel()">⚙️<br>ترمیم</button>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+<input
+    type="file"
+    id="imageInput"
+    accept="image/*"
+    style="display:none"
+>
+
+<script>
+
+/* =========================
+   VARIABLES
+========================= */
+
+const canvas = document.getElementById("canvas");
+const panel = document.getElementById("panel");
+const empty = document.getElementById("empty");
+
+let selected = null;
+let history = [];
+let historyIndex = -1;
+
+let objectCounter = 0;
+
+
+/* =========================
+   HISTORY
+========================= */
+
+function saveHistory(){
+
+    const state = canvas.innerHTML;
+
+    history = history.slice(0,historyIndex + 1);
+
+    history.push(state);
+
+    historyIndex++;
+
+    if(history.length > 30){
+        history.shift();
+        historyIndex--;
+    }
+}
+
+function restoreState(state){
+
+    canvas.innerHTML = state;
+
+    selected = null;
+
+    document.querySelectorAll(".obj").forEach(obj=>{
+        makeSelectable(obj);
+    });
+
+    updateEmpty();
+
+}
+
+function undo(){
+
+    if(historyIndex <= 0) return;
+
+    historyIndex--;
+
+    restoreState(history[historyIndex]);
+}
+
+function redo(){
+
+    if(historyIndex >= history.length - 1) return;
+
+    historyIndex++;
+
+    restoreState(history[historyIndex]);
+}
+
+
+/* =========================
+  
