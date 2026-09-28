@@ -1687,25 +1687,23 @@ function openNewDesign(){
     };
 
 
-    // CREATE
+// CREATE
 
-    document.getElementById("udsCreateDesign").onclick=function(){
+document.getElementById("udsCreateDesign").onclick=function(){
 
-        let w=parseInt(document.getElementById("udsWidth").value)||1080;
-        let h=parseInt(document.getElementById("udsHeight").value)||1080;
+    let w=parseInt(document.getElementById("udsWidth").value)||1080;
+    let h=parseInt(document.getElementById("udsHeight").value)||1080;
 
-        localStorage.setItem("UDS_CANVAS_WIDTH",w);
-        localStorage.setItem("UDS_CANVAS_HEIGHT",h);
+    localStorage.setItem("UDS_CANVAS_WIDTH",w);
+    localStorage.setItem("UDS_CANVAS_HEIGHT",h);
 
-        setup.remove();
+    setup.remove();
 
-        if(udsEditor){
-            udsEditor.style.display="flex";
-        }
+    if(udsEditor){
+        udsEditor.style.display="flex";
+    }
 
-    };
-
-}
+};
 
 
 // NEW DESIGN BUTTON
