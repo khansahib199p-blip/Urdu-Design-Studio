@@ -1306,7 +1306,21 @@ canvas.querySelectorAll(".obj").forEach(function(o){
 });
 
 saveState();
+// ===== HOME / EDITOR SWITCH =====
+let udsHome = document.getElementById("udsHome");
+let udsEditor = document.querySelector(".app");
+let udsNewDesign = udsHome ? udsHome.querySelector(".uds-gradient-btn") : null;
 
+if(udsEditor){
+    udsEditor.style.display = "none";
+}
+
+if(udsNewDesign){
+    udsNewDesign.onclick = function(){
+        if(udsHome) udsHome.style.display = "none";
+        if(udsEditor) udsEditor.style.display = "flex";
+    };
+}
 })();
 </script>
  </body>
