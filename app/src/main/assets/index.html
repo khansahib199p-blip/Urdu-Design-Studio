@@ -514,80 +514,224 @@ background:linear-gradient(135deg,#753cff,#bd2cff);
 
 <body>
 <!-- ===== UDS PROFESSIONAL HOME ===== -->
-<div id="udsHome" style="direction:rtl;min-height:100vh;background:#f7f7fb;padding:20px;">
+<div id="udsHome" style="min-height:100vh;background:#f6f7fb;color:#171827;padding:0 16px 92px;font-family:Arial,sans-serif;direction:ltr;">
 
-  <div style="text-align:center;padding:15px 0 22px;">
-    <div style="font-size:46px;margin-bottom:8px;">🎨</div>
+  <!-- HEADER -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 2px 14px;">
+    
+    <div style="display:flex;align-items:center;gap:11px;">
+      <div style="width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,#6d42ff,#a56cff);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(109,66,255,.22);font-size:24px;">
+        ✦
+      </div>
 
-    <h1 style="margin:0;font-size:28px;font-weight:900;color:#202124;">
-      اردو ڈیزائن اسٹوڈیو
-    </h1>
-
-    <p style="margin:8px 0;color:#777;font-size:15px;">
-      ڈیزائن بنائیں • ایڈٹ کریں • محفوظ کریں
-    </p>
-  </div>
-
-  <div class="uds-card" style="padding:18px;margin-bottom:20px;">
-    <div style="font-size:18px;font-weight:800;margin-bottom:6px;">
-      تخلیقی ڈیزائن شروع کریں
+      <div>
+        <div style="font-size:19px;font-weight:900;letter-spacing:-.3px;">
+          Urdu Design Studio
+        </div>
+        <div style="font-size:12px;color:#858796;margin-top:3px;">
+          Design • Edit • Create
+        </div>
+      </div>
     </div>
 
-    <div style="font-size:14px;color:#777;margin-bottom:14px;">
-      اپنی مرضی کا نیا ڈیزائن بنائیں
-    </div>
-
-    <button class="uds-gradient-btn" style="width:100%;">
-      ＋ نیا ڈیزائن بنائیں
+    <button style="width:42px;height:42px;border-radius:14px;background:#fff;box-shadow:0 5px 18px rgba(25,25,50,.08);font-size:19px;">
+      ⚙
     </button>
   </div>
 
-  <div class="uds-section-title">ڈیزائننگ ٹولز</div>
 
-  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;">
-
-    <div class="uds-card" style="padding:18px;text-align:center;">
-      <div style="font-size:34px;margin-bottom:8px;">🖼️</div>
-      <div style="font-weight:800;">ٹیمپلیٹس</div>
-      <div class="uds-small-text">تیار ڈیزائن</div>
+  <!-- WELCOME -->
+  <div style="padding:10px 2px 15px;">
+    <div style="font-size:27px;font-weight:900;letter-spacing:-.7px;">
+      Create something<br>
+      <span style="color:#7044f5;">beautiful.</span>
     </div>
 
-    <div class="uds-card" style="padding:18px;text-align:center;">
-      <div style="font-size:34px;margin-bottom:8px;">✦</div>
-      <div style="font-weight:800;">ڈیزائن عناصر</div>
-      <div class="uds-small-text">اشکال اور گرافکس</div>
+    <div style="font-size:13px;color:#858796;margin-top:7px;line-height:1.5;">
+      Professional graphic design made simple.
+    </div>
+  </div>
+
+
+  <!-- FEATURED NEW DESIGN -->
+  <div style="position:relative;overflow:hidden;border-radius:25px;background:linear-gradient(135deg,#6540ed,#9a61ff);padding:22px 20px;box-shadow:0 12px 28px rgba(101,64,237,.25);margin-bottom:22px;">
+
+    <div style="position:absolute;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.10);right:-45px;top:-45px;"></div>
+    <div style="position:absolute;width:95px;height:95px;border-radius:50%;background:rgba(255,255,255,.08);right:65px;bottom:-50px;"></div>
+
+    <div style="position:relative;z-index:2;">
+      <div style="font-size:12px;color:rgba(255,255,255,.75);font-weight:700;letter-spacing:.5px;">
+        START A NEW PROJECT
+      </div>
+
+      <div style="font-size:23px;color:#fff;font-weight:900;margin-top:7px;">
+        New Design
+      </div>
+
+      <div style="font-size:13px;color:rgba(255,255,255,.82);margin-top:5px;">
+        Choose a size and start creating.
+      </div>
+
+      <button id="udsNewDesignBtn" class="uds-gradient-btn"
+        style="margin-top:17px;background:#fff;color:#6540ed;padding:0 21px;min-height:45px;border-radius:14px;font-size:14px;font-weight:900;box-shadow:0 6px 16px rgba(0,0,0,.12);">
+        ＋ New Design
+      </button>
+    </div>
+  </div>
+
+
+  <!-- QUICK ACCESS -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+    <div style="font-size:18px;font-weight:900;">
+      Quick Access
     </div>
 
-    <div class="uds-card" style="padding:18px;text-align:center;">
-      <div style="font-size:34px;margin-bottom:8px;">⬡</div>
-      <div style="font-weight:800;">شکلیں</div>
-      <div class="uds-small-text">Shapes</div>
+    <div style="font-size:12px;color:#7044f5;font-weight:800;">
+      See All
+    </div>
+  </div>
+
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:11px;">
+
+    <!-- Templates -->
+    <div class="uds-card" style="padding:15px 8px;text-align:center;border-radius:19px;">
+      <div style="width:45px;height:45px;margin:auto;border-radius:14px;background:#eee9ff;display:flex;align-items:center;justify-content:center;font-size:22px;">
+        ▦
+      </div>
+      <div style="font-size:13px;font-weight:800;margin-top:9px;">
+        Templates
+      </div>
     </div>
 
-    <div class="uds-card" style="padding:18px;text-align:center;">
-      <div style="font-size:34px;margin-bottom:8px;">▣</div>
-      <div style="font-weight:800;">فریمز</div>
-      <div class="uds-small-text">Frames & Borders</div>
+    <!-- My Designs -->
+    <div class="uds-card" style="padding:15px 8px;text-align:center;border-radius:19px;">
+      <div style="width:45px;height:45px;margin:auto;border-radius:14px;background:#e9f2ff;display:flex;align-items:center;justify-content:center;font-size:22px;">
+        ◫
+      </div>
+      <div style="font-size:13px;font-weight:800;margin-top:9px;">
+        My Designs
+      </div>
     </div>
 
-    <div class="uds-card" style="padding:18px;text-align:center;">
-      <div style="font-size:34px;margin-bottom:8px;">📷</div>
-      <div style="font-weight:800;">تصویر شامل کریں</div>
-      <div class="uds-small-text">PNG / JPG</div>
-    </div>
-
-    <div class="uds-card" style="padding:18px;text-align:center;">
-      <div style="font-size:34px;margin-bottom:8px;">📁</div>
-      <div style="font-weight:800;">میرے ڈیزائنز</div>
-      <div class="uds-small-text">محفوظ پروجیکٹس</div>
+    <!-- Elements -->
+    <div class="uds-card" style="padding:15px 8px;text-align:center;border-radius:19px;">
+      <div style="width:45px;height:45px;margin:auto;border-radius:14px;background:#fff0e7;display:flex;align-items:center;justify-content:center;font-size:22px;">
+        ✦
+      </div>
+      <div style="font-size:13px;font-weight:800;margin-top:9px;">
+        Elements
+      </div>
     </div>
 
   </div>
 
-  <div class="uds-section-title">مزید</div>
 
-  <div class="uds-card" style="padding:18px;">
-    ⚙️ &nbsp; <b>سیٹنگز</b>
+  <!-- DESIGN TOOLS -->
+  <div style="font-size:18px;font-weight:900;margin:25px 0 12px;">
+    Design Tools
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:11px;">
+
+    <div class="uds-card" style="padding:15px 8px;text-align:center;border-radius:19px;">
+      <div style="width:45px;height:45px;margin:auto;border-radius:14px;background:#eaf8f1;display:flex;align-items:center;justify-content:center;font-size:21px;">
+        ◇
+      </div>
+      <div style="font-size:13px;font-weight:800;margin-top:9px;">Shapes</div>
+    </div>
+
+    <div class="uds-card" style="padding:15px 8px;text-align:center;border-radius:19px;">
+      <div style="width:45px;height:45px;margin:auto;border-radius:14px;background:#fff4dc;display:flex;align-items:center;justify-content:center;font-size:21px;">
+        ▣
+      </div>
+      <div style="font-size:13px;font-weight:800;margin-top:9px;">Frames</div>
+    </div>
+
+    <div class="uds-card" style="padding:15px 8px;text-align:center;border-radius:19px;">
+      <div style="width:45px;height:45px;margin:auto;border-radius:14px;background:#fceaf1;display:flex;align-items:center;justify-content:center;font-size:21px;">
+        ◉
+      </div>
+      <div style="font-size:13px;font-weight:800;margin-top:9px;">Backgrounds</div>
+    </div>
+
+    <div class="uds-card" style="padding:15px 8px;text-align:center;border-radius:19px;">
+      <div style="width:45px;height:45px;margin:auto;border-radius:14px;background:#e9f7ff;display:flex;align-items:center;justify-content:center;font-size:21px;">
+        ▧
+      </div>
+      <div style="font-size:13px;font-weight:800;margin-top:9px;">Import</div>
+    </div>
+
+    <div class="uds-card" style="padding:15px 8px;text-align:center;border-radius:19px;">
+      <div style="width:45px;height:45px;margin:auto;border-radius:14px;background:#f1edff;display:flex;align-items:center;justify-content:center;font-size:21px;">
+        T
+      </div>
+      <div style="font-size:13px;font-weight:800;margin-top:9px;">Text</div>
+    </div>
+
+    <div class="uds-card" style="padding:15px 8px;text-align:center;border-radius:19px;">
+      <div style="width:45px;height:45px;margin:auto;border-radius:14px;background:#edf0f5;display:flex;align-items:center;justify-content:center;font-size:21px;">
+        ⋯
+      </div>
+      <div style="font-size:13px;font-weight:800;margin-top:9px;">More</div>
+    </div>
+
+  </div>
+
+
+  <!-- RECENT -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin:25px 0 12px;">
+    <div style="font-size:18px;font-weight:900;">
+      Recent Designs
+    </div>
+
+    <div style="font-size:12px;color:#7044f5;font-weight:800;">
+      View All
+    </div>
+  </div>
+
+  <div class="uds-card" style="padding:18px;border-radius:20px;text-align:center;">
+    <div style="font-size:31px;opacity:.45;">
+      ◫
+    </div>
+
+    <div style="font-size:14px;font-weight:800;margin-top:7px;">
+      No recent designs
+    </div>
+
+    <div style="font-size:12px;color:#8a8d98;margin-top:4px;">
+      Your saved projects will appear here.
+    </div>
+  </div>
+
+
+  <!-- BOTTOM NAV -->
+  <div style="position:fixed;left:12px;right:12px;bottom:10px;height:66px;background:rgba(255,255,255,.96);border-radius:22px;box-shadow:0 8px 30px rgba(25,25,50,.13);display:flex;align-items:center;justify-content:space-around;z-index:1000;">
+
+    <div style="text-align:center;color:#7044f5;font-size:20px;">
+      ⌂
+      <div style="font-size:10px;font-weight:800;margin-top:3px;">Home</div>
+    </div>
+
+    <div style="text-align:center;color:#858796;font-size:20px;">
+      ▦
+      <div style="font-size:10px;font-weight:800;margin-top:3px;">Templates</div>
+    </div>
+
+    <div style="width:52px;height:52px;border-radius:17px;background:linear-gradient(135deg,#6540ed,#9a61ff);color:#fff;display:flex;align-items:center;justify-content:center;font-size:27px;box-shadow:0 8px 18px rgba(101,64,237,.3);">
+      ＋
+    </div>
+
+    <div style="text-align:center;color:#858796;font-size:20px;">
+      ◫
+      <div style="font-size:10px;font-weight:800;margin-top:3px;">Projects</div>
+    </div>
+
+    <div style="text-align:center;color:#858796;font-size:20px;">
+      ⚙
+      <div style="font-size:10px;font-weight:800;margin-top:3px;">Settings</div>
+    </div>
+
   </div>
 
 </div>
