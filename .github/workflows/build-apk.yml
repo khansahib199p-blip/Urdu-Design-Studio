@@ -18,12 +18,12 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-
-      - name: Install Android NDK and CMake
-        run: |
-          yes | sdkmanager --licenses || true
-          sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0" "ndk;27.2.12479018" "cmake;3.22.1"
-
+- name: Install Android NDK and CMake
+  run: |
+    export ANDROID_HOME=/usr/local/lib/android/sdk
+    export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH"
+    yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses || true
+    "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-35" "build-tools;35.0.0" "ndk;27.2.12479018" "cmake;3.22.1"
       - name: Build APK
         run: gradle assembleDebug
 
