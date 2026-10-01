@@ -1,0 +1,77 @@
+name: Build CDR LibreVenge Android V2
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-librevenge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            autoconf \
+            automake \
+            libtool \
+            pkg-config \
+            libboost-dev
+
+      - name: Show Android NDK
+        run: |
+          echo "ANDROID_NDK_HOME=$ANDROID_NDK_HOME"
+          test -d "$ANDROID_NDK_HOME"
+
+      - name: Download LibreVenge
+        run: |
+          git clone --depth 1 \
+            https://github.com/Distrotech/librevenge.git \
+            librevenge
+
+      - name: Prepare Android compiler
+        run: |
+          export TOOLCHAIN="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin"
+
+          echo "CC=$TOOLCHAIN/clang"
+          echo "CXX=$TOOLCHAIN/clang++"
+
+          "$TOOLCHAIN/clang" \
+            --target=aarch64-linux-android24 \
+            --version
+
+      - name: Configure LibreVenge for Android ARM64
+        run: |
+          cd librevenge
+
+          export TOOLCHAIN="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin"
+
+          ./autogen.sh
+
+          ./configure \
+            --host=aarch64-linux-android \
+            --prefix="$GITHUB_WORKSPACE/cdr-prefix" \
+            --disable-tools \
+            --disable-tests \
+            CC="$TOOLCHAIN/clang --target=aarch64-linux-android24" \
+            CXX="$TOOLCHAIN/clang++ --target=aarch64-linux-android24" \
+            AR="$TOOLCHAIN/llvm-ar" \
+            RANLIB="$TOOLCHAIN/llvm-ranlib" \
+            STRIP="$TOOLCHAIN/llvm-strip"
+
+      - name: Build LibreVenge
+        run: |
+          cd librevenge
+          make -j2
+
+      - name: Install LibreVenge
+        run: |
+          cd librevenge
+          make install
+
+      - name: Verify Android LibreVenge
+        run: |
+          echo "Checking LibreVenge Android library..."
+          find "$GITHUB_WORKSPACE/cdr-prefix" \
+            -type f \( -name "librevenge*.a" -o -name "librevenge*.so" \) \
+            -print
