@@ -22,8 +22,7 @@ jobs:
 
       - name: Download librevenge
         run: |
-          git clone --depth 1 https://github.com/LibreOffice/librevenge.git librevenge
-
+          git clone --depth 1 https://github.com/Distrotech/librevenge.git librevenge
       - name: Configure librevenge for Android
         run: |
           cd librevenge
