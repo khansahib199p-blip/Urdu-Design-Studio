@@ -1,0 +1,196 @@
+name: Build CDR Android ARM64
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-libcdr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            autoconf \
+            automake \
+            libtool \
+            pkg-config \
+            libboost-dev \
+            build-essential \
+            curl \
+            git
+
+      - name: Prepare Android NDK
+        run: |
+          echo "ANDROID_NDK_HOME=$ANDROID_NDK_HOME"
+          test -d "$ANDROID_NDK_HOME"
+
+      - name: Set toolchain
+        run: |
+          echo "TOOLCHAIN=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin" >> "$GITHUB_ENV"
+
+      - name: Build zlib
+        run: |
+          git clone --depth 1 https://github.com/madler/zlib.git zlib
+          cd zlib
+
+          export PREFIX="$GITHUB_WORKSPACE/cdr-prefix"
+
+          CHOST=aarch64-linux-android \
+          CC="$TOOLCHAIN/clang --target=aarch64-linux-android24" \
+          AR="$TOOLCHAIN/llvm-ar" \
+          RANLIB="$TOOLCHAIN/llvm-ranlib" \
+          ./configure \
+            --static \
+            --prefix="$PREFIX"
+
+          make -j2
+          make install
+
+      - name: Build lcms2
+        run: |
+          git clone --depth 1 https://github.com/mm2/Little-CMS.git lcms2
+          cd lcms2
+
+          ./autogen.sh
+
+          export PREFIX="$GITHUB_WORKSPACE/cdr-prefix"
+
+          ./configure \
+            --host=aarch64-linux-android \
+            --prefix="$PREFIX" \
+            --disable-shared \
+            --enable-static \
+            --disable-silent-rules \
+            CC="$TOOLCHAIN/clang --target=aarch64-linux-android24" \
+            CXX="$TOOLCHAIN/clang++ --target=aarch64-linux-android24" \
+            AR="$TOOLCHAIN/llvm-ar" \
+            RANLIB="$TOOLCHAIN/llvm-ranlib" \
+            STRIP="$TOOLCHAIN/llvm-strip"
+
+          make -j2
+          make install
+
+      - name: Build ICU host tools
+        run: |
+          curl -L \
+            https://github.com/unicode-org/icu/releases/download/release-75-1/icu4c-75_1-src.tgz \
+            -o icu.tgz
+
+          tar -xzf icu.tgz
+
+          mv icu/source icu-source
+
+          mkdir icu-host
+          cd icu-host
+
+          ../icu-source/configure \
+            --prefix="$GITHUB_WORKSPACE/icu-host-prefix" \
+            --disable-tests \
+            --disable-samples
+
+          make -j2
+          make install
+
+      - name: Build ICU Android ARM64
+        run: |
+          mkdir icu-android
+          cd icu-android
+
+          ../icu-source/configure \
+            --host=aarch64-linux-android \
+            --with-cross-build="$GITHUB_WORKSPACE/icu-host" \
+            --prefix="$GITHUB_WORKSPACE/cdr-prefix" \
+            --disable-tests \
+            --disable-samples \
+            --enable-static \
+            --disable-shared \
+            CC="$TOOLCHAIN/clang --target=aarch64-linux-android24" \
+            CXX="$TOOLCHAIN/clang++ --target=aarch64-linux-android24" \
+            AR="$TOOLCHAIN/llvm-ar" \
+            RANLIB="$TOOLCHAIN/llvm-ranlib" \
+            STRIP="$TOOLCHAIN/llvm-strip"
+
+          make -j2
+          make install
+
+      - name: Build LibreVenge Android
+        run: |
+          git clone --depth 1 \
+            https://github.com/Distrotech/librevenge.git \
+            librevenge
+
+          cd librevenge
+
+          ./autogen.sh
+
+          export PREFIX="$GITHUB_WORKSPACE/cdr-prefix"
+
+          export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig"
+          export CPPFLAGS="-I/usr/include -I$PREFIX/include"
+          export LDFLAGS="-L$PREFIX/lib"
+
+          ./configure \
+            --host=aarch64-linux-android \
+            --prefix="$PREFIX" \
+            --disable-tools \
+            --disable-tests \
+            --disable-werror \
+            --disable-weffc \
+            CC="$TOOLCHAIN/clang --target=aarch64-linux-android24" \
+            CXX="$TOOLCHAIN/clang++ --target=aarch64-linux-android24" \
+            AR="$TOOLCHAIN/llvm-ar" \
+            RANLIB="$TOOLCHAIN/llvm-ranlib" \
+            STRIP="$TOOLCHAIN/llvm-strip"
+
+          make -j2
+          make install
+
+      - name: Build LibreOffice libcdr
+        run: |
+          git clone --depth 1 \
+            https://github.com/LibreOffice/libcdr.git \
+            libcdr
+
+          cd libcdr
+
+          ./autogen.sh
+
+          export PREFIX="$GITHUB_WORKSPACE/cdr-prefix"
+
+          export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig"
+          export CPPFLAGS="-I/usr/include -I$PREFIX/include"
+          export LDFLAGS="-L$PREFIX/lib"
+
+          ./configure \
+            --host=aarch64-linux-android \
+            --prefix="$PREFIX" \
+            --disable-tools \
+            --disable-tests \
+            --without-docs \
+            --disable-werror \
+            --disable-weffc \
+            CC="$TOOLCHAIN/clang --target=aarch64-linux-android24" \
+            CXX="$TOOLCHAIN/clang++ --target=aarch64-linux-android24" \
+            AR="$TOOLCHAIN/llvm-ar" \
+            RANLIB="$TOOLCHAIN/llvm-ranlib" \
+            STRIP="$TOOLCHAIN/llvm-strip"
+
+          make -j2
+          make install
+
+      - name: Verify libcdr
+        run: |
+          echo "Checking libcdr Android library..."
+
+          find "$GITHUB_WORKSPACE/cdr-prefix" \
+            -type f \
+            \( -name "libcdr*.so" -o -name "libcdr*.a" \) \
+            -print
+
+      - name: Upload libcdr Android ARM64
+        uses: actions/upload-artifact@v4
+        with:
+          name: libcdr-android-arm64
+          path: ${{ github.workspace }}/cdr-prefix
