@@ -48,13 +48,13 @@ jobs:
 
           ./autogen.sh
 
-./configure \
-  --host=aarch64-linux-android \
-  --prefix="$GITHUB_WORKSPACE/cdr-prefix" \
-  --disable-tools \
-  --disable-tests \
-  --disable-werror \
-  --disable-weffc
+          ./configure \
+            --host=aarch64-linux-android \
+            --prefix="$GITHUB_WORKSPACE/cdr-prefix" \
+            --disable-tools \
+            --disable-tests \
+            --disable-werror \
+            --disable-weffc \
             CC="$TOOLCHAIN/clang --target=aarch64-linux-android24" \
             CXX="$TOOLCHAIN/clang++ --target=aarch64-linux-android24" \
             AR="$TOOLCHAIN/llvm-ar" \
