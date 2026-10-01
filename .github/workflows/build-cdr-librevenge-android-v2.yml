@@ -78,3 +78,8 @@ jobs:
           find "$GITHUB_WORKSPACE/cdr-prefix" \
             -type f \( -name "librevenge*.a" -o -name "librevenge*.so" \) \
             -print
+      - name: Upload LibreVenge Android Library
+        uses: actions/upload-artifact@v4
+        with:
+          name: librevenge-android-arm64
+          path: ${{ github.workspace }}/cdr-prefix
