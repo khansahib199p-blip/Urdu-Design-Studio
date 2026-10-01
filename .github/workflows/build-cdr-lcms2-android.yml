@@ -1,0 +1,44 @@
+name: Build CDR lcms2 Android
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-lcms2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            cmake \
+            ninja-build
+
+      - name: Download lcms2
+        run: |
+          git clone --depth 1 https://github.com/mm2/Little-CMS.git lcms2
+
+      - name: Configure lcms2 for Android ARM64
+        run: |
+          cmake \
+            -S lcms2 \
+            -B lcms2-android \
+            -G Ninja \
+            -DCMAKE_TOOLCHAIN_FILE="$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake" \
+            -DANDROID_ABI=arm64-v8a \
+            -DANDROID_PLATFORM=android-24 \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX="$GITHUB_WORKSPACE/cdr-prefix"
+
+      - name: Build lcms2
+        run: |
+          cmake --build lcms2-android --parallel 2
+
+      - name: Verify lcms2
+        run: |
+          find lcms2-android \
+            -type f \( -name "liblcms2.a" -o -name "liblcms2.so" \) -print
