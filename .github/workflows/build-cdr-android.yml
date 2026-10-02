@@ -85,7 +85,7 @@ jobs:
           mkdir icu-host
           cd icu-host
 
-          ../icu-source/configure \
+          ../icu/source/configure \
             --prefix="$GITHUB_WORKSPACE/icu-host-prefix" \
             --disable-tests \
             --disable-samples
