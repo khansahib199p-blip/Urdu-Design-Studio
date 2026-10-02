@@ -98,7 +98,7 @@ jobs:
           mkdir icu-android
           cd icu-android
 
-          ../icu-source/configure \
+          ../icu/source/configure \
             --host=aarch64-linux-android \
             --with-cross-build="$GITHUB_WORKSPACE/icu-host" \
             --prefix="$GITHUB_WORKSPACE/cdr-prefix" \
