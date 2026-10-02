@@ -128,6 +128,7 @@ jobs:
           export PREFIX="$GITHUB_WORKSPACE/cdr-prefix"
 
           export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig"
+          export CXXFLAGS="-I/usr/include -I$PREFIX/include"
           export CPPFLAGS="-I/usr/include -I$PREFIX/include"
           export LDFLAGS="-L$PREFIX/lib"
 
