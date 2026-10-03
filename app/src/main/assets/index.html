@@ -3,16 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Urdu Design Studio V6</title>
+<title>Urdu Design Studio</title>
 
 <style>
 :root{
-  --p:#6d42f5;
+  --p:#7044f5;
   --p2:#9b6cff;
-  --bg:#f5f6fb;
+  --bg:#f4f5fa;
+  --dark:#101322;
+  --dark2:#181b2d;
+  --panel:#20243a;
   --ink:#171827;
-  --muted:#818596;
-  --line:#e8e9ef;
+  --muted:#85899a;
+  --line:#e5e6ed;
 }
 
 *{
@@ -39,10 +42,20 @@ button{
   cursor:pointer;
 }
 
+button:active{
+  transform:scale(.97);
+}
+
+
+/* =========================
+   HOME
+========================= */
+
 .home{
+  width:100%;
   height:100%;
   overflow:auto;
-  padding:18px 16px 92px;
+  padding:16px 15px 100px;
 }
 
 .head{
@@ -53,30 +66,32 @@ button{
 
 .brand{
   display:flex;
-  gap:10px;
   align-items:center;
+  gap:10px;
 }
 
 .logo{
-  width:45px;
-  height:45px;
-  border-radius:15px;
-  background:linear-gradient(135deg,var(--p),var(--p2));
-  color:#fff;
+  width:46px;
+  height:46px;
+  border-radius:16px;
+  background:linear-gradient(135deg,var(--p),#35cfe5);
+  color:white;
   display:grid;
   place-items:center;
   font-size:23px;
-  box-shadow:0 8px 20px #6d42f52f;
+  box-shadow:0 8px 22px #7044f530;
 }
 
 .brand b{
-  font-size:18px;
+  display:block;
+  font-size:17px;
 }
 
 .brand small{
   display:block;
-  color:var(--muted);
   margin-top:3px;
+  color:var(--muted);
+  font-size:11px;
 }
 
 .gear{
@@ -84,16 +99,17 @@ button{
   height:42px;
   border-radius:14px;
   background:#fff;
-  box-shadow:0 5px 18px #19193212;
+  box-shadow:0 5px 18px #11152b12;
 }
 
 .welcome{
-  padding:22px 2px 16px;
+  padding:20px 2px 15px;
 }
 
 .welcome h1{
-  font-size:28px;
   margin:0;
+  font-size:28px;
+  line-height:1.1;
 }
 
 .welcome h1 span{
@@ -103,108 +119,132 @@ button{
 .welcome p{
   color:var(--muted);
   font-size:13px;
-  line-height:1.5;
 }
+
 
 /* =========================
    HOME SLIDER
 ========================= */
 
-.slider{
+.udsSlider{
   position:relative;
   width:100%;
   height:190px;
-  margin:4px 0 22px;
   overflow:hidden;
-  border-radius:22px;
+  border-radius:23px;
   background:#0b1738;
-  box-shadow:0 12px 30px rgba(20,30,80,.18);
+  box-shadow:0 12px 30px #101a481c;
   touch-action:pan-y;
 }
 
-.slides{
+.udsSlides{
   display:flex;
   width:100%;
   height:100%;
   transition:transform .45s ease;
 }
 
-.slide{
+.udsSlide{
   min-width:100%;
   height:100%;
   position:relative;
   overflow:hidden;
-  box-sizing:border-box;
 }
 
-.slide>img{
+.udsSlide>img{
   width:100%;
   height:100%;
-  object-fit:cover;
   display:block;
+  object-fit:cover;
 }
 
-.slideContent{
+.udsSlideContent{
   position:absolute;
   left:20px;
   top:50%;
   transform:translateY(-50%);
-  z-index:2;
+  color:#fff;
   max-width:65%;
-  color:white;
+  z-index:2;
 }
 
-.slideBadge{
+.udsSlideBadge{
   display:inline-block;
-  padding:6px 9px;
+  padding:5px 9px;
   border-radius:999px;
   background:#ffffff18;
-  border:1px solid #ffffff22;
+  border:1px solid #ffffff25;
   font-size:9px;
   font-weight:800;
-  margin-bottom:8px;
+  margin-bottom:7px;
 }
 
-.slideContent h3{
+.udsSlideContent h3{
   margin:0 0 6px;
   font-size:21px;
-  line-height:1.15;
 }
 
-.slideContent p{
+.udsSlideContent p{
   margin:0;
   font-size:11px;
   line-height:1.45;
   color:#e9edff;
 }
 
-.dots{
+.udsSlideArt{
   position:absolute;
-  left:0;
-  right:0;
-  bottom:10px;
-  display:flex;
-  justify-content:center;
-  gap:6px;
-  z-index:4;
+  right:7%;
+  top:50%;
+  transform:translateY(-50%);
+  width:125px;
+  height:125px;
+  border-radius:40% 60% 55% 45% / 45% 42% 58% 55%;
+  background:linear-gradient(135deg,#6454ff,#35dce9);
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-size:38px;
+  font-weight:900;
+  box-shadow:0 0 42px #46dff066;
 }
 
-.dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  border:0;
-  background:#ffffff55;
-  padding:0;
+.udsS2{
+  background:
+    radial-gradient(circle at 82% 20%,#6454ff66,transparent 32%),
+    linear-gradient(135deg,#101d48,#172963,#0b1430);
 }
 
-.dot.active{
-  width:20px;
-  border-radius:9px;
-  background:#fff;
+.udsS3{
+  background:
+    radial-gradient(circle at 85% 30%,#23d8d866,transparent 30%),
+    linear-gradient(135deg,#081b31,#123d5e,#101938);
 }
 
-.slideArrow{
+.udsS4{
+  background:
+    radial-gradient(circle at 80% 35%,#b16cff66,transparent 28%),
+    linear-gradient(135deg,#17143d,#31216b,#101733);
+}
+
+.udsS5{
+  background:
+    radial-gradient(circle at 75% 30%,#4dd5ff55,transparent 30%),
+    linear-gradient(135deg,#071d39,#103c54,#10162f);
+}
+
+.udsS6{
+  background:
+    radial-gradient(circle at 82% 25%,#8f6dff66,transparent 28%),
+    linear-gradient(135deg,#17102e,#30245f,#10152f);
+}
+
+.udsS7{
+  background:
+    radial-gradient(circle at 78% 25%,#32e0c066,transparent 28%),
+    linear-gradient(135deg,#062235,#0c4b56,#10152f);
+}
+
+.udsArrow{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
@@ -213,107 +253,60 @@ button{
   border-radius:50%;
   background:#00000035;
   color:#fff;
-  backdrop-filter:blur(5px);
-  font-size:20px;
+  z-index:5;
+  font-size:22px;
+}
+
+.udsPrev{
+  left:9px;
+}
+
+.udsNext{
+  right:9px;
+}
+
+.udsDots{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:9px;
+  display:flex;
+  justify-content:center;
+  gap:6px;
   z-index:5;
 }
 
-.slidePrev{
-  left:10px;
+.udsDot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#ffffff55;
+  padding:0;
 }
 
-.slideNext{
-  right:10px;
+.udsDot.active{
+  width:20px;
+  border-radius:9px;
+  background:#fff;
 }
 
-.slideArt{
-  position:absolute;
-  right:8%;
-  top:50%;
-  transform:translateY(-50%);
-  width:145px;
-  height:145px;
-  border-radius:38% 62% 55% 45% / 45% 42% 58% 55%;
-  background:linear-gradient(135deg,#5d4df6,#3bd8e8);
-  box-shadow:0 0 45px #46dff066;
-  display:grid;
-  place-items:center;
-  color:#fff;
-  font-size:42px;
-  font-weight:900;
-  opacity:.92;
-}
-
-.slide2{
-  background:
-    radial-gradient(circle at 80% 20%,#5e4df766,transparent 32%),
-    linear-gradient(135deg,#101d48,#16265f 55%,#0b1430);
-}
-
-.slide3{
-  background:
-    radial-gradient(circle at 85% 30%,#23d8d866,transparent 30%),
-    linear-gradient(135deg,#081b31,#123d5e,#101938);
-}
-
-.slide4{
-  background:
-    radial-gradient(circle at 80% 35%,#b16cff66,transparent 28%),
-    linear-gradient(135deg,#17143d,#31216b,#101733);
-}
-
-.slide5{
-  background:
-    radial-gradient(circle at 75% 30%,#4dd5ff55,transparent 30%),
-    linear-gradient(135deg,#071d39,#103c54,#10162f);
-}
-
-.slide6{
-  background:
-    radial-gradient(circle at 82% 25%,#8f6dff66,transparent 28%),
-  linear-gradient(135deg,#17102e,#30245f,#10152f);
-}
-
-.slide7{
-  background:
-    radial-gradient(circle at 78% 25%,#32e0c066,transparent 28%),
-    linear-gradient(135deg,#062235,#0c4b56,#10152f);
-}
-
-@media(max-width:430px){
-
-  .slide{
-    height:175px;
-  }
-
-  .slideContent h3{
-    font-size:20px;
-  }
-
-  .slideArt{
-    width:125px;
-    height:125px;
-    font-size:36px;
-    right:6%;
-  }
-}
 
 /* =========================
-   HOME
+   HOME CARDS
 ========================= */
 
 .hero{
+  margin-top:20px;
   background:linear-gradient(135deg,var(--p),var(--p2));
   color:#fff;
   border-radius:25px;
-  padding:22px 20px;
-  box-shadow:0 12px 28px #6d42f52d;
+  padding:20px;
+  box-shadow:0 12px 28px #7044f52d;
 }
 
 .hero small{
-  opacity:.78;
-  font-weight:700;
-  letter-spacing:.5px;
+  opacity:.8;
+  font-weight:800;
 }
 
 .hero h2{
@@ -321,69 +314,118 @@ button{
 }
 
 .hero p{
-  opacity:.85;
   font-size:13px;
+  opacity:.85;
 }
 
 .primary{
+  margin-top:10px;
   background:#fff;
-  color:#5e3bea;
-  padding:12px 16px;
+  color:var(--p);
   border-radius:14px;
-  font-weight:800;
+  padding:12px 17px;
+  font-weight:900;
 }
 
 .sec{
-  font-size:14px;
-  font-weight:800;
-  margin:22px 0 10px;
+  font-size:17px;
+  font-weight:900;
+  margin:23px 0 10px;
 }
 
 .grid3{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:10px;
+  gap:9px;
 }
 
 .card{
   background:#fff;
   border-radius:18px;
-  min-height:90px;
-  padding:12px 7px;
-  box-shadow:0 6px 20px #1919320d;
+  padding:13px 7px;
+  text-align:center;
+  box-shadow:0 6px 20px #11152b0d;
 }
 
-.card .ico{
-  width:38px;
-  height:38px;
-  margin:0 auto 8px;
-  border-radius:13px;
-  background:#f0edff;
-  color:#6943ee;
+.ico{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:#eeeaff;
+  color:var(--p);
   display:grid;
   place-items:center;
+  margin:auto;
   font-size:20px;
 }
 
 .card b{
+  display:block;
+  margin-top:8px;
   font-size:11px;
 }
 
+
 /* =========================
-   SETUP
+   HOME NAV
+========================= */
+
+.nav{
+  position:fixed;
+  left:10px;
+  right:10px;
+  bottom:9px;
+  height:66px;
+  border-radius:22px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  box-shadow:0 8px 30px #11152b20;
+  z-index:30;
+}
+
+.nav button{
+  background:transparent;
+  color:#777c8d;
+  font-size:20px;
+}
+
+.nav button b{
+  display:block;
+  font-size:9px;
+  margin-top:3px;
+}
+
+.nav .plus{
+  width:52px;
+  height:52px;
+  border-radius:17px;
+  background:linear-gradient(135deg,var(--p),var(--p2));
+  color:#fff;
+  font-size:27px;
+}
+
+
+/* =========================
+   NEW DESIGN
 ========================= */
 
 .setup{
-  display:none;
-  height:100%;
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:var(--bg);
   overflow:auto;
-  padding:18px 16px 40px;
+  padding:18px 15px 35px;
+  display:none;
 }
 
 .setupHead{
   display:flex;
   align-items:center;
   gap:12px;
+  margin-bottom:18px;
 }
 
 .back{
@@ -391,317 +433,572 @@ button{
   height:42px;
   border-radius:14px;
   background:#fff;
-  box-shadow:0 5px 18px #19193212;
+  font-size:22px;
+  box-shadow:0 5px 18px #11152b10;
 }
 
-.setup h2{
-  margin:0;
+.box{
+  background:#fff;
+  border-radius:20px;
+  padding:16px;
+  margin-bottom:17px;
+  box-shadow:0 6px 20px #11152b0d;
 }
 
-.setup p{
+.inputs{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+}
+
+.inputs>div{
+  flex:1;
+}
+
+.lbl{
+  font-size:11px;
   color:var(--muted);
-  font-size:13px;
+  margin-bottom:5px;
+}
+
+.num{
+  width:100%;
+  height:47px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:0 10px;
+  font-weight:800;
 }
 
 .presets{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-top:18px;
+  gap:9px;
 }
 
 .preset{
+  min-height:98px;
   background:#fff;
-  padding:15px;
-  border-radius:18px;
-  text-align:left;
-  box-shadow:0 6px 20px #1919320d;
+  border-radius:17px;
+  box-shadow:0 6px 20px #11152b0d;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
 }
 
 .preset.active{
-  outline:2px solid var(--p);
-}
-
-.preset b{
-  display:block;
-  margin-bottom:4px;
+  outline:3px solid var(--p);
+  background:#faf8ff;
 }
 
 .preset small{
   color:var(--muted);
 }
 
-.customBox{
-  margin-top:18px;
-  background:#fff;
-  padding:16px;
-  border-radius:18px;
-}
-
-.customRow{
-  display:flex;
-  gap:10px;
-}
-
-.customRow label{
-  flex:1;
-  color:var(--muted);
-  font-size:12px;
-}
-
-.customRow input{
+.create{
   width:100%;
-  margin-top:5px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:11px;
+  height:56px;
+  border-radius:17px;
+  background:linear-gradient(135deg,var(--p),var(--p2));
+  color:#fff;
+  font-weight:900;
+  font-size:16px;
 }
+
 
 /* =========================
    EDITOR
 ========================= */
 
 .editor{
+  position:fixed;
+  inset:0;
   display:none;
-  height:100%;
   flex-direction:column;
-  background:#f1f2f7;
+  background:#0b0d18;
+  color:#fff;
+  z-index:90;
 }
 
-.editorTop{
-  height:58px;
-  background:#fff;
+.top{
+  height:60px;
+  min-height:60px;
+  background:#16192b;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 10px;
-  box-shadow:0 2px 12px #1919320b;
+  padding:7px 9px;
+  border-bottom:1px solid #ffffff12;
 }
 
-.editorTop .left,
-.editorTop .right{
+.toptools{
   display:flex;
-  gap:6px;
+  gap:5px;
 }
 
-.toolBtn{
+.tb{
   width:40px;
   height:40px;
   border-radius:12px;
-  background:#f5f5fa;
-}
-
-.toolBtn.primaryTool{
-  background:#6d42f5;
+  background:#ffffff0c;
   color:#fff;
 }
 
-.stageWrap{
+.workspace{
   flex:1;
   min-height:0;
-  display:grid;
-  place-items:center;
-  padding:15px;
-  overflow:hidden;
+  position:relative;
+  display:flex;
 }
 
 .stage{
-  width:100%;
-  height:100%;
-  display:grid;
-  place-items:center;
-  position:relative;
+  flex:1;
+  min-width:0;
+  overflow:auto;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px 12px;
+  background:
+    radial-gradient(circle at 50% 10%,#28264b 0,#0e1020 48%,#090b15 100%);
 }
 
 .canvas{
   position:relative;
+  flex:none;
   background:#fff;
-  box-shadow:0 15px 35px #19193222;
   overflow:hidden;
+  box-shadow:0 18px 55px #000b;
 }
 
 .grid{
   position:absolute;
   inset:0;
   pointer-events:none;
+  z-index:9999;
   background-image:
-    linear-gradient(#ddd 1px,transparent 1px),
-    linear-gradient(90deg,#ddd 1px,transparent 1px);
-  background-size:40px 40px;
-  opacity:.08;
+    linear-gradient(#0000000b 1px,transparent 1px),
+    linear-gradient(90deg,#0000000b 1px,transparent 1px);
+  background-size:20px 20px;
 }
-
-.editorBottom{
-  min-height:70px;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding:8px;
-  overflow-x:auto;
-  box-shadow:0 -2px 12px #1919320b;
-}
-
-.bottomTool{
-  min-width:58px;
-  height:54px;
-  border-radius:15px;
-  background:#f6f5fb;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:3px;
-  font-size:10px;
-}
-
-.bottomTool b{
-  font-size:17px;
-}
-
-/* =========================
-   OBJECTS
-========================= */
 
 .obj{
   position:absolute;
-  user-select:none;
   touch-action:none;
+  user-select:none;
+  transform-origin:center center;
+  cursor:move;
 }
 
 .obj.selected{
-  outline:2px solid #6d42f5;
+  outline:2px solid #7548f5;
+  outline-offset:3px;
 }
 
-.objText{
-  padding:5px;
-  min-width:70px;
-  color:#111;
-  font-size:42px;
+.textObj{
+  min-width:80px;
+  min-height:42px;
+  padding:6px 9px;
+  direction:rtl;
+  text-align:center;
+  white-space:pre-wrap;
+  font-size:40px;
+  color:#222;
+  background:transparent;
 }
 
-.objShape{
-  width:180px;
+.imageObj{
+  object-fit:contain;
+  max-width:none;
+  max-height:none;
+}
+
+.shape{
+  width:150px;
+  height:110px;
+  background:#7044f533;
+  border:3px solid #7044f5;
+  border-radius:15px;
+}
+
+.circle{
+  width:125px;
+  height:125px;
+  background:#ff5ca833;
+  border:3px solid #ff4e9b;
+  border-radius:50%;
+}
+
+.star{
+  width:120px;
   height:120px;
-  background:#6d42f5;
-  border-radius:18px;
+  background:#ffc400;
+  clip-path:polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 92%,
+    50% 70%,
+    21% 92%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
 }
 
-.objImage{
-  max-width:240px;
-  max-height:240px;
+.heart{
+  width:120px;
+  height:105px;
+  background:#ff4e9b;
+  transform:rotate(-45deg);
+  border-radius:20px;
 }
 
-.handle{
+.lineShape{
+  width:160px;
+  height:5px;
+  background:#7044f5;
+}
+
+
+/* =========================
+   TRANSFORM HANDLES
+========================= */
+
+.handles{
   position:absolute;
-  width:12px;
-  height:12px;
+  inset:-6px;
+  display:none;
+  pointer-events:none;
+  z-index:10001;
+}
+
+.selected .handles{
+  display:block;
+}
+
+.h{
+  position:absolute;
+  width:16px;
+  height:16px;
+  border-radius:50%;
   background:#fff;
-  border:2px solid #6d42f5;
-  border-radius:50%;
+  border:3px solid #7445f5;
+  box-shadow:0 2px 8px #0008;
+  pointer-events:auto;
 }
 
-.h-tl{left:-7px;top:-7px}
-.h-tr{right:-7px;top:-7px}
-.h-bl{left:-7px;bottom:-7px}
-.h-br{right:-7px;bottom:-7px}
-.h-t{left:50%;top:-7px;transform:translateX(-50%)}
+.nw{left:-8px;top:-8px;cursor:nwse-resize}
+.n{left:50%;top:-8px;transform:translateX(-50%);cursor:ns-resize}
+.ne{right:-8px;top:-8px;cursor:nesw-resize}
+.e{right:-8px;top:50%;transform:translateY(-50%);cursor:ew-resize}
+.se{right:-8px;bottom:-8px;cursor:nwse-resize}
+.s{left:50%;bottom:-8px;transform:translateX(-50%);cursor:ns-resize}
+.sw{left:-8px;bottom:-8px;cursor:nesw-resize}
+.w{left:-8px;top:50%;transform:translateY(-50%);cursor:ew-resize}
 
-.rotateHandle{
+.rh{
+  left:50%;
+  top:-42px;
+  transform:translateX(-50%);
+  background:#ffb84a;
+  border-color:#fff;
+  cursor:grab;
+}
+
+.rotateLine{
   position:absolute;
-  width:14px;
-  height:14px;
-  border-radius:50%;
-  background:#6d42f5;
+  width:2px;
+  height:30px;
   left:50%;
   top:-34px;
   transform:translateX(-50%);
+  background:#fff;
 }
+
+
+/* =========================
+   EDITOR BOTTOM
+========================= */
+
+.bottom{
+  min-height:75px;
+  background:#15172a;
+  border-top:1px solid #ffffff12;
+  padding:7px;
+}
+
+.tools{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:6px;
+}
+
+.tool{
+  height:58px;
+  border-radius:14px;
+  background:#24273e;
+  color:#fff;
+  font-size:9px;
+  font-weight:800;
+}
+
+.tool span{
+  display:block;
+  font-size:19px;
+  margin-bottom:3px;
+}
+
+
+/* =========================
+   PANELS
+========================= */
+
+.panel{
+  position:absolute;
+  left:8px;
+  right:8px;
+  bottom:82px;
+  z-index:10002;
+  background:#171a2d;
+  border:1px solid #ffffff18;
+  border-radius:21px;
+  padding:13px;
+  box-shadow:0 15px 45px #000d;
+  display:none;
+  max-height:62vh;
+  overflow:auto;
+}
+
+.panel.show{
+  display:block;
+}
+
+.pt{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:10px;
+  font-weight:900;
+}
+
+.close{
+  width:32px;
+  height:32px;
+  border-radius:9px;
+  background:#ffffff0d;
+  color:#fff;
+}
+
+.hint{
+  padding:8px;
+  border-radius:9px;
+  background:#ffffff07;
+  color:#b7bbca;
+  font-size:11px;
+}
+
+.secTitle{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  opacity:.65;
+  margin:12px 0 7px;
+}
+
+.pgrid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:6px;
+}
+
+.pbtn{
+  min-height:37px;
+  border-radius:10px;
+  background:#282b43;
+  color:#fff;
+  font-size:10px;
+  font-weight:700;
+}
+
+.range{
+  width:100%;
+  accent-color:#9b6cff;
+}
+
+.color{
+  width:100%;
+  height:36px;
+  border:0;
+  background:transparent;
+}
+
+.select{
+  width:100%;
+  height:37px;
+  border-radius:9px;
+  background:#101220;
+  color:#fff;
+  border:1px solid #ffffff14;
+  padding:0 8px;
+}
+
+
+/* =========================
+   LAYERS
+========================= */
+
+.layerTools{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:5px;
+  margin-bottom:8px;
+}
+
+.layerTool{
+  height:32px;
+  border-radius:8px;
+  background:#282b43;
+  color:#fff;
+  font-size:8px;
+}
+
+.layer{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  background:#24273d;
+  border-radius:11px;
+  padding:8px;
+  margin-bottom:6px;
+}
+
+.layer.active{
+  outline:1px solid #8d66ff;
+  background:#302651;
+}
+
+.layerThumb{
+  width:36px;
+  height:36px;
+  border-radius:8px;
+  background:#111426;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  flex:none;
+}
+
+.layerThumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.layerName{
+  flex:1;
+  min-width:0;
+  font-size:10px;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+
+.miniBtn{
+  width:31px;
+  height:31px;
+  border-radius:8px;
+  background:#ffffff0d;
+  color:#fff;
+  flex:none;
+}
+
 
 /* =========================
    MODAL
 ========================= */
 
-.modalBack{
+.modal{
   position:fixed;
   inset:0;
-  background:#00000055;
+  z-index:200;
+  background:#070812b8;
   display:none;
   align-items:flex-end;
-  z-index:100;
+  padding:10px;
 }
 
-.modal{
-  width:100%;
-  max-height:82%;
-  background:#fff;
-  border-radius:25px 25px 0 0;
-  padding:18px;
+.modal.show{
+  display:flex;
+}
+
+.sheet{
+  width:min(680px,100%);
+  max-height:80vh;
   overflow:auto;
+  background:#171a2d;
+  color:#fff;
+  border-radius:25px;
+  padding:16px;
+  box-shadow:0 18px 60px #000e;
 }
 
-.modal h3{
-  margin:0 0 15px;
+.sheetHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px;
 }
 
-.modalGrid{
+.sheetGrid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:10px;
+  gap:9px;
 }
 
-.modalBtn{
-  background:#f6f5fb;
-  padding:14px;
+.sheetBtn{
+  min-height:64px;
   border-radius:15px;
+  background:#252941;
+  color:#fff;
+  font-weight:800;
   text-align:left;
+  padding:10px;
 }
 
-.modalBtn b{
+.sheetBtn small{
   display:block;
-  margin-bottom:4px;
+  color:#aeb3c4;
+  margin-top:4px;
+  font-size:9px;
 }
 
-.modalBtn small{
-  color:var(--muted);
-}
 
 /* =========================
-   BOTTOM NAV
+   TEXT MODAL
 ========================= */
 
-.nav{
-  position:fixed;
-  left:10px;
-  right:10px;
-  bottom:10px;
-  height:65px;
-  background:#fff;
-  border-radius:22px;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  box-shadow:0 8px 28px #19193220;
-  z-index:20;
+.textModalBox{
+  background:#20243a;
+  border-radius:17px;
+  padding:13px;
 }
 
-.nav button{
-  background:none;
-  color:#777;
-  font-size:10px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:3px;
+.textArea{
+  width:100%;
+  min-height:110px;
+  resize:none;
+  border:1px solid #ffffff18;
+  border-radius:12px;
+  background:#101322;
+  color:#fff;
+  padding:12px;
+  direction:auto;
 }
 
-.nav button b{
-  font-size:18px;
-}
-
-.nav button.active{
-  color:#6d42f5;
-}
 
 /* =========================
    TOAST
@@ -716,902 +1013,1852 @@ button{
   color:#fff;
   padding:11px 15px;
   border-radius:12px;
+  z-index:500;
   display:none;
-  z-index:200;
   font-size:12px;
+}
+
+
+/* =========================
+   HIDDEN FILE
+========================= */
+
+input[type=file]{
+  display:none;
+}
+
+
+@media(max-width:430px){
+
+  .udsSlider{
+    height:175px;
+  }
+
+  .udsSlideContent h3{
+    font-size:19px;
+  }
+
+  .udsSlideArt{
+    width:108px;
+    height:108px;
+    font-size:34px;
+  }
+
+  .tools{
+    grid-template-columns:repeat(6,1fr);
+  }
+
+  .tool{
+    height:55px;
+    font-size:8px;
+  }
+
 }
 </style>
 </head>
 
+
 <body>
 
-<!-- =========================
-     HOME
-========================= -->
+
+<!-- =========================================================
+     HOME SCREEN
+========================================================= -->
 
 <section class="home" id="home">
 
-  <div class="head">
+<div class="head">
 
-    <div class="brand">
-      <div class="logo">✦</div>
+<div class="brand">
 
-      <div>
-        <b>Urdu Design Studio</b>
-        <small>Design • Edit • Create</small>
-      </div>
-    </div>
+<div class="logo">✦</div>
 
-    <button class="gear" id="settingsBtn">⚙</button>
+<div>
+<b>Urdu Design Studio</b>
+<small>Design • Edit • Create</small>
+</div>
 
-  </div>
+</div>
 
-  <div class="welcome">
-    <h1>Create something<br><span>beautiful.</span></h1>
-    <p>Professional graphic design made simple.</p>
-  </div>
-
-  <!-- =========================
-       7 SLIDE HOME BANNER
-  ========================== -->
-
-  <div class="slider" id="homeSlider">
-
-    <div class="slides" id="slides">
-
-      <!-- SLIDE 1 -->
-      <div class="slide">
-        <img src="slider1.jpg" alt="Urdu Design Studio banner">
-      </div>
-
-      <!-- SLIDE 2 -->
-      <div class="slide slide2">
-
-        <div class="slideContent">
-          <span class="slideBadge">NEW DESIGN</span>
-
-          <h3>Creative Urdu Posters</h3>
-
-          <p>
-            Build beautiful posters with powerful typography and modern layouts.
-          </p>
-        </div>
-
-        <div class="slideArt">Aa</div>
-
-      </div>
-
-      <!-- SLIDE 3 -->
-      <div class="slide slide3">
-
-        <div class="slideContent">
-          <span class="slideBadge">TYPOGRAPHY</span>
-
-          <h3>Beautiful Text</h3>
-
-          <p>
-            Design Urdu and English text with fonts, colors, spacing and effects.
-          </p>
-        </div>
-
-        <div class="slideArt">T</div>
-
-      </div>
-
-      <!-- SLIDE 4 -->
-      <div class="slide slide4">
-
-        <div class="slideContent">
-          <span class="slideBadge">TEMPLATES</span>
-
-          <h3>Ready-Made Designs</h3>
-
-          <p>
-            Start faster with editable templates for posts, events and promotions.
-          </p>
-        </div>
-
-        <div class="slideArt">✦</div>
-
-      </div>
-
-      <!-- SLIDE 5 -->
-      <div class="slide slide5">
-
-        <div class="slideContent">
-          <span class="slideBadge">ELEMENTS</span>
-
-          <h3>Design Elements</h3>
-
-          <p>
-            Use shapes, frames, backgrounds and decorative elements in your designs.
-          </p>
-        </div>
-
-        <div class="slideArt">◇</div>
-
-      </div>
-
-      <!-- SLIDE 6 -->
-      <div class="slide slide6">
-
-        <div class="slideContent">
-          <span class="slideBadge">POWERFUL EDITING</span>
-
-          <h3>Layers & Objects</h3>
-
-          <p>
-            Move, resize, rotate, duplicate and organize every design object.
-          </p>
-        </div>
-
-        <div class="slideArt">◫</div>
-
-      </div>
-
-      <!-- SLIDE 7 -->
-      <div class="slide slide7">
-
-        <div class="slideContent">
-          <span class="slideBadge">URDU DESIGN STUDIO</span>
-
-          <h3>Design • Edit • Create</h3>
-
-          <p>
-            Your creative workspace for professional Urdu graphic design.
-          </p>
-        </div>
-
-        <div class="slideArt">Ur</div>
-
-      </div>
-
-    </div>
-
-    <button class="slideArrow slidePrev" id="slidePrev">‹</button>
-
-    <button class="slideArrow slideNext" id="slideNext">›</button>
-
-    <div class="dots" id="sliderDots">
-
-      <button class="dot active" data-slide="0"></button>
-      <button class="dot" data-slide="1"></button>
-      <button class="dot" data-slide="2"></button>
-      <button class="dot" data-slide="3"></button>
-      <button class="dot" data-slide="4"></button>
-      <button class="dot" data-slide="5"></button>
-      <button class="dot" data-slide="6"></button>
-
-    </div>
-
-  </div>
-
-  <!-- NEW DESIGN -->
-
-  <div class="hero">
-
-    <small>START A NEW PROJECT</small>
-
-    <h2>New Design</h2>
-
-    <p>Choose a size and start creating.</p>
-
-    <button class="primary" id="newBtn">
-      ＋ New Design
-    </button>
-
-  </div>
-
-  <!-- QUICK ACCESS -->
-
-  <div class="sec">Quick Access</div>
-
-  <div class="grid3">
-
-    <button class="card" id="homeTemplates">
-      <div class="ico">▦</div>
-      <b>Templates</b>
-    </button>
-
-    <button class="card" id="homeProjects">
-      <div class="ico">◫</div>
-      <b>My Designs</b>
-    </button>
-
-    <button class="card" id="homeElements">
-      <div class="ico">✦</div>
-      <b>Elements</b>
-    </button>
-
-  </div>
-
-  <!-- DESIGN TOOLS -->
-
-  <div class="sec">Design Tools</div>
-
-  <div class="grid3">
-
-    <button class="card" id="homeShapes">
-      <div class="ico">◇</div>
-      <b>Shapes</b>
-    </button>
-
-    <button class="card" id="homeFrames">
-      <div class="ico">▣</div>
-      <b>Frames</b>
-    </button>
-
-    <button class="card" id="homeBackgrounds">
-      <div class="ico">◉</div>
-      <b>Backgrounds</b>
-    </button>
-
-    <button class="card" id="homeImport">
-      <div class="ico">▧</div>
-      <b>Import</b>
-    </button>
-
-    <button class="card" id="homeText">
-      <div class="ico">T</div>
-      <b>Text</b>
-    </button>
-
-    <button class="card" id="homeMore">
-      <div class="ico">⋯</div>
-      <b>More</b>
-    </button>
-
-  </div>
-
-  <div class="sec">Recent Designs</div>
-
-  <div id="recentDesigns"></div>
-
-</section>
-
-
-<!-- =========================
-     SETUP
-========================= -->
-
-<section class="setup" id="setup">
-
-  <div class="setupHead">
-
-    <button class="back" id="back">‹</button>
-
-    <div>
-      <h2>New Design</h2>
-      <p>Choose your canvas size.</p>
-    </div>
-
-  </div>
-
-  <div class="presets">
-
-    <button class="preset active" data-w="1080" data-h="1080">
-      <b>Square Post</b>
-      <small>1080 × 1080</small>
-    </button>
-
-    <button class="preset" data-w="1080" data-h="1350">
-      <b>Portrait Post</b>
-      <small>1080 × 1350</small>
-    </button>
-
-    <button class="preset" data-w="1920" data-h="1080">
-      <b>YouTube</b>
-      <small>1920 × 1080</small>
-    </button>
-
-    <button class="preset" data-w="1080" data-h="1920">
-      <b>Story</b>
-      <small>1080 × 1920</small>
-    </button>
-
-    <button class="preset" data-w="1200" data-h="628">
-      <b>Facebook</b>
-      <small>1200 × 628</small>
-    </button>
-
-    <button class="preset" data-w="1500" data-h="500">
-      <b>Banner</b>
-      <small>1500 × 500</small>
-    </button>
-
-  </div>
-
-  <div class="customBox">
-
-    <b>Custom Size</b>
-
-    <div class="customRow">
-
-      <label>
-        Width
-        <input id="cw" type="number" value="1080">
-      </label>
-
-      <label>
-        Height
-        <input id="ch" type="number" value="1080">
-      </label>
-
-    </div>
-
-  </div>
-
-  <button class="primary" id="create" style="margin-top:18px;width:100%;">
-    Create Design
-  </button>
-
-</section>
-
-
-<!-- =========================
-     EDITOR
-========================= -->
-
-<section class="editor" id="editor">
-
-  <div class="editorTop">
-
-    <div class="left">
-
-      <button class="toolBtn" id="editorBack">‹</button>
-
-      <button class="toolBtn" id="undoBtn">↶</button>
-
-      <button class="toolBtn" id="redoBtn">↷</button>
-
-    </div>
-
-    <div class="right">
-
-      <button class="toolBtn" id="saveBtn">💾</button>
-
-      <button class="toolBtn primaryTool" id="exportBtn">↥</button>
-
-    </div>
-
-  </div>
-
-  <div class="stageWrap">
-
-    <div class="stage" id="stage">
-
-      <div class="canvas" id="canvas">
-
-        <div class="grid"></div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="editorBottom">
-
-    <button class="bottomTool" id="addText">
-      <b>T</b>
-      Text
-    </button>
-
-    <button class="bottomTool" id="addImage">
-      <b>▧</b>
-      Image
-    </button>
-
-    <button class="bottomTool" id="addShape">
-      <b>◇</b>
-      Shape
-    </button>
-
-    <button class="bottomTool" id="addBg">
-      <b>◉</b>
-      Background
-    </button>
-
-    <button class="bottomTool" id="layersBtn">
-      <b>☷</b>
-      Layers
-    </button>
-
-    <button class="bottomTool" id="deleteBtn">
-      <b>⌫</b>
-      Delete
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     MODAL
-========================= -->
-
-<div class="modalBack" id="modalBack">
-
-  <div class="modal">
-
-    <h3 id="modalTitle">Tools</h3>
-
-    <div class="modalGrid" id="modalGrid"></div>
-
-  </div>
+<button class="gear" id="settingsBtn">⚙</button>
 
 </div>
 
 
-<!-- =========================
-     NAVIGATION
-========================= -->
+<div class="welcome">
+
+<h1>
+Create something<br>
+<span>beautiful.</span>
+</h1>
+
+<p>
+Professional graphic design made simple.
+</p>
+
+</div>
+
+
+<!-- =========================================================
+     HOME SLIDER
+========================================================= -->
+
+<div class="udsSlider" id="udsSlider">
+
+<div class="udsSlides" id="udsSlides">
+
+
+<!-- SLIDE 1 -->
+<div class="udsSlide">
+
+<img
+src="slider1.jpg"
+alt="Urdu Design Studio"
+>
+
+</div>
+
+
+<!-- SLIDE 2 -->
+<div class="udsSlide udsS2">
+
+<div class="udsSlideContent">
+
+<span class="udsSlideBadge">
+NEW DESIGN
+</span>
+
+<h3>
+Creative Urdu Posters
+</h3>
+
+<p>
+Create beautiful posters with modern Urdu typography.
+</p>
+
+</div>
+
+<div class="udsSlideArt">
+Aa
+</div>
+
+</div>
+
+
+<!-- SLIDE 3 -->
+<div class="udsSlide udsS3">
+
+<div class="udsSlideContent">
+
+<span class="udsSlideBadge">
+TYPOGRAPHY
+</span>
+
+<h3>
+Beautiful Text
+</h3>
+
+<p>
+Design Urdu and English text with fonts, colors and effects.
+</p>
+
+</div>
+
+<div class="udsSlideArt">
+T
+</div>
+
+</div>
+
+
+<!-- SLIDE 4 -->
+<div class="udsSlide udsS4">
+
+<div class="udsSlideContent">
+
+<span class="udsSlideBadge">
+TEMPLATES
+</span>
+
+<h3>
+Ready-Made Designs
+</h3>
+
+<p>
+Start quickly with editable templates for every occasion.
+</p>
+
+</div>
+
+<div class="udsSlideArt">
+✦
+</div>
+
+</div>
+
+
+<!-- SLIDE 5 -->
+<div class="udsSlide udsS5">
+
+<div class="udsSlideContent">
+
+<span class="udsSlideBadge">
+DESIGN ELEMENTS
+</span>
+
+<h3>
+Shapes &amp; Frames
+</h3>
+
+<p>
+Use shapes, frames and creative elements.
+</p>
+
+</div>
+
+<div class="udsSlideArt">
+◇
+</div>
+
+</div>
+
+
+<!-- SLIDE 6 -->
+<div class="udsSlide udsS6">
+
+<div class="udsSlideContent">
+
+<span class="udsSlideBadge">
+POWERFUL EDITING
+</span>
+
+<h3>
+Layers &amp; Objects
+</h3>
+
+<p>
+Move, resize, rotate and organize every object.
+</p>
+
+</div>
+
+<div class="udsSlideArt">
+◫
+</div>
+
+</div>
+
+
+<!-- SLIDE 7 -->
+<div class="udsSlide udsS7">
+
+<div class="udsSlideContent">
+
+<span class="udsSlideBadge">
+URDU DESIGN STUDIO
+</span>
+
+<h3>
+Design • Edit • Create
+</h3>
+
+<p>
+Your creative workspace for professional graphic design.
+</p>
+
+</div>
+
+<div class="udsSlideArt">
+Ur
+</div>
+
+</div>
+
+
+</div>
+
+
+<button
+class="udsArrow udsPrev"
+id="udsPrev"
+>
+‹
+</button>
+
+<button
+class="udsArrow udsNext"
+id="udsNext"
+>
+›
+</button>
+
+
+<div
+class="udsDots"
+id="udsDots"
+>
+
+<button class="udsDot active" data-slide="0"></button>
+<button class="udsDot" data-slide="1"></button>
+<button class="udsDot" data-slide="2"></button>
+<button class="udsDot" data-slide="3"></button>
+<button class="udsDot" data-slide="4"></button>
+<button class="udsDot" data-slide="5"></button>
+<button class="udsDot" data-slide="6"></button>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     NEW DESIGN
+========================================================= -->
+
+<div class="hero">
+
+<small>
+START A NEW PROJECT
+</small>
+
+<h2>
+New Design
+</h2>
+
+<p>
+Choose a canvas size and start creating.
+</p>
+
+<button
+class="primary"
+id="newBtn"
+>
+＋ New Design
+</button>
+
+</div>
+
+
+<div class="sec">
+Quick Access
+</div>
+
+
+<div class="grid3">
+
+<button class="card" id="homeTemplates">
+<div class="ico">▦</div>
+<b>Templates</b>
+</button>
+
+<button class="card" id="homeProjects">
+<div class="ico">◫</div>
+<b>My Designs</b>
+</button>
+
+<button class="card" id="homeElements">
+<div class="ico">✦</div>
+<b>Elements</b>
+</button>
+
+</div>
+
+
+<div class="sec">
+Design Tools
+</div>
+
+
+<div class="grid3">
+
+<button class="card" id="homeShapes">
+<div class="ico">◇</div>
+<b>Shapes</b>
+</button>
+
+<button class="card" id="homeFrames">
+<div class="ico">▣</div>
+<b>Frames</b>
+</button>
+
+<button class="card" id="homeBackgrounds">
+<div class="ico">◉</div>
+<b>Backgrounds</b>
+</button>
+
+<button class="card" id="homeImport">
+<div class="ico">▧</div>
+<b>Import</b>
+</button>
+
+<button class="card" id="homeText">
+<div class="ico">T</div>
+<b>Text</b>
+</button>
+
+<button class="card" id="homeMore">
+<div class="ico">⋯</div>
+<b>More</b>
+</button>
+
+</div>
+
+
+<div class="sec">
+Recent Designs
+</div>
+
+<div
+class="card"
+style="padding:24px"
+id="recentBox"
+>
+
+<div style="font-size:30px;opacity:.4">
+◫
+</div>
+
+<b>
+No recent designs
+</b>
+
+<div
+style="font-size:11px;color:var(--muted);margin-top:4px"
+>
+Your saved projects will appear here.
+</div>
+
+</div>
+
+
+<!-- HOME NAV -->
 
 <div class="nav">
 
-  <button id="navHome" class="active">
-    <b>⌂</b>
-    Home
-  </button>
+<button id="navHome">
+⌂
+<b>Home</b>
+</button>
 
-  <button id="navTemplates">
-    <b>▦</b>
-    Templates
-  </button>
+<button id="navTemplates">
+▦
+<b>Templates</b>
+</button>
 
-  <button id="plusBtn">
-    <b>＋</b>
-    New
-  </button>
+<button class="plus" id="plusBtn">
+＋
+</button>
 
-  <button id="navProjects">
-    <b>◫</b>
-    Designs
-  </button>
+<button id="navProjects">
+◫
+<b>Projects</b>
+</button>
 
-  <button id="navSettings">
-    <b>⚙</b>
-    Settings
-  </button>
+<button id="navSettings">
+⚙
+<b>Settings</b>
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     NEW DESIGN SCREEN
+========================================================= -->
+
+<section
+class="setup"
+id="setup"
+>
+
+<div class="setupHead">
+
+<button
+class="back"
+id="back"
+>
+‹
+</button>
+
+<div>
+
+<b style="font-size:21px">
+New Design
+</b>
+
+<div
+style="font-size:12px;color:var(--muted);margin-top:3px"
+>
+Choose your canvas size
+</div>
+
+</div>
 
 </div>
 
 
-<div class="toast" id="toast"></div>
+<div class="box">
+
+<b>
+Custom Size
+</b>
+
+<div class="inputs">
+
+<div>
+
+<div class="lbl">
+Width
+</div>
+
+<input
+class="num"
+id="cw"
+type="number"
+value="1080"
+min="100"
+>
+
+</div>
+
+
+<div>
+
+<div class="lbl">
+Height
+</div>
+
+<input
+class="num"
+id="ch"
+type="number"
+value="1080"
+min="100"
+>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="sec">
+Popular Sizes
+</div>
+
+
+<div class="presets">
+
+
+<button
+class="preset active"
+data-w="1080"
+data-h="1080"
+>
+<b>1 : 1</b>
+<small>Square</small>
+</button>
+
+
+<button
+class="preset"
+data-w="1920"
+data-h="1080"
+>
+<b>1920 × 1080</b>
+<small>YouTube</small>
+</button>
+
+
+<button
+class="preset"
+data-w="1280"
+data-h="720"
+>
+<b>1280 × 720</b>
+<small>Thumbnail</small>
+</button>
+
+
+<!-- IMPORTANT USER REQUESTED SIZE -->
+
+<button
+class="preset"
+data-w="1280"
+data-h="520"
+>
+<b>1280 × 520</b>
+<small>Wide Banner</small>
+</button>
+
+
+<button
+class="preset"
+data-w="1080"
+data-h="1920"
+>
+<b>9 : 16</b>
+<small>Portrait</small>
+</button>
+
+
+<button
+class="preset"
+data-w="2480"
+data-h="3508"
+>
+<b>A4 Portrait</b>
+<small>2480 × 3508</small>
+</button>
+
+
+<button
+class="preset"
+data-w="3508"
+data-h="2480"
+>
+<b>A4 Landscape</b>
+<small>3508 × 2480</small>
+</button>
+
+
+<button
+class="preset"
+data-w="1200"
+data-h="900"
+>
+<b>4 : 3</b>
+<small>Classic</small>
+</button>
+
+
+<button
+class="preset"
+data-w="1200"
+data-h="628"
+>
+<b>1200 × 628</b>
+<small>Social Banner</small>
+</button>
+
+
+</div>
+
+
+<button
+class="create"
+id="create"
+style="margin-top:20px"
+>
+Create Design
+</button>
+
+</section>
+
+
+<!-- =========================================================
+     EDITOR
+========================================================= -->
+
+<section
+class="editor"
+id="editor"
+>
+
+
+<!-- TOP -->
+
+<div class="top">
+
+<b>
+Urdu Design Studio
+</b>
+
+
+<div class="toptools">
+
+<button
+class="tb"
+id="undo"
+>
+↶
+</button>
+
+<button
+class="tb"
+id="redo"
+>
+↷
+</button>
+
+<button
+class="tb"
+id="layersTop"
+>
+▤
+</button>
+
+<button
+class="tb"
+id="save"
+>
+💾
+</button>
+
+</div>
+
+</div>
+
+
+<div class="workspace">
+
+
+<div
+class="stage"
+id="stage"
+>
+
+<div
+class="canvas"
+id="canvas"
+>
+
+<div class="grid"></div>
+
+</div>
+
+</div>
+
+
+<!-- =======================================================
+     EDIT PANEL
+======================================================= -->
+
+<div
+class="panel"
+id="editPanel"
+>
+
+<div class="pt">
+
+<span id="ptype">
+Edit Object
+</span>
+
+<button
+class="close"
+data-close
+>
+×
+</button>
+
+</div>
+
+
+<div
+class="hint"
+id="hint"
+>
+Select an object to edit it.
+</div>
+
+
+<div class="secTitle">
+Transform
+</div>
+
+
+<div class="pgrid">
+
+<button
+class="pbtn"
+id="fit"
+>
+Fit Canvas
+</button>
+
+<button
+class="pbtn"
+id="center"
+>
+Center
+</button>
+
+<button
+class="pbtn"
+id="rminus"
+>
+Rotate −15°
+</button>
+
+<button
+class="pbtn"
+id="rplus"
+>
+Rotate +15°
+</button>
+
+</div>
+
+
+<div class="secTitle">
+Style
+</div>
+
+<input
+class="color"
+id="color"
+type="color"
+value="#7044f5"
+>
+
+
+<div
+id="textControls"
+style="display:none"
+>
+
+<div class="secTitle">
+Text
+</div>
+
+
+<input
+class="range"
+id="fontSize"
+type="range"
+min="8"
+max="300"
+value="40"
+>
+
+
+<div class="pgrid">
+
+<button
+class="pbtn"
+id="bold"
+>
+Bold
+</button>
+
+<button
+class="pbtn"
+id="right"
+>
+Right
+</button>
+
+<button
+class="pbtn"
+id="centerText"
+>
+Center
+</button>
+
+<button
+class="pbtn"
+id="left"
+>
+Left
+</button>
+
+</div>
+
+
+<select
+class="select"
+id="font"
+style="margin-top:7px"
+>
+
+<option>
+Arial
+</option>
+
+<option>
+Noto Nastaliq Urdu
+</option>
+
+<option>
+Noto Naskh Arabic
+</option>
+
+<option>
+serif
+</option>
+
+<option>
+sans-serif
+</option>
+
+</select>
+
+
+<div class="pgrid" style="margin-top:7px">
+
+<button
+class="pbtn"
+id="breakApart"
+>
+Break Apart
+</button>
+
+<button
+class="pbtn"
+id="convertShape"
+>
+Convert to Shape
+</button>
+
+<button
+class="pbtn"
+id="convert3d"
+>
+Convert to 3D
+</button>
+
+<button
+class="pbtn"
+id="patternText"
+>
+Pattern
+</button>
+
+<button
+class="pbtn"
+id="textBg"
+>
+Text Background
+</button>
+
+<button
+class="pbtn"
+id="splitWords"
+>
+Split Words
+</button>
+
+<button
+class="pbtn"
+id="bulletList"
+>
+Bullets List
+</button>
+
+<button
+class="pbtn"
+id="blendText"
+>
+Blend
+</button>
+
+</div>
+
+</div>
+
+
+<div class="secTitle">
+Object
+</div>
+
+
+<div class="pgrid">
+
+<button
+class="pbtn"
+id="dup"
+>
+Duplicate
+</button>
+
+<button
+class="pbtn"
+id="del"
+>
+Delete
+</button>
+
+<button
+class="pbtn"
+id="up"
+>
+Bring Forward
+</button>
+
+<button
+class="pbtn"
+id="down"
+>
+Send Backward
+</button>
+
+<button
+class="pbtn"
+id="opacityBtn"
+>
+Opacity
+</button>
+
+<button
+class="pbtn"
+id="powerClipBtn"
+>
+PowerClip
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =======================================================
+     LAYERS PANEL
+======================================================= -->
+
+<div
+class="panel"
+id="layerPanel"
+>
+
+<div class="pt">
+
+<span>
+Layers
+</span>
+
+<button
+class="close"
+data-close
+>
+×
+</button>
+
+</div>
+
+
+<div class="layerTools">
+
+<button
+class="layerTool"
+id="selectAllLayers"
+>
+SELECT
+</button>
+
+<button
+class="layerTool"
+id="hideAllLayers"
+>
+HIDE ALL
+</button>
+
+<button
+class="layerTool"
+id="lockAllLayers"
+>
+LOCK ALL
+</button>
+
+<button
+class="layerTool"
+id="filterLayers"
+>
+FILTER
+</button>
+
+</div>
+
+
+<div id="layers"></div>
+
+</div>
+
+</div>
+
+
+<!-- =======================================================
+     EDITOR BOTTOM
+======================================================= -->
+
+<div class="bottom">
+
+<div class="tools">
+
+
+<button
+class="tool"
+id="addNew"
+>
+<span>＋</span>
+Add New
+</button>
+
+
+<button
+class="tool"
+id="addText"
+>
+<span>T</span>
+Text
+</button>
+
+
+<button
+class="tool"
+id="addImage"
+>
+<span>▧</span>
+Image
+</button>
+
+
+<button
+class="tool"
+id="addShape"
+>
+<span>◇</span>
+Shape
+</button>
+
+
+<button
+class="tool"
+id="addBg"
+>
+<span>◉</span>
+Background
+</button>
+
+
+<button
+class="tool"
+id="edit"
+>
+<span>⚙</span>
+Edit
+</button>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     GENERAL MODAL
+========================================================= -->
+
+<div
+class="modal"
+id="modal"
+>
+
+<div class="sheet">
+
+<div class="sheetHead">
+
+<b id="modalTitle">
+Tools
+</b>
+
+<button
+class="close"
+id="modalClose"
+>
+×
+</button>
+
+</div>
+
+
+<div
+class="sheetGrid"
+id="modalGrid"
+>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     TEXT MODAL
+========================================================= -->
+
+<div
+class="modal"
+id="textModal"
+>
+
+<div class="sheet">
+
+<div class="sheetHead">
+
+<b>
+Add Text
+</b>
+
+<button
+class="close"
+id="textClose"
+>
+×
+</button>
+
+</div>
+
+
+<div class="textModalBox">
+
+<textarea
+class="textArea"
+id="newText"
+placeholder="Write your text..."
+></textarea>
+
+
+<button
+class="create"
+id="createText"
+style="margin-top:10px"
+>
+Add Text
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     IMAGE INPUT
+========================================================= -->
+
+<input
+id="file"
+type="file"
+accept="image/*"
+>
 
 
 <script>
+
+/* =========================================================
+   CORE
+========================================================= */
 
 const $ = id => document.getElementById(id);
 
 const home = $("home");
 const setup = $("setup");
 const editor = $("editor");
-const stage = $("stage");
 const canvas = $("canvas");
+const stage = $("stage");
 
 let selected = null;
+
 let history = [];
 let future = [];
 
 let designW = 1080;
 let designH = 1080;
 
+let gesture = null;
 
-/* =========================
-   MODALS
-========================= */
-
-function openModal(title,items){
-
-  $("modalTitle").textContent = title;
-
-  const grid = $("modalGrid");
-
-  grid.innerHTML = "";
-
-  items.forEach(item => {
-
-    const btn = document.createElement("button");
-
-    btn.className = "modalBtn";
-
-    btn.innerHTML =
-      "<b>"+item.label+"</b>";
-
-    btn.onclick = () => {
-
-      $("modalBack").style.display = "none";
-
-      if(item.action){
-        item.action();
-      }
-
-    };
-
-    grid.appendChild(btn);
-
-  });
-
-  $("modalBack").style.display = "flex";
-
-}
-
-function closeModal(){
-
-  $("modalBack").style.display = "none";
-
-}
-
-$("modalBack").addEventListener("click",e=>{
-
-  if(e.target === $("modalBack")){
-    closeModal();
-  }
-
-});
+let clipShape = null;
 
 
-/* =========================
+/* =========================================================
    TOAST
-========================= */
+========================================================= */
 
 function toast(message){
 
-  const t = $("toast");
+  const t = document.createElement("div");
+
+  t.className = "toast";
 
   t.textContent = message;
 
+  document.body.appendChild(t);
+
   t.style.display = "block";
 
-  clearTimeout(window._toastTimer);
-
-  window._toastTimer =
-    setTimeout(()=>{
-      t.style.display = "none";
-    },1800);
+  setTimeout(()=>{
+    t.remove();
+  },1800);
 
 }
 
 
-/* =========================
-   HOME ACTIONS
-========================= */
+/* =========================================================
+   HISTORY
+========================================================= */
 
-function quickSetup(action){
+function snapshot(){
 
-  openSetup();
+  history.push(canvas.innerHTML);
 
-  window._quickAction = action;
+  if(history.length > 40){
+    history.shift();
+  }
+
+  future = [];
 
 }
 
-function templates(){
 
-  openModal(
-    "Templates",
-    [
-      {
-        label:"Urdu Poster",
-        action:()=>quickSetup("poster")
-      },
-      {
-        label:"Islamic Post",
-        action:()=>quickSetup("islamic")
-      },
-      {
-        label:"Wedding Card",
-        action:()=>quickSetup("wedding")
-      },
-      {
-        label:"Business Ad",
-        action:()=>quickSetup("business")
-      },
-      {
-        label:"YouTube Thumbnail",
-        action:()=>quickSetup("youtube")
-      },
-      {
-        label:"Social Post",
-        action:()=>quickSetup("social")
-      }
-    ]
+/* =========================================================
+   RESTORE
+========================================================= */
+
+function restore(html){
+
+  canvas.innerHTML = html;
+
+  selected = null;
+
+  canvas
+  .querySelectorAll(".obj")
+  .forEach(addObjectEvents);
+
+  refresh();
+
+}
+
+
+/* =========================================================
+   SELECT
+========================================================= */
+
+function select(o){
+
+  document
+  .querySelectorAll(".obj.selected")
+  .forEach(x =>
+    x.classList.remove("selected")
+  );
+
+  selected = o;
+
+  if(o){
+    o.classList.add("selected");
+  }
+
+  refresh();
+
+}
+
+
+/* =========================================================
+   REFRESH
+========================================================= */
+
+function refresh(){
+
+  $("hint").textContent =
+    selected
+    ?
+    "Selected: " +
+    (selected.dataset.name || "Object")
+    :
+    "Select an object to edit it.";
+
+  $("ptype").textContent =
+    selected
+    ?
+    (selected.dataset.name || "Object")
+    :
+    "Edit Object";
+
+  $("textControls").style.display =
+    selected &&
+    selected.classList.contains("textObj")
+    ?
+    "block"
+    :
+    "none";
+
+  if(
+    selected &&
+    selected.classList.contains("textObj")
+  ){
+
+    $("fontSize").value =
+      parseInt(selected.style.fontSize) || 40;
+
+    $("font").value =
+      selected.style.fontFamily || "Arial";
+
+  }
+
+  updateLayers();
+
+}
+
+
+/* =========================================================
+   HANDLE MARKUP
+========================================================= */
+
+function handleMarkup(){
+
+  return `
+  <div class="handles">
+
+    <i class="h nw" data-h="nw"></i>
+    <i class="h n" data-h="n"></i>
+    <i class="h ne" data-h="ne"></i>
+    <i class="h e" data-h="e"></i>
+    <i class="h se" data-h="se"></i>
+    <i class="h s" data-h="s"></i>
+    <i class="h sw" data-h="sw"></i>
+    <i class="h w" data-h="w"></i>
+
+    <i class="rotateLine"></i>
+    <i class="h rh" data-h="rotate"></i>
+
+  </div>
+  `;
+
+}
+
+
+/* =========================================================
+   OBJECT EVENTS
+========================================================= */
+
+function addObjectEvents(o){
+
+  const old =
+    o.querySelector(".handles");
+
+  if(old){
+    old.remove();
+  }
+
+  o.insertAdjacentHTML(
+    "beforeend",
+    handleMarkup()
+  );
+
+  o.addEventListener(
+    "pointerdown",
+    objectDown
+  );
+
+  o.querySelectorAll(".h")
+   .forEach(h =>
+     h.addEventListener(
+       "pointerdown",
+       handleDown
+     )
+   );
+
+  o.addEventListener(
+    "click",
+    e => {
+
+      e.stopPropagation();
+
+      select(o);
+
+    }
   );
 
 }
 
-function settings(){
 
-  openModal(
-    "Settings",
-    [
-      {
-        label:"Save Project",
-        action:()=>{
-          if(editor.style.display==="flex"){
-            saveProject();
-          }else{
-            toast("Open a design first");
-          }
-        }
-      },
-      {
-        label:"Reset Saved Project",
-        action:()=>{
-          localStorage.removeItem("UDS_V6_PROJECT");
-          toast("Saved project cleared");
-        }
-      },
-      {
-        label:"Editor Help",
-        action:()=>{
-          alert(
-            "Select an object, drag it to move, use the handles to resize, and use the top handle to rotate."
-          );
-        }
-      }
-    ]
-  );
+/* =========================================================
+   CREATE OBJECT
+========================================================= */
 
-}
+function make(type){
 
-function elements(){
+  let o;
 
-  openModal(
-    "Elements",
-    [
-      {
-        label:"Text",
-        action:()=>quickSetup("text")
-      },
-      {
-        label:"Shape",
-        action:()=>quickSetup("shape")
-      },
-      {
-        label:"Image",
-        action:()=>quickSetup("image")
-      },
-      {
-        label:"Background",
-        action:()=>quickSetup("bg")
-      }
-    ]
-  );
+  if(type === "image"){
+    o = document.createElement("img");
+  }else{
+    o = document.createElement("div");
+  }
 
-}
-
-function simpleTool(name){
-
-  openModal(
-    name,
-    [
-      {
-        label:"Create New Design",
-        action:()=>quickSetup(name.toLowerCase())
-      },
-      {
-        label:"Open Editor",
-        action:()=>{
-          if(editor.style.display==="flex"){
-            closeModal();
-          }else{
-            openSetup();
-          }
-        }
-      }
-    ]
-  );
-
-}
-
-
-/* =========================
-   HOME BUTTONS
-========================= */
-
-$("homeTemplates").onclick = templates;
-
-$("homeProjects").onclick = openSaved;
-
-$("homeElements").onclick = elements;
-
-$("homeShapes").onclick =
-  ()=>simpleTool("Shapes");
-
-$("homeFrames").onclick =
-  ()=>simpleTool("Frames");
-
-$("homeBackgrounds").onclick =
-  ()=>simpleTool("Backgrounds");
-
-$("homeImport").onclick = ()=>{
-
-  openSetup();
-
-  window._quickAction = "image";
-
-};
-
-$("homeText").onclick = ()=>{
-
-  openSetup();
-
-  window._quickAction = "text";
-
-};
-
-$("homeMore").onclick = ()=>{
-
-  openModal(
-    "More Tools",
-    [
-      {
-        label:"Shapes",
-        action:()=>simpleTool("Shapes")
-      },
-      {
-        label:"Frames",
-        action:()=>simpleTool("Frames")
-      },
-      {
-        label:"Backgrounds",
-        action:()=>simpleTool("Backgrounds")
-      },
-      {
-        label:"My Designs",
-        action:openSaved
-      }
-    ]
-  );
-
-};
-
-$("settingsBtn").onclick = settings;
-
-$("navHome").onclick = ()=>{
-
-  editor.style.display = "none";
-  setup.style.display = "none";
-  home.style.display = "block";
-
-};
-
-$("navTemplates").onclick = templates;
-
-$("navProjects").onclick = openSaved;
-
-$("navSettings").onclick = settings;
-
-
-/* =========================
-   HOME SLIDER
-========================= */
-
-const slidesEl = $("slides");
-const dotsEl = $("sliderDots");
-const sliderEl = $("homeSlider");
-
-let slideIndex = 0;
-let slideTimer = null;
-
-let touchStartX = 0;
-let touchStartY = 0;
-
-
-function showSlide(i){
-
-  slideIndex =
-    (i + 7) % 7;
-
-  slidesEl.style.transform =
-    "translateX(-" +
-    (slideIndex * 100) +
-    "%)";
-
-  dotsEl
-    .querySelectorAll(".dot")
-    .forEach((dot,n)=>{
-
-      dot.classList.toggle(
-        "active",
-        n === slideIndex
-      );
-
-    });
-
-}
-
-
-function startSlider(){
-
-  clearInterval(slideTimer);
-
-  slideTimer =
-    setInterval(
-      ()=>{
-        showSlide(slideIndex + 1);
-      },
-      4500
+  o.className =
+    "obj " +
+    (
+      type === "image"
+      ?
+      "imageObj"
+      :
+      type === "text"
+      ?
+      "textObj"
+      :
+      type === "circle"
+      ?
+      "circle"
+      :
+      type === "star"
+      ?
+      "star"
+      :
+      type === "heart"
+      ?
+      "heart"
+      :
+      type === "line"
+      ?
+      "lineShape"
+      :
+      "shape"
     );
 
+  o.dataset.type = type;
+
+  o.dataset.name =
+    type === "image"
+    ?
+    "Image"
+    :
+    type === "text"
+    ?
+    "Text"
+    :
+    type === "circle"
+    ?
+    "Circle"
+    :
+    type === "star"
+    ?
+    "Star"
+    :
+    type === "heart"
+    ?
+    "Heart"
+    :
+    type === "line"
+    ?
+    "Line"
+    :
+    "Shape";
+
+  o.style.left = "40px";
+  o.style.top = "40px";
+  o.style.zIndex = "10";
+
+
+  if(type === "text"){
+
+    o.textContent = "New Text";
+
+    o.contentEditable = "true";
+
+    o.style.fontSize = "40px";
+
+  }
+
+
+  if(type === "image"){
+
+    o.style.width = "220px";
+    o.style.height = "160px";
+    o.style.objectFit = "contain";
+
+  }
+
+
+  canvas.appendChild(o);
+
+  addObjectEvents(o);
+
+  select(o);
+
+  snapshot();
+
+  return o;
+
 }
 
 
-$("slidePrev").onclick = ()=>{
+/* =========================================================
+   MOVE
+========================================================= */
 
-  showSlide(slideIndex - 1);
+function objectDown(e){
 
-  startSlider();
+  if(e.target.closest(".h")){
+    return;
+  }
 
-};
+  e.stopPropagation();
+
+  select(this);
+
+  if(this.dataset.locked === "1"){
+    return;
+  }
+
+  gesture = {
+
+    kind:"move",
+
+    o:this,
+
+    sx:e.clientX,
+
+    sy:e.clientY,
+
+    l:parseFloat(this.style.left) || 0,
+
+    t:parseFloat(this.style.top) || 0
+
+  };
+
+  this.setPointerCapture?.(
+    e.pointerId
+  );
+
+}
 
 
-$("slideNext").onclick = ()=>{
+/* =========================================================
+   RESIZE / ROTATE
+========================================================= */
 
-  showSlide(slideIndex + 1);
+function handleDown(e){
 
-  startSlider();
+  e.stopPropagation();
+  e.preventDefault();
 
-};
+  const o =
+    this.closest(".obj");
+
+  select(o);
+
+  if(o.dataset.locked === "1"){
+    return;
+  }
+
+  const type =
+    this.dataset.h;
 
 
-dotsEl
-  .querySelectorAll(".dot")
-  .forEach(dot=>{
+  if(type === "rotate"){
 
-    dot.onclick = ()=>{
+    gesture = {
 
-      showSlide(
-        parseInt(dot.dataset.slide)
-      );
+      kind:"rotate",
 
-      startSlider();
+      o:o,
+
+      sx:e.clientX,
+
+      sy:e.clientY,
+
+      start:
+        parseFloat(o.dataset.rot) || 0
 
     };
 
-  });
+    return;
+
+  }
 
 
-/* MOBILE SWIPE */
+  gesture = {
 
-sliderEl.addEventListener(
-  "pointerdown",
-  e=>{
+    kind:"resize",
 
-    touchStartX = e.clientX;
-    touchStartY = e.clientY;
+    o:o,
 
-    sliderEl.setPointerCapture?.(
-      e.pointerId
-    );
+    type:type,
+
+    sx:e.clientX,
+
+    sy:e.clientY,
+
+    l:parseFloat(o.style.left) || 0,
+
+    t:parseFloat(o.style.top) || 0,
+
+    w:o.offsetWidth,
+
+    h:o.offsetHeight
+
+  };
+
+}
+
+
+/* =========================================================
+   POINTER MOVE
+========================================================= */
+
+window.addEventListener(
+  "pointermove",
+  e => {
+
+    if(!gesture){
+      return;
+    }
+
+    const g = gesture;
+    const o = g.o;
+
+    const dx =
+      e.clientX - g.sx;
+
+    const dy =
+      e.clientY - g.sy;
+
+
+    if(g.kind === "move"){
+
+      o.style.left =
+        Math.max(
+          0,
+          g.l + dx
+        ) + "px";
+
+      o.style.top =
+        Math.max(
+          0,
+          g.t + dy
+        ) + "px";
+
+      return;
+
+    }
+
+
+    if(g.kind === "rotate"){
+
+      const r =
+        canvas.getBoundingClientRect();
+
+      const cx =
+        r.left +
+        o.offsetLeft +
+        o.offsetWidth / 2;
+
+      const cy =
+        r.top +
+        o.offsetTop +
+        o.offsetHeight / 2;
+
+      const angle =
+        Math.atan2(
+          e.clientY - cy,
+          e.clientX - cx
+        ) *
+        180 /
+        Math.PI +
+        90;
+
+      o.dataset.rot = angle;
+
+      o.style.transform =
+        "rotate(" + angle + "deg)";
+
+      return;
+
+    }
+
+
+    let nw = g.w;
+    let nh = g.h;
+
+    let nl = g.l;
+    let nt = g.t;
+
+    const min = 30;
+
+
+    if(g.type.includes("e")){
+
+      nw =
+        Math.max(
+          min,
+          g.w + dx
+        );
+
+    }
+
+
+    if(g.type.includes("w")){
+
+      nw =
+        Math.max(
+          min,
+          g.w - dx
+        );
+
+      nl =
+        g.l +
+        (g.w - nw);
+
+    }
+
+
+    if(g.type.includes("s")){
+
+      nh =
+        Math.max(
+          min,
+          g.h + dy
+        );
+
+    }
+
+
+    if(g.type.includes("n")){
+
+      nh =
+        Math.max(
+          min,
+          g.h - dy
+        );
+
+      nt =
+        g.t +
+        (g.h - nh);
+
+    }
+
+
+    o.style.width = nw + "px";
+    o.style.height = nh + "px";
+    o.style.left = nl + "px";
+    o.style.top = nt + "px";
 
   }
 );
 
 
-sliderEl.addEventListener(
+/* =========================================================
+   POINTER UP
+========================================================= */
+
+window.addEventListener(
   "pointerup",
-  e=>{
+  () => {
 
-    const dx =
-      e.clientX - touchStartX;
+    if(gesture){
 
-    const dy =
-      e.clientY - touchStartY;
+      snapshot();
 
-    if(
-      Math.abs(dx) > 45 &&
-      Math.abs(dx) > Math.abs(dy)
-    ){
+      gesture = null;
 
-      showSlide(
-        slideIndex +
-        (dx < 0 ? 1 : -1)
-      );
-
-      startSlider();
+      refresh();
 
     }
 
@@ -1619,69 +2866,108 @@ sliderEl.addEventListener(
 );
 
 
-showSlide(0);
+/* =========================================================
+   CANVAS
+========================================================= */
 
-startSlider();
+canvas.addEventListener(
+  "pointerdown",
+  e => {
+
+    if(e.target === canvas){
+
+      select(null);
+
+    }
+
+  }
+);
 
 
-/* =========================
-   SETUP
-========================= */
+/* =========================================================
+   CANVAS SIZE
+========================================================= */
 
-function openSetup(){
+function applyCanvas(){
+
+  canvas.style.width =
+    designW + "px";
+
+  canvas.style.height =
+    designH + "px";
+
+  canvas.dataset.width =
+    designW;
+
+  canvas.dataset.height =
+    designH;
+
+}
+
+
+/* =========================================================
+   NEW DESIGN
+========================================================= */
+
+function showSetup(){
 
   home.style.display = "none";
+
+  editor.style.display = "none";
 
   setup.style.display = "block";
 
 }
 
+
 $("newBtn").onclick =
-  openSetup;
+  showSetup;
 
 $("plusBtn").onclick =
-  openSetup;
+  showSetup;
 
 
-$("back").onclick = ()=>{
+$("back").onclick = () => {
 
   setup.style.display = "none";
+
+  editor.style.display = "none";
 
   home.style.display = "block";
 
 };
 
 
+/* PRESETS */
+
 document
-  .querySelectorAll(".preset")
-  .forEach(p=>{
+.querySelectorAll(".preset")
+.forEach(p => {
 
-    p.onclick = ()=>{
+  p.onclick = () => {
 
-      document
-        .querySelectorAll(".preset")
-        .forEach(x=>
-          x.classList.remove("active")
-        );
+    document
+    .querySelectorAll(".preset")
+    .forEach(x =>
+      x.classList.remove("active")
+    );
 
-      p.classList.add("active");
+    p.classList.add("active");
 
-      $("cw").value =
-        p.dataset.w;
+    $("cw").value =
+      p.dataset.w;
 
-      $("ch").value =
-        p.dataset.h;
+    $("ch").value =
+      p.dataset.h;
 
-    };
+  };
 
-  });
+});
 
 
-/* =========================
-   CANVAS
-========================= */
+/* CREATE */
 
-function applyCanvas(){
+$("create").onclick = () => {
 
   designW =
     Math.max(
@@ -1695,471 +2981,6 @@ function applyCanvas(){
       parseInt($("ch").value) || 1080
     );
 
-
-  const sw =
-    Math.max(
-      180,
-      stage.clientWidth - 30
-    );
-
-  const sh =
-    Math.max(
-      180,
-      stage.clientHeight - 30
-    );
-
-
-  const scale =
-    Math.min(
-      sw / designW,
-      sh / designH,
-      1
-    );
-
-
-  canvas.style.width =
-    Math.round(
-      designW * scale
-    ) + "px";
-
-  canvas.style.height =
-    Math.round(
-      designH * scale
-    ) + "px";
-
-
-  canvas.dataset.designWidth =
-    designW;
-
-  canvas.dataset.designHeight =
-    designH;
-
-}
-
-
-/* =========================
-   OBJECT CREATION
-========================= */
-
-function createObject(type){
-
-  const obj =
-    document.createElement("div");
-
-  obj.className =
-    "obj";
-
-  obj.dataset.type =
-    type;
-
-  obj.style.left =
-    "80px";
-
-  obj.style.top =
-    "80px";
-
-
-  if(type === "text"){
-
-    obj.classList.add("objText");
-
-    obj.textContent =
-      "Urdu Design";
-
-    obj.contentEditable =
-      "true";
-
-  }
-
-
-  if(type === "shape"){
-
-    obj.classList.add("objShape");
-
-  }
-
-
-  obj.addEventListener(
-    "pointerdown",
-    e=>{
-
-      e.stopPropagation();
-
-      selectObject(obj);
-
-    }
-  );
-
-
-  canvas.appendChild(obj);
-
-  selectObject(obj);
-
-  return obj;
-
-}
-
-
-function selectObject(obj){
-
-  if(selected){
-
-    selected.classList.remove(
-      "selected"
-    );
-
-  }
-
-  selected = obj;
-
-  if(selected){
-
-    selected.classList.add(
-      "selected"
-    );
-
-  }
-
-}
-
-
-/* =========================
-   ADD TEXT
-========================= */
-
-$("addText").onclick = ()=>{
-
-  createObject("text");
-
-};
-
-
-/* =========================
-   ADD SHAPE
-========================= */
-
-$("addShape").onclick = ()=>{
-
-  createObject("shape");
-
-};
-
-
-/* =========================
-   ADD IMAGE
-========================= */
-
-$("addImage").onclick = ()=>{
-
-  const input =
-    document.createElement("input");
-
-  input.type =
-    "file";
-
-  input.accept =
-    "image/*";
-
-  input.onchange = ()=>{
-
-    const file =
-      input.files[0];
-
-    if(!file) return;
-
-    const reader =
-      new FileReader();
-
-    reader.onload = ()=>{
-
-      const img =
-        document.createElement("img");
-
-      img.src =
-        reader.result;
-
-      img.className =
-        "obj objImage";
-
-      img.style.left =
-        "50px";
-
-      img.style.top =
-        "50px";
-
-      img.addEventListener(
-        "pointerdown",
-        e=>{
-          e.stopPropagation();
-          selectObject(img);
-        }
-      );
-
-      canvas.appendChild(img);
-
-      selectObject(img);
-
-    };
-
-    reader.readAsDataURL(file);
-
-  };
-
-  input.click();
-
-};
-
-
-/* =========================
-   BACKGROUND
-========================= */
-
-$("addBg").onclick = ()=>{
-
-  canvas.style.background =
-    "linear-gradient(135deg,#ffffff,#eeeaff)";
-
-};
-
-
-/* =========================
-   DELETE
-========================= */
-
-$("deleteBtn").onclick = ()=>{
-
-  if(selected){
-
-    selected.remove();
-
-    selected = null;
-
-    toast("Object deleted");
-
-  }else{
-
-    toast("Select an object first");
-
-  }
-
-};
-
-
-/* =========================
-   LAYERS
-========================= */
-
-$("layersBtn").onclick = ()=>{
-
-  const objects =
-    canvas.querySelectorAll(".obj");
-
-  const items =
-    [];
-
-  objects.forEach(
-    (obj,i)=>{
-
-      items.push({
-        label:
-          (i+1)+
-          " • "+
-          (obj.dataset.type || "Object"),
-
-        action:()=>{
-
-          selectObject(obj);
-
-          toast("Layer selected");
-
-        }
-
-      });
-
-    }
-  );
-
-  if(!items.length){
-
-    items.push({
-      label:"No objects yet",
-      action:()=>{}
-    });
-
-  }
-
-  openModal(
-    "Layers",
-    items
-  );
-
-};
-
-
-/* =========================
-   UNDO / REDO
-========================= */
-
-$("undoBtn").onclick = ()=>{
-
-  toast("Undo ready for next editor phase");
-
-};
-
-$("redoBtn").onclick = ()=>{
-
-  toast("Redo ready for next editor phase");
-
-};
-
-
-/* =========================
-   SAVE PROJECT
-========================= */
-
-function saveProject(){
-
-  const data = {
-
-    width:designW,
-
-    height:designH,
-
-    html:canvas.innerHTML,
-
-    background:
-      canvas.style.background
-
-  };
-
-  localStorage.setItem(
-    "UDS_V6_PROJECT",
-    JSON.stringify(data)
-  );
-
-  toast("Project saved");
-
-}
-
-
-/* =========================
-   OPEN SAVED
-========================= */
-
-function openSaved(){
-
-  const raw =
-    localStorage.getItem(
-      "UDS_V6_PROJECT"
-    );
-
-  if(!raw){
-
-    toast("No saved designs");
-
-    return;
-
-  }
-
-  openModal(
-    "My Designs",
-    [
-      {
-        label:"Open Saved Design",
-        action:()=>{
-
-          try{
-
-            const data =
-              JSON.parse(raw);
-
-            openSetup();
-
-            window._savedProject =
-              data;
-
-            toast("Saved design ready");
-
-          }catch(e){
-
-            toast("Could not open project");
-
-          }
-
-        }
-
-      },
-
-      {
-        label:"Delete Saved Design",
-        action:()=>{
-
-          localStorage.removeItem(
-            "UDS_V6_PROJECT"
-          );
-
-          toast("Saved design deleted");
-
-        }
-
-      }
-
-    ]
-  );
-
-}
-
-
-/* =========================
-   SAVE BUTTON
-========================= */
-
-$("saveBtn").onclick =
-  saveProject;
-
-
-/* =========================
-   EXPORT
-========================= */
-
-$("exportBtn").onclick = ()=>{
-
-  toast(
-    "Export tools will be added in the next editor phase"
-  );
-
-};
-
-
-/* =========================
-   EDITOR BACK
-========================= */
-
-$("editorBack").onclick = ()=>{
-
-  editor.style.display =
-    "none";
-
-  home.style.display =
-    "block";
-
-};
-
-
-/* =========================
-   CREATE DESIGN
-========================= */
-
-$("create").onclick = ()=>{
-
-  setup.style.display =
-    "none";
-
-  editor.style.display =
-    "flex";
-
-  applyCanvas();
-
   history = [];
 
   future = [];
@@ -2169,56 +2990,2515 @@ $("create").onclick = ()=>{
   canvas.innerHTML =
     '<div class="grid"></div>';
 
-  let action =
-    window._quickAction;
+  applyCanvas();
 
-  window._quickAction =
-    null;
+  setup.style.display = "none";
+
+  home.style.display = "none";
+
+  editor.style.display = "flex";
+
+  refresh();
+
+};
 
 
-  if(action === "text"){
+/* =========================================================
+   ADD TEXT
+========================================================= */
 
-    $("addText").click();
+$("addText").onclick = () => {
 
-  }else if(
-    action === "shape" ||
-    action === "shapes"
+  $("textModal").classList.add("show");
+
+  $("newText").value = "";
+
+  setTimeout(
+    () => $("newText").focus(),
+    150
+  );
+
+};
+
+
+$("textClose").onclick = () => {
+
+  $("textModal")
+  .classList.remove("show");
+
+};
+
+
+$("createText").onclick = () => {
+
+  let text =
+    $("newText").value.trim();
+
+  if(!text){
+    text = "New Text";
+  }
+
+  const o =
+    make("text");
+
+  o.textContent =
+    text;
+
+  $("textModal")
+  .classList.remove("show");
+
+  select(o);
+
+};
+
+
+/* =========================================================
+   ADD IMAGE
+========================================================= */
+
+$("addImage").onclick = () => {
+
+  $("file").dataset.mode =
+    "image";
+
+  $("file").click();
+
+};
+
+
+/* =========================================================
+   ADD BACKGROUND
+========================================================= */
+
+$("addBg").onclick = () => {
+
+  $("file").dataset.mode =
+    "background";
+
+  $("file").click();
+
+};
+
+
+/* =========================================================
+   FILE INPUT
+========================================================= */
+
+$("file").onchange = e => {
+
+  const file =
+    e.target.files[0];
+
+  if(!file){
+    return;
+  }
+
+  const reader =
+    new FileReader();
+
+  reader.onload = ev => {
+
+    if(
+      e.target.dataset.mode ===
+      "background"
+    ){
+
+      document
+      .querySelectorAll(
+        ".canvasBackground"
+      )
+      .forEach(x => x.remove());
+
+    }
+
+
+    const o =
+      make("image");
+
+    o.src =
+      ev.target.result;
+
+
+    if(
+      e.target.dataset.mode ===
+      "background"
+    ){
+
+      o.classList.add(
+        "canvasBackground"
+      );
+
+      o.dataset.name =
+        "Background";
+
+      o.style.left =
+        "0px";
+
+      o.style.top =
+        "0px";
+
+      o.style.width =
+        "100%";
+
+      o.style.height =
+        "100%";
+
+      o.style.objectFit =
+        "cover";
+
+      o.style.zIndex =
+        "0";
+
+    }
+
+
+    snapshot();
+
+    refresh();
+
+  };
+
+  reader.readAsDataURL(file);
+
+  e.target.value = "";
+
+};
+
+
+/* =========================================================
+   SHAPES
+========================================================= */
+
+function addShape(type){
+
+  const o =
+    make(type);
+
+  if(type === "line"){
+    o.style.height = "5px";
+  }
+
+}
+
+
+function shapeMenu(){
+
+  openModal(
+    "Shapes",
+    [
+      ["Rectangle","Rectangle"],
+      ["Circle","Circle"],
+      ["Star","Star"],
+      ["Heart","Heart"],
+      ["Line","Line"]
+    ]
+  );
+
+}
+
+
+/* =========================================================
+   EDIT PANEL
+========================================================= */
+
+$("edit").onclick = () => {
+
+  closePanels();
+
+  $("editPanel")
+  .classList.add("show");
+
+  refresh();
+
+};
+
+
+/* =========================================================
+   CLOSE PANELS
+========================================================= */
+
+function closePanels(){
+
+  document
+  .querySelectorAll(".panel")
+  .forEach(
+    p =>
+      p.classList.remove("show")
+  );
+
+}
+
+
+document
+.querySelectorAll("[data-close]")
+.forEach(
+  b =>
+    b.onclick =
+      closePanels
+);
+
+
+/* =========================================================
+   EDIT TRANSFORM
+========================================================= */
+
+$("fit").onclick = () => {
+
+  if(!selected){
+    toast("Select an object first");
+    return;
+  }
+
+  selected.style.left = "0px";
+  selected.style.top = "0px";
+  selected.style.width = "100%";
+  selected.style.height = "100%";
+
+  if(
+    selected.classList.contains(
+      "imageObj"
+    )
   ){
 
-    $("addShape").click();
+    selected.style.objectFit =
+      "cover";
 
-  }else if(
-    action === "image" ||
-    action === "import"
+  }
+
+  snapshot();
+
+  refresh();
+
+};
+
+
+$("center").onclick = () => {
+
+  if(!selected){
+    toast("Select an object first");
+    return;
+  }
+
+  selected.style.left =
+    Math.max(
+      0,
+      (canvas.clientWidth -
+       selected.offsetWidth) / 2
+    ) + "px";
+
+  selected.style.top =
+    Math.max(
+      0,
+      (canvas.clientHeight -
+       selected.offsetHeight) / 2
+    ) + "px";
+
+  snapshot();
+
+  refresh();
+
+};
+
+
+function rotateSelected(deg){
+
+  if(!selected){
+    toast("Select an object first");
+    return;
+  }
+
+  const r =
+    (parseFloat(
+      selected.dataset.rot
+    ) || 0) + deg;
+
+  selected.dataset.rot =
+    r;
+
+  selected.style.transform =
+    "rotate(" + r + "deg)";
+
+  snapshot();
+
+  refresh();
+
+}
+
+
+$("rminus").onclick =
+  () => rotateSelected(-15);
+
+$("rplus").onclick =
+  () => rotateSelected(15);
+
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+$("fontSize").oninput = e => {
+
+  if(
+    selected &&
+    selected.classList.contains(
+      "textObj"
+    )
   ){
 
-    $("addImage").click();
-
-  }else if(
-    action === "bg" ||
-    action === "backgrounds"
-  ){
-
-    $("addBg").click();
+    selected.style.fontSize =
+      e.target.value + "px";
 
   }
 
 };
 
 
-window.addEventListener(
-  "resize",
-  ()=>{
-    if(
-      editor.style.display ===
-      "flex"
-    ){
+$("bold").onclick = () => {
 
-      applyCanvas();
+  if(
+    selected &&
+    selected.classList.contains(
+      "textObj"
+    )
+  ){
+
+    selected.style.fontWeight =
+      selected.style.fontWeight ===
+      "900"
+      ?
+      "400"
+      :
+      "900";
+
+    snapshot();
+
+    refresh();
+
+  }
+
+};
+
+
+$("right").onclick = () => {
+
+  if(
+    selected &&
+    selected.classList.contains(
+      "textObj"
+    )
+  ){
+
+    selected.style.textAlign =
+      "right";
+
+  }
+
+};
+
+
+$("centerText").onclick = () => {
+
+  if(
+    selected &&
+    selected.classList.contains(
+      "textObj"
+    )
+  ){
+
+    selected.style.textAlign =
+      "center";
+
+  }
+
+};
+
+
+$("left").onclick = () => {
+
+  if(
+    selected &&
+    selected.classList.contains(
+      "textObj"
+    )
+  ){
+
+    selected.style.textAlign =
+      "left";
+
+  }
+
+};
+
+
+$("font").onchange = e => {
+
+  if(
+    selected &&
+    selected.classList.contains(
+      "textObj"
+    )
+  ){
+
+    selected.style.fontFamily =
+      e.target.value;
+
+  }
+
+};
+
+
+$("color").oninput = e => {
+
+  if(!selected){
+    return;
+  }
+
+  if(
+    selected.classList.contains(
+      "textObj"
+    )
+  ){
+
+    selected.style.color =
+      e.target.value;
+
+  }else{
+
+    selected.style.background =
+      e.target.value;
+
+  }
+
+};
+
+
+/* =========================================================
+   DUPLICATE
+========================================================= */
+
+function duplicateSelected(){
+
+  if(!selected){
+    toast("Select an object first");
+    return;
+  }
+
+  const copy =
+    selected.cloneNode(true);
+
+  copy.classList.remove(
+    "selected"
+  );
+
+  copy.style.left =
+    (
+      parseFloat(
+        selected.style.left
+      ) || 0
+    ) + 25 + "px";
+
+  copy.style.top =
+    (
+      parseFloat(
+        selected.style.top
+      ) || 0
+    ) + 25 + "px";
+
+  copy.dataset.name =
+    (
+      selected.dataset.name ||
+      "Object"
+    ) + " Copy";
+
+  canvas.appendChild(copy);
+
+  addObjectEvents(copy);
+
+  select(copy);
+
+  snapshot();
+
+}
+
+
+$("dup").onclick =
+  duplicateSelected;
+
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+function deleteSelected(){
+
+  if(!selected){
+    toast("Select an object first");
+    return;
+  }
+
+  selected.remove();
+
+  selected = null;
+
+  snapshot();
+
+  refresh();
+
+}
+
+$("del").onclick =
+  deleteSelected;
+
+
+/* =========================================================
+   Z ORDER
+========================================================= */
+
+$("up").onclick = () => {
+
+  if(!selected){
+    return;
+  }
+
+  const z =
+    parseInt(
+      selected.style.zIndex
+    ) || 1;
+
+  selected.style.zIndex =
+    z + 1;
+
+  snapshot();
+
+  refresh();
+
+};
+
+
+$("down").onclick = () => {
+
+  if(!selected){
+    return;
+  }
+
+  const z =
+    parseInt(
+      selected.style.zIndex
+    ) || 1;
+
+  selected.style.zIndex =
+    Math.max(1,z-1);
+
+  snapshot();
+
+  refresh();
+
+};
+
+
+/* =========================================================
+   OPACITY
+========================================================= */
+
+$("opacityBtn").onclick = () => {
+
+  if(!selected){
+    toast("Select an object first");
+    return;
+  }
+
+  let value =
+    prompt(
+      "Opacity 0-100",
+      Math.round(
+        (
+          parseFloat(
+            selected.style.opacity
+          ) || 1
+        ) * 100
+      )
+    );
+
+  if(value === null){
+    return;
+  }
+
+  value =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        parseInt(value) || 0
+      )
+    );
+
+  selected.style.opacity =
+    value / 100;
+
+  snapshot();
+
+  refresh();
+
+};
+
+
+/* =========================================================
+   BREAK APART
+========================================================= */
+
+function breakApart(){
+
+  if(
+    !selected ||
+    !selected.classList.contains(
+      "textObj"
+    )
+  ){
+
+    toast("Select text first");
+
+    return;
+
+  }
+
+  const text =
+    selected.innerText
+    .trim();
+
+  if(!text){
+    return;
+  }
+
+  const words =
+    text.split(/\s+/);
+
+  const baseLeft =
+    parseFloat(
+      selected.style.left
+    ) || 0;
+
+  const baseTop =
+    parseFloat(
+      selected.style.top
+    ) || 0;
+
+  const size =
+    parseFloat(
+      selected.style.fontSize
+    ) || 40;
+
+  const font =
+    selected.style.fontFamily ||
+    "Arial";
+
+  const color =
+    selected.style.color ||
+    "#222";
+
+  selected.remove();
+
+  words.forEach(
+    (word,i) => {
+
+      const o =
+        make("text");
+
+      o.textContent =
+        word;
+
+      o.style.fontSize =
+        size + "px";
+
+      o.style.fontFamily =
+        font;
+
+      o.style.color =
+        color;
+
+      o.style.left =
+        (
+          baseLeft +
+          i * (size * .9)
+        ) + "px";
+
+      o.style.top =
+        baseTop + "px";
+
+      o.dataset.name =
+        "Text Part " +
+        (i+1);
 
     }
+  );
+
+  selected = null;
+
+  snapshot();
+
+  refresh();
+
+}
+
+$("breakApart").onclick =
+  breakApart;
+
+
+/* =========================================================
+   SPLIT WORDS
+========================================================= */
+
+$("splitWords").onclick =
+  breakApart;
+
+
+/* =========================================================
+   BULLETS
+========================================================= */
+
+$("bulletList").onclick = () => {
+
+  if(
+    !selected ||
+    !selected.classList.contains(
+      "textObj"
+    )
+  ){
+
+    toast("Select text first");
+
+    return;
+
+  }
+
+  selected.innerText =
+    "• " +
+    selected.innerText;
+
+  snapshot();
+
+  refresh();
+
+};
+
+
+/* =========================================================
+   TEXT BACKGROUND
+========================================================= */
+
+$("textBg").onclick = () => {
+
+  if(
+    !selected ||
+    !selected.classList.contains(
+      "textObj"
+    )
+  ){
+
+    toast("Select text first");
+
+    return;
+
+  }
+
+  selected.style.background =
+    selected.style.background
+    ?
+    "transparent"
+    :
+    "#ffe66d";
+
+  selected.style.borderRadius =
+    "10px";
+
+  snapshot();
+
+  refresh();
+
+};
+
+
+/* =========================================================
+   PATTERN
+========================================================= */
+
+$("patternText").onclick = () => {
+
+  if(
+    !selected ||
+    !selected.classList.contains(
+      "textObj"
+    )
+  ){
+
+    toast("Select text first");
+
+    return;
+
+  }
+
+  selected.style.background =
+    "repeating-linear-gradient(45deg,#7044f5 0,#7044f5 5px,#b49cff 5px,#b49cff 10px)";
+
+  selected.style.webkitBackgroundClip =
+    "text";
+
+  selected.style.webkitTextFillColor =
+    "transparent";
+
+  snapshot();
+
+};
+
+
+/* =========================================================
+   BLEND
+========================================================= */
+
+$("blendText").onclick = () => {
+
+  if(!selected){
+    return;
+  }
+
+  selected.style.opacity =
+    selected.style.opacity === "0.7"
+    ?
+    "1"
+    :
+    "0.7";
+
+  snapshot();
+
+};
+
+
+/* =========================================================
+   CONVERT TO SHAPE
+========================================================= */
+
+$("convertShape").onclick = () => {
+
+  if(
+    !selected ||
+    !selected.classList.contains(
+      "textObj"
+    )
+  ){
+
+    toast("Select text first");
+
+    return;
+
+  }
+
+  selected.classList.remove(
+    "textObj"
+  );
+
+  selected.classList.add(
+    "shape"
+  );
+
+  selected.contentEditable =
+    "false";
+
+  selected.innerHTML = "";
+
+  selected.dataset.type =
+    "shape";
+
+  selected.dataset.name =
+    "Text Shape";
+
+  snapshot();
+
+  refresh();
+
+};
+
+
+/* =========================================================
+   CONVERT TO 3D
+========================================================= */
+
+$("convert3d").onclick = () => {
+
+  if(!selected){
+    return;
+  }
+
+  selected.style.textShadow =
+    "3px 3px 0 #7044f5,6px 6px 0 #3b258d,9px 9px 15px #0008";
+
+  selected.style.transform =
+    "perspective(400px) rotateX(12deg)";
+
+  snapshot();
+
+  refresh();
+
+};
+
+
+/* =========================================================
+   POWERCLIP
+========================================================= */
+
+function powerClipTool(){
+
+  if(!selected){
+
+    toast("Select an image and a shape");
+
+    return;
+
+  }
+
+  if(
+    selected.classList.contains(
+      "imageObj"
+    )
+  ){
+
+    const shapes =
+      [...canvas.querySelectorAll(
+        ".shape,.circle,.star,.heart"
+      )];
+
+    if(!shapes.length){
+
+      toast("Create a shape first");
+
+      return;
+
+    }
+
+    openModal(
+      "PowerClip Shape",
+      shapes.map(
+        (shape,i) => [
+
+          "Use " +
+          (shape.dataset.name ||
+           "Shape " +
+           (i+1)),
+
+          () => {
+
+            applyPowerClip(
+              selected,
+              shape
+            );
+
+          }
+
+        ]
+      )
+    );
+
+    return;
+
+  }
+
+  toast("Select an image first");
+
+}
+
+
+function applyPowerClip(
+  image,
+  shape
+){
+
+  const rect =
+    shape.getBoundingClientRect();
+
+  const canvasRect =
+    canvas.getBoundingClientRect();
+
+  const left =
+    rect.left -
+    canvasRect.left;
+
+  const top =
+    rect.top -
+    canvasRect.top;
+
+  const width =
+    rect.width;
+
+  const height =
+    rect.height;
+
+  const clipId =
+    "clip_" +
+    Date.now();
+
+  const svgNS =
+    "http://www.w3.org/2000/svg";
+
+  let svg =
+    canvas.querySelector(
+      "#powerClipSVG"
+    );
+
+  if(!svg){
+
+    svg =
+      document.createElementNS(
+        svgNS,
+        "svg"
+      );
+
+    svg.id =
+      "powerClipSVG";
+
+    svg.style.position =
+      "absolute";
+
+    svg.style.width =
+      "0";
+
+    svg.style.height =
+      "0";
+
+    canvas.appendChild(svg);
+
+  }
+
+
+  const cp =
+    document.createElementNS(
+      svgNS,
+      "clipPath"
+    );
+
+  cp.id =
+    clipId;
+
+
+  let useShape;
+
+
+  if(
+    shape.classList.contains(
+      "circle"
+    )
+  ){
+
+    useShape =
+      document.createElementNS(
+        svgNS,
+        "circle"
+      );
+
+    useShape.setAttribute(
+      "cx",
+      width/2
+    );
+
+    useShape.setAttribute(
+      "cy",
+      height/2
+    );
+
+    useShape.setAttribute(
+      "r",
+      Math.min(width,height)/2
+    );
+
+  }else{
+
+    useShape =
+      document.createElementNS(
+        svgNS,
+        "rect"
+      );
+
+    useShape.setAttribute(
+      "x",
+      "0"
+    );
+
+    useShape.setAttribute(
+      "y",
+      "0"
+    );
+
+    useShape.setAttribute(
+      "width",
+      width
+    );
+
+    useShape.setAttribute(
+      "height",
+      height
+    );
+
+    useShape.setAttribute(
+      "rx",
+      "18"
+    );
+
+  }
+
+
+  cp.appendChild(
+    useShape
+  );
+
+  svg.appendChild(
+    cp
+  );
+
+
+  image.style.left =
+    left + "px";
+
+  image.style.top =
+    top + "px";
+
+  image.style.width =
+    width + "px";
+
+  image.style.height =
+    height + "px";
+
+  image.style.objectFit =
+    "cover";
+
+  image.style.clipPath =
+    "url(#" +
+    clipId +
+    ")";
+
+  image.dataset.powerClip =
+    "1";
+
+  image.dataset.clipShape =
+    shape.dataset.name ||
+    "Shape";
+
+
+  shape.style.opacity =
+    "0.18";
+
+  shape.dataset.powerClipContainer =
+    "1";
+
+  snapshot();
+
+  refresh();
+
+  toast("PowerClip applied");
+
+}
+
+
+$("powerClipBtn").onclick =
+  powerClipTool;
+
+
+/* =========================================================
+   LAYERS
+========================================================= */
+
+$("layersTop").onclick = () => {
+
+  closePanels();
+
+  $("layerPanel")
+  .classList.add("show");
+
+  updateLayers();
+
+};
+
+
+function updateLayers(){
+
+  const box =
+    $("layers");
+
+  if(!box){
+    return;
+  }
+
+  box.innerHTML = "";
+
+
+  const objects =
+    [...canvas.querySelectorAll(
+      ".obj"
+    )].reverse();
+
+
+  objects.forEach(
+    (o,i) => {
+
+      const row =
+        document.createElement(
+          "div"
+        );
+
+      row.className =
+        "layer" +
+        (
+          o === selected
+          ?
+          " active"
+          :
+          ""
+        );
+
+
+      const thumb =
+        document.createElement(
+          "div"
+        );
+
+      thumb.className =
+        "layerThumb";
+
+
+      if(
+        o.tagName === "IMG" &&
+        o.src
+      ){
+
+        const im =
+          document.createElement(
+            "img"
+          );
+
+        im.src =
+          o.src;
+
+        thumb.appendChild(im);
+
+      }else{
+
+        thumb.textContent =
+          o.classList.contains(
+            "textObj"
+          )
+          ?
+          "T"
+          :
+          o.dataset.type ===
+          "circle"
+          ?
+          "○"
+          :
+          "◇";
+
+      }
+
+
+      const name =
+        document.createElement(
+          "div"
+        );
+
+      name.className =
+        "layerName";
+
+      name.textContent =
+        o.dataset.name ||
+        "Object";
+
+
+      const eye =
+        document.createElement(
+          "button"
+        );
+
+      eye.className =
+        "miniBtn";
+
+      eye.textContent =
+        o.style.display ===
+        "none"
+        ?
+        "○"
+        :
+        "◉";
+
+
+      eye.onclick =
+        e => {
+
+          e.stopPropagation();
+
+          o.style.display =
+            o.style.display ===
+            "none"
+            ?
+            ""
+            :
+            "none";
+
+          refresh();
+
+        };
+
+
+      const lock =
+        document.createElement(
+          "button"
+        );
+
+      lock.className =
+        "miniBtn";
+
+      lock.textContent =
+        o.dataset.locked === "1"
+        ?
+        "🔒"
+        :
+        "🔓";
+
+
+      lock.onclick =
+        e => {
+
+          e.stopPropagation();
+
+          o.dataset.locked =
+            o.dataset.locked ===
+            "1"
+            ?
+            "0"
+            :
+            "1";
+
+          refresh();
+
+        };
+
+
+      const more =
+        document.createElement(
+          "button"
+        );
+
+      more.className =
+        "miniBtn";
+
+      more.textContent =
+        "⋮";
+
+
+      more.onclick =
+        e => {
+
+          e.stopPropagation();
+
+          select(o);
+
+          layerMenu();
+
+        };
+
+
+      row.append(
+        thumb,
+        name,
+        eye,
+        lock,
+        more
+      );
+
+
+      row.onclick =
+        () => {
+
+          select(o);
+
+        };
+
+
+      box.appendChild(
+        row
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   LAYER 3-DOT MENU
+========================================================= */
+
+function layerMenu(){
+
+  openModal(
+    selected
+    ?
+    selected.dataset.name ||
+    "Layer"
+    :
+    "Layer",
+    [
+      [
+        "Move Up",
+        () => $("up").click()
+      ],
+
+      [
+        "Move Down",
+        () => $("down").click()
+      ],
+
+      [
+        "Bring to Front",
+        () => {
+
+          if(selected){
+            selected.style.zIndex =
+              9999;
+            snapshot();
+            refresh();
+          }
+
+        }
+      ],
+
+      [
+        "Send to Back",
+        () => {
+
+          if(selected){
+            selected.style.zIndex =
+              1;
+            snapshot();
+            refresh();
+          }
+
+        }
+      ],
+
+      [
+        "Duplicate",
+        duplicateSelected
+      ],
+
+      [
+        "Rename",
+        renameSelected
+      ],
+
+      [
+        "Break Apart",
+        breakApart
+      ],
+
+      [
+        "PowerClip",
+        powerClipTool
+      ],
+
+      [
+        "Delete",
+        deleteSelected
+      ]
+    ]
+  );
+
+}
+
+
+function renameSelected(){
+
+  if(!selected){
+    return;
+  }
+
+  const name =
+    prompt(
+      "Layer name",
+      selected.dataset.name ||
+      "Object"
+    );
+
+  if(name){
+
+    selected.dataset.name =
+      name;
+
+    refresh();
+
+  }
+
+}
+
+
+/* =========================================================
+   LAYER TOP BUTTONS
+========================================================= */
+
+$("selectAllLayers").onclick = () => {
+
+  canvas
+  .querySelectorAll(".obj")
+  .forEach(
+    o =>
+      o.classList.add(
+        "selected"
+      )
+  );
+
+  toast("All objects selected");
+
+};
+
+
+$("hideAllLayers").onclick = () => {
+
+  canvas
+  .querySelectorAll(".obj")
+  .forEach(
+    o =>
+      o.style.display =
+        "none"
+  );
+
+  refresh();
+
+};
+
+
+$("lockAllLayers").onclick = () => {
+
+  canvas
+  .querySelectorAll(".obj")
+  .forEach(
+    o =>
+      o.dataset.locked =
+        "1"
+  );
+
+  refresh();
+
+};
+
+
+$("filterLayers").onclick = () => {
+
+  openModal(
+    "Filter Layers",
+    [
+      [
+        "Text",
+        () => {
+          canvas
+          .querySelectorAll(".obj")
+          .forEach(
+            o =>
+              o.style.display =
+                o.classList.contains(
+                  "textObj"
+                )
+                ?
+                ""
+                :
+                "none"
+          );
+        }
+      ],
+
+      [
+        "Images",
+        () => {
+          canvas
+          .querySelectorAll(".obj")
+          .forEach(
+            o =>
+              o.style.display =
+                o.classList.contains(
+                  "imageObj"
+                )
+                ?
+                ""
+                :
+                "none"
+          );
+        }
+      ],
+
+      [
+        "Shapes",
+        () => {
+          canvas
+          .querySelectorAll(".obj")
+          .forEach(
+            o =>
+              o.style.display =
+                o.classList.contains(
+                  "shape"
+                ) ||
+                o.classList.contains(
+                  "circle"
+                ) ||
+                o.classList.contains(
+                  "star"
+                ) ||
+                o.classList.contains(
+                  "heart"
+                )
+                ?
+                ""
+                :
+                "none"
+          );
+        }
+      ],
+
+      [
+        "Show All",
+        () => {
+
+          canvas
+          .querySelectorAll(".obj")
+          .forEach(
+            o =>
+              o.style.display =
+                ""
+          );
+
+          refresh();
+
+        }
+      ]
+    ]
+  );
+
+};
+
+
+/* =========================================================
+   UNDO
+========================================================= */
+
+$("undo").onclick = () => {
+
+  if(history.length < 2){
+
+    toast("Nothing to undo");
+
+    return;
+
+  }
+
+  const current =
+    history.pop();
+
+  future.push(current);
+
+  restore(
+    history[
+      history.length - 1
+    ]
+  );
+
+};
+
+
+/* =========================================================
+   REDO
+========================================================= */
+
+$("redo").onclick = () => {
+
+  if(!future.length){
+
+    toast("Nothing to redo");
+
+    return;
+
+  }
+
+  const next =
+    future.pop();
+
+  history.push(next);
+
+  restore(next);
+
+};
+
+
+/* =========================================================
+   SAVE PROJECT
+========================================================= */
+
+function saveProject(){
+
+  const data = {
+
+    version:1,
+
+    width:designW,
+
+    height:designH,
+
+    html:
+      canvas.innerHTML
+
+  };
+
+  localStorage.setItem(
+    "UDS_PROJECT",
+    JSON.stringify(data)
+  );
+
+  toast(
+    "Project saved"
+  );
+
+}
+
+
+$("save").onclick =
+  saveProject;
+
+
+/* =========================================================
+   OPEN PROJECT
+========================================================= */
+
+function openProject(data){
+
+  if(
+    !data ||
+    !data.html
+  ){
+
+    toast(
+      "No saved project"
+    );
+
+    return;
+
+  }
+
+  designW =
+    data.width || 1080;
+
+  designH =
+    data.height || 1080;
+
+  canvas.innerHTML =
+    data.html;
+
+  applyCanvas();
+
+  canvas
+  .querySelectorAll(".obj")
+  .forEach(
+    addObjectEvents
+  );
+
+  history =
+    [canvas.innerHTML];
+
+  future = [];
+
+  selected = null;
+
+  home.style.display =
+    "none";
+
+  setup.style.display =
+    "none";
+
+  editor.style.display =
+    "flex";
+
+  refresh();
+
+}
+
+
+$("navProjects").onclick = () => {
+
+  const raw =
+    localStorage.getItem(
+      "UDS_PROJECT"
+    );
+
+  if(!raw){
+
+    toast(
+      "No saved designs"
+    );
+
+    return;
+
+  }
+
+  try{
+
+    openProject(
+      JSON.parse(raw)
+    );
+
+  }catch(e){
+
+    toast(
+      "Project could not be opened"
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   HOME NAV
+========================================================= */
+
+$("navHome").onclick = () => {
+
+  closePanels();
+
+  editor.style.display =
+    "none";
+
+  setup.style.display =
+    "none";
+
+  home.style.display =
+    "block";
+
+};
+
+
+$("navTemplates").onclick =
+  showSetup;
+
+
+$("navSettings").onclick = () => {
+
+  openModal(
+    "Settings",
+    [
+      [
+        "Save Project",
+        saveProject
+      ],
+
+      [
+        "Clear Saved Project",
+        () => {
+
+          localStorage.removeItem(
+            "UDS_PROJECT"
+          );
+
+          toast(
+            "Saved project cleared"
+          );
+
+        }
+      ],
+
+      [
+        "Editor Help",
+        () => {
+
+          alert(
+            "Select an object, drag it to move, use the corner handles to resize, and use the top handle to rotate."
+          );
+
+        }
+      ]
+    ]
+  );
+
+};
+
+
+$("settingsBtn").onclick =
+  () =>
+    $("navSettings").click();
+
+
+/* =========================================================
+   ADD NEW MENU
+========================================================= */
+
+$("addNew").onclick = () => {
+
+  openModal(
+    "Add New",
+    [
+
+      [
+        "Gallery Pic",
+        () => $("addImage").click()
+      ],
+
+      [
+        "Stock Images",
+        () => toast("Stock Images library will be connected later")
+      ],
+
+      [
+        "My Folder",
+        () => toast("My Folder will be connected later")
+      ],
+
+      [
+        "Add Text",
+        () => $("addText").click()
+      ],
+
+      [
+        "Video",
+        () => toast("Video tool reserved for the next phase")
+      ],
+
+      [
+        "Audio",
+        () => toast("Audio tool reserved for the next phase")
+      ],
+
+      [
+        "Tools",
+        () => openToolsMenu()
+      ],
+
+      [
+        "Borders",
+        () => toast("Borders library ready for next asset phase")
+      ],
+
+      [
+        "Table",
+        () => toast("Table tool reserved for the next phase")
+      ],
+
+      [
+        "Draw",
+        () => toast("Draw tool reserved for the next phase")
+      ],
+
+      [
+        "Pen Tool",
+        () => toast("Pen Tool reserved for the next phase")
+      ],
+
+      [
+        "Logos",
+        () => toast("Logo library ready for next asset phase")
+      ],
+
+      [
+        "Special Text",
+        () => $("addText").click()
+      ],
+
+      [
+        "Shapes",
+        () => shapeMenu()
+      ],
+
+      [
+        "Calligraphy",
+        () => $("addText").click()
+      ],
+
+      [
+        "Frames",
+        () => toast("Frames library ready for next asset phase")
+      ]
+
+    ]
+  );
+
+};
+
+
+function openToolsMenu(){
+
+  openModal(
+    "Tools",
+    [
+      [
+        "Crop",
+        () => toast("Crop tool reserved for advanced phase")
+      ],
+
+      [
+        "Mask",
+        () => toast("Mask tool reserved for advanced phase")
+      ],
+
+      [
+        "PowerClip",
+        powerClipTool
+      ],
+
+      [
+        "Grid",
+        () => {
+          const g =
+            canvas.querySelector(
+              ".grid"
+            );
+
+          if(g){
+            g.style.opacity =
+              g.style.opacity === "0"
+              ?
+              "1"
+              :
+              "0";
+          }
+        }
+      ],
+
+      [
+        "Align",
+        () => centerSelected()
+      ],
+
+      [
+        "Duplicate",
+        duplicateSelected
+      ]
+    ]
+  );
+
+}
+
+
+/* =========================================================
+   HOME BUTTONS
+========================================================= */
+
+$("homeTemplates").onclick =
+  showSetup;
+
+
+$("homeProjects").onclick =
+  () =>
+    $("navProjects").click();
+
+
+$("homeElements").onclick =
+  () =>
+    openModal(
+      "Design Elements",
+      [
+        [
+          "Shape",
+          shapeMenu
+        ],
+
+        [
+          "Text",
+          () => $("addText").click()
+        ],
+
+        [
+          "Image",
+          () => $("addImage").click()
+        ],
+
+        [
+          "Frame",
+          () => toast("Frames library ready")
+        ],
+
+        [
+          "Calligraphy",
+          () => $("addText").click()
+        ],
+
+        [
+          "Symbol",
+          () => toast("Symbols library ready")
+        ]
+      ]
+    );
+
+
+$("homeShapes").onclick =
+  shapeMenu;
+
+
+$("homeFrames").onclick =
+  () =>
+    toast(
+      "Frames library ready"
+    );
+
+
+$("homeBackgrounds").onclick =
+  () =>
+    $("addBg").click();
+
+
+$("homeImport").onclick =
+  () =>
+    $("addImage").click();
+
+
+$("homeText").onclick =
+  () =>
+    $("addText").click();
+
+
+$("homeMore").onclick =
+  () =>
+    $("addNew").click();
+
+
+/* =========================================================
+   GENERAL MODAL
+========================================================= */
+
+function openModal(
+  title,
+  items
+){
+
+  $("modalTitle")
+  .textContent =
+    title;
+
+  const grid =
+    $("modalGrid");
+
+  grid.innerHTML = "";
+
+
+  items.forEach(
+    item => {
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+      button.className =
+        "sheetBtn";
+
+
+      const label =
+        item[0];
+
+      button.innerHTML =
+        "<b>" +
+        label +
+        "</b>" +
+        "<small>Open</small>";
+
+
+      button.onclick = () => {
+
+        $("modal")
+        .classList.remove(
+          "show"
+        );
+
+        const action =
+          item[1];
+
+        if(typeof action ===
+           "function"){
+
+          action();
+
+        }
+
+      };
+
+
+      grid.appendChild(
+        button
+      );
+
+    }
+  );
+
+
+  $("modal")
+  .classList.add(
+    "show"
+  );
+
+}
+
+
+$("modalClose").onclick =
+  () =>
+    $("modal")
+    .classList.remove(
+      "show"
+    );
+
+
+$("modal").addEventListener(
+  "click",
+  e => {
+
+    if(
+      e.target ===
+      $("modal")
+    ){
+
+      $("modal")
+      .classList.remove(
+        "show"
+      );
+
+    }
+
   }
 );
+
+
+/* =========================================================
+   HOME SLIDER ENGINE
+========================================================= */
+
+(function(){
+
+  const slider =
+    document.getElementById(
+      "udsSlider"
+    );
+
+  const slides =
+    document.getElementById(
+      "udsSlides"
+    );
+
+  const dots =
+    document.querySelectorAll(
+      "#udsDots .udsDot"
+    );
+
+  const prev =
+    document.getElementById(
+      "udsPrev"
+    );
+
+  const next =
+    document.getElementById(
+      "udsNext"
+    );
+
+  if(
+    !slider ||
+    !slides
+  ){
+    return;
+  }
+
+  let index = 0;
+
+  let timer = null;
+
+  let startX = 0;
+
+  let startY = 0;
+
+
+  function show(i){
+
+    index =
+      (i + 7) % 7;
+
+    slides.style.transform =
+      "translateX(-" +
+      index * 100 +
+      "%)";
+
+
+    dots.forEach(
+      (dot,n) => {
+
+        dot.classList.toggle(
+          "active",
+          n === index
+        );
+
+      }
+    );
+
+  }
+
+
+  function restart(){
+
+    clearInterval(
+      timer
+    );
+
+    timer =
+      setInterval(
+        () =>
+          show(index + 1),
+        4500
+      );
+
+  }
+
+
+  prev.onclick = () => {
+
+    show(index - 1);
+
+    restart();
+
+  };
+
+
+  next.onclick = () => {
+
+    show(index + 1);
+
+    restart();
+
+  };
+
+
+  dots.forEach(
+    dot => {
+
+      dot.onclick = () => {
+
+        show(
+          parseInt(
+            dot.dataset.slide,
+            10
+          ) || 0
+        );
+
+        restart();
+
+      };
+
+    }
+  );
+
+
+  slider.addEventListener(
+    "pointerdown",
+    e => {
+
+      startX =
+        e.clientX;
+
+      startY =
+        e.clientY;
+
+    }
+  );
+
+
+  slider.addEventListener(
+    "pointerup",
+    e => {
+
+      const dx =
+        e.clientX -
+        startX;
+
+      const dy =
+        e.clientY -
+        startY;
+
+
+      if(
+        Math.abs(dx) > 45 &&
+        Math.abs(dx) >
+        Math.abs(dy)
+      ){
+
+        show(
+          index +
+          (
+            dx < 0
+            ?
+            1
+            :
+            -1
+          )
+        );
+
+        restart();
+
+      }
+
+    }
+  );
+
+
+  show(0);
+
+  restart();
+
+})();
+
+
+/* =========================================================
+   EDITOR BACK
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  e => {
+
+    if(
+      e.key === "Delete" &&
+      selected
+    ){
+
+      deleteSelected();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   DOUBLE CLICK TEXT
+========================================================= */
+
+canvas.addEventListener(
+  "dblclick",
+  e => {
+
+    const text =
+      e.target.closest(
+        ".textObj"
+      );
+
+    if(text){
+
+      select(text);
+
+      text.focus();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   STARTUP
+========================================================= */
+
+applyCanvas();
 
 </script>
 
