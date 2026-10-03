@@ -3,1506 +3,234 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Urdu Design Studio V7</title>
-
+<title>Urdu Design Studio</title>
 <style>
-:root{
---p:#6d42f5;
---p2:#9b6cff;
---bg:#f5f6fb;
---ink:#171827;
---muted:#818596;
---line:#e8e9ef
-}
-
-*{
-box-sizing:border-box;
--webkit-tap-highlight-color:transparent
-}
-
-html,body{
-margin:0;
-width:100%;
-height:100%;
-overflow:hidden;
-font-family:Arial,sans-serif;
-background:var(--bg);
-color:var(--ink)
-}
-
-button,input,select,textarea{
-font:inherit
-}
-
-button{
-border:0;
-cursor:pointer
-}
-
-/* HOME */
-
-.home{
-height:100%;
-overflow:auto;
-padding:18px 16px 92px
-}
-
-.head{
-display:flex;
-align-items:center;
-justify-content:space-between
-}
-
-.brand{
-display:flex;
-gap:10px;
-align-items:center
-}
-
-.logo{
-width:45px;
-height:45px;
-border-radius:15px;
-background:linear-gradient(135deg,var(--p),var(--p2));
-color:#fff;
-display:grid;
-place-items:center;
-font-size:23px;
-box-shadow:0 8px 20px #6d42f52f
-}
-
-.brand b{
-font-size:18px
-}
-
-.brand small{
-display:block;
-color:var(--muted);
-margin-top:3px
-}
-
-.gear{
-width:42px;
-height:42px;
-border-radius:14px;
-background:#fff;
-box-shadow:0 5px 18px #19193212
-}
-
-.welcome{
-padding:22px 2px 16px
-}
-
-.welcome h1{
-font-size:28px;
-margin:0
-}
-
-.welcome h1 span{
-color:var(--p)
-}
-
-.welcome p{
-color:var(--muted);
-font-size:13px;
-line-height:1.5
-}
-
-.hero{
-background:linear-gradient(135deg,var(--p),var(--p2));
-color:#fff;
-border-radius:25px;
-padding:22px 20px;
-box-shadow:0 12px 28px #6d42f52d
-}
-
-.hero small{
-opacity:.78;
-font-weight:700;
-letter-spacing:.5px
-}
-
-.hero h2{
-margin:7px 0 4px
-}
-
-.hero p{
-margin:0;
-opacity:.84;
-font-size:13px
-}
-
-.primary{
-margin-top:16px;
-background:#fff;
-color:var(--p);
-border-radius:14px;
-padding:13px 19px;
-font-weight:900
-}
-
-.sec{
-font-size:18px;
-font-weight:900;
-margin:24px 0 11px
-}
-
-.grid3{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px
-}
-
-.card{
-background:#fff;
-border-radius:19px;
-padding:15px 8px;
-text-align:center;
-box-shadow:0 6px 20px #1919320d
-}
-
-.ico{
-width:44px;
-height:44px;
-margin:auto;
-border-radius:14px;
-display:grid;
-place-items:center;
-font-size:21px;
-background:#eee9ff
-}
-
-.card b{
-display:block;
-font-size:12px;
-margin-top:8px
-}
-
-/* HOME NAV */
-
-.nav{
-position:fixed;
-left:12px;
-right:12px;
-bottom:10px;
-height:66px;
-border-radius:22px;
-background:#fff;
-box-shadow:0 8px 30px #19193222;
-display:flex;
-align-items:center;
-justify-content:space-around;
-z-index:20
-}
-
-.nav button{
-background:transparent;
-text-align:center;
-color:#7f8390;
-font-size:20px
-}
-
-.nav button b{
-display:block;
-font-size:9px;
-margin-top:3px
-}
-
-.nav b{
-display:block;
-font-size:9px;
-margin-top:3px
-}
-
-.nav .plus{
-width:52px;
-height:52px;
-border-radius:17px;
-background:linear-gradient(135deg,var(--p),var(--p2));
-color:#fff;
-display:grid;
-place-items:center;
-font-size:27px;
-box-shadow:0 8px 18px #6d42f53f
-}
-
-/* NEW DESIGN */
-
-.setup{
-position:fixed;
-inset:0;
-z-index:100;
-background:var(--bg);
-overflow:auto;
-padding:20px 16px 35px
-}
-
-.setupHead{
-display:flex;
-align-items:center;
-gap:12px;
-margin-bottom:20px
-}
-
-.back{
-width:42px;
-height:42px;
-border-radius:14px;
-background:#fff;
-box-shadow:0 5px 18px #19193210;
-font-size:22px
-}
-
-.box{
-background:#fff;
-border-radius:21px;
-padding:17px;
-box-shadow:0 6px 20px #1919320d;
-margin-bottom:18px
-}
-
-.inputs{
-display:flex;
-gap:10px
-}
-
-.inputs>div{
-flex:1
-}
-
-.lbl{
-font-size:11px;
-color:var(--muted);
-margin-bottom:6px
-}
-
-.num{
-width:100%;
-height:48px;
-border:1px solid var(--line);
-border-radius:13px;
-padding:0 10px;
-font-weight:800
-}
-
-.presets{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px
-}
-
-.preset{
-min-height:105px;
-border-radius:18px;
-background:#fff;
-box-shadow:0 6px 20px #1919320d;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-gap:5px
-}
-
-.preset.active{
-outline:3px solid var(--p);
-background:#faf8ff
-}
-
-.preset small{
-color:var(--muted)
-}
-
-.create{
-width:100%;
-height:56px;
-border-radius:17px;
-background:linear-gradient(135deg,var(--p),var(--p2));
-color:#fff;
-font-weight:900;
-font-size:16px
-}
-
-/* EDITOR */
-
-.editor{
-height:100%;
-display:none;
-flex-direction:column;
-background:#0b0d18;
-color:#fff
-}
-
-.top{
-height:60px;
-min-height:60px;
-background:#16182a;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:7px 9px;
-border-bottom:1px solid #ffffff12
-}
-
-.top b{
-font-size:16px
-}
-
-.toptools{
-display:flex;
-gap:5px
-}
-
-.tb{
-width:40px;
-height:40px;
-border-radius:12px;
-background:#ffffff0c;
-color:#fff
-}
-
-.workspace{
-flex:1;
-min-height:0;
-display:flex;
-position:relative
-}
-
-.stage{
-flex:1;
-min-width:0;
-overflow:auto;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:24px 16px 20px;
-background:
-radial-gradient(
-circle at 50% 10%,
-#25234a 0,
-#0d1020 48%,
-#090b15 100%
-)
-}
-
-/* CANVAS */
-
-.canvas{
-position:relative;
-flex:none;
-background:#fff;
-overflow:hidden;
-box-shadow:0 18px 55px #000b;
-transform:none
-}
-
-.grid{
-position:absolute;
-inset:0;
-background-image:
-linear-gradient(#00000009 1px,transparent 1px),
-linear-gradient(90deg,#00000009 1px,transparent 1px);
-background-size:20px 20px;
-pointer-events:none;
-z-index:9999
-}
-
-/* OBJECTS */
-
-.obj{
-position:absolute;
-touch-action:none;
-user-select:none;
-transform-origin:center center;
-cursor:move
-}
-
-.obj.selected{
-outline:2px solid #7d4cff;
-outline-offset:3px
-}
-
-.imageObj{
-object-fit:contain;
-max-width:none;
-max-height:none
-}
-
-.textObj{
-min-width:80px;
-min-height:42px;
-padding:6px 9px;
-direction:rtl;
-text-align:center;
-white-space:pre-wrap;
-font-size:30px;
-color:#222;
-background:transparent
-}
-
-.shape{
-width:130px;
-height:100px;
-background:#7044f533;
-border:3px solid #7044f5;
-border-radius:12px
-}
-
-.circle{
-width:120px;
-height:120px;
-background:#ff5ca833;
-border:3px solid #ff4e9b;
-border-radius:50%
-}
-
-/* TRANSFORM HANDLES */
-
-.handles{
-position:absolute;
-inset:-6px;
-display:none;
-pointer-events:none;
-z-index:10001
-}
-
-.selected .handles{
-display:block
-}
-
-.h{
-position:absolute;
-width:16px;
-height:16px;
-border-radius:50%;
-background:#fff;
-border:3px solid #7445f5;
-box-shadow:0 2px 8px #0008;
-pointer-events:auto
-}
-
-.nw{
-left:-8px;
-top:-8px;
-cursor:nwse-resize
-}
-
-.n{
-left:50%;
-top:-8px;
-transform:translateX(-50%);
-cursor:ns-resize
-}
-
-.ne{
-right:-8px;
-top:-8px;
-cursor:nesw-resize
-}
-
-.e{
-right:-8px;
-top:50%;
-transform:translateY(-50%);
-cursor:ew-resize
-}
-
-.se{
-right:-8px;
-bottom:-8px;
-cursor:nwse-resize
-}
-
-.s{
-left:50%;
-bottom:-8px;
-transform:translateX(-50%);
-cursor:ns-resize
-}
-
-.sw{
-left:-8px;
-bottom:-8px;
-cursor:nesw-resize
-}
-
-.w{
-left:-8px;
-top:50%;
-transform:translateY(-50%);
-cursor:ew-resize
-}
-
-.rh{
-left:50%;
-top:-42px;
-transform:translateX(-50%);
-background:#ffb84a;
-border-color:#fff;
-cursor:grab
-}
-
-.rotateLine{
-position:absolute;
-width:2px;
-height:30px;
-background:#fff;
-left:50%;
-top:-34px;
-transform:translateX(-50%);
-pointer-events:none
-}
-
-/* BOTTOM TOOLS */
-
-.bottom{
-min-height:74px;
-background:#15172a;
-border-top:1px solid #ffffff12;
-padding:7px
-}
-
-.tools{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:6px
-}
-
-.tool{
-height:58px;
-border-radius:14px;
-background:#24273e;
-color:#fff;
-font-size:10px;
-font-weight:700
-}
-
-.tool span{
-display:block;
-font-size:20px;
-margin-bottom:3px
-}
-
-/* PANELS */
-
-.panel{
-position:absolute;
-left:8px;
-right:8px;
-bottom:82px;
-z-index:10002;
-background:#171a2d;
-border:1px solid #ffffff18;
-border-radius:20px;
-padding:13px;
-box-shadow:0 15px 45px #000d;
-display:none;
-max-height:52vh;
-overflow:auto
-}
-
-.panel.show{
-display:block
-}
-
-.pt{
-display:flex;
-align-items:center;
-justify-content:space-between;
-font-weight:900;
-margin-bottom:9px
-}
-
-.close{
-width:32px;
-height:32px;
-border-radius:9px;
-background:#ffffff0d;
-color:#fff
-}
-
-.secTitle{
-font-size:10px;
-text-transform:uppercase;
-letter-spacing:.6px;
-opacity:.65;
-margin:10px 0 7px
-}
-
-.pgrid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:6px
-}
-
-.pbtn{
-min-height:36px;
-border-radius:10px;
-background:#282b43;
-color:#fff;
-font-size:10px;
-font-weight:700
-}
-
-.layer{
-display:flex;
-align-items:center;
-gap:7px;
-background:#24273d;
-border-radius:11px;
-padding:8px;
-margin-bottom:6px
-}
-
-.layer.active{
-outline:1px solid #8d66ff;
-background:#302651
-}
-
-.layerName{
-flex:1;
-font-size:11px;
-overflow:hidden;
-text-overflow:ellipsis;
-white-space:nowrap
-}
-
-.miniBtn{
-width:32px;
-height:32px;
-border-radius:8px;
-background:#ffffff0d;
-color:#fff
-}
-
-.range{
-width:100%;
-accent-color:#9b6cff
-}
-
-.color{
-width:100%;
-height:36px;
-border:0;
-background:transparent
-}
-
-.select{
-width:100%;
-height:36px;
-border-radius:9px;
-background:#101220;
-color:#fff;
-border:1px solid #ffffff14;
-padding:0 8px
-}
-
-.hint{
-padding:8px;
-background:#ffffff07;
-border-radius:9px;
-color:#aeb3c4;
-font-size:11px
-}
-
-input[type=file]{
-display:none
-}
-
-/* MODAL */
-
-.modal{
-position:fixed;
-inset:0;
-z-index:200;
-background:rgba(7,8,18,.72);
-display:none;
-align-items:flex-end;
-justify-content:center;
-padding:10px
-}
-
-.modal.show{
-display:flex
-}
-
-.sheet{
-width:min(680px,100%);
-max-height:78vh;
-overflow:auto;
-background:#171a2d;
-color:#fff;
-border-radius:24px;
-padding:16px;
-box-shadow:0 18px 60px #000e
-}
-
-.sheetHead{
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin-bottom:12px
-}
-
-.sheetGrid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:9px
-}
-
-.sheetBtn{
-min-height:62px;
-border-radius:14px;
-background:#252941;
-color:#fff;
-font-weight:800
-}
-
-.sheetBtn:active,
-.tool:active,
-.tb:active,
-.pbtn:active,
-.preset:active,
-.primary:active{
-transform:scale(.97);
-filter:brightness(1.12)
-}
-
-@media(max-width:430px){
-.tools{
-grid-template-columns:repeat(5,1fr)
-}
-
-.tool{
-height:55px
-}
-
-.stage{
-padding:20px 10px
-}
-
-.top b{
-font-size:14px
-}
-}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;width:100%;height:100%;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033;overflow:hidden}
+button,input,select{font:inherit}
+button{border:0;cursor:pointer}
+.hidden{display:none!important}
+.screen{width:100%;height:100%;overflow:hidden}
+#home{display:flex;flex-direction:column;background:#f7f8fc;overflow:auto}
+.topbar{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:#fff;border-bottom:1px solid #e7eaf0;flex-shrink:0}
+.brand{font-size:20px;font-weight:800}
+.brand small{display:block;font-size:11px;color:#788195;font-weight:500;margin-top:2px}
+.iconbtn{width:42px;height:42px;border-radius:12px;background:#f0f3f8;font-size:20px}
+.hero{margin:16px;border-radius:24px;padding:24px;background:linear-gradient(135deg,#273c75,#7d5fff);color:#fff;box-shadow:0 10px 30px #263c7533}
+.hero h1{margin:0;font-size:28px}
+.hero p{margin:8px 0 18px;color:#e8ecff}
+.primary{background:#fff;color:#263c75;padding:13px 20px;border-radius:14px;font-weight:800}
+.section{padding:0 16px 18px}
+.sectiontitle{font-weight:800;font-size:17px;margin:8px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.card{background:#fff;border:1px solid #e8ebf1;border-radius:18px;padding:16px 8px;min-height:96px;box-shadow:0 4px 15px #1720330a}
+.card b{display:block;font-size:12px;margin-top:8px}
+.card .ico{font-size:25px}
+.bottomnav{height:68px;background:#fff;border-top:1px solid #e6e9ef;display:flex;align-items:center;justify-content:space-around;flex-shrink:0}
+.navitem{background:transparent;color:#687286;font-size:11px;text-align:center}
+.navitem span{display:block;font-size:21px;margin-bottom:2px}
+.plus{width:52px;height:52px;border-radius:50%;background:#263c75;color:#fff;font-size:28px;margin-top:-22px;box-shadow:0 7px 18px #263c7540}
+#setup{display:none;background:#f5f7fb;overflow:auto}
+.setuphead{height:62px;background:#fff;display:flex;align-items:center;padding:0 14px;gap:12px;border-bottom:1px solid #e6e9ef}
+.setuphead h2{font-size:18px;margin:0}
+.back{width:40px;height:40px;border-radius:12px;background:#eef1f6}
+.form{padding:18px}
+.form label{font-size:12px;color:#667085;font-weight:700;display:block;margin:12px 0 6px}
+.row{display:flex;gap:10px}
+.input{width:100%;padding:13px;border:1px solid #dfe3ea;border-radius:12px;background:#fff;outline:none}
+.presets{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px}
+.preset{padding:15px;border-radius:14px;background:#fff;border:1px solid #e5e8ef;text-align:left}
+.preset b{display:block}
+.create{width:100%;padding:15px;border-radius:14px;background:#263c75;color:#fff;font-weight:800;margin-top:18px}
+#editor{display:none;flex-direction:column;background:#e9edf3}
+.editortop{height:58px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 9px;border-bottom:1px solid #dfe3ea;flex-shrink:0}
+.toolbar{display:flex;gap:6px}
+.toolbtn{width:40px;height:40px;border-radius:11px;background:#f0f2f6}
+#stage{flex:1;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+#canvas{position:relative;width:1080px;height:1080px;background:#fff;overflow:hidden;box-shadow:0 12px 35px #0002;transform-origin:center center;flex-shrink:0}
+.obj{position:absolute;touch-action:none;user-select:none}
+.textobj{min-width:80px;min-height:40px;padding:4px;outline:none;white-space:pre-wrap}
+.imgobj{object-fit:contain}
+.shapeobj{background:#263c75;border-radius:12px}
+.obj.selected{outline:2px solid #5b6cff}
+.handles{position:absolute;inset:-7px;pointer-events:none;z-index:9999}
+.handle{position:absolute;width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid #5b6cff;pointer-events:auto;touch-action:none}
+.h-tl{left:0;top:0}.h-tc{left:50%;top:0;transform:translateX(-50%)}
+.h-tr{right:0;top:0}.h-ml{left:0;top:50%;transform:translateY(-50%)}
+.h-mr{right:0;top:50%;transform:translateY(-50%)}
+.h-bl{left:0;bottom:0}.h-bc{left:50%;bottom:0;transform:translateX(-50%)}
+.h-br{right:0;bottom:0}
+.rotate{left:50%;top:-32px;transform:translateX(-50%);background:#5b6cff}
+.bottomtools{height:68px;background:#fff;border-top:1px solid #dfe3ea;display:flex;justify-content:space-around;align-items:center;flex-shrink:0}
+.bottomtools button{background:transparent;color:#505b70;font-size:11px}
+.bottomtools span{display:block;font-size:22px}
+.panel{position:absolute;right:0;top:58px;bottom:68px;width:min(340px,92%);background:#fff;z-index:10000;box-shadow:-8px 0 25px #0002;padding:16px;overflow:auto}
+.panel h3{margin:0 0 14px}
+.panelrow{display:flex;gap:8px;align-items:center;margin:8px 0}
+.smallbtn{padding:9px 11px;background:#eef1f6;border-radius:10px}
+.range{width:100%}
+.layer{display:flex;align-items:center;gap:7px;padding:10px;border-bottom:1px solid #edf0f4}
+.layername{flex:1;font-size:12px}
+.layer button{background:#eef1f6;border-radius:7px;padding:5px}
+.modal{position:absolute;inset:0;background:#0007;z-index:20000;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.show{display:flex}
+.modalbox{width:min(430px,100%);max-height:85%;overflow:auto;background:#fff;border-radius:20px;padding:18px}
+.modalhead{display:flex;justify-content:space-between;align-items:center}
+.modalgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.modalitem{padding:15px;border-radius:14px;background:#f3f5f9;text-align:left}
+#file{display:none}
 </style>
 </head>
 
 <body>
 
-<!-- HOME -->
+<section id="home" class="screen">
+  <div class="topbar">
+    <div class="brand">Urdu Design Studio<small>Design • Edit • Save</small></div>
+    <button class="iconbtn" id="settingsBtn">⚙</button>
+  </div>
 
-<section class="home" id="home">
+  <div class="hero">
+    <h1>Creative Design Made Easy</h1>
+    <p>Make Urdu designing easy and creative.</p>
+    <button class="primary" id="newBtn">Start Designing</button>
+  </div>
 
-<div class="head">
+  <div class="section">
+    <div class="sectiontitle">Quick Tools</div>
+    <div class="grid">
+      <button class="card" id="homeTemplates"><span class="ico">🖼️</span><b>Templates</b></button>
+      <button class="card" id="homeProjects"><span class="ico">📁</span><b>My Designs</b></button>
+      <button class="card" id="homeElements"><span class="ico">✨</span><b>Elements</b></button>
+      <button class="card" id="homeShapes"><span class="ico">⬢</span><b>Shapes</b></button>
+      <button class="card" id="homeFrames"><span class="ico">▣</span><b>Frames</b></button>
+      <button class="card" id="homeBackgrounds"><span class="ico">🎨</span><b>Backgrounds</b></button>
+      <button class="card" id="homeImport"><span class="ico">📷</span><b>Import Image</b></button>
+      <button class="card" id="homeText"><span class="ico">T</span><b>Text</b></button>
+      <button class="card" id="homeMore"><span class="ico">⋯</span><b>More Tools</b></button>
+    </div>
+  </div>
 
-<div class="brand">
-
-<div class="logo">✦</div>
-
-<div>
-<b>Urdu Design Studio</b>
-<small>Design • Edit • Create</small>
-</div>
-
-</div>
-
-<button class="gear" id="settingsBtn">⚙</button>
-
-</div>
-
-
-<div class="welcome">
-
-<h1>
-Create something<br>
-<span>beautiful.</span>
-</h1>
-
-<p>
-Professional graphic design made simple.
-</p>
-
-</div>
-
-
-<div class="hero">
-
-<small>START A NEW PROJECT</small>
-
-<h2>New Design</h2>
-
-<p>
-Choose a size and start creating.
-</p>
-
-<button class="primary" id="newBtn">
-＋ New Design
-</button>
-
-</div>
-
-
-<div class="sec">
-Quick Access
-</div>
-
-
-<div class="grid3">
-
-<button class="card" id="homeTemplates">
-<div class="ico">▦</div>
-<b>Templates</b>
-</button>
-
-<button class="card" id="homeProjects">
-<div class="ico">◫</div>
-<b>My Designs</b>
-</button>
-
-<button class="card" id="homeElements">
-<div class="ico">✦</div>
-<b>Elements</b>
-</button>
-
-</div>
-
-
-<div class="sec">
-Design Tools
-</div>
-
-
-<div class="grid3">
-
-<button class="card" id="homeShapes">
-<div class="ico">◇</div>
-<b>Shapes</b>
-</button>
-
-<button class="card" id="homeFrames">
-<div class="ico">▣</div>
-<b>Frames</b>
-</button>
-
-<button class="card" id="homeBackgrounds">
-<div class="ico">◉</div>
-<b>Backgrounds</b>
-</button>
-
-<button class="card" id="homeImport">
-<div class="ico">▧</div>
-<b>Import</b>
-</button>
-
-<button class="card" id="homeText">
-<div class="ico">T</div>
-<b>Text</b>
-</button>
-
-<button class="card" id="homeMore">
-<div class="ico">⋯</div>
-<b>More</b>
-</button>
-
-</div>
-
-
-<div class="sec">
-Recent Designs
-</div>
-
-<div class="card" style="padding:24px">
-
-<div style="font-size:30px;opacity:.4">
-◫
-</div>
-
-<b>
-No recent designs
-</b>
-
-<div style="font-size:11px;color:var(--muted);margin-top:4px">
-Your saved projects will appear here.
-</div>
-
-</div>
-
-
-<!-- HOME NAV -->
-
-<div class="nav">
-
-<button id="navHome">
-⌂
-<b>Home</b>
-</button>
-
-<button id="navTemplates">
-▦
-<b>Templates</b>
-</button>
-
-<button class="plus" id="plusBtn">
-＋
-</button>
-
-<button id="navProjects">
-◫
-<b>Projects</b>
-</button>
-
-<button id="navSettings">
-⚙
-<b>Settings</b>
-</button>
-
-</div>
-
+  <div class="bottomnav">
+    <button class="navitem" id="navHome"><span>⌂</span>Home</button>
+    <button class="navitem" id="navTemplates"><span>▦</span>Templates</button>
+    <button class="plus" id="plusBtn">+</button>
+    <button class="navitem" id="navProjects"><span>▤</span>Projects</button>
+    <button class="navitem" id="navSettings"><span>⚙</span>Settings</button>
+  </div>
 </section>
 
+<section id="setup" class="screen">
+  <div class="setuphead">
+    <button class="back" id="back">←</button>
+    <h2>New Design</h2>
+  </div>
+  <div class="form">
+    <label>Canvas Width</label>
+    <input class="input" id="cw" type="number" value="1080">
+    <label>Canvas Height</label>
+    <input class="input" id="ch" type="number" value="1080">
 
-<!-- NEW DESIGN -->
+    <label>Preset Sizes</label>
+    <div class="presets">
+      <button class="preset" data-w="1080" data-h="1080"><b>Square</b>1080 × 1080</button>
+      <button class="preset" data-w="1080" data-h="1350"><b>Portrait</b>1080 × 1350</button>
+      <button class="preset" data-w="1080" data-h="1920"><b>Story</b>1080 × 1920</button>
+      <button class="preset" data-w="1920" data-h="1080"><b>Landscape</b>1920 × 1080</button>
+      <button class="preset" data-w="1200" data-h="628"><b>Social Post</b>1200 × 628</button>
+      <button class="preset" data-w="1280" data-h="720"><b>Thumbnail</b>1280 × 720</button>
+    </div>
 
-<section class="setup" id="setup" style="display:none">
-
-<div class="setupHead">
-
-<button class="back" id="back">
-‹
-</button>
-
-<div>
-
-<b style="font-size:21px">
-New Design
-</b>
-
-<div style="font-size:12px;color:var(--muted);margin-top:3px">
-Choose your canvas size
-</div>
-
-</div>
-
-</div>
-
-
-<div class="box">
-
-<b>
-Custom Size
-</b>
-
-<div class="inputs" style="margin-top:13px">
-
-<div>
-
-<div class="lbl">
-Width
-</div>
-
-<input
-class="num"
-id="cw"
-type="number"
-value="1080"
->
-
-</div>
-
-<div>
-
-<div class="lbl">
-Height
-</div>
-
-<input
-class="num"
-id="ch"
-type="number"
-value="1080"
->
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="sec" style="margin-top:4px">
-Popular Sizes
-</div>
-
-
-<div class="presets">
-
-<button
-class="preset active"
-data-w="1080"
-data-h="1080"
->
-□
-<b>1 : 1</b>
-<small>Square</small>
-</button>
-
-<button
-class="preset"
-data-w="1920"
-data-h="1080"
->
-▭
-<b>1920 × 1080</b>
-<small>YouTube</small>
-</button>
-
-<button
-class="preset"
-data-w="1280"
-data-h="720"
->
-▭
-<b>1280 × 720</b>
-<small>Thumbnail</small>
-</button>
-
-<button
-class="preset"
-data-w="1080"
-data-h="1920"
->
-▯
-<b>9 : 16</b>
-<small>Portrait</small>
-</button>
-
-<button
-class="preset"
-data-w="2480"
-data-h="3508"
->
-▤
-<b>A4 Portrait</b>
-<small>2480 × 3508</small>
-</button>
-
-<button
-class="preset"
-data-w="3508"
-data-h="2480"
->
-▤
-<b>A4 Landscape</b>
-<small>3508 × 2480</small>
-</button>
-
-<button
-class="preset"
-data-w="1200"
-data-h="900"
->
-▭
-<b>4 : 3</b>
-<small>Classic</small>
-</button>
-
-<button
-class="preset"
-data-w="1200"
-data-h="628"
->
-▱
-<b>Social</b>
-<small>Post / Banner</small>
-</button>
-
-</div>
-
-
-<button
-class="create"
-id="create"
-style="margin-top:20px"
->
-Create Design
-</button>
-
+    <button class="create" id="create">Create Design</button>
+  </div>
 </section>
 
-
-<!-- EDITOR -->
-
-<section class="editor" id="editor">
-
-<div class="top">
-
-<b>
-Urdu Design Studio
-</b>
-
-<div class="toptools">
-
-<button class="tb" id="undo">
-↶
-</button>
-
-<button class="tb" id="redo">
-↷
-</button>
-
-<button class="tb" id="layersTop">
-▤
-</button>
-
-<button class="tb" id="save">
-💾
-</button>
-
-</div>
-
-</div>
-
-
-<div class="workspace">
-
-<div class="stage" id="stage">
-
-<div class="canvas" id="canvas">
-
-<div class="grid"></div>
-
-</div>
-
-</div>
-
-
-<!-- EDIT PANEL -->
-
-<div class="panel" id="editPanel">
-
-<div class="pt">
-
-<span id="ptype">
-Edit Object
-</span>
-
-<button
-class="close"
-data-close
->
-×
-</button>
-
-</div>
-
-
-<div class="hint" id="hint">
-Select an object to edit it.
-</div>
-
-
-<div class="secTitle">
-Transform
-</div>
-
-
-<div class="pgrid">
-
-<button
-class="pbtn"
-id="fit"
->
-Fit Canvas
-</button>
-
-<button
-class="pbtn"
-id="center"
->
-Center
-</button>
-
-<button
-class="pbtn"
-id="rminus"
->
-Rotate −15°
-</button>
-
-<button
-class="pbtn"
-id="rplus"
->
-Rotate +15°
-</button>
-
-</div>
-
-
-<div class="secTitle">
-Style
-</div>
-
-<input
-class="color"
-id="color"
-type="color"
-value="#7044f5"
->
-
-
-<div
-id="textControls"
-style="display:none"
->
-
-<div class="secTitle">
-Text
-</div>
-
-<input
-class="range"
-id="fontSize"
-type="range"
-min="8"
-max="300"
-value="40"
->
-
-
-<div
-class="pgrid"
-style="margin-top:6px"
->
-
-<button
-class="pbtn"
-id="bold"
->
-Bold
-</button>
-
-<button
-class="pbtn"
-id="right"
->
-Right
-</button>
-
-<button
-class="pbtn"
-id="centerText"
->
-Center
-</button>
-
-<button
-class="pbtn"
-id="left"
->
-Left
-</button>
-
-</div>
-
-
-<select
-class="select"
-id="font"
-style="margin-top:7px"
->
-
-<option>
-Arial
-</option>
-
-<option>
-Noto Nastaliq Urdu
-</option>
-
-<option>
-Noto Naskh Arabic
-</option>
-
-<option>
-serif
-</option>
-
-<option>
-sans-serif
-</option>
-
-</select>
-
-</div>
-
-
-<div class="secTitle">
-Object
-</div>
-
-
-<div class="pgrid">
-
-<button
-class="pbtn"
-id="dup"
->
-Duplicate
-</button>
-
-<button
-class="pbtn"
-id="del"
->
-Delete
-</button>
-
-<button
-class="pbtn"
-id="up"
->
-Bring Forward
-</button>
-
-<button
-class="pbtn"
-id="down"
->
-Send Backward
-</button>
-
-</div>
-
-</div>
-
-
-<!-- LAYERS PANEL -->
-
-<div
-class="panel"
-id="layerPanel"
->
-
-<div class="pt">
-
-<span>
-Layers
-</span>
-
-<button
-class="close"
-data-close
->
-×
-</button>
-
-</div>
-
-<div id="layers"></div>
-
-</div>
-
-</div>
-
-
-<!-- EDITOR BOTTOM -->
-
-<div class="bottom">
-
-<div class="tools">
-
-<button
-class="tool"
-id="addText"
->
-<span>T</span>
-Text
-</button>
-
-<button
-class="tool"
-id="addImage"
->
-<span>▧</span>
-Image
-</button>
-
-<button
-class="tool"
-id="addShape"
->
-<span>▣</span>
-Shape
-</button>
-
-<button
-class="tool"
-id="addBg"
->
-<span>◉</span>
-Background
-</button>
-
-<button
-class="tool"
-id="edit"
->
-<span>⚙</span>
-Edit
-</button>
-
-</div>
-
-</div>
-
+<section id="editor" class="screen">
+  <div class="editortop">
+    <div class="toolbar">
+      <button class="toolbtn" id="undo">↶</button>
+      <button class="toolbtn" id="redo">↷</button>
+    </div>
+    <div class="toolbar">
+      <button class="toolbtn" id="layersTop">☷</button>
+      <button class="toolbtn" id="save">💾</button>
+    </div>
+  </div>
+
+  <div id="stage">
+    <div id="canvas"></div>
+
+    <div class="panel hidden" id="editPanel">
+      <h3>Edit Object</h3>
+      <div class="panelrow">
+        <button class="smallbtn" id="fit">Fit</button>
+        <button class="smallbtn" id="center">Center</button>
+        <button class="smallbtn" id="rminus">− Rotate</button>
+        <button class="smallbtn" id="rplus">+ Rotate</button>
+      </div>
+
+      <label>Color</label>
+      <input id="color" type="color" value="#263c75">
+
+      <label>Font Size</label>
+      <input id="fontSize" class="range" type="range" min="8" max="180" value="40">
+
+      <div class="panelrow">
+        <button class="smallbtn" id="bold">Bold</button>
+        <button class="smallbtn" id="left">Left</button>
+        <button class="smallbtn" id="centerText">Center</button>
+        <button class="smallbtn" id="right">Right</button>
+      </div>
+
+      <label>Font</label>
+      <select class="input" id="font">
+        <option value="Arial">Arial</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Tahoma">Tahoma</option>
+        <option value="serif">Serif</option>
+        <option value="sans-serif">Sans Serif</option>
+      </select>
+
+      <div class="panelrow">
+        <button class="smallbtn" id="dup">Duplicate</button>
+        <button class="smallbtn" id="del">Delete</button>
+        <button class="smallbtn" id="up">Bring Forward</button>
+        <button class="smallbtn" id="down">Send Back</button>
+      </div>
+
+      <button class="smallbtn" data-close="editPanel">Close</button>
+    </div>
+
+    <div class="panel hidden" id="layerPanel">
+      <h3>Layers</h3>
+      <div id="layers"></div>
+      <button class="smallbtn" data-close="layerPanel">Close</button>
+    </div>
+  </div>
+
+  <div class="bottomtools">
+    <button id="addText"><span>T</span>Text</button>
+    <button id="addImage"><span>▧</span>Image</button>
+    <button id="addShape"><span>⬢</span>Shape</button>
+    <button id="addBg"><span>🎨</span>Background</button>
+    <button id="edit"><span>✎</span>Edit</button>
+  </div>
 </section>
 
+<input type="file" id="file" accept="image/png,image/jpeg,image/jpg">
 
-<!-- MODAL -->
-
-<div
-class="modal"
-id="modal"
->
-
-<div class="sheet">
-
-<div class="sheetHead">
-
-<b id="modalTitle">
-Tools
-</b>
-
-<button
-class="close"
-id="modalClose"
->
-×
-</button>
-
+<div class="modal" id="modal">
+  <div class="modalbox">
+    <div class="modalhead">
+      <h3 id="modalTitle">Tools</h3>
+      <button class="iconbtn" id="modalClose">×</button>
+    </div>
+    <div class="modalgrid" id="modalGrid"></div>
+  </div>
 </div>
-
-<div
-class="sheetGrid"
-id="modalGrid"
->
-</div>
-
-</div>
-
-</div>
-
-
-<input
-id="file"
-type="file"
-accept="image/*"
->
-
 
 <script>
-
 const $=id=>document.getElementById(id);
 
 const home=$('home');
@@ -1517,693 +245,834 @@ let future=[];
 let designW=1080;
 let designH=1080;
 let gesture=null;
-
-
-/* HISTORY */
+let fileMode='image';
 
 function snapshot(){
-
-history.push(canvas.innerHTML);
-
-if(history.length>40){
-history.shift();
+  history.push(JSON.stringify({
+    html:canvas.innerHTML,
+    w:designW,
+    h:designH
+  }));
+  if(history.length>40) history.shift();
+  future=[];
 }
 
-future=[];
-
+function restore(data){
+  try{
+    const x=JSON.parse(data);
+    designW=x.w||1080;
+    designH=x.h||1080;
+    canvas.innerHTML=x.html||'';
+    applyCanvasSize();
+    selected=null;
+    canvas.querySelectorAll('.obj').forEach(addObjectEvents);
+    refresh();
+  }catch(e){}
 }
-
-
-/* RESTORE */
-
-function restore(html){
-
-canvas.innerHTML=html;
-
-selected=null;
-
-canvas
-.querySelectorAll('.obj')
-.forEach(addObjectEvents);
-
-refresh();
-
-}
-
-
-/* SELECT */
 
 function select(o){
-
-document
-.querySelectorAll('.obj.selected')
-.forEach(x=>x.classList.remove('selected'));
-
-selected=o;
-
-if(o){
-o.classList.add('selected');
+  document.querySelectorAll('.obj.selected').forEach(x=>x.classList.remove('selected'));
+  selected=o;
+  if(o) o.classList.add('selected');
+  refresh();
 }
-
-refresh();
-
-}
-
-
-/* REFRESH */
-
-function refresh(){
-
-$('hint').textContent=
-selected
-?
-'Selected: '+(selected.dataset.name||'Object')
-:
-'Select an object to edit it.';
-
-$('ptype').textContent=
-selected
-?
-(selected.dataset.name||'Object')
-:
-'Edit Object';
-
-$('textControls').style.display=
-selected &&
-selected.classList.contains('textObj')
-?
-'block'
-:
-'none';
-
-if(
-selected &&
-selected.classList.contains('textObj')
-){
-
-$('fontSize').value=
-parseInt(selected.style.fontSize)||30;
-
-}
-
-updateLayers();
-
-}
-
-
-/* TRANSFORM HANDLE MARKUP */
 
 function handleMarkup(){
-
-return `
-<div class="handles">
-
-<i
-class="h nw"
-data-h="nw"
-></i>
-
-<i
-class="h n"
-data-h="n"
-></i>
-
-<i
-class="h ne"
-data-h="ne"
-></i>
-
-<i
-class="h e"
-data-h="e"
-></i>
-
-<i
-class="h se"
-data-h="se"
-></i>
-
-<i
-class="h s"
-data-h="s"
-></i>
-
-<i
-class="h sw"
-data-h="sw"
-></i>
-
-<i
-class="h w"
-data-h="w"
-></i>
-
-<i class="rotateLine"></i>
-
-<i
-class="h rh"
-data-h="rotate"
-></i>
-
-</div>
-`;
-
+  return `
+  <div class="handles">
+    <span class="handle h-tl" data-h="tl"></span>
+    <span class="handle h-tc" data-h="tc"></span>
+    <span class="handle h-tr" data-h="tr"></span>
+    <span class="handle h-ml" data-h="ml"></span>
+    <span class="handle h-mr" data-h="mr"></span>
+    <span class="handle h-bl" data-h="bl"></span>
+    <span class="handle h-bc" data-h="bc"></span>
+    <span class="handle h-br" data-h="br"></span>
+    <span class="handle rotate" data-h="rotate"></span>
+  </div>`;
 }
-
-
-/* OBJECT EVENTS */
 
 function addObjectEvents(o){
+  if(!o.classList.contains('obj')) return;
 
-if(
-o.querySelector('.handles')
-){
-o.querySelector('.handles').remove();
+  o.querySelectorAll('.handles').forEach(h=>h.remove());
+  o.insertAdjacentHTML('beforeend',handleMarkup());
+
+  o.addEventListener('pointerdown',objectDown);
+  o.addEventListener('click',e=>{
+    e.stopPropagation();
+    select(o);
+  });
+
+  o.querySelectorAll('.handle').forEach(h=>{
+    h.addEventListener('pointerdown',handleDown);
+  });
+
+  if(o.classList.contains('textobj')){
+    o.addEventListener('input',()=>{
+      if(selected===o) refresh();
+    });
+  }
 }
-
-o.insertAdjacentHTML(
-'beforeend',
-handleMarkup()
-);
-
-o.addEventListener(
-'pointerdown',
-objectDown
-);
-
-o.querySelectorAll('.h')
-.forEach(
-h=>h.addEventListener(
-'pointerdown',
-handleDown
-)
-);
-
-o.addEventListener(
-'click',
-e=>{
-e.stopPropagation();
-select(o);
-}
-);
-
-}
-
-
-/* CREATE OBJECT */
 
 function make(type){
+  snapshot();
 
-let o=
-document.createElement(
-type==='image'
-?
-'img'
-:
-'div'
-);
+  let o;
 
-o.className=
-'obj '+
-(
-type==='image'
-?
-'imageObj'
-:
-type==='text'
-?
-'textObj'
-:
-type==='circle'
-?
-'circle'
-:
-'shape'
-);
+  if(type==='text'){
+    o=document.createElement('div');
+    o.className='obj textobj';
+    o.textContent='New Text';
+    o.contentEditable='true';
+    o.style.fontSize='40px';
+    o.style.fontWeight='400';
+    o.style.color='#172033';
+    o.style.fontFamily='Arial';
+    o.style.width='300px';
+    o.style.height='70px';
+  }
 
-o.dataset.name=
-type==='image'
-?
-'Image'
-:
-type==='text'
-?
-'Text'
-:
-type==='circle'
-?
-'Circle'
-:
-'Shape';
+  if(type==='image'){
+    o=document.createElement('img');
+    o.className='obj imgobj';
+    o.style.width='260px';
+    o.style.height='190px';
+    o.style.objectFit='contain';
+  }
 
-o.style.left='40px';
-o.style.top='40px';
-o.style.zIndex='10';
+  if(type==='shape'){
+    o=document.createElement('div');
+    o.className='obj shapeobj';
+    o.style.width='220px';
+    o.style.height='180px';
+    o.style.background='#263c75';
+    o.style.borderRadius='18px';
+  }
 
+  if(!o) return null;
 
-if(type==='text'){
+  o.dataset.name=type==='text'?'Text':type==='image'?'Image':'Shape';
+  o.style.left='40px';
+  o.style.top='40px';
+  o.style.zIndex='10';
 
-o.textContent='New Text';
+  canvas.appendChild(o);
+  addObjectEvents(o);
+  select(o);
+  refresh();
 
-o.contentEditable='true';
-
-o.style.fontSize='40px';
-
+  return o;
 }
-
-
-if(type==='image'){
-
-o.style.width='220px';
-o.style.height='160px';
-o.style.objectFit='contain';
-
-}
-
-
-canvas.appendChild(o);
-
-addObjectEvents(o);
-
-select(o);
-
-snapshot();
-
-return o;
-
-}
-
-
-/* MOVE */
 
 function objectDown(e){
+  if(e.target.classList.contains('handle')) return;
 
-if(
-e.target.closest('.h')
-)
-return;
+  e.stopPropagation();
+  select(this);
 
-e.stopPropagation();
+  if(this.dataset.locked==='true') return;
 
-select(this);
+  const r=this.getBoundingClientRect();
+  const cr=canvas.getBoundingClientRect();
+  const scale=cr.width/designW||1;
 
-if(
-this.classList.contains('locked')
-)
-return;
+  gesture={
+    type:'move',
+    o:this,
+    sx:e.clientX,
+    sy:e.clientY,
+    l:parseFloat(this.style.left)||0,
+    t:parseFloat(this.style.top)||0,
+    scale
+  };
 
-gesture={
-kind:'move',
-o:this,
-sx:e.clientX,
-sy:e.clientY,
-l:parseFloat(this.style.left)||0,
-t:parseFloat(this.style.top)||0
-};
-
-this.setPointerCapture?.(
-e.pointerId
-);
-
+  this.setPointerCapture?.(e.pointerId);
 }
-
-
-/* RESIZE / ROTATE */
 
 function handleDown(e){
+  e.stopPropagation();
+  e.preventDefault();
 
-e.stopPropagation();
-e.preventDefault();
+  const h=e.currentTarget;
+  const o=h.closest('.obj');
+  select(o);
 
-let o=this.closest('.obj');
+  if(o.dataset.locked==='true') return;
 
-select(o);
+  const cr=canvas.getBoundingClientRect();
+  const scale=cr.width/designW||1;
 
-let type=this.dataset.h;
+  const l=parseFloat(o.style.left)||0;
+  const t=parseFloat(o.style.top)||0;
+  const w=o.offsetWidth;
+  const hgt=o.offsetHeight;
 
+  if(h.dataset.h==='rotate'){
+    gesture={
+      type:'rotate',
+      o,
+      sx:e.clientX,
+      sy:e.clientY,
+      startRot:parseFloat(o.dataset.rot||'0')
+    };
+  }else{
+    gesture={
+      type:'resize',
+      o,
+      handle:h.dataset.h,
+      sx:e.clientX,
+      sy:e.clientY,
+      l,t,w,h:hgt,
+      scale
+    };
+  }
 
-if(type==='rotate'){
-
-gesture={
-kind:'rotate',
-o,
-sx:e.clientX,
-sy:e.clientY,
-start:parseFloat(o.dataset.rot)||0
-};
-
-return;
-
+  o.setPointerCapture?.(e.pointerId);
 }
 
+window.addEventListener('pointermove',e=>{
+  if(!gesture) return;
 
-gesture={
-kind:'resize',
-o,
-type,
-sx:e.clientX,
-sy:e.clientY,
-l:parseFloat(o.style.left)||0,
-t:parseFloat(o.style.top)||0,
-w:o.offsetWidth,
-h:o.offsetHeight
-};
+  const g=gesture;
+  const o=g.o;
 
+  if(g.type==='move'){
+    const dx=(e.clientX-g.sx)/g.scale;
+    const dy=(e.clientY-g.sy)/g.scale;
+
+    o.style.left=Math.round(g.l+dx)+'px';
+    o.style.top=Math.round(g.t+dy)+'px';
+  }
+
+  if(g.type==='rotate'){
+    const rect=o.getBoundingClientRect();
+    const cx=rect.left+rect.width/2;
+    const cy=rect.top+rect.height/2;
+
+    const a=Math.atan2(e.clientY-cy,e.clientX-cx)*180/Math.PI;
+    const a0=Math.atan2(g.sy-cy,g.sx-cx)*180/Math.PI;
+
+    let rot=g.startRot+(a-a0);
+    o.dataset.rot=rot;
+    o.style.transform='rotate('+rot+'deg)';
+  }
+
+  if(g.type==='resize'){
+    const dx=(e.clientX-g.sx)/g.scale;
+    const dy=(e.clientY-g.sy)/g.scale;
+
+    let l=g.l,t=g.t,w=g.w,h=g.h;
+    const min=30;
+
+    if(g.handle.includes('l')){
+      l=g.l+dx;
+      w=g.w-dx;
+    }
+
+    if(g.handle.includes('r')){
+      w=g.w+dx;
+    }
+
+    if(g.handle.includes('t')){
+      t=g.t+dy;
+      h=g.h-dy;
+    }
+
+    if(g.handle.includes('b')){
+      h=g.h+dy;
+    }
+
+    if(w<min) w=min;
+    if(h<min) h=min;
+
+    o.style.left=Math.round(l)+'px';
+    o.style.top=Math.round(t)+'px';
+    o.style.width=Math.round(w)+'px';
+    o.style.height=Math.round(h)+'px';
+  }
+
+  refresh();
+});
+
+window.addEventListener('pointerup',()=>{
+  if(gesture){
+    snapshot();
+    gesture=null;
+    refresh();
+  }
+});
+
+canvas.addEventListener('pointerdown',e=>{
+  if(e.target===canvas) select(null);
+});
+
+function refresh(){
+  updateLayers();
+
+  if(selected){
+    $('editPanel')?.classList.remove('hidden');
+
+    const color=selected.style.color||selected.style.backgroundColor;
+    if(color && color.startsWith('#')) $('color').value=color;
+
+    const fs=parseInt(selected.style.fontSize||40);
+    if(fs) $('fontSize').value=Math.min(180,Math.max(8,fs));
+
+    $('font').value=selected.style.fontFamily||'Arial';
+  }
 }
 
+function updateLayers(){
+  const box=$('layers');
+  if(!box) return;
 
-/* POINTER MOVE */
+  box.innerHTML='';
 
-window.addEventListener(
-'pointermove',
-e=>{
+  [...canvas.querySelectorAll('.obj')].reverse().forEach((o,i)=>{
+    const row=document.createElement('div');
+    row.className='layer';
 
-if(!gesture)
-return;
+    const name=document.createElement('div');
+    name.className='layername';
+    name.textContent=o.dataset.name||('Object '+(i+1));
 
-let g=gesture;
-let o=g.o;
+    const eye=document.createElement('button');
+    eye.textContent=o.style.display==='none'?'○':'●';
+    eye.onclick=e=>{
+      e.stopPropagation();
+      o.style.display=o.style.display==='none'?'block':'none';
+      snapshot();
+      updateLayers();
+    };
 
-let dx=e.clientX-g.sx;
-let dy=e.clientY-g.sy;
+    const lock=document.createElement('button');
+    lock.textContent=o.dataset.locked==='true'?'🔒':'🔓';
+    lock.onclick=e=>{
+      e.stopPropagation();
+      o.dataset.locked=o.dataset.locked==='true'?'false':'true';
+      snapshot();
+      updateLayers();
+    };
 
+    const up=document.createElement('button');
+    up.textContent='↑';
+    up.onclick=e=>{
+      e.stopPropagation();
+      o.style.zIndex=(parseInt(o.style.zIndex||1)+1);
+      snapshot();
+      updateLayers();
+    };
 
-/* MOVE */
+    const down=document.createElement('button');
+    down.textContent='↓';
+    down.onclick=e=>{
+      e.stopPropagation();
+      o.style.zIndex=Math.max(1,parseInt(o.style.zIndex||1)-1);
+      snapshot();
+      updateLayers();
+    };
 
-if(
-g.kind==='move'
-){
+    row.append(name,eye,lock,up,down);
 
-o.style.left=
-Math.max(
-0,
-g.l+dx
-)+'px';
+    row.onclick=()=>{
+      select(o);
+    };
 
-o.style.top=
-Math.max(
-0,
-g.t+dy
-)+'px';
-
-return;
-
+    box.appendChild(row);
+  });
 }
 
+function applyCanvasSize(){
+  canvas.style.width=designW+'px';
+  canvas.style.height=designH+'px';
 
-/* ROTATE */
+  const sw=(stage.clientWidth-30)/designW;
+  const sh=(stage.clientHeight-30)/designH;
+  const scale=Math.min(sw,sh);
 
-if(
-g.kind==='rotate'
-){
-
-const r=
-canvas.getBoundingClientRect();
-
-const cx=
-r.left+
-o.offsetLeft+
-o.offsetWidth/2;
-
-const cy=
-r.top+
-o.offsetTop+
-o.offsetHeight/2;
-
-let a=
-Math.atan2(
-e.clientY-cy,
-e.clientX-cx
-)
-*180/Math.PI
-+90;
-
-o.dataset.rot=a;
-
-o.style.transform=
-'rotate('+a+'deg)';
-
-return;
-
+  canvas.style.transform='scale('+Math.max(.05,scale)+')';
 }
 
+window.addEventListener('resize',applyCanvasSize);
 
-/* RESIZE */
-
-let min=35;
-
-let nw=g.w;
-let nh=g.h;
-
-let nl=g.l;
-let nt=g.t;
-
-
-if(
-g.type.includes('e')
-){
-
-nw=
-Math.max(
-min,
-g.w+dx
-);
-
+function showHome(){
+  home.style.display='flex';
+  setup.style.display='none';
+  editor.style.display='none';
 }
 
-
-if(
-g.type.includes('w')
-){
-
-nw=
-Math.max(
-min,
-g.w-dx
-);
-
-nl=
-g.l+(g.w-nw);
-
+function openSetup(){
+  home.style.display='none';
+  setup.style.display='block';
+  editor.style.display='none';
 }
 
-
-if(
-g.type.includes('s')
-){
-
-nh=
-Math.max(
-min,
-g.h+dy
-);
-
+function openEditor(){
+  home.style.display='none';
+  setup.style.display='none';
+  editor.style.display='flex';
+  applyCanvasSize();
 }
-
-
-if(
-g.type.includes('n')
-){
-
-nh=
-Math.max(
-min,
-g.h-dy
-);
-
-nt=
-g.t+(g.h-nh);
-
-}
-
-
-o.style.width=nw+'px';
-
-o.style.height=nh+'px';
-
-o.style.left=nl+'px';
-
-o.style.top=nt+'px';
-
-}
-);
-
-
-/* POINTER UP */
-
-window.addEventListener(
-'pointerup',
-()=>{
-
-if(gesture){
-
-snapshot();
-
-gesture=null;
-
-refresh();
-
-}
-
-}
-);
-
-
-/* CANVAS SELECT */
-
-canvas.addEventListener(
-'pointerdown',
-e=>{
-
-if(
-e.target===canvas
-){
-
-select(null);
-
-}
-
-}
-);
-
-
-/* ADD TEXT */
-
-$('addText').onclick=()=>{
-make('text');
-};
-
-
-/* ADD SHAPE */
-
-$('addShape').onclick=()=>{
-make('shape');
-};
-
-
-/* ADD IMAGE */
-
-$('addImage').onclick=()=>{
-
-$('file').dataset.mode='image';
-
-$('file').click();
-
-};
-
-
-/* ADD BACKGROUND */
-
-$('addBg').onclick=()=>{
-
-$('file').dataset.mode='bg';
-
-$('file').click();
-
-};
-
-
-/* FILE */
-
-$('file').onchange=e=>{
-
-const f=e.target.files[0];
-
-if(!f)
-return;
-
-const rd=new FileReader();
-
-rd.onload=ev=>{
-
-if(
-e.target.dataset.mode==='bg'
-){
-
-document
-.querySelectorAll('.background')
-.forEach(
-x=>x.remove()
-);
-
-}
-
-let o=make('image');
-
-o.src=ev.target.result;
-
-
-if(
-e.target.dataset.mode==='bg'
-){
-
-o.classList.add('background');
-
-o.dataset.name='Background';
-
-o.style.left='0';
-
-o.style.top='0';
-
-o.style.width='100%';
-
-o.style.height='100%';
-
-o.style.objectFit='cover';
-
-o.style.zIndex='0';
-
-}
-
-snapshot();
-
-refresh();
-
-};
-
-rd.readAsDataURL(f);
-
-e.target.value='';
-
-};
-
-
-/* EDIT PANEL */
-
-$('edit').onclick=()=>{
-
-closePanels();
-
-$('editPanel')
-.classList.add('show');
-
-refresh();
-
-};
-
-
-/* LAYERS */
-
-$('layersTop').onclick=()=>{
-
-closePanels();
-
-$('layerPanel')
-.classList.add('show');
-
-updateLayers();
-
-};
-
-
-document
-.querySelectorAll('[data-close]')
-.forEach(
-b=>b.onclick=closePanels
-);
-
 
 function closePanels(){
+  $('editPanel')?.classList.add('hidden');
+  $('layerPanel')?.classList.add('hidden');
+}
 
-document
-.querySelector
+function showModal(title,items){
+  $('modalTitle').textContent=title;
+  const grid=$('modalGrid');
+  grid.innerHTML='';
+
+  items.forEach(item=>{
+    const b=document.createElement('button');
+    b.className='modalitem';
+    b.innerHTML='<b>'+item.title+'</b><br><small>'+item.text+'</small>';
+    b.onclick=()=>{
+      $('modal').classList.remove('show');
+      if(item.action) item.action();
+    };
+    grid.appendChild(b);
+  });
+
+  $('modal').classList.add('show');
+}
+
+$('newBtn').onclick=openSetup;
+$('plusBtn').onclick=openSetup;
+$('back').onclick=showHome;
+$('navHome').onclick=showHome;
+
+$('settingsBtn').onclick=()=>{
+  showModal('Settings',[
+    {title:'Canvas',text:'Create and edit custom design sizes.'},
+    {title:'Storage',text:'Projects are saved locally on this device.'},
+    {title:'About',text:'Urdu Design Studio — mobile design editor.'}
+  ]);
+};
+
+$('navSettings').onclick=$('settingsBtn').onclick;
+
+$('navTemplates').onclick=()=>{
+  showModal('Templates',[
+    {title:'Urdu Poster',text:'Start a square Urdu poster.',action:()=>{$('cw').value=1080;$('ch').value=1080;openSetup()}},
+    {title:'Story',text:'Vertical social story.',action:()=>{$('cw').value=1080;$('ch').value=1920;openSetup()}},
+    {title:'Thumbnail',text:'YouTube thumbnail size.',action:()=>{$('cw').value=1280;$('ch').value=720;openSetup()}},
+    {title:'Business',text:'Business advertisement canvas.',action:()=>{$('cw').value=1200;$('ch').value=628;openSetup()}}
+  ]);
+};
+
+$('homeTemplates').onclick=$('navTemplates').onclick;
+
+$('homeProjects').onclick=()=>{
+  const saved=localStorage.getItem('UDS_PROJECT');
+
+  if(!saved){
+    showModal('My Designs',[
+      {title:'No Project',text:'No saved design was found on this device.'}
+    ]);
+    return;
+  }
+
+  showModal('My Designs',[
+    {title:'Open Last Design',text:'Open the locally saved project.',action:()=>{
+      restore(saved);
+      openEditor();
+    }},
+    {title:'Delete Saved',text:'Remove the locally saved project.',action:()=>{
+      localStorage.removeItem('UDS_PROJECT');
+    }}
+  ]);
+};
+
+$('navProjects').onclick=$('homeProjects').onclick;
+
+$('homeElements').onclick=()=>{
+  showModal('Design Elements',[
+    {title:'Stars',text:'Decorative star elements.',action:()=>{openSetup()}},
+    {title:'Hearts',text:'Decorative heart elements.',action:()=>{openSetup()}},
+    {title:'Lines',text:'Lines and decorative elements.',action:()=>{openSetup()}},
+    {title:'Islamic',text:'Islamic design elements.',action:()=>{openSetup()}}
+  ]);
+};
+
+$('homeShapes').onclick=()=>{
+  showModal('Shapes',[
+    {title:'Rectangle',text:'Add a basic shape.',action:()=>{openSetup()}},
+    {title:'Rounded Shape',text:'Rounded editable shape.',action:()=>{openSetup()}},
+    {title:'Circle',text:'Circle design element.',action:()=>{openSetup()}}
+  ]);
+};
+
+$('homeFrames').onclick=()=>{
+  showModal('Frames',[
+    {title:'Photo Frame',text:'Prepare a frame-based design.',action:openSetup},
+    {title:'Border',text:'Create a bordered canvas.',action:openSetup}
+  ]);
+};
+
+$('homeBackgrounds').onclick=()=>{
+  showModal('Backgrounds',[
+    {title:'White',text:'Clean white background.',action:()=>{openSetup()}},
+    {title:'Blue',text:'Blue design background.',action:()=>{openSetup()}},
+    {title:'Gradient',text:'Gradient background tools.',action:()=>{openSetup()}}
+  ]);
+};
+
+$('homeImport').onclick=()=>{
+  fileMode='image';
+  $('file').click();
+};
+
+$('homeText').onclick=()=>{
+  openSetup();
+};
+
+$('homeMore').onclick=()=>{
+  showModal('More Tools',[
+    {title:'Layers',text:'Manage object layers.',action:openSetup},
+    {title:'Save Project',text:'Save your editable design locally.',action:()=>{saveProject()}},
+    {title:'Undo / Redo',text:'Edit history is available inside editor.',action:openSetup},
+    {title:'Import Image',text:'Import PNG/JPG images.',action:()=>{$('file').click()}}
+  ]);
+};
+
+document.querySelectorAll('.preset').forEach(p=>{
+  p.onclick=()=>{
+    $('cw').value=p.dataset.w;
+    $('ch').value=p.dataset.h;
+  };
+});
+
+$('create').onclick=()=>{
+  const w=parseInt($('cw').value)||1080;
+  const h=parseInt($('ch').value)||1080;
+
+  designW=Math.max(100,Math.min(5000,w));
+  designH=Math.max(100,Math.min(5000,h));
+
+  canvas.innerHTML='';
+  selected=null;
+  history=[];
+  future=[];
+
+  canvas.style.background='#fff';
+
+  openEditor();
+  snapshot();
+};
+
+$('undo').onclick=()=>{
+  if(history.length<=1) return;
+
+  const current=history.pop();
+  future.push(current);
+
+  const previous=history[history.length-1];
+  restore(previous);
+};
+
+$('redo').onclick=()=>{
+  if(!future.length) return;
+
+  const next=future.pop();
+  history.push(next);
+  restore(next);
+};
+
+function saveProject(){
+  const data=JSON.stringify({
+    html:canvas.innerHTML,
+    w:designW,
+    h:designH,
+    savedAt:Date.now()
+  });
+
+  localStorage.setItem('UDS_PROJECT',data);
+
+  showModal('Project Saved',[
+    {title:'Saved',text:'Your editable project is saved on this device.'}
+  ]);
+}
+
+$('save').onclick=saveProject;
+
+$('layersTop').onclick=()=>{
+  $('editPanel').classList.add('hidden');
+  $('layerPanel').classList.remove('hidden');
+  updateLayers();
+};
+
+$('addText').onclick=()=>{
+  const o=make('text');
+  if(o){
+    o.focus();
+    try{
+      const range=document.createRange();
+      range.selectNodeContents(o);
+      const sel=window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }catch(e){}
+  }
+};
+
+$('addShape').onclick=()=>{
+  make('shape');
+};
+
+$('addImage').onclick=()=>{
+  fileMode='image';
+  $('file').click();
+};
+
+$('addBg').onclick=()=>{
+  fileMode='background';
+  $('file').click();
+};
+
+$('edit').onclick=()=>{
+  if(!selected){
+    showModal('Edit',[
+      {title:'Select Object',text:'Tap an image, text or shape first.'}
+    ]);
+    return;
+  }
+
+  $('layerPanel').classList.add('hidden');
+  $('editPanel').classList.remove('hidden');
+  refresh();
+};
+
+$('fit').onclick=()=>{
+  if(!selected) return;
+
+  const pad=20;
+  selected.style.left=pad+'px';
+  selected.style.top=pad+'px';
+  selected.style.width=Math.max(30,designW-pad*2)+'px';
+  selected.style.height=Math.max(30,designH-pad*2)+'px';
+
+  snapshot();
+  refresh();
+};
+
+$('center').onclick=()=>{
+  if(!selected) return;
+
+  const w=selected.offsetWidth;
+  const h=selected.offsetHeight;
+
+  selected.style.left=Math.round((designW-w)/2)+'px';
+  selected.style.top=Math.round((designH-h)/2)+'px';
+
+  snapshot();
+  refresh();
+};
+
+$('rminus').onclick=()=>{
+  if(!selected) return;
+
+  const r=parseFloat(selected.dataset.rot||0)-15;
+  selected.dataset.rot=r;
+  selected.style.transform='rotate('+r+'deg)';
+  snapshot();
+};
+
+$('rplus').onclick=()=>{
+  if(!selected) return;
+
+  const r=parseFloat(selected.dataset.rot||0)+15;
+  selected.dataset.rot=r;
+  selected.style.transform='rotate('+r+'deg)';
+  snapshot();
+};
+
+$('color').oninput=e=>{
+  if(!selected) return;
+
+  if(selected.classList.contains('textobj')){
+    selected.style.color=e.target.value;
+  }else{
+    selected.style.backgroundColor=e.target.value;
+  }
+};
+
+$('color').onchange=()=>{
+  if(selected) snapshot();
+};
+
+$('fontSize').oninput=e=>{
+  if(!selected) return;
+
+  selected.style.fontSize=e.target.value+'px';
+};
+
+$('fontSize').onchange=()=>{
+  if(selected) snapshot();
+};
+
+$('bold').onclick=()=>{
+  if(!selected) return;
+
+  selected.style.fontWeight=
+    selected.style.fontWeight==='700'?'400':'700';
+
+  snapshot();
+};
+
+$('left').onclick=()=>{
+  if(!selected) return;
+
+  selected.style.textAlign='left';
+  snapshot();
+};
+
+$('centerText').onclick=()=>{
+  if(!selected) return;
+
+  selected.style.textAlign='center';
+  snapshot();
+};
+
+$('right').onclick=()=>{
+  if(!selected) return;
+
+  selected.style.textAlign='right';
+  snapshot();
+};
+
+$('font').onchange=e=>{
+  if(!selected) return;
+
+  selected.style.fontFamily=e.target.value;
+  snapshot();
+};
+
+$('dup').onclick=()=>{
+  if(!selected) return;
+
+  snapshot();
+
+  const copy=selected.cloneNode(true);
+  copy.querySelectorAll('.handles').forEach(h=>h.remove());
+
+  copy.style.left=(parseFloat(selected.style.left||0)+30)+'px';
+  copy.style.top=(parseFloat(selected.style.top||0)+30)+'px';
+  copy.dataset.name=(selected.dataset.name||'Object')+' Copy';
+  copy.dataset.locked='false';
+
+  canvas.appendChild(copy);
+  addObjectEvents(copy);
+  select(copy);
+};
+
+$('del').onclick=()=>{
+  if(!selected) return;
+
+  snapshot();
+  selected.remove();
+  selected=null;
+  refresh();
+};
+
+$('up').onclick=()=>{
+  if(!selected) return;
+
+  selected.style.zIndex=parseInt(selected.style.zIndex||1)+1;
+  snapshot();
+  refresh();
+};
+
+$('down').onclick=()=>{
+  if(!selected) return;
+
+  selected.style.zIndex=Math.max(1,parseInt(selected.style.zIndex||1)-1);
+  snapshot();
+  refresh();
+};
+
+document.querySelectorAll('[data-close]').forEach(b=>{
+  b.onclick=()=>{
+    $(b.dataset.close).classList.add('hidden');
+  };
+});
+
+$('modalClose').onclick=()=>{
+  $('modal').classList.remove('show');
+};
+
+$('modal').addEventListener('click',e=>{
+  if(e.target===$('modal')){
+    $('modal').classList.remove('show');
+  }
+});
+
+$('file').onchange=e=>{
+  const f=e.target.files?.[0];
+  if(!f) return;
+
+  const reader=new FileReader();
+
+  reader.onload=ev=>{
+    if(fileMode==='background'){
+      snapshot();
+      canvas.style.backgroundImage='url("'+ev.target.result+'")';
+      canvas.style.backgroundSize='cover';
+      canvas.style.backgroundPosition='center';
+      canvas.dataset.background='image';
+      refresh();
+    }else{
+      const o=make('image');
+
+      if(o){
+        o.src=ev.target.result;
+        o.dataset.name=f.name||'Image';
+        o.style.width=Math.min(500,designW-80)+'px';
+        o.style.height=Math.min(400,designH-80)+'px';
+        o.style.objectFit='contain';
+        o.style.left='40px';
+        o.style.top='40px';
+        snapshot();
+        refresh();
+      }
+    }
+
+    e.target.value='';
+  };
+
+  reader.readAsDataURL(f);
+};
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    closePanels();
+    $('modal').classList.remove('show');
+  }
+
+  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){
+    e.preventDefault();
+    $('undo').click();
+  }
+
+  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'){
+    e.preventDefault();
+    $('redo').click();
+  }
+
+  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){
+    e.preventDefault();
+    saveProject();
+  }
+
+  if(e.key==='Delete' && selected && document.activeElement!==selected){
+    $('del').click();
+  }
+});
+
+applyCanvasSize();
+refresh();
+</script>
+</body>
+</html>
