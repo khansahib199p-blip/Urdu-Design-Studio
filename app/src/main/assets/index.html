@@ -3,1076 +3,2224 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Urdu Design Studio</title>
+<title>Urdu Design Studio V6</title>
+
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;width:100%;height:100%;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033;overflow:hidden}
-button,input,select{font:inherit}
-button{border:0;cursor:pointer}
-.hidden{display:none!important}
-.screen{width:100%;height:100%;overflow:hidden}
-#home{display:flex;flex-direction:column;background:#f7f8fc;overflow:auto}
-.topbar{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:#fff;border-bottom:1px solid #e7eaf0;flex-shrink:0}
-.brand{font-size:20px;font-weight:800}
-.brand small{display:block;font-size:11px;color:#788195;font-weight:500;margin-top:2px}
-.iconbtn{width:42px;height:42px;border-radius:12px;background:#f0f3f8;font-size:20px}
-.hero{margin:16px;border-radius:24px;padding:24px;background:linear-gradient(135deg,#273c75,#7d5fff);color:#fff;box-shadow:0 10px 30px #263c7533}
-.hero h1{margin:0;font-size:28px}
-.hero p{margin:8px 0 18px;color:#e8ecff}
-.primary{background:#fff;color:#263c75;padding:13px 20px;border-radius:14px;font-weight:800}
-.section{padding:0 16px 18px}
-.sectiontitle{font-weight:800;font-size:17px;margin:8px 0 12px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.card{background:#fff;border:1px solid #e8ebf1;border-radius:18px;padding:16px 8px;min-height:96px;box-shadow:0 4px 15px #1720330a}
-.card b{display:block;font-size:12px;margin-top:8px}
-.card .ico{font-size:25px}
-.bottomnav{height:68px;background:#fff;border-top:1px solid #e6e9ef;display:flex;align-items:center;justify-content:space-around;flex-shrink:0}
-.navitem{background:transparent;color:#687286;font-size:11px;text-align:center}
-.navitem span{display:block;font-size:21px;margin-bottom:2px}
-.plus{width:52px;height:52px;border-radius:50%;background:#263c75;color:#fff;font-size:28px;margin-top:-22px;box-shadow:0 7px 18px #263c7540}
-#setup{display:none;background:#f5f7fb;overflow:auto}
-.setuphead{height:62px;background:#fff;display:flex;align-items:center;padding:0 14px;gap:12px;border-bottom:1px solid #e6e9ef}
-.setuphead h2{font-size:18px;margin:0}
-.back{width:40px;height:40px;border-radius:12px;background:#eef1f6}
-.form{padding:18px}
-.form label{font-size:12px;color:#667085;font-weight:700;display:block;margin:12px 0 6px}
-.row{display:flex;gap:10px}
-.input{width:100%;padding:13px;border:1px solid #dfe3ea;border-radius:12px;background:#fff;outline:none}
-.presets{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px}
-.preset{padding:15px;border-radius:14px;background:#fff;border:1px solid #e5e8ef;text-align:left}
-.preset b{display:block}
-.create{width:100%;padding:15px;border-radius:14px;background:#263c75;color:#fff;font-weight:800;margin-top:18px}
-#editor{display:none;flex-direction:column;background:#e9edf3}
-.editortop{height:58px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 9px;border-bottom:1px solid #dfe3ea;flex-shrink:0}
-.toolbar{display:flex;gap:6px}
-.toolbtn{width:40px;height:40px;border-radius:11px;background:#f0f2f6}
-#stage{flex:1;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
-#canvas{position:relative;width:1080px;height:1080px;background:#fff;overflow:hidden;box-shadow:0 12px 35px #0002;transform-origin:center center;flex-shrink:0}
-.obj{position:absolute;touch-action:none;user-select:none}
-.textobj{min-width:80px;min-height:40px;padding:4px;outline:none;white-space:pre-wrap}
-.imgobj{object-fit:contain}
-.shapeobj{background:#263c75;border-radius:12px}
-.obj.selected{outline:2px solid #5b6cff}
-.handles{position:absolute;inset:-7px;pointer-events:none;z-index:9999}
-.handle{position:absolute;width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid #5b6cff;pointer-events:auto;touch-action:none}
-.h-tl{left:0;top:0}.h-tc{left:50%;top:0;transform:translateX(-50%)}
-.h-tr{right:0;top:0}.h-ml{left:0;top:50%;transform:translateY(-50%)}
-.h-mr{right:0;top:50%;transform:translateY(-50%)}
-.h-bl{left:0;bottom:0}.h-bc{left:50%;bottom:0;transform:translateX(-50%)}
-.h-br{right:0;bottom:0}
-.rotate{left:50%;top:-32px;transform:translateX(-50%);background:#5b6cff}
-.bottomtools{height:68px;background:#fff;border-top:1px solid #dfe3ea;display:flex;justify-content:space-around;align-items:center;flex-shrink:0}
-.bottomtools button{background:transparent;color:#505b70;font-size:11px}
-.bottomtools span{display:block;font-size:22px}
-.panel{position:absolute;right:0;top:58px;bottom:68px;width:min(340px,92%);background:#fff;z-index:10000;box-shadow:-8px 0 25px #0002;padding:16px;overflow:auto}
-.panel h3{margin:0 0 14px}
-.panelrow{display:flex;gap:8px;align-items:center;margin:8px 0}
-.smallbtn{padding:9px 11px;background:#eef1f6;border-radius:10px}
-.range{width:100%}
-.layer{display:flex;align-items:center;gap:7px;padding:10px;border-bottom:1px solid #edf0f4}
-.layername{flex:1;font-size:12px}
-.layer button{background:#eef1f6;border-radius:7px;padding:5px}
-.modal{position:absolute;inset:0;background:#0007;z-index:20000;display:none;align-items:center;justify-content:center;padding:20px}
-.modal.show{display:flex}
-.modalbox{width:min(430px,100%);max-height:85%;overflow:auto;background:#fff;border-radius:20px;padding:18px}
-.modalhead{display:flex;justify-content:space-between;align-items:center}
-.modalgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
-.modalitem{padding:15px;border-radius:14px;background:#f3f5f9;text-align:left}
-#file{display:none}
+:root{
+  --p:#6d42f5;
+  --p2:#9b6cff;
+  --bg:#f5f6fb;
+  --ink:#171827;
+  --muted:#818596;
+  --line:#e8e9ef;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+}
+
+button,input,select,textarea{
+  font:inherit;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+.home{
+  height:100%;
+  overflow:auto;
+  padding:18px 16px 92px;
+}
+
+.head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.logo{
+  width:45px;
+  height:45px;
+  border-radius:15px;
+  background:linear-gradient(135deg,var(--p),var(--p2));
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-size:23px;
+  box-shadow:0 8px 20px #6d42f52f;
+}
+
+.brand b{
+  font-size:18px;
+}
+
+.brand small{
+  display:block;
+  color:var(--muted);
+  margin-top:3px;
+}
+
+.gear{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:#fff;
+  box-shadow:0 5px 18px #19193212;
+}
+
+.welcome{
+  padding:22px 2px 16px;
+}
+
+.welcome h1{
+  font-size:28px;
+  margin:0;
+}
+
+.welcome h1 span{
+  color:var(--p);
+}
+
+.welcome p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+}
+
+/* =========================
+   HOME SLIDER
+========================= */
+
+.slider{
+  position:relative;
+  width:100%;
+  height:190px;
+  margin:4px 0 22px;
+  overflow:hidden;
+  border-radius:22px;
+  background:#0b1738;
+  box-shadow:0 12px 30px rgba(20,30,80,.18);
+  touch-action:pan-y;
+}
+
+.slides{
+  display:flex;
+  width:100%;
+  height:100%;
+  transition:transform .45s ease;
+}
+
+.slide{
+  min-width:100%;
+  height:100%;
+  position:relative;
+  overflow:hidden;
+  box-sizing:border-box;
+}
+
+.slide>img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.slideContent{
+  position:absolute;
+  left:20px;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:2;
+  max-width:65%;
+  color:white;
+}
+
+.slideBadge{
+  display:inline-block;
+  padding:6px 9px;
+  border-radius:999px;
+  background:#ffffff18;
+  border:1px solid #ffffff22;
+  font-size:9px;
+  font-weight:800;
+  margin-bottom:8px;
+}
+
+.slideContent h3{
+  margin:0 0 6px;
+  font-size:21px;
+  line-height:1.15;
+}
+
+.slideContent p{
+  margin:0;
+  font-size:11px;
+  line-height:1.45;
+  color:#e9edff;
+}
+
+.dots{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:10px;
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  z-index:4;
+}
+
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  border:0;
+  background:#ffffff55;
+  padding:0;
+}
+
+.dot.active{
+  width:20px;
+  border-radius:9px;
+  background:#fff;
+}
+
+.slideArrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:#00000035;
+  color:#fff;
+  backdrop-filter:blur(5px);
+  font-size:20px;
+  z-index:5;
+}
+
+.slidePrev{
+  left:10px;
+}
+
+.slideNext{
+  right:10px;
+}
+
+.slideArt{
+  position:absolute;
+  right:8%;
+  top:50%;
+  transform:translateY(-50%);
+  width:145px;
+  height:145px;
+  border-radius:38% 62% 55% 45% / 45% 42% 58% 55%;
+  background:linear-gradient(135deg,#5d4df6,#3bd8e8);
+  box-shadow:0 0 45px #46dff066;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-size:42px;
+  font-weight:900;
+  opacity:.92;
+}
+
+.slide2{
+  background:
+    radial-gradient(circle at 80% 20%,#5e4df766,transparent 32%),
+    linear-gradient(135deg,#101d48,#16265f 55%,#0b1430);
+}
+
+.slide3{
+  background:
+    radial-gradient(circle at 85% 30%,#23d8d866,transparent 30%),
+    linear-gradient(135deg,#081b31,#123d5e,#101938);
+}
+
+.slide4{
+  background:
+    radial-gradient(circle at 80% 35%,#b16cff66,transparent 28%),
+    linear-gradient(135deg,#17143d,#31216b,#101733);
+}
+
+.slide5{
+  background:
+    radial-gradient(circle at 75% 30%,#4dd5ff55,transparent 30%),
+    linear-gradient(135deg,#071d39,#103c54,#10162f);
+}
+
+.slide6{
+  background:
+    radial-gradient(circle at 82% 25%,#8f6dff66,transparent 28%),
+  linear-gradient(135deg,#17102e,#30245f,#10152f);
+}
+
+.slide7{
+  background:
+    radial-gradient(circle at 78% 25%,#32e0c066,transparent 28%),
+    linear-gradient(135deg,#062235,#0c4b56,#10152f);
+}
+
+@media(max-width:430px){
+
+  .slide{
+    height:175px;
+  }
+
+  .slideContent h3{
+    font-size:20px;
+  }
+
+  .slideArt{
+    width:125px;
+    height:125px;
+    font-size:36px;
+    right:6%;
+  }
+}
+
+/* =========================
+   HOME
+========================= */
+
+.hero{
+  background:linear-gradient(135deg,var(--p),var(--p2));
+  color:#fff;
+  border-radius:25px;
+  padding:22px 20px;
+  box-shadow:0 12px 28px #6d42f52d;
+}
+
+.hero small{
+  opacity:.78;
+  font-weight:700;
+  letter-spacing:.5px;
+}
+
+.hero h2{
+  margin:7px 0;
+}
+
+.hero p{
+  opacity:.85;
+  font-size:13px;
+}
+
+.primary{
+  background:#fff;
+  color:#5e3bea;
+  padding:12px 16px;
+  border-radius:14px;
+  font-weight:800;
+}
+
+.sec{
+  font-size:14px;
+  font-weight:800;
+  margin:22px 0 10px;
+}
+
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.card{
+  background:#fff;
+  border-radius:18px;
+  min-height:90px;
+  padding:12px 7px;
+  box-shadow:0 6px 20px #1919320d;
+}
+
+.card .ico{
+  width:38px;
+  height:38px;
+  margin:0 auto 8px;
+  border-radius:13px;
+  background:#f0edff;
+  color:#6943ee;
+  display:grid;
+  place-items:center;
+  font-size:20px;
+}
+
+.card b{
+  font-size:11px;
+}
+
+/* =========================
+   SETUP
+========================= */
+
+.setup{
+  display:none;
+  height:100%;
+  overflow:auto;
+  padding:18px 16px 40px;
+}
+
+.setupHead{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.back{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:#fff;
+  box-shadow:0 5px 18px #19193212;
+}
+
+.setup h2{
+  margin:0;
+}
+
+.setup p{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.presets{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:18px;
+}
+
+.preset{
+  background:#fff;
+  padding:15px;
+  border-radius:18px;
+  text-align:left;
+  box-shadow:0 6px 20px #1919320d;
+}
+
+.preset.active{
+  outline:2px solid var(--p);
+}
+
+.preset b{
+  display:block;
+  margin-bottom:4px;
+}
+
+.preset small{
+  color:var(--muted);
+}
+
+.customBox{
+  margin-top:18px;
+  background:#fff;
+  padding:16px;
+  border-radius:18px;
+}
+
+.customRow{
+  display:flex;
+  gap:10px;
+}
+
+.customRow label{
+  flex:1;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.customRow input{
+  width:100%;
+  margin-top:5px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:11px;
+}
+
+/* =========================
+   EDITOR
+========================= */
+
+.editor{
+  display:none;
+  height:100%;
+  flex-direction:column;
+  background:#f1f2f7;
+}
+
+.editorTop{
+  height:58px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 10px;
+  box-shadow:0 2px 12px #1919320b;
+}
+
+.editorTop .left,
+.editorTop .right{
+  display:flex;
+  gap:6px;
+}
+
+.toolBtn{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  background:#f5f5fa;
+}
+
+.toolBtn.primaryTool{
+  background:#6d42f5;
+  color:#fff;
+}
+
+.stageWrap{
+  flex:1;
+  min-height:0;
+  display:grid;
+  place-items:center;
+  padding:15px;
+  overflow:hidden;
+}
+
+.stage{
+  width:100%;
+  height:100%;
+  display:grid;
+  place-items:center;
+  position:relative;
+}
+
+.canvas{
+  position:relative;
+  background:#fff;
+  box-shadow:0 15px 35px #19193222;
+  overflow:hidden;
+}
+
+.grid{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(#ddd 1px,transparent 1px),
+    linear-gradient(90deg,#ddd 1px,transparent 1px);
+  background-size:40px 40px;
+  opacity:.08;
+}
+
+.editorBottom{
+  min-height:70px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px;
+  overflow-x:auto;
+  box-shadow:0 -2px 12px #1919320b;
+}
+
+.bottomTool{
+  min-width:58px;
+  height:54px;
+  border-radius:15px;
+  background:#f6f5fb;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  font-size:10px;
+}
+
+.bottomTool b{
+  font-size:17px;
+}
+
+/* =========================
+   OBJECTS
+========================= */
+
+.obj{
+  position:absolute;
+  user-select:none;
+  touch-action:none;
+}
+
+.obj.selected{
+  outline:2px solid #6d42f5;
+}
+
+.objText{
+  padding:5px;
+  min-width:70px;
+  color:#111;
+  font-size:42px;
+}
+
+.objShape{
+  width:180px;
+  height:120px;
+  background:#6d42f5;
+  border-radius:18px;
+}
+
+.objImage{
+  max-width:240px;
+  max-height:240px;
+}
+
+.handle{
+  position:absolute;
+  width:12px;
+  height:12px;
+  background:#fff;
+  border:2px solid #6d42f5;
+  border-radius:50%;
+}
+
+.h-tl{left:-7px;top:-7px}
+.h-tr{right:-7px;top:-7px}
+.h-bl{left:-7px;bottom:-7px}
+.h-br{right:-7px;bottom:-7px}
+.h-t{left:50%;top:-7px;transform:translateX(-50%)}
+
+.rotateHandle{
+  position:absolute;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:#6d42f5;
+  left:50%;
+  top:-34px;
+  transform:translateX(-50%);
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modalBack{
+  position:fixed;
+  inset:0;
+  background:#00000055;
+  display:none;
+  align-items:flex-end;
+  z-index:100;
+}
+
+.modal{
+  width:100%;
+  max-height:82%;
+  background:#fff;
+  border-radius:25px 25px 0 0;
+  padding:18px;
+  overflow:auto;
+}
+
+.modal h3{
+  margin:0 0 15px;
+}
+
+.modalGrid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.modalBtn{
+  background:#f6f5fb;
+  padding:14px;
+  border-radius:15px;
+  text-align:left;
+}
+
+.modalBtn b{
+  display:block;
+  margin-bottom:4px;
+}
+
+.modalBtn small{
+  color:var(--muted);
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.nav{
+  position:fixed;
+  left:10px;
+  right:10px;
+  bottom:10px;
+  height:65px;
+  background:#fff;
+  border-radius:22px;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  box-shadow:0 8px 28px #19193220;
+  z-index:20;
+}
+
+.nav button{
+  background:none;
+  color:#777;
+  font-size:10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:3px;
+}
+
+.nav button b{
+  font-size:18px;
+}
+
+.nav button.active{
+  color:#6d42f5;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:90px;
+  transform:translateX(-50%);
+  background:#171827;
+  color:#fff;
+  padding:11px 15px;
+  border-radius:12px;
+  display:none;
+  z-index:200;
+  font-size:12px;
+}
 </style>
 </head>
 
 <body>
 
-<section id="home" class="screen">
-  <div class="topbar">
-    <div class="brand">Urdu Design Studio<small>Design • Edit • Save</small></div>
-    <button class="iconbtn" id="settingsBtn">⚙</button>
+<!-- =========================
+     HOME
+========================= -->
+
+<section class="home" id="home">
+
+  <div class="head">
+
+    <div class="brand">
+      <div class="logo">✦</div>
+
+      <div>
+        <b>Urdu Design Studio</b>
+        <small>Design • Edit • Create</small>
+      </div>
+    </div>
+
+    <button class="gear" id="settingsBtn">⚙</button>
+
   </div>
+
+  <div class="welcome">
+    <h1>Create something<br><span>beautiful.</span></h1>
+    <p>Professional graphic design made simple.</p>
+  </div>
+
+  <!-- =========================
+       7 SLIDE HOME BANNER
+  ========================== -->
+
+  <div class="slider" id="homeSlider">
+
+    <div class="slides" id="slides">
+
+      <!-- SLIDE 1 -->
+      <div class="slide">
+        <img src="slider1.jpg" alt="Urdu Design Studio banner">
+      </div>
+
+      <!-- SLIDE 2 -->
+      <div class="slide slide2">
+
+        <div class="slideContent">
+          <span class="slideBadge">NEW DESIGN</span>
+
+          <h3>Creative Urdu Posters</h3>
+
+          <p>
+            Build beautiful posters with powerful typography and modern layouts.
+          </p>
+        </div>
+
+        <div class="slideArt">Aa</div>
+
+      </div>
+
+      <!-- SLIDE 3 -->
+      <div class="slide slide3">
+
+        <div class="slideContent">
+          <span class="slideBadge">TYPOGRAPHY</span>
+
+          <h3>Beautiful Text</h3>
+
+          <p>
+            Design Urdu and English text with fonts, colors, spacing and effects.
+          </p>
+        </div>
+
+        <div class="slideArt">T</div>
+
+      </div>
+
+      <!-- SLIDE 4 -->
+      <div class="slide slide4">
+
+        <div class="slideContent">
+          <span class="slideBadge">TEMPLATES</span>
+
+          <h3>Ready-Made Designs</h3>
+
+          <p>
+            Start faster with editable templates for posts, events and promotions.
+          </p>
+        </div>
+
+        <div class="slideArt">✦</div>
+
+      </div>
+
+      <!-- SLIDE 5 -->
+      <div class="slide slide5">
+
+        <div class="slideContent">
+          <span class="slideBadge">ELEMENTS</span>
+
+          <h3>Design Elements</h3>
+
+          <p>
+            Use shapes, frames, backgrounds and decorative elements in your designs.
+          </p>
+        </div>
+
+        <div class="slideArt">◇</div>
+
+      </div>
+
+      <!-- SLIDE 6 -->
+      <div class="slide slide6">
+
+        <div class="slideContent">
+          <span class="slideBadge">POWERFUL EDITING</span>
+
+          <h3>Layers & Objects</h3>
+
+          <p>
+            Move, resize, rotate, duplicate and organize every design object.
+          </p>
+        </div>
+
+        <div class="slideArt">◫</div>
+
+      </div>
+
+      <!-- SLIDE 7 -->
+      <div class="slide slide7">
+
+        <div class="slideContent">
+          <span class="slideBadge">URDU DESIGN STUDIO</span>
+
+          <h3>Design • Edit • Create</h3>
+
+          <p>
+            Your creative workspace for professional Urdu graphic design.
+          </p>
+        </div>
+
+        <div class="slideArt">Ur</div>
+
+      </div>
+
+    </div>
+
+    <button class="slideArrow slidePrev" id="slidePrev">‹</button>
+
+    <button class="slideArrow slideNext" id="slideNext">›</button>
+
+    <div class="dots" id="sliderDots">
+
+      <button class="dot active" data-slide="0"></button>
+      <button class="dot" data-slide="1"></button>
+      <button class="dot" data-slide="2"></button>
+      <button class="dot" data-slide="3"></button>
+      <button class="dot" data-slide="4"></button>
+      <button class="dot" data-slide="5"></button>
+      <button class="dot" data-slide="6"></button>
+
+    </div>
+
+  </div>
+
+  <!-- NEW DESIGN -->
 
   <div class="hero">
-    <h1>Creative Design Made Easy</h1>
-    <p>Make Urdu designing easy and creative.</p>
-    <button class="primary" id="newBtn">Start Designing</button>
-  </div>
 
-  <div class="section">
-    <div class="sectiontitle">Quick Tools</div>
-    <div class="grid">
-      <button class="card" id="homeTemplates"><span class="ico">🖼️</span><b>Templates</b></button>
-      <button class="card" id="homeProjects"><span class="ico">📁</span><b>My Designs</b></button>
-      <button class="card" id="homeElements"><span class="ico">✨</span><b>Elements</b></button>
-      <button class="card" id="homeShapes"><span class="ico">⬢</span><b>Shapes</b></button>
-      <button class="card" id="homeFrames"><span class="ico">▣</span><b>Frames</b></button>
-      <button class="card" id="homeBackgrounds"><span class="ico">🎨</span><b>Backgrounds</b></button>
-      <button class="card" id="homeImport"><span class="ico">📷</span><b>Import Image</b></button>
-      <button class="card" id="homeText"><span class="ico">T</span><b>Text</b></button>
-      <button class="card" id="homeMore"><span class="ico">⋯</span><b>More Tools</b></button>
-    </div>
-  </div>
+    <small>START A NEW PROJECT</small>
 
-  <div class="bottomnav">
-    <button class="navitem" id="navHome"><span>⌂</span>Home</button>
-    <button class="navitem" id="navTemplates"><span>▦</span>Templates</button>
-    <button class="plus" id="plusBtn">+</button>
-    <button class="navitem" id="navProjects"><span>▤</span>Projects</button>
-    <button class="navitem" id="navSettings"><span>⚙</span>Settings</button>
-  </div>
-</section>
-
-<section id="setup" class="screen">
-  <div class="setuphead">
-    <button class="back" id="back">←</button>
     <h2>New Design</h2>
-  </div>
-  <div class="form">
-    <label>Canvas Width</label>
-    <input class="input" id="cw" type="number" value="1080">
-    <label>Canvas Height</label>
-    <input class="input" id="ch" type="number" value="1080">
 
-    <label>Preset Sizes</label>
-    <div class="presets">
-      <button class="preset" data-w="1080" data-h="1080"><b>Square</b>1080 × 1080</button>
-      <button class="preset" data-w="1080" data-h="1350"><b>Portrait</b>1080 × 1350</button>
-      <button class="preset" data-w="1080" data-h="1920"><b>Story</b>1080 × 1920</button>
-      <button class="preset" data-w="1920" data-h="1080"><b>Landscape</b>1920 × 1080</button>
-      <button class="preset" data-w="1200" data-h="628"><b>Social Post</b>1200 × 628</button>
-      <button class="preset" data-w="1280" data-h="720"><b>Thumbnail</b>1280 × 720</button>
-    </div>
+    <p>Choose a size and start creating.</p>
 
-    <button class="create" id="create">Create Design</button>
+    <button class="primary" id="newBtn">
+      ＋ New Design
+    </button>
+
   </div>
+
+  <!-- QUICK ACCESS -->
+
+  <div class="sec">Quick Access</div>
+
+  <div class="grid3">
+
+    <button class="card" id="homeTemplates">
+      <div class="ico">▦</div>
+      <b>Templates</b>
+    </button>
+
+    <button class="card" id="homeProjects">
+      <div class="ico">◫</div>
+      <b>My Designs</b>
+    </button>
+
+    <button class="card" id="homeElements">
+      <div class="ico">✦</div>
+      <b>Elements</b>
+    </button>
+
+  </div>
+
+  <!-- DESIGN TOOLS -->
+
+  <div class="sec">Design Tools</div>
+
+  <div class="grid3">
+
+    <button class="card" id="homeShapes">
+      <div class="ico">◇</div>
+      <b>Shapes</b>
+    </button>
+
+    <button class="card" id="homeFrames">
+      <div class="ico">▣</div>
+      <b>Frames</b>
+    </button>
+
+    <button class="card" id="homeBackgrounds">
+      <div class="ico">◉</div>
+      <b>Backgrounds</b>
+    </button>
+
+    <button class="card" id="homeImport">
+      <div class="ico">▧</div>
+      <b>Import</b>
+    </button>
+
+    <button class="card" id="homeText">
+      <div class="ico">T</div>
+      <b>Text</b>
+    </button>
+
+    <button class="card" id="homeMore">
+      <div class="ico">⋯</div>
+      <b>More</b>
+    </button>
+
+  </div>
+
+  <div class="sec">Recent Designs</div>
+
+  <div id="recentDesigns"></div>
+
 </section>
 
-<section id="editor" class="screen">
-  <div class="editortop">
-    <div class="toolbar">
-      <button class="toolbtn" id="undo">↶</button>
-      <button class="toolbtn" id="redo">↷</button>
+
+<!-- =========================
+     SETUP
+========================= -->
+
+<section class="setup" id="setup">
+
+  <div class="setupHead">
+
+    <button class="back" id="back">‹</button>
+
+    <div>
+      <h2>New Design</h2>
+      <p>Choose your canvas size.</p>
     </div>
-    <div class="toolbar">
-      <button class="toolbtn" id="layersTop">☷</button>
-      <button class="toolbtn" id="save">💾</button>
-    </div>
+
   </div>
 
-  <div id="stage">
-    <div id="canvas"></div>
+  <div class="presets">
 
-    <div class="panel hidden" id="editPanel">
-      <h3>Edit Object</h3>
-      <div class="panelrow">
-        <button class="smallbtn" id="fit">Fit</button>
-        <button class="smallbtn" id="center">Center</button>
-        <button class="smallbtn" id="rminus">− Rotate</button>
-        <button class="smallbtn" id="rplus">+ Rotate</button>
-      </div>
+    <button class="preset active" data-w="1080" data-h="1080">
+      <b>Square Post</b>
+      <small>1080 × 1080</small>
+    </button>
 
-      <label>Color</label>
-      <input id="color" type="color" value="#263c75">
+    <button class="preset" data-w="1080" data-h="1350">
+      <b>Portrait Post</b>
+      <small>1080 × 1350</small>
+    </button>
 
-      <label>Font Size</label>
-      <input id="fontSize" class="range" type="range" min="8" max="180" value="40">
+    <button class="preset" data-w="1920" data-h="1080">
+      <b>YouTube</b>
+      <small>1920 × 1080</small>
+    </button>
 
-      <div class="panelrow">
-        <button class="smallbtn" id="bold">Bold</button>
-        <button class="smallbtn" id="left">Left</button>
-        <button class="smallbtn" id="centerText">Center</button>
-        <button class="smallbtn" id="right">Right</button>
-      </div>
+    <button class="preset" data-w="1080" data-h="1920">
+      <b>Story</b>
+      <small>1080 × 1920</small>
+    </button>
 
-      <label>Font</label>
-      <select class="input" id="font">
-        <option value="Arial">Arial</option>
-        <option value="Georgia">Georgia</option>
-        <option value="Times New Roman">Times New Roman</option>
-        <option value="Tahoma">Tahoma</option>
-        <option value="serif">Serif</option>
-        <option value="sans-serif">Sans Serif</option>
-      </select>
+    <button class="preset" data-w="1200" data-h="628">
+      <b>Facebook</b>
+      <small>1200 × 628</small>
+    </button>
 
-      <div class="panelrow">
-        <button class="smallbtn" id="dup">Duplicate</button>
-        <button class="smallbtn" id="del">Delete</button>
-        <button class="smallbtn" id="up">Bring Forward</button>
-        <button class="smallbtn" id="down">Send Back</button>
-      </div>
+    <button class="preset" data-w="1500" data-h="500">
+      <b>Banner</b>
+      <small>1500 × 500</small>
+    </button>
 
-      <button class="smallbtn" data-close="editPanel">Close</button>
-    </div>
-
-    <div class="panel hidden" id="layerPanel">
-      <h3>Layers</h3>
-      <div id="layers"></div>
-      <button class="smallbtn" data-close="layerPanel">Close</button>
-    </div>
   </div>
 
-  <div class="bottomtools">
-    <button id="addText"><span>T</span>Text</button>
-    <button id="addImage"><span>▧</span>Image</button>
-    <button id="addShape"><span>⬢</span>Shape</button>
-    <button id="addBg"><span>🎨</span>Background</button>
-    <button id="edit"><span>✎</span>Edit</button>
+  <div class="customBox">
+
+    <b>Custom Size</b>
+
+    <div class="customRow">
+
+      <label>
+        Width
+        <input id="cw" type="number" value="1080">
+      </label>
+
+      <label>
+        Height
+        <input id="ch" type="number" value="1080">
+      </label>
+
+    </div>
+
   </div>
+
+  <button class="primary" id="create" style="margin-top:18px;width:100%;">
+    Create Design
+  </button>
+
 </section>
 
-<input type="file" id="file" accept="image/png,image/jpeg,image/jpg">
 
-<div class="modal" id="modal">
-  <div class="modalbox">
-    <div class="modalhead">
-      <h3 id="modalTitle">Tools</h3>
-      <button class="iconbtn" id="modalClose">×</button>
+<!-- =========================
+     EDITOR
+========================= -->
+
+<section class="editor" id="editor">
+
+  <div class="editorTop">
+
+    <div class="left">
+
+      <button class="toolBtn" id="editorBack">‹</button>
+
+      <button class="toolBtn" id="undoBtn">↶</button>
+
+      <button class="toolBtn" id="redoBtn">↷</button>
+
     </div>
-    <div class="modalgrid" id="modalGrid"></div>
+
+    <div class="right">
+
+      <button class="toolBtn" id="saveBtn">💾</button>
+
+      <button class="toolBtn primaryTool" id="exportBtn">↥</button>
+
+    </div>
+
   </div>
+
+  <div class="stageWrap">
+
+    <div class="stage" id="stage">
+
+      <div class="canvas" id="canvas">
+
+        <div class="grid"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="editorBottom">
+
+    <button class="bottomTool" id="addText">
+      <b>T</b>
+      Text
+    </button>
+
+    <button class="bottomTool" id="addImage">
+      <b>▧</b>
+      Image
+    </button>
+
+    <button class="bottomTool" id="addShape">
+      <b>◇</b>
+      Shape
+    </button>
+
+    <button class="bottomTool" id="addBg">
+      <b>◉</b>
+      Background
+    </button>
+
+    <button class="bottomTool" id="layersBtn">
+      <b>☷</b>
+      Layers
+    </button>
+
+    <button class="bottomTool" id="deleteBtn">
+      <b>⌫</b>
+      Delete
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     MODAL
+========================= -->
+
+<div class="modalBack" id="modalBack">
+
+  <div class="modal">
+
+    <h3 id="modalTitle">Tools</h3>
+
+    <div class="modalGrid" id="modalGrid"></div>
+
+  </div>
+
 </div>
 
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<div class="nav">
+
+  <button id="navHome" class="active">
+    <b>⌂</b>
+    Home
+  </button>
+
+  <button id="navTemplates">
+    <b>▦</b>
+    Templates
+  </button>
+
+  <button id="plusBtn">
+    <b>＋</b>
+    New
+  </button>
+
+  <button id="navProjects">
+    <b>◫</b>
+    Designs
+  </button>
+
+  <button id="navSettings">
+    <b>⚙</b>
+    Settings
+  </button>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
 <script>
-const $=id=>document.getElementById(id);
 
-const home=$('home');
-const setup=$('setup');
-const editor=$('editor');
-const canvas=$('canvas');
-const stage=$('stage');
+const $ = id => document.getElementById(id);
 
-let selected=null;
-let history=[];
-let future=[];
-let designW=1080;
-let designH=1080;
-let gesture=null;
-let fileMode='image';
+const home = $("home");
+const setup = $("setup");
+const editor = $("editor");
+const stage = $("stage");
+const canvas = $("canvas");
 
-function snapshot(){
-  history.push(JSON.stringify({
-    html:canvas.innerHTML,
-    w:designW,
-    h:designH
-  }));
-  if(history.length>40) history.shift();
-  future=[];
-}
+let selected = null;
+let history = [];
+let future = [];
 
-function restore(data){
-  try{
-    const x=JSON.parse(data);
-    designW=x.w||1080;
-    designH=x.h||1080;
-    canvas.innerHTML=x.html||'';
-    applyCanvasSize();
-    selected=null;
-    canvas.querySelectorAll('.obj').forEach(addObjectEvents);
-    refresh();
-  }catch(e){}
-}
+let designW = 1080;
+let designH = 1080;
 
-function select(o){
-  document.querySelectorAll('.obj.selected').forEach(x=>x.classList.remove('selected'));
-  selected=o;
-  if(o) o.classList.add('selected');
-  refresh();
-}
 
-function handleMarkup(){
-  return `
-  <div class="handles">
-    <span class="handle h-tl" data-h="tl"></span>
-    <span class="handle h-tc" data-h="tc"></span>
-    <span class="handle h-tr" data-h="tr"></span>
-    <span class="handle h-ml" data-h="ml"></span>
-    <span class="handle h-mr" data-h="mr"></span>
-    <span class="handle h-bl" data-h="bl"></span>
-    <span class="handle h-bc" data-h="bc"></span>
-    <span class="handle h-br" data-h="br"></span>
-    <span class="handle rotate" data-h="rotate"></span>
-  </div>`;
-}
+/* =========================
+   MODALS
+========================= */
 
-function addObjectEvents(o){
-  if(!o.classList.contains('obj')) return;
+function openModal(title,items){
 
-  o.querySelectorAll('.handles').forEach(h=>h.remove());
-  o.insertAdjacentHTML('beforeend',handleMarkup());
+  $("modalTitle").textContent = title;
 
-  o.addEventListener('pointerdown',objectDown);
-  o.addEventListener('click',e=>{
-    e.stopPropagation();
-    select(o);
+  const grid = $("modalGrid");
+
+  grid.innerHTML = "";
+
+  items.forEach(item => {
+
+    const btn = document.createElement("button");
+
+    btn.className = "modalBtn";
+
+    btn.innerHTML =
+      "<b>"+item.label+"</b>";
+
+    btn.onclick = () => {
+
+      $("modalBack").style.display = "none";
+
+      if(item.action){
+        item.action();
+      }
+
+    };
+
+    grid.appendChild(btn);
+
   });
 
-  o.querySelectorAll('.handle').forEach(h=>{
-    h.addEventListener('pointerdown',handleDown);
-  });
+  $("modalBack").style.display = "flex";
 
-  if(o.classList.contains('textobj')){
-    o.addEventListener('input',()=>{
-      if(selected===o) refresh();
+}
+
+function closeModal(){
+
+  $("modalBack").style.display = "none";
+
+}
+
+$("modalBack").addEventListener("click",e=>{
+
+  if(e.target === $("modalBack")){
+    closeModal();
+  }
+
+});
+
+
+/* =========================
+   TOAST
+========================= */
+
+function toast(message){
+
+  const t = $("toast");
+
+  t.textContent = message;
+
+  t.style.display = "block";
+
+  clearTimeout(window._toastTimer);
+
+  window._toastTimer =
+    setTimeout(()=>{
+      t.style.display = "none";
+    },1800);
+
+}
+
+
+/* =========================
+   HOME ACTIONS
+========================= */
+
+function quickSetup(action){
+
+  openSetup();
+
+  window._quickAction = action;
+
+}
+
+function templates(){
+
+  openModal(
+    "Templates",
+    [
+      {
+        label:"Urdu Poster",
+        action:()=>quickSetup("poster")
+      },
+      {
+        label:"Islamic Post",
+        action:()=>quickSetup("islamic")
+      },
+      {
+        label:"Wedding Card",
+        action:()=>quickSetup("wedding")
+      },
+      {
+        label:"Business Ad",
+        action:()=>quickSetup("business")
+      },
+      {
+        label:"YouTube Thumbnail",
+        action:()=>quickSetup("youtube")
+      },
+      {
+        label:"Social Post",
+        action:()=>quickSetup("social")
+      }
+    ]
+  );
+
+}
+
+function settings(){
+
+  openModal(
+    "Settings",
+    [
+      {
+        label:"Save Project",
+        action:()=>{
+          if(editor.style.display==="flex"){
+            saveProject();
+          }else{
+            toast("Open a design first");
+          }
+        }
+      },
+      {
+        label:"Reset Saved Project",
+        action:()=>{
+          localStorage.removeItem("UDS_V6_PROJECT");
+          toast("Saved project cleared");
+        }
+      },
+      {
+        label:"Editor Help",
+        action:()=>{
+          alert(
+            "Select an object, drag it to move, use the handles to resize, and use the top handle to rotate."
+          );
+        }
+      }
+    ]
+  );
+
+}
+
+function elements(){
+
+  openModal(
+    "Elements",
+    [
+      {
+        label:"Text",
+        action:()=>quickSetup("text")
+      },
+      {
+        label:"Shape",
+        action:()=>quickSetup("shape")
+      },
+      {
+        label:"Image",
+        action:()=>quickSetup("image")
+      },
+      {
+        label:"Background",
+        action:()=>quickSetup("bg")
+      }
+    ]
+  );
+
+}
+
+function simpleTool(name){
+
+  openModal(
+    name,
+    [
+      {
+        label:"Create New Design",
+        action:()=>quickSetup(name.toLowerCase())
+      },
+      {
+        label:"Open Editor",
+        action:()=>{
+          if(editor.style.display==="flex"){
+            closeModal();
+          }else{
+            openSetup();
+          }
+        }
+      }
+    ]
+  );
+
+}
+
+
+/* =========================
+   HOME BUTTONS
+========================= */
+
+$("homeTemplates").onclick = templates;
+
+$("homeProjects").onclick = openSaved;
+
+$("homeElements").onclick = elements;
+
+$("homeShapes").onclick =
+  ()=>simpleTool("Shapes");
+
+$("homeFrames").onclick =
+  ()=>simpleTool("Frames");
+
+$("homeBackgrounds").onclick =
+  ()=>simpleTool("Backgrounds");
+
+$("homeImport").onclick = ()=>{
+
+  openSetup();
+
+  window._quickAction = "image";
+
+};
+
+$("homeText").onclick = ()=>{
+
+  openSetup();
+
+  window._quickAction = "text";
+
+};
+
+$("homeMore").onclick = ()=>{
+
+  openModal(
+    "More Tools",
+    [
+      {
+        label:"Shapes",
+        action:()=>simpleTool("Shapes")
+      },
+      {
+        label:"Frames",
+        action:()=>simpleTool("Frames")
+      },
+      {
+        label:"Backgrounds",
+        action:()=>simpleTool("Backgrounds")
+      },
+      {
+        label:"My Designs",
+        action:openSaved
+      }
+    ]
+  );
+
+};
+
+$("settingsBtn").onclick = settings;
+
+$("navHome").onclick = ()=>{
+
+  editor.style.display = "none";
+  setup.style.display = "none";
+  home.style.display = "block";
+
+};
+
+$("navTemplates").onclick = templates;
+
+$("navProjects").onclick = openSaved;
+
+$("navSettings").onclick = settings;
+
+
+/* =========================
+   HOME SLIDER
+========================= */
+
+const slidesEl = $("slides");
+const dotsEl = $("sliderDots");
+const sliderEl = $("homeSlider");
+
+let slideIndex = 0;
+let slideTimer = null;
+
+let touchStartX = 0;
+let touchStartY = 0;
+
+
+function showSlide(i){
+
+  slideIndex =
+    (i + 7) % 7;
+
+  slidesEl.style.transform =
+    "translateX(-" +
+    (slideIndex * 100) +
+    "%)";
+
+  dotsEl
+    .querySelectorAll(".dot")
+    .forEach((dot,n)=>{
+
+      dot.classList.toggle(
+        "active",
+        n === slideIndex
+      );
+
     });
-  }
+
 }
 
-function make(type){
-  snapshot();
 
-  let o;
+function startSlider(){
 
-  if(type==='text'){
-    o=document.createElement('div');
-    o.className='obj textobj';
-    o.textContent='New Text';
-    o.contentEditable='true';
-    o.style.fontSize='40px';
-    o.style.fontWeight='400';
-    o.style.color='#172033';
-    o.style.fontFamily='Arial';
-    o.style.width='300px';
-    o.style.height='70px';
-  }
+  clearInterval(slideTimer);
 
-  if(type==='image'){
-    o=document.createElement('img');
-    o.className='obj imgobj';
-    o.style.width='260px';
-    o.style.height='190px';
-    o.style.objectFit='contain';
-  }
+  slideTimer =
+    setInterval(
+      ()=>{
+        showSlide(slideIndex + 1);
+      },
+      4500
+    );
 
-  if(type==='shape'){
-    o=document.createElement('div');
-    o.className='obj shapeobj';
-    o.style.width='220px';
-    o.style.height='180px';
-    o.style.background='#263c75';
-    o.style.borderRadius='18px';
-  }
-
-  if(!o) return null;
-
-  o.dataset.name=type==='text'?'Text':type==='image'?'Image':'Shape';
-  o.style.left='40px';
-  o.style.top='40px';
-  o.style.zIndex='10';
-
-  canvas.appendChild(o);
-  addObjectEvents(o);
-  select(o);
-  refresh();
-
-  return o;
 }
 
-function objectDown(e){
-  if(e.target.classList.contains('handle')) return;
 
-  e.stopPropagation();
-  select(this);
+$("slidePrev").onclick = ()=>{
 
-  if(this.dataset.locked==='true') return;
+  showSlide(slideIndex - 1);
 
-  const r=this.getBoundingClientRect();
-  const cr=canvas.getBoundingClientRect();
-  const scale=cr.width/designW||1;
+  startSlider();
 
-  gesture={
-    type:'move',
-    o:this,
-    sx:e.clientX,
-    sy:e.clientY,
-    l:parseFloat(this.style.left)||0,
-    t:parseFloat(this.style.top)||0,
-    scale
-  };
+};
 
-  this.setPointerCapture?.(e.pointerId);
-}
 
-function handleDown(e){
-  e.stopPropagation();
-  e.preventDefault();
+$("slideNext").onclick = ()=>{
 
-  const h=e.currentTarget;
-  const o=h.closest('.obj');
-  select(o);
+  showSlide(slideIndex + 1);
 
-  if(o.dataset.locked==='true') return;
+  startSlider();
 
-  const cr=canvas.getBoundingClientRect();
-  const scale=cr.width/designW||1;
+};
 
-  const l=parseFloat(o.style.left)||0;
-  const t=parseFloat(o.style.top)||0;
-  const w=o.offsetWidth;
-  const hgt=o.offsetHeight;
 
-  if(h.dataset.h==='rotate'){
-    gesture={
-      type:'rotate',
-      o,
-      sx:e.clientX,
-      sy:e.clientY,
-      startRot:parseFloat(o.dataset.rot||'0')
-    };
-  }else{
-    gesture={
-      type:'resize',
-      o,
-      handle:h.dataset.h,
-      sx:e.clientX,
-      sy:e.clientY,
-      l,t,w,h:hgt,
-      scale
-    };
-  }
+dotsEl
+  .querySelectorAll(".dot")
+  .forEach(dot=>{
 
-  o.setPointerCapture?.(e.pointerId);
-}
+    dot.onclick = ()=>{
 
-window.addEventListener('pointermove',e=>{
-  if(!gesture) return;
+      showSlide(
+        parseInt(dot.dataset.slide)
+      );
 
-  const g=gesture;
-  const o=g.o;
+      startSlider();
 
-  if(g.type==='move'){
-    const dx=(e.clientX-g.sx)/g.scale;
-    const dy=(e.clientY-g.sy)/g.scale;
-
-    o.style.left=Math.round(g.l+dx)+'px';
-    o.style.top=Math.round(g.t+dy)+'px';
-  }
-
-  if(g.type==='rotate'){
-    const rect=o.getBoundingClientRect();
-    const cx=rect.left+rect.width/2;
-    const cy=rect.top+rect.height/2;
-
-    const a=Math.atan2(e.clientY-cy,e.clientX-cx)*180/Math.PI;
-    const a0=Math.atan2(g.sy-cy,g.sx-cx)*180/Math.PI;
-
-    let rot=g.startRot+(a-a0);
-    o.dataset.rot=rot;
-    o.style.transform='rotate('+rot+'deg)';
-  }
-
-  if(g.type==='resize'){
-    const dx=(e.clientX-g.sx)/g.scale;
-    const dy=(e.clientY-g.sy)/g.scale;
-
-    let l=g.l,t=g.t,w=g.w,h=g.h;
-    const min=30;
-
-    if(g.handle.includes('l')){
-      l=g.l+dx;
-      w=g.w-dx;
-    }
-
-    if(g.handle.includes('r')){
-      w=g.w+dx;
-    }
-
-    if(g.handle.includes('t')){
-      t=g.t+dy;
-      h=g.h-dy;
-    }
-
-    if(g.handle.includes('b')){
-      h=g.h+dy;
-    }
-
-    if(w<min) w=min;
-    if(h<min) h=min;
-
-    o.style.left=Math.round(l)+'px';
-    o.style.top=Math.round(t)+'px';
-    o.style.width=Math.round(w)+'px';
-    o.style.height=Math.round(h)+'px';
-  }
-
-  refresh();
-});
-
-window.addEventListener('pointerup',()=>{
-  if(gesture){
-    snapshot();
-    gesture=null;
-    refresh();
-  }
-});
-
-canvas.addEventListener('pointerdown',e=>{
-  if(e.target===canvas) select(null);
-});
-
-function refresh(){
-  updateLayers();
-
-  if(selected){
-    $('editPanel')?.classList.remove('hidden');
-
-    const color=selected.style.color||selected.style.backgroundColor;
-    if(color && color.startsWith('#')) $('color').value=color;
-
-    const fs=parseInt(selected.style.fontSize||40);
-    if(fs) $('fontSize').value=Math.min(180,Math.max(8,fs));
-
-    $('font').value=selected.style.fontFamily||'Arial';
-  }
-}
-
-function updateLayers(){
-  const box=$('layers');
-  if(!box) return;
-
-  box.innerHTML='';
-
-  [...canvas.querySelectorAll('.obj')].reverse().forEach((o,i)=>{
-    const row=document.createElement('div');
-    row.className='layer';
-
-    const name=document.createElement('div');
-    name.className='layername';
-    name.textContent=o.dataset.name||('Object '+(i+1));
-
-    const eye=document.createElement('button');
-    eye.textContent=o.style.display==='none'?'○':'●';
-    eye.onclick=e=>{
-      e.stopPropagation();
-      o.style.display=o.style.display==='none'?'block':'none';
-      snapshot();
-      updateLayers();
     };
 
-    const lock=document.createElement('button');
-    lock.textContent=o.dataset.locked==='true'?'🔒':'🔓';
-    lock.onclick=e=>{
-      e.stopPropagation();
-      o.dataset.locked=o.dataset.locked==='true'?'false':'true';
-      snapshot();
-      updateLayers();
-    };
-
-    const up=document.createElement('button');
-    up.textContent='↑';
-    up.onclick=e=>{
-      e.stopPropagation();
-      o.style.zIndex=(parseInt(o.style.zIndex||1)+1);
-      snapshot();
-      updateLayers();
-    };
-
-    const down=document.createElement('button');
-    down.textContent='↓';
-    down.onclick=e=>{
-      e.stopPropagation();
-      o.style.zIndex=Math.max(1,parseInt(o.style.zIndex||1)-1);
-      snapshot();
-      updateLayers();
-    };
-
-    row.append(name,eye,lock,up,down);
-
-    row.onclick=()=>{
-      select(o);
-    };
-
-    box.appendChild(row);
   });
-}
 
-function applyCanvasSize(){
-  canvas.style.width=designW+'px';
-  canvas.style.height=designH+'px';
 
-  const sw=(stage.clientWidth-30)/designW;
-  const sh=(stage.clientHeight-30)/designH;
-  const scale=Math.min(sw,sh);
+/* MOBILE SWIPE */
 
-  canvas.style.transform='scale('+Math.max(.05,scale)+')';
-}
+sliderEl.addEventListener(
+  "pointerdown",
+  e=>{
 
-window.addEventListener('resize',applyCanvasSize);
+    touchStartX = e.clientX;
+    touchStartY = e.clientY;
 
-function showHome(){
-  home.style.display='flex';
-  setup.style.display='none';
-  editor.style.display='none';
-}
+    sliderEl.setPointerCapture?.(
+      e.pointerId
+    );
+
+  }
+);
+
+
+sliderEl.addEventListener(
+  "pointerup",
+  e=>{
+
+    const dx =
+      e.clientX - touchStartX;
+
+    const dy =
+      e.clientY - touchStartY;
+
+    if(
+      Math.abs(dx) > 45 &&
+      Math.abs(dx) > Math.abs(dy)
+    ){
+
+      showSlide(
+        slideIndex +
+        (dx < 0 ? 1 : -1)
+      );
+
+      startSlider();
+
+    }
+
+  }
+);
+
+
+showSlide(0);
+
+startSlider();
+
+
+/* =========================
+   SETUP
+========================= */
 
 function openSetup(){
-  home.style.display='none';
-  setup.style.display='block';
-  editor.style.display='none';
+
+  home.style.display = "none";
+
+  setup.style.display = "block";
+
 }
 
-function openEditor(){
-  home.style.display='none';
-  setup.style.display='none';
-  editor.style.display='flex';
-  applyCanvasSize();
-}
+$("newBtn").onclick =
+  openSetup;
 
-function closePanels(){
-  $('editPanel')?.classList.add('hidden');
-  $('layerPanel')?.classList.add('hidden');
-}
+$("plusBtn").onclick =
+  openSetup;
 
-function showModal(title,items){
-  $('modalTitle').textContent=title;
-  const grid=$('modalGrid');
-  grid.innerHTML='';
 
-  items.forEach(item=>{
-    const b=document.createElement('button');
-    b.className='modalitem';
-    b.innerHTML='<b>'+item.title+'</b><br><small>'+item.text+'</small>';
-    b.onclick=()=>{
-      $('modal').classList.remove('show');
-      if(item.action) item.action();
+$("back").onclick = ()=>{
+
+  setup.style.display = "none";
+
+  home.style.display = "block";
+
+};
+
+
+document
+  .querySelectorAll(".preset")
+  .forEach(p=>{
+
+    p.onclick = ()=>{
+
+      document
+        .querySelectorAll(".preset")
+        .forEach(x=>
+          x.classList.remove("active")
+        );
+
+      p.classList.add("active");
+
+      $("cw").value =
+        p.dataset.w;
+
+      $("ch").value =
+        p.dataset.h;
+
     };
-    grid.appendChild(b);
+
   });
 
-  $('modal').classList.add('show');
+
+/* =========================
+   CANVAS
+========================= */
+
+function applyCanvas(){
+
+  designW =
+    Math.max(
+      100,
+      parseInt($("cw").value) || 1080
+    );
+
+  designH =
+    Math.max(
+      100,
+      parseInt($("ch").value) || 1080
+    );
+
+
+  const sw =
+    Math.max(
+      180,
+      stage.clientWidth - 30
+    );
+
+  const sh =
+    Math.max(
+      180,
+      stage.clientHeight - 30
+    );
+
+
+  const scale =
+    Math.min(
+      sw / designW,
+      sh / designH,
+      1
+    );
+
+
+  canvas.style.width =
+    Math.round(
+      designW * scale
+    ) + "px";
+
+  canvas.style.height =
+    Math.round(
+      designH * scale
+    ) + "px";
+
+
+  canvas.dataset.designWidth =
+    designW;
+
+  canvas.dataset.designHeight =
+    designH;
+
 }
 
-$('newBtn').onclick=openSetup;
-$('plusBtn').onclick=openSetup;
-$('back').onclick=showHome;
-$('navHome').onclick=showHome;
 
-$('settingsBtn').onclick=()=>{
-  showModal('Settings',[
-    {title:'Canvas',text:'Create and edit custom design sizes.'},
-    {title:'Storage',text:'Projects are saved locally on this device.'},
-    {title:'About',text:'Urdu Design Studio — mobile design editor.'}
-  ]);
-};
+/* =========================
+   OBJECT CREATION
+========================= */
 
-$('navSettings').onclick=$('settingsBtn').onclick;
+function createObject(type){
 
-$('navTemplates').onclick=()=>{
-  showModal('Templates',[
-    {title:'Urdu Poster',text:'Start a square Urdu poster.',action:()=>{$('cw').value=1080;$('ch').value=1080;openSetup()}},
-    {title:'Story',text:'Vertical social story.',action:()=>{$('cw').value=1080;$('ch').value=1920;openSetup()}},
-    {title:'Thumbnail',text:'YouTube thumbnail size.',action:()=>{$('cw').value=1280;$('ch').value=720;openSetup()}},
-    {title:'Business',text:'Business advertisement canvas.',action:()=>{$('cw').value=1200;$('ch').value=628;openSetup()}}
-  ]);
-};
+  const obj =
+    document.createElement("div");
 
-$('homeTemplates').onclick=$('navTemplates').onclick;
+  obj.className =
+    "obj";
 
-$('homeProjects').onclick=()=>{
-  const saved=localStorage.getItem('UDS_PROJECT');
+  obj.dataset.type =
+    type;
 
-  if(!saved){
-    showModal('My Designs',[
-      {title:'No Project',text:'No saved design was found on this device.'}
-    ]);
-    return;
+  obj.style.left =
+    "80px";
+
+  obj.style.top =
+    "80px";
+
+
+  if(type === "text"){
+
+    obj.classList.add("objText");
+
+    obj.textContent =
+      "Urdu Design";
+
+    obj.contentEditable =
+      "true";
+
   }
 
-  showModal('My Designs',[
-    {title:'Open Last Design',text:'Open the locally saved project.',action:()=>{
-      restore(saved);
-      openEditor();
-    }},
-    {title:'Delete Saved',text:'Remove the locally saved project.',action:()=>{
-      localStorage.removeItem('UDS_PROJECT');
-    }}
-  ]);
+
+  if(type === "shape"){
+
+    obj.classList.add("objShape");
+
+  }
+
+
+  obj.addEventListener(
+    "pointerdown",
+    e=>{
+
+      e.stopPropagation();
+
+      selectObject(obj);
+
+    }
+  );
+
+
+  canvas.appendChild(obj);
+
+  selectObject(obj);
+
+  return obj;
+
+}
+
+
+function selectObject(obj){
+
+  if(selected){
+
+    selected.classList.remove(
+      "selected"
+    );
+
+  }
+
+  selected = obj;
+
+  if(selected){
+
+    selected.classList.add(
+      "selected"
+    );
+
+  }
+
+}
+
+
+/* =========================
+   ADD TEXT
+========================= */
+
+$("addText").onclick = ()=>{
+
+  createObject("text");
+
 };
 
-$('navProjects').onclick=$('homeProjects').onclick;
 
-$('homeElements').onclick=()=>{
-  showModal('Design Elements',[
-    {title:'Stars',text:'Decorative star elements.',action:()=>{openSetup()}},
-    {title:'Hearts',text:'Decorative heart elements.',action:()=>{openSetup()}},
-    {title:'Lines',text:'Lines and decorative elements.',action:()=>{openSetup()}},
-    {title:'Islamic',text:'Islamic design elements.',action:()=>{openSetup()}}
-  ]);
+/* =========================
+   ADD SHAPE
+========================= */
+
+$("addShape").onclick = ()=>{
+
+  createObject("shape");
+
 };
 
-$('homeShapes').onclick=()=>{
-  showModal('Shapes',[
-    {title:'Rectangle',text:'Add a basic shape.',action:()=>{openSetup()}},
-    {title:'Rounded Shape',text:'Rounded editable shape.',action:()=>{openSetup()}},
-    {title:'Circle',text:'Circle design element.',action:()=>{openSetup()}}
-  ]);
-};
 
-$('homeFrames').onclick=()=>{
-  showModal('Frames',[
-    {title:'Photo Frame',text:'Prepare a frame-based design.',action:openSetup},
-    {title:'Border',text:'Create a bordered canvas.',action:openSetup}
-  ]);
-};
+/* =========================
+   ADD IMAGE
+========================= */
 
-$('homeBackgrounds').onclick=()=>{
-  showModal('Backgrounds',[
-    {title:'White',text:'Clean white background.',action:()=>{openSetup()}},
-    {title:'Blue',text:'Blue design background.',action:()=>{openSetup()}},
-    {title:'Gradient',text:'Gradient background tools.',action:()=>{openSetup()}}
-  ]);
-};
+$("addImage").onclick = ()=>{
 
-$('homeImport').onclick=()=>{
-  fileMode='image';
-  $('file').click();
-};
+  const input =
+    document.createElement("input");
 
-$('homeText').onclick=()=>{
-  openSetup();
-};
+  input.type =
+    "file";
 
-$('homeMore').onclick=()=>{
-  showModal('More Tools',[
-    {title:'Layers',text:'Manage object layers.',action:openSetup},
-    {title:'Save Project',text:'Save your editable design locally.',action:()=>{saveProject()}},
-    {title:'Undo / Redo',text:'Edit history is available inside editor.',action:openSetup},
-    {title:'Import Image',text:'Import PNG/JPG images.',action:()=>{$('file').click()}}
-  ]);
-};
+  input.accept =
+    "image/*";
 
-document.querySelectorAll('.preset').forEach(p=>{
-  p.onclick=()=>{
-    $('cw').value=p.dataset.w;
-    $('ch').value=p.dataset.h;
+  input.onchange = ()=>{
+
+    const file =
+      input.files[0];
+
+    if(!file) return;
+
+    const reader =
+      new FileReader();
+
+    reader.onload = ()=>{
+
+      const img =
+        document.createElement("img");
+
+      img.src =
+        reader.result;
+
+      img.className =
+        "obj objImage";
+
+      img.style.left =
+        "50px";
+
+      img.style.top =
+        "50px";
+
+      img.addEventListener(
+        "pointerdown",
+        e=>{
+          e.stopPropagation();
+          selectObject(img);
+        }
+      );
+
+      canvas.appendChild(img);
+
+      selectObject(img);
+
+    };
+
+    reader.readAsDataURL(file);
+
   };
-});
 
-$('create').onclick=()=>{
-  const w=parseInt($('cw').value)||1080;
-  const h=parseInt($('ch').value)||1080;
+  input.click();
 
-  designW=Math.max(100,Math.min(5000,w));
-  designH=Math.max(100,Math.min(5000,h));
-
-  canvas.innerHTML='';
-  selected=null;
-  history=[];
-  future=[];
-
-  canvas.style.background='#fff';
-
-  openEditor();
-  snapshot();
 };
 
-$('undo').onclick=()=>{
-  if(history.length<=1) return;
 
-  const current=history.pop();
-  future.push(current);
+/* =========================
+   BACKGROUND
+========================= */
 
-  const previous=history[history.length-1];
-  restore(previous);
+$("addBg").onclick = ()=>{
+
+  canvas.style.background =
+    "linear-gradient(135deg,#ffffff,#eeeaff)";
+
 };
 
-$('redo').onclick=()=>{
-  if(!future.length) return;
 
-  const next=future.pop();
-  history.push(next);
-  restore(next);
+/* =========================
+   DELETE
+========================= */
+
+$("deleteBtn").onclick = ()=>{
+
+  if(selected){
+
+    selected.remove();
+
+    selected = null;
+
+    toast("Object deleted");
+
+  }else{
+
+    toast("Select an object first");
+
+  }
+
 };
+
+
+/* =========================
+   LAYERS
+========================= */
+
+$("layersBtn").onclick = ()=>{
+
+  const objects =
+    canvas.querySelectorAll(".obj");
+
+  const items =
+    [];
+
+  objects.forEach(
+    (obj,i)=>{
+
+      items.push({
+        label:
+          (i+1)+
+          " • "+
+          (obj.dataset.type || "Object"),
+
+        action:()=>{
+
+          selectObject(obj);
+
+          toast("Layer selected");
+
+        }
+
+      });
+
+    }
+  );
+
+  if(!items.length){
+
+    items.push({
+      label:"No objects yet",
+      action:()=>{}
+    });
+
+  }
+
+  openModal(
+    "Layers",
+    items
+  );
+
+};
+
+
+/* =========================
+   UNDO / REDO
+========================= */
+
+$("undoBtn").onclick = ()=>{
+
+  toast("Undo ready for next editor phase");
+
+};
+
+$("redoBtn").onclick = ()=>{
+
+  toast("Redo ready for next editor phase");
+
+};
+
+
+/* =========================
+   SAVE PROJECT
+========================= */
 
 function saveProject(){
-  const data=JSON.stringify({
+
+  const data = {
+
+    width:designW,
+
+    height:designH,
+
     html:canvas.innerHTML,
-    w:designW,
-    h:designH,
-    savedAt:Date.now()
-  });
 
-  localStorage.setItem('UDS_PROJECT',data);
+    background:
+      canvas.style.background
 
-  showModal('Project Saved',[
-    {title:'Saved',text:'Your editable project is saved on this device.'}
-  ]);
+  };
+
+  localStorage.setItem(
+    "UDS_V6_PROJECT",
+    JSON.stringify(data)
+  );
+
+  toast("Project saved");
+
 }
 
-$('save').onclick=saveProject;
 
-$('layersTop').onclick=()=>{
-  $('editPanel').classList.add('hidden');
-  $('layerPanel').classList.remove('hidden');
-  updateLayers();
-};
+/* =========================
+   OPEN SAVED
+========================= */
 
-$('addText').onclick=()=>{
-  const o=make('text');
-  if(o){
-    o.focus();
-    try{
-      const range=document.createRange();
-      range.selectNodeContents(o);
-      const sel=window.getSelection();
-      sel.removeAllRanges();
-      sel.addRange(range);
-    }catch(e){}
-  }
-};
+function openSaved(){
 
-$('addShape').onclick=()=>{
-  make('shape');
-};
+  const raw =
+    localStorage.getItem(
+      "UDS_V6_PROJECT"
+    );
 
-$('addImage').onclick=()=>{
-  fileMode='image';
-  $('file').click();
-};
+  if(!raw){
 
-$('addBg').onclick=()=>{
-  fileMode='background';
-  $('file').click();
-};
+    toast("No saved designs");
 
-$('edit').onclick=()=>{
-  if(!selected){
-    showModal('Edit',[
-      {title:'Select Object',text:'Tap an image, text or shape first.'}
-    ]);
     return;
+
   }
 
-  $('layerPanel').classList.add('hidden');
-  $('editPanel').classList.remove('hidden');
-  refresh();
-};
+  openModal(
+    "My Designs",
+    [
+      {
+        label:"Open Saved Design",
+        action:()=>{
 
-$('fit').onclick=()=>{
-  if(!selected) return;
+          try{
 
-  const pad=20;
-  selected.style.left=pad+'px';
-  selected.style.top=pad+'px';
-  selected.style.width=Math.max(30,designW-pad*2)+'px';
-  selected.style.height=Math.max(30,designH-pad*2)+'px';
+            const data =
+              JSON.parse(raw);
 
-  snapshot();
-  refresh();
-};
+            openSetup();
 
-$('center').onclick=()=>{
-  if(!selected) return;
+            window._savedProject =
+              data;
 
-  const w=selected.offsetWidth;
-  const h=selected.offsetHeight;
+            toast("Saved design ready");
 
-  selected.style.left=Math.round((designW-w)/2)+'px';
-  selected.style.top=Math.round((designH-h)/2)+'px';
+          }catch(e){
 
-  snapshot();
-  refresh();
-};
+            toast("Could not open project");
 
-$('rminus').onclick=()=>{
-  if(!selected) return;
+          }
 
-  const r=parseFloat(selected.dataset.rot||0)-15;
-  selected.dataset.rot=r;
-  selected.style.transform='rotate('+r+'deg)';
-  snapshot();
-};
+        }
 
-$('rplus').onclick=()=>{
-  if(!selected) return;
+      },
 
-  const r=parseFloat(selected.dataset.rot||0)+15;
-  selected.dataset.rot=r;
-  selected.style.transform='rotate('+r+'deg)';
-  snapshot();
-};
+      {
+        label:"Delete Saved Design",
+        action:()=>{
 
-$('color').oninput=e=>{
-  if(!selected) return;
+          localStorage.removeItem(
+            "UDS_V6_PROJECT"
+          );
 
-  if(selected.classList.contains('textobj')){
-    selected.style.color=e.target.value;
-  }else{
-    selected.style.backgroundColor=e.target.value;
-  }
-};
+          toast("Saved design deleted");
 
-$('color').onchange=()=>{
-  if(selected) snapshot();
-};
+        }
 
-$('fontSize').oninput=e=>{
-  if(!selected) return;
-
-  selected.style.fontSize=e.target.value+'px';
-};
-
-$('fontSize').onchange=()=>{
-  if(selected) snapshot();
-};
-
-$('bold').onclick=()=>{
-  if(!selected) return;
-
-  selected.style.fontWeight=
-    selected.style.fontWeight==='700'?'400':'700';
-
-  snapshot();
-};
-
-$('left').onclick=()=>{
-  if(!selected) return;
-
-  selected.style.textAlign='left';
-  snapshot();
-};
-
-$('centerText').onclick=()=>{
-  if(!selected) return;
-
-  selected.style.textAlign='center';
-  snapshot();
-};
-
-$('right').onclick=()=>{
-  if(!selected) return;
-
-  selected.style.textAlign='right';
-  snapshot();
-};
-
-$('font').onchange=e=>{
-  if(!selected) return;
-
-  selected.style.fontFamily=e.target.value;
-  snapshot();
-};
-
-$('dup').onclick=()=>{
-  if(!selected) return;
-
-  snapshot();
-
-  const copy=selected.cloneNode(true);
-  copy.querySelectorAll('.handles').forEach(h=>h.remove());
-
-  copy.style.left=(parseFloat(selected.style.left||0)+30)+'px';
-  copy.style.top=(parseFloat(selected.style.top||0)+30)+'px';
-  copy.dataset.name=(selected.dataset.name||'Object')+' Copy';
-  copy.dataset.locked='false';
-
-  canvas.appendChild(copy);
-  addObjectEvents(copy);
-  select(copy);
-};
-
-$('del').onclick=()=>{
-  if(!selected) return;
-
-  snapshot();
-  selected.remove();
-  selected=null;
-  refresh();
-};
-
-$('up').onclick=()=>{
-  if(!selected) return;
-
-  selected.style.zIndex=parseInt(selected.style.zIndex||1)+1;
-  snapshot();
-  refresh();
-};
-
-$('down').onclick=()=>{
-  if(!selected) return;
-
-  selected.style.zIndex=Math.max(1,parseInt(selected.style.zIndex||1)-1);
-  snapshot();
-  refresh();
-};
-
-document.querySelectorAll('[data-close]').forEach(b=>{
-  b.onclick=()=>{
-    $(b.dataset.close).classList.add('hidden');
-  };
-});
-
-$('modalClose').onclick=()=>{
-  $('modal').classList.remove('show');
-};
-
-$('modal').addEventListener('click',e=>{
-  if(e.target===$('modal')){
-    $('modal').classList.remove('show');
-  }
-});
-
-$('file').onchange=e=>{
-  const f=e.target.files?.[0];
-  if(!f) return;
-
-  const reader=new FileReader();
-
-  reader.onload=ev=>{
-    if(fileMode==='background'){
-      snapshot();
-      canvas.style.backgroundImage='url("'+ev.target.result+'")';
-      canvas.style.backgroundSize='cover';
-      canvas.style.backgroundPosition='center';
-      canvas.dataset.background='image';
-      refresh();
-    }else{
-      const o=make('image');
-
-      if(o){
-        o.src=ev.target.result;
-        o.dataset.name=f.name||'Image';
-        o.style.width=Math.min(500,designW-80)+'px';
-        o.style.height=Math.min(400,designH-80)+'px';
-        o.style.objectFit='contain';
-        o.style.left='40px';
-        o.style.top='40px';
-        snapshot();
-        refresh();
       }
-    }
 
-    e.target.value='';
-  };
+    ]
+  );
 
-  reader.readAsDataURL(f);
+}
+
+
+/* =========================
+   SAVE BUTTON
+========================= */
+
+$("saveBtn").onclick =
+  saveProject;
+
+
+/* =========================
+   EXPORT
+========================= */
+
+$("exportBtn").onclick = ()=>{
+
+  toast(
+    "Export tools will be added in the next editor phase"
+  );
+
 };
 
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){
-    closePanels();
-    $('modal').classList.remove('show');
+
+/* =========================
+   EDITOR BACK
+========================= */
+
+$("editorBack").onclick = ()=>{
+
+  editor.style.display =
+    "none";
+
+  home.style.display =
+    "block";
+
+};
+
+
+/* =========================
+   CREATE DESIGN
+========================= */
+
+$("create").onclick = ()=>{
+
+  setup.style.display =
+    "none";
+
+  editor.style.display =
+    "flex";
+
+  applyCanvas();
+
+  history = [];
+
+  future = [];
+
+  selected = null;
+
+  canvas.innerHTML =
+    '<div class="grid"></div>';
+
+  let action =
+    window._quickAction;
+
+  window._quickAction =
+    null;
+
+
+  if(action === "text"){
+
+    $("addText").click();
+
+  }else if(
+    action === "shape" ||
+    action === "shapes"
+  ){
+
+    $("addShape").click();
+
+  }else if(
+    action === "image" ||
+    action === "import"
+  ){
+
+    $("addImage").click();
+
+  }else if(
+    action === "bg" ||
+    action === "backgrounds"
+  ){
+
+    $("addBg").click();
+
   }
 
-  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){
-    e.preventDefault();
-    $('undo').click();
-  }
+};
 
-  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'){
-    e.preventDefault();
-    $('redo').click();
-  }
 
-  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){
-    e.preventDefault();
-    saveProject();
-  }
+window.addEventListener(
+  "resize",
+  ()=>{
+    if(
+      editor.style.display ===
+      "flex"
+    ){
 
-  if(e.key==='Delete' && selected && document.activeElement!==selected){
-    $('del').click();
-  }
-});
+      applyCanvas();
 
-applyCanvasSize();
-refresh();
+    }
+  }
+);
+
 </script>
+
 </body>
 </html>
