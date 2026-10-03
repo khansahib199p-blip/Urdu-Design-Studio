@@ -1,5505 +1,1192 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Urdu Design Studio</title>
 
 <style>
-:root{
-  --p:#7044f5;
-  --p2:#9b6cff;
-  --bg:#f4f5fa;
-  --dark:#101322;
-  --dark2:#181b2d;
-  --panel:#20243a;
-  --ink:#171827;
-  --muted:#85899a;
-  --line:#e5e6ed;
-}
-
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
-
-html,body{
-  margin:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  font-family:Arial,sans-serif;
-  background:var(--bg);
-  color:var(--ink);
-}
-
-button,input,select,textarea{
-  font:inherit;
-}
-
-button{
-  border:0;
-  cursor:pointer;
-}
-
-button:active{
-  transform:scale(.97);
-}
-
-
-/* =========================
-   HOME
-========================= */
-
-.home{
-  width:100%;
-  height:100%;
-  overflow:auto;
-  padding:16px 15px 100px;
-}
-
-.head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.logo{
-  width:46px;
-  height:46px;
-  border-radius:16px;
-  background:linear-gradient(135deg,var(--p),#35cfe5);
-  color:white;
-  display:grid;
-  place-items:center;
-  font-size:23px;
-  box-shadow:0 8px 22px #7044f530;
-}
-
-.brand b{
-  display:block;
-  font-size:17px;
-}
-
-.brand small{
-  display:block;
-  margin-top:3px;
-  color:var(--muted);
-  font-size:11px;
-}
-
-.gear{
-  width:42px;
-  height:42px;
-  border-radius:14px;
-  background:#fff;
-  box-shadow:0 5px 18px #11152b12;
-}
-
-.welcome{
-  padding:20px 2px 15px;
-}
-
-.welcome h1{
-  margin:0;
-  font-size:28px;
-  line-height:1.1;
-}
-
-.welcome h1 span{
-  color:var(--p);
-}
-
-.welcome p{
-  color:var(--muted);
-  font-size:13px;
-}
-
-
-/* =========================
-   HOME SLIDER
-========================= */
-
-.udsSlider{
-  position:relative;
-  width:100%;
-  height:190px;
-  overflow:hidden;
-  border-radius:23px;
-  background:#0b1738;
-  box-shadow:0 12px 30px #101a481c;
-  touch-action:pan-y;
-}
-
-.udsSlides{
-  display:flex;
-  width:100%;
-  height:100%;
-  transition:transform .45s ease;
-}
-
-.udsSlide{
-  min-width:100%;
-  height:100%;
-  position:relative;
-  overflow:hidden;
-}
-
-.udsSlide>img{
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit:cover;
-}
-
-.udsSlideContent{
-  position:absolute;
-  left:20px;
-  top:50%;
-  transform:translateY(-50%);
-  color:#fff;
-  max-width:65%;
-  z-index:2;
-}
-
-.udsSlideBadge{
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:999px;
-  background:#ffffff18;
-  border:1px solid #ffffff25;
-  font-size:9px;
-  font-weight:800;
-  margin-bottom:7px;
-}
-
-.udsSlideContent h3{
-  margin:0 0 6px;
-  font-size:21px;
-}
-
-.udsSlideContent p{
-  margin:0;
-  font-size:11px;
-  line-height:1.45;
-  color:#e9edff;
-}
-
-.udsSlideArt{
-  position:absolute;
-  right:7%;
-  top:50%;
-  transform:translateY(-50%);
-  width:125px;
-  height:125px;
-  border-radius:40% 60% 55% 45% / 45% 42% 58% 55%;
-  background:linear-gradient(135deg,#6454ff,#35dce9);
-  display:grid;
-  place-items:center;
-  color:#fff;
-  font-size:38px;
-  font-weight:900;
-  box-shadow:0 0 42px #46dff066;
-}
-
-.udsS2{
-  background:
-    radial-gradient(circle at 82% 20%,#6454ff66,transparent 32%),
-    linear-gradient(135deg,#101d48,#172963,#0b1430);
-}
-
-.udsS3{
-  background:
-    radial-gradient(circle at 85% 30%,#23d8d866,transparent 30%),
-    linear-gradient(135deg,#081b31,#123d5e,#101938);
-}
-
-.udsS4{
-  background:
-    radial-gradient(circle at 80% 35%,#b16cff66,transparent 28%),
-    linear-gradient(135deg,#17143d,#31216b,#101733);
-}
-
-.udsS5{
-  background:
-    radial-gradient(circle at 75% 30%,#4dd5ff55,transparent 30%),
-    linear-gradient(135deg,#071d39,#103c54,#10162f);
-}
-
-.udsS6{
-  background:
-    radial-gradient(circle at 82% 25%,#8f6dff66,transparent 28%),
-    linear-gradient(135deg,#17102e,#30245f,#10152f);
-}
-
-.udsS7{
-  background:
-    radial-gradient(circle at 78% 25%,#32e0c066,transparent 28%),
-    linear-gradient(135deg,#062235,#0c4b56,#10152f);
-}
-
-.udsArrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  background:#00000035;
-  color:#fff;
-  z-index:5;
-  font-size:22px;
-}
-
-.udsPrev{
-  left:9px;
-}
-
-.udsNext{
-  right:9px;
-}
-
-.udsDots{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:9px;
-  display:flex;
-  justify-content:center;
-  gap:6px;
-  z-index:5;
-}
-
-.udsDot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:#ffffff55;
-  padding:0;
-}
-
-.udsDot.active{
-  width:20px;
-  border-radius:9px;
-  background:#fff;
-}
-
-
-/* =========================
-   HOME CARDS
-========================= */
-
-.hero{
-  margin-top:20px;
-  background:linear-gradient(135deg,var(--p),var(--p2));
-  color:#fff;
-  border-radius:25px;
-  padding:20px;
-  box-shadow:0 12px 28px #7044f52d;
-}
-
-.hero small{
-  opacity:.8;
-  font-weight:800;
-}
-
-.hero h2{
-  margin:7px 0;
-}
-
-.hero p{
-  font-size:13px;
-  opacity:.85;
-}
-
-.primary{
-  margin-top:10px;
-  background:#fff;
-  color:var(--p);
-  border-radius:14px;
-  padding:12px 17px;
-  font-weight:900;
-}
-
-.sec{
-  font-size:17px;
-  font-weight:900;
-  margin:23px 0 10px;
-}
-
-.grid3{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:9px;
-}
-
-.card{
-  background:#fff;
-  border-radius:18px;
-  padding:13px 7px;
-  text-align:center;
-  box-shadow:0 6px 20px #11152b0d;
-}
-
-.ico{
-  width:42px;
-  height:42px;
-  border-radius:14px;
-  background:#eeeaff;
-  color:var(--p);
-  display:grid;
-  place-items:center;
-  margin:auto;
-  font-size:20px;
-}
-
-.card b{
-  display:block;
-  margin-top:8px;
-  font-size:11px;
-}
-
-
-/* =========================
-   HOME NAV
-========================= */
-
-.nav{
-  position:fixed;
-  left:10px;
-  right:10px;
-  bottom:9px;
-  height:66px;
-  border-radius:22px;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:space-around;
-  box-shadow:0 8px 30px #11152b20;
-  z-index:30;
-}
-
-.nav button{
-  background:transparent;
-  color:#777c8d;
-  font-size:20px;
-}
-
-.nav button b{
-  display:block;
-  font-size:9px;
-  margin-top:3px;
-}
-
-.nav .plus{
-  width:52px;
-  height:52px;
-  border-radius:17px;
-  background:linear-gradient(135deg,var(--p),var(--p2));
-  color:#fff;
-  font-size:27px;
-}
-
-
-/* =========================
-   NEW DESIGN
-========================= */
-
-.setup{
-  position:fixed;
-  inset:0;
-  z-index:100;
-  background:var(--bg);
-  overflow:auto;
-  padding:18px 15px 35px;
-  display:none;
-}
-
-.setupHead{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:18px;
-}
-
-.back{
-  width:42px;
-  height:42px;
-  border-radius:14px;
-  background:#fff;
-  font-size:22px;
-  box-shadow:0 5px 18px #11152b10;
-}
-
-.box{
-  background:#fff;
-  border-radius:20px;
-  padding:16px;
-  margin-bottom:17px;
-  box-shadow:0 6px 20px #11152b0d;
-}
-
-.inputs{
-  display:flex;
-  gap:10px;
-  margin-top:12px;
-}
-
-.inputs>div{
-  flex:1;
-}
-
-.lbl{
-  font-size:11px;
-  color:var(--muted);
-  margin-bottom:5px;
-}
-
-.num{
-  width:100%;
-  height:47px;
-  border:1px solid var(--line);
-  border-radius:13px;
-  padding:0 10px;
-  font-weight:800;
-}
-
-.presets{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:9px;
-}
-
-.preset{
-  min-height:98px;
-  background:#fff;
-  border-radius:17px;
-  box-shadow:0 6px 20px #11152b0d;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:4px;
-}
-
-.preset.active{
-  outline:3px solid var(--p);
-  background:#faf8ff;
-}
-
-.preset small{
-  color:var(--muted);
-}
-
-.create{
-  width:100%;
-  height:56px;
-  border-radius:17px;
-  background:linear-gradient(135deg,var(--p),var(--p2));
-  color:#fff;
-  font-weight:900;
-  font-size:16px;
-}
-
-
-/* =========================
-   EDITOR
-========================= */
-
-.editor{
-  position:fixed;
-  inset:0;
-  display:none;
-  flex-direction:column;
-  background:#0b0d18;
-  color:#fff;
-  z-index:90;
-}
-
-.top{
-  height:60px;
-  min-height:60px;
-  background:#16192b;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:7px 9px;
-  border-bottom:1px solid #ffffff12;
-}
-
-.toptools{
-  display:flex;
-  gap:5px;
-}
-
-.tb{
-  width:40px;
-  height:40px;
-  border-radius:12px;
-  background:#ffffff0c;
-  color:#fff;
-}
-
-.workspace{
-  flex:1;
-  min-height:0;
-  position:relative;
-  display:flex;
-}
-
-.stage{
-  flex:1;
-  min-width:0;
-  overflow:auto;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px 12px;
-  background:
-    radial-gradient(circle at 50% 10%,#28264b 0,#0e1020 48%,#090b15 100%);
-}
-
-.canvas{
-  position:relative;
-  flex:none;
-  background:#fff;
-  overflow:hidden;
-  box-shadow:0 18px 55px #000b;
-}
-
-.grid{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  z-index:9999;
-  background-image:
-    linear-gradient(#0000000b 1px,transparent 1px),
-    linear-gradient(90deg,#0000000b 1px,transparent 1px);
-  background-size:20px 20px;
-}
-
-.obj{
-  position:absolute;
-  touch-action:none;
-  user-select:none;
-  transform-origin:center center;
-  cursor:move;
-}
-
-.obj.selected{
-  outline:2px solid #7548f5;
-  outline-offset:3px;
-}
-
-.textObj{
-  min-width:80px;
-  min-height:42px;
-  padding:6px 9px;
-  direction:rtl;
-  text-align:center;
-  white-space:pre-wrap;
-  font-size:40px;
-  color:#222;
-  background:transparent;
-}
-
-.imageObj{
-  object-fit:contain;
-  max-width:none;
-  max-height:none;
-}
-
-.shape{
-  width:150px;
-  height:110px;
-  background:#7044f533;
-  border:3px solid #7044f5;
-  border-radius:15px;
-}
-
-.circle{
-  width:125px;
-  height:125px;
-  background:#ff5ca833;
-  border:3px solid #ff4e9b;
-  border-radius:50%;
-}
-
-.star{
-  width:120px;
-  height:120px;
-  background:#ffc400;
-  clip-path:polygon(
-    50% 0%,
-    61% 35%,
-    98% 35%,
-    68% 57%,
-    79% 92%,
-    50% 70%,
-    21% 92%,
-    32% 57%,
-    2% 35%,
-    39% 35%
-  );
-}
-
-.heart{
-  width:120px;
-  height:105px;
-  background:#ff4e9b;
-  transform:rotate(-45deg);
-  border-radius:20px;
-}
-
-.lineShape{
-  width:160px;
-  height:5px;
-  background:#7044f5;
-}
-
-
-/* =========================
-   TRANSFORM HANDLES
-========================= */
-
-.handles{
-  position:absolute;
-  inset:-6px;
-  display:none;
-  pointer-events:none;
-  z-index:10001;
-}
-
-.selected .handles{
-  display:block;
-}
-
-.h{
-  position:absolute;
-  width:16px;
-  height:16px;
-  border-radius:50%;
-  background:#fff;
-  border:3px solid #7445f5;
-  box-shadow:0 2px 8px #0008;
-  pointer-events:auto;
-}
-
-.nw{left:-8px;top:-8px;cursor:nwse-resize}
-.n{left:50%;top:-8px;transform:translateX(-50%);cursor:ns-resize}
-.ne{right:-8px;top:-8px;cursor:nesw-resize}
-.e{right:-8px;top:50%;transform:translateY(-50%);cursor:ew-resize}
-.se{right:-8px;bottom:-8px;cursor:nwse-resize}
-.s{left:50%;bottom:-8px;transform:translateX(-50%);cursor:ns-resize}
-.sw{left:-8px;bottom:-8px;cursor:nesw-resize}
-.w{left:-8px;top:50%;transform:translateY(-50%);cursor:ew-resize}
-
-.rh{
-  left:50%;
-  top:-42px;
-  transform:translateX(-50%);
-  background:#ffb84a;
-  border-color:#fff;
-  cursor:grab;
-}
-
-.rotateLine{
-  position:absolute;
-  width:2px;
-  height:30px;
-  left:50%;
-  top:-34px;
-  transform:translateX(-50%);
-  background:#fff;
-}
-
-
-/* =========================
-   EDITOR BOTTOM
-========================= */
-
-.bottom{
-  min-height:75px;
-  background:#15172a;
-  border-top:1px solid #ffffff12;
-  padding:7px;
-}
-
-.tools{
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:6px;
-}
-
-.tool{
-  height:58px;
-  border-radius:14px;
-  background:#24273e;
-  color:#fff;
-  font-size:9px;
-  font-weight:800;
-}
-
-.tool span{
-  display:block;
-  font-size:19px;
-  margin-bottom:3px;
-}
-
-
-/* =========================
-   PANELS
-========================= */
-
-.panel{
-  position:absolute;
-  left:8px;
-  right:8px;
-  bottom:82px;
-  z-index:10002;
-  background:#171a2d;
-  border:1px solid #ffffff18;
-  border-radius:21px;
-  padding:13px;
-  box-shadow:0 15px 45px #000d;
-  display:none;
-  max-height:62vh;
-  overflow:auto;
-}
-
-.panel.show{
-  display:block;
-}
-
-.pt{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:10px;
-  font-weight:900;
-}
-
-.close{
-  width:32px;
-  height:32px;
-  border-radius:9px;
-  background:#ffffff0d;
-  color:#fff;
-}
-
-.hint{
-  padding:8px;
-  border-radius:9px;
-  background:#ffffff07;
-  color:#b7bbca;
-  font-size:11px;
-}
-
-.secTitle{
-  font-size:10px;
-  text-transform:uppercase;
-  letter-spacing:.6px;
-  opacity:.65;
-  margin:12px 0 7px;
-}
-
-.pgrid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:6px;
-}
-
-.pbtn{
-  min-height:37px;
-  border-radius:10px;
-  background:#282b43;
-  color:#fff;
-  font-size:10px;
-  font-weight:700;
-}
-
-.range{
-  width:100%;
-  accent-color:#9b6cff;
-}
-
-.color{
-  width:100%;
-  height:36px;
-  border:0;
-  background:transparent;
-}
-
-.select{
-  width:100%;
-  height:37px;
-  border-radius:9px;
-  background:#101220;
-  color:#fff;
-  border:1px solid #ffffff14;
-  padding:0 8px;
-}
-
-
-/* =========================
-   LAYERS
-========================= */
-
-.layerTools{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:5px;
-  margin-bottom:8px;
-}
-
-.layerTool{
-  height:32px;
-  border-radius:8px;
-  background:#282b43;
-  color:#fff;
-  font-size:8px;
-}
-
-.layer{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  background:#24273d;
-  border-radius:11px;
-  padding:8px;
-  margin-bottom:6px;
-}
-
-.layer.active{
-  outline:1px solid #8d66ff;
-  background:#302651;
-}
-
-.layerThumb{
-  width:36px;
-  height:36px;
-  border-radius:8px;
-  background:#111426;
-  overflow:hidden;
-  display:grid;
-  place-items:center;
-  flex:none;
-}
-
-.layerThumb img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.layerName{
-  flex:1;
-  min-width:0;
-  font-size:10px;
-  overflow:hidden;
-  white-space:nowrap;
-  text-overflow:ellipsis;
-}
-
-.miniBtn{
-  width:31px;
-  height:31px;
-  border-radius:8px;
-  background:#ffffff0d;
-  color:#fff;
-  flex:none;
-}
-
-
-/* =========================
-   MODAL
-========================= */
-
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:200;
-  background:#070812b8;
-  display:none;
-  align-items:flex-end;
-  padding:10px;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.sheet{
-  width:min(680px,100%);
-  max-height:80vh;
-  overflow:auto;
-  background:#171a2d;
-  color:#fff;
-  border-radius:25px;
-  padding:16px;
-  box-shadow:0 18px 60px #000e;
-}
-
-.sheetHead{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:12px;
-}
-
-.sheetGrid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:9px;
-}
-
-.sheetBtn{
-  min-height:64px;
-  border-radius:15px;
-  background:#252941;
-  color:#fff;
-  font-weight:800;
-  text-align:left;
-  padding:10px;
-}
-
-.sheetBtn small{
-  display:block;
-  color:#aeb3c4;
-  margin-top:4px;
-  font-size:9px;
-}
-
-
-/* =========================
-   TEXT MODAL
-========================= */
-
-.textModalBox{
-  background:#20243a;
-  border-radius:17px;
-  padding:13px;
-}
-
-.textArea{
-  width:100%;
-  min-height:110px;
-  resize:none;
-  border:1px solid #ffffff18;
-  border-radius:12px;
-  background:#101322;
-  color:#fff;
-  padding:12px;
-  direction:auto;
-}
-
-
-/* =========================
-   TOAST
-========================= */
-
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:90px;
-  transform:translateX(-50%);
-  background:#171827;
-  color:#fff;
-  padding:11px 15px;
-  border-radius:12px;
-  z-index:500;
-  display:none;
-  font-size:12px;
-}
-
-
-/* =========================
-   HIDDEN FILE
-========================= */
-
-input[type=file]{
-  display:none;
-}
-
-
-@media(max-width:430px){
-
-  .udsSlider{
-    height:175px;
-  }
-
-  .udsSlideContent h3{
-    font-size:19px;
-  }
-
-  .udsSlideArt{
-    width:108px;
-    height:108px;
-    font-size:34px;
-  }
-
-  .tools{
-    grid-template-columns:repeat(6,1fr);
-  }
-
-  .tool{
-    height:55px;
-    font-size:8px;
-  }
-
-}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6fb;color:#182033;overflow:hidden}
+button,input,select{font:inherit}
+button{border:0;cursor:pointer}
+.screen{display:none;width:100vw;height:100vh}
+.screen.active{display:flex}
+
+/* ---------- WELCOME ---------- */
+#welcome{align-items:center;justify-content:center;background:linear-gradient(135deg,#10182e,#5137b8,#08a8a0)}
+.welcomeBox{width:min(92%,430px);padding:35px 25px;text-align:center;color:white}
+.brandMark{width:105px;height:105px;border-radius:30px;background:white;color:#5738bb;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;font-size:30px;font-weight:900;box-shadow:0 18px 50px #0005}
+.welcomeBox h1{font-size:30px;margin:10px 0}
+.welcomeBox p{opacity:.9;line-height:1.6}
+.primary{background:#6546e5;color:white;border-radius:13px;padding:14px 22px;font-weight:bold}
+.welcomeBox .primary{width:100%;margin-top:20px}
+
+/* ---------- HOME ---------- */
+#home{flex-direction:column;background:#f6f7fb;overflow:auto}
+.homeHead{height:65px;display:flex;align-items:center;justify-content:space-between;padding:0 17px;background:white;border-bottom:1px solid #e6e8ef}
+.homeTitle{font-weight:900;font-size:20px}
+.homeBody{padding:14px;padding-bottom:35px}
+.slider{height:185px;background:white;border-radius:20px;overflow:hidden;position:relative;box-shadow:0 8px 30px #18203310}
+.slides{height:100%;display:flex;transition:.35s}
+.slide{min-width:100%;height:100%;position:relative;background:#eee;display:flex;align-items:center;justify-content:center}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slideFallback{position:absolute;inset:0;background:linear-gradient(135deg,#5e42d9,#08aaa1);color:white;display:flex;align-items:center;justify-content:center;font-size:23px;font-weight:900}
+.dots{position:absolute;bottom:9px;left:0;right:0;text-align:center}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#ffffff88;margin:3px}
+.dot.on{background:white;width:19px;border-radius:8px}
+.homeGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:15px}
+.homeBtn{background:white;border-radius:15px;padding:15px 9px;text-align:center;box-shadow:0 4px 18px #1820330b;font-weight:bold}
+.homeBtn span{display:block;font-size:25px;margin-bottom:7px}
+.devCard{margin-top:18px;background:white;border-radius:18px;padding:13px;display:flex;align-items:center;gap:13px}
+.devPic{width:58px;height:58px;border-radius:50%;overflow:hidden;background:#6546e5;color:white;display:flex;align-items:center;justify-content:center;font-weight:bold}
+.devPic img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- SETUP ---------- */
+#setup{align-items:center;justify-content:center;background:#f4f6fb}
+.setupBox{width:min(92%,450px);background:white;padding:22px;border-radius:20px;box-shadow:0 15px 45px #18203318}
+.setupBox h2{margin-top:0}
+.field{margin:10px 0}
+.field label{display:block;font-size:13px;font-weight:bold;margin-bottom:5px}
+.field input,.field select{width:100%;padding:12px;border:1px solid #dce0e9;border-radius:10px}
+.presetGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:10px 0}
+.preset{padding:9px 4px;background:#f0f1f7;border-radius:9px;font-size:12px}
+
+/* ---------- EDITOR ---------- */
+#editor{flex-direction:column;background:#edf0f7}
+.editorTop{height:58px;background:#121a2f;color:white;display:flex;align-items:center;gap:6px;padding:7px;flex-shrink:0}
+.toolBtn{min-width:43px;height:43px;border-radius:10px;background:#222d48;color:white;font-size:18px}
+.toolBtn.active{background:#6546e5}
+.canvasInfo{flex:1;text-align:center;font-size:12px}
+.workspace{flex:1;position:relative;overflow:auto;display:flex;align-items:center;justify-content:center;padding:20px;background:#dfe3ec}
+.stageOuter{position:relative;box-shadow:0 12px 35px #0003;background:white}
+#stage{position:relative;overflow:hidden;background:white;transform-origin:center}
+.gridBg{background-image:linear-gradient(#0000000d 1px,transparent 1px),linear-gradient(90deg,#0000000d 1px,transparent 1px);background-size:25px 25px}
+.obj{position:absolute;touch-action:none;user-select:none}
+.obj.selected{outline:2px solid #6546e5}
+.obj.locked{pointer-events:none}
+.obj img{width:100%;height:100%;object-fit:contain;pointer-events:none}
+.textObj{display:flex;align-items:center;justify-content:center;white-space:pre-wrap;word-break:break-word;direction:rtl;text-align:center}
+.shapeObj{display:flex;align-items:center;justify-content:center}
+.handle{position:absolute;width:13px;height:13px;background:white;border:2px solid #6546e5;border-radius:50%;z-index:100}
+.h-tl{left:-7px;top:-7px}.h-tr{right:-7px;top:-7px}.h-bl{left:-7px;bottom:-7px}.h-br{right:-7px;bottom:-7px}
+.rotateHandle{position:absolute;left:50%;top:-35px;transform:translateX(-50%);width:13px;height:13px;border-radius:50%;background:#6546e5}
+.bottomTools{height:72px;background:white;border-top:1px solid #dfe2ea;display:grid;grid-template-columns:repeat(6,1fr);flex-shrink:0}
+.bottomTools button{background:white;font-size:11px;font-weight:bold;color:#263047}
+.bottomTools span{display:block;font-size:22px;margin-bottom:2px}
+.powerClipBar{position:absolute;bottom:83px;left:50%;transform:translateX(-50%);background:#6546e5;color:white;border-radius:12px;padding:10px 17px;z-index:500;display:none}
+
+/* ---------- SHEETS/PANELS ---------- */
+.overlay{position:fixed;inset:0;background:#0005;z-index:1000;display:none}
+.sheet{position:absolute;left:0;right:0;bottom:0;max-height:82vh;background:white;border-radius:22px 22px 0 0;padding:17px;overflow:auto}
+.sheetHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}
+.sheetGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.sheetItem{background:#f2f3f8;border-radius:12px;padding:12px 5px;text-align:center;font-size:11px;font-weight:bold}
+.sheetItem span{display:block;font-size:23px;margin-bottom:5px}
+.panelGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.panelBtn{padding:9px 3px;background:#f1f2f7;border-radius:9px;font-size:11px;font-weight:bold}
+.close{background:#eef0f5;border-radius:50%;width:35px;height:35px}
+.range{width:100%}
+
+/* ---------- LAYERS ---------- */
+.layerRow{display:flex;align-items:center;gap:7px;padding:9px;background:#f5f6fa;border-radius:10px;margin-bottom:6px}
+.layerThumb{width:42px;height:35px;background:white;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.layerThumb img{max-width:100%;max-height:100%}
+.layerName{flex:1;font-size:12px;font-weight:bold}
+.layerActions{display:flex;gap:3px}
+.layerActions button{font-size:10px;background:white;padding:6px;border-radius:6px}
+
+/* ---------- MODAL ---------- */
+.modal{position:fixed;inset:0;background:#0006;z-index:2000;display:none;align-items:center;justify-content:center}
+.modalBox{width:min(90%,400px);background:white;border-radius:18px;padding:20px}
+.modalBox input,.modalBox textarea{width:100%;padding:11px;border:1px solid #ddd;border-radius:9px;margin:8px 0}
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =========================================================
-     HOME SCREEN
-========================================================= -->
-
-<section class="home" id="home">
-
-<div class="head">
-
-<div class="brand">
-
-<div class="logo">✦</div>
-
-<div>
-<b>Urdu Design Studio</b>
-<small>Design • Edit • Create</small>
-</div>
-
-</div>
-
-<button class="gear" id="settingsBtn">⚙</button>
-
-</div>
-
-
-<div class="welcome">
-
-<h1>
-Create something<br>
-<span>beautiful.</span>
-</h1>
-
-<p>
-Professional graphic design made simple.
-</p>
-
-</div>
-
-
-<!-- =========================================================
-     HOME SLIDER
-========================================================= -->
-
-<div class="udsSlider" id="udsSlider">
-
-<div class="udsSlides" id="udsSlides">
-
-
-<!-- SLIDE 1 -->
-<div class="udsSlide">
-
-<img
-src="slider1.jpg"
-alt="Urdu Design Studio"
->
-
-</div>
-
-
-<!-- SLIDE 2 -->
-<div class="udsSlide udsS2">
-
-<div class="udsSlideContent">
-
-<span class="udsSlideBadge">
-NEW DESIGN
-</span>
-
-<h3>
-Creative Urdu Posters
-</h3>
-
-<p>
-Create beautiful posters with modern Urdu typography.
-</p>
-
-</div>
-
-<div class="udsSlideArt">
-Aa
-</div>
-
-</div>
-
-
-<!-- SLIDE 3 -->
-<div class="udsSlide udsS3">
-
-<div class="udsSlideContent">
-
-<span class="udsSlideBadge">
-TYPOGRAPHY
-</span>
-
-<h3>
-Beautiful Text
-</h3>
-
-<p>
-Design Urdu and English text with fonts, colors and effects.
-</p>
-
-</div>
-
-<div class="udsSlideArt">
-T
-</div>
-
-</div>
-
-
-<!-- SLIDE 4 -->
-<div class="udsSlide udsS4">
-
-<div class="udsSlideContent">
-
-<span class="udsSlideBadge">
-TEMPLATES
-</span>
-
-<h3>
-Ready-Made Designs
-</h3>
-
-<p>
-Start quickly with editable templates for every occasion.
-</p>
-
-</div>
-
-<div class="udsSlideArt">
-✦
-</div>
-
-</div>
-
-
-<!-- SLIDE 5 -->
-<div class="udsSlide udsS5">
-
-<div class="udsSlideContent">
-
-<span class="udsSlideBadge">
-DESIGN ELEMENTS
-</span>
-
-<h3>
-Shapes &amp; Frames
-</h3>
-
-<p>
-Use shapes, frames and creative elements.
-</p>
-
-</div>
-
-<div class="udsSlideArt">
-◇
-</div>
-
-</div>
-
-
-<!-- SLIDE 6 -->
-<div class="udsSlide udsS6">
-
-<div class="udsSlideContent">
-
-<span class="udsSlideBadge">
-POWERFUL EDITING
-</span>
-
-<h3>
-Layers &amp; Objects
-</h3>
-
-<p>
-Move, resize, rotate and organize every object.
-</p>
-
-</div>
-
-<div class="udsSlideArt">
-◫
-</div>
-
-</div>
-
-
-<!-- SLIDE 7 -->
-<div class="udsSlide udsS7">
-
-<div class="udsSlideContent">
-
-<span class="udsSlideBadge">
-URDU DESIGN STUDIO
-</span>
-
-<h3>
-Design • Edit • Create
-</h3>
-
-<p>
-Your creative workspace for professional graphic design.
-</p>
-
-</div>
-
-<div class="udsSlideArt">
-Ur
-</div>
-
-</div>
-
-
-</div>
-
-
-<button
-class="udsArrow udsPrev"
-id="udsPrev"
->
-‹
-</button>
-
-<button
-class="udsArrow udsNext"
-id="udsNext"
->
-›
-</button>
-
-
-<div
-class="udsDots"
-id="udsDots"
->
-
-<button class="udsDot active" data-slide="0"></button>
-<button class="udsDot" data-slide="1"></button>
-<button class="udsDot" data-slide="2"></button>
-<button class="udsDot" data-slide="3"></button>
-<button class="udsDot" data-slide="4"></button>
-<button class="udsDot" data-slide="5"></button>
-<button class="udsDot" data-slide="6"></button>
-
-</div>
-
-</div>
-
-
-<!-- =========================================================
-     NEW DESIGN
-========================================================= -->
-
-<div class="hero">
-
-<small>
-START A NEW PROJECT
-</small>
-
-<h2>
-New Design
-</h2>
-
-<p>
-Choose a canvas size and start creating.
-</p>
-
-<button
-class="primary"
-id="newBtn"
->
-＋ New Design
-</button>
-
-</div>
-
-
-<div class="sec">
-Quick Access
-</div>
-
-
-<div class="grid3">
-
-<button class="card" id="homeTemplates">
-<div class="ico">▦</div>
-<b>Templates</b>
-</button>
-
-<button class="card" id="homeProjects">
-<div class="ico">◫</div>
-<b>My Designs</b>
-</button>
-
-<button class="card" id="homeElements">
-<div class="ico">✦</div>
-<b>Elements</b>
-</button>
-
-</div>
-
-
-<div class="sec">
-Design Tools
-</div>
-
-
-<div class="grid3">
-
-<button class="card" id="homeShapes">
-<div class="ico">◇</div>
-<b>Shapes</b>
-</button>
-
-<button class="card" id="homeFrames">
-<div class="ico">▣</div>
-<b>Frames</b>
-</button>
-
-<button class="card" id="homeBackgrounds">
-<div class="ico">◉</div>
-<b>Backgrounds</b>
-</button>
-
-<button class="card" id="homeImport">
-<div class="ico">▧</div>
-<b>Import</b>
-</button>
-
-<button class="card" id="homeText">
-<div class="ico">T</div>
-<b>Text</b>
-</button>
-
-<button class="card" id="homeMore">
-<div class="ico">⋯</div>
-<b>More</b>
-</button>
-
-</div>
-
-
-<div class="sec">
-Recent Designs
-</div>
-
-<div
-class="card"
-style="padding:24px"
-id="recentBox"
->
-
-<div style="font-size:30px;opacity:.4">
-◫
-</div>
-
-<b>
-No recent designs
-</b>
-
-<div
-style="font-size:11px;color:var(--muted);margin-top:4px"
->
-Your saved projects will appear here.
-</div>
-
-</div>
-
-
-<!-- HOME NAV -->
-
-<div class="nav">
-
-<button id="navHome">
-⌂
-<b>Home</b>
-</button>
-
-<button id="navTemplates">
-▦
-<b>Templates</b>
-</button>
-
-<button class="plus" id="plusBtn">
-＋
-</button>
-
-<button id="navProjects">
-◫
-<b>Projects</b>
-</button>
-
-<button id="navSettings">
-⚙
-<b>Settings</b>
-</button>
-
-</div>
-
+<!-- WELCOME -->
+<section id="welcome" class="screen active">
+ <div class="welcomeBox">
+  <div class="brandMark">اردو</div>
+  <h1>Urdu Design Studio</h1>
+  <p>Design • Edit • Save</p>
+  <p>Make Urdu designing easy and creative.</p>
+  <button class="primary" onclick="showHome()">Start Designing</button>
+ </div>
 </section>
 
+<!-- HOME -->
+<section id="home" class="screen">
+ <div class="homeHead">
+  <div class="homeTitle">Urdu Design Studio</div>
+  <button class="toolBtn" onclick="showWelcome()">⌂</button>
+ </div>
 
-<!-- =========================================================
-     NEW DESIGN SCREEN
-========================================================= -->
+ <div class="homeBody">
+  <div class="slider" id="slider">
+   <div class="slides" id="slides"></div>
+   <div class="dots" id="dots"></div>
+  </div>
 
-<section
-class="setup"
-id="setup"
->
+  <div class="homeGrid">
+   <button class="homeBtn" onclick="showSetup()"><span>＋</span>New Design</button>
+   <button class="homeBtn" onclick="showMyDesigns()"><span>▣</span>My Designs</button>
+   <button class="homeBtn" onclick="openLibrary('templates')"><span>▤</span>Templates</button>
+   <button class="homeBtn" onclick="openLibrary('elements')"><span>✦</span>Design Elements</button>
+   <button class="homeBtn" onclick="openLibrary('shapes')"><span>◇</span>Shapes</button>
+   <button class="homeBtn" onclick="openLibrary('frames')"><span>▢</span>Frames</button>
+   <button class="homeBtn" onclick="openLibrary('backgrounds')"><span>◉</span>Backgrounds</button>
+   <button class="homeBtn" onclick="addImage()"><span>▧</span>Import Image</button>
+   <button class="homeBtn" onclick="openCDR()"><span>◈</span>Open CDR</button>
+   <button class="homeBtn" onclick="settingsPanel()"><span>⚙</span>Settings</button>
+  </div>
 
-<div class="setupHead">
-
-<button
-class="back"
-id="back"
->
-‹
-</button>
-
-<div>
-
-<b style="font-size:21px">
-New Design
-</b>
-
-<div
-style="font-size:12px;color:var(--muted);margin-top:3px"
->
-Choose your canvas size
-</div>
-
-</div>
-
-</div>
-
-
-<div class="box">
-
-<b>
-Custom Size
-</b>
-
-<div class="inputs">
-
-<div>
-
-<div class="lbl">
-Width
-</div>
-
-<input
-class="num"
-id="cw"
-type="number"
-value="1080"
-min="100"
->
-
-</div>
-
-
-<div>
-
-<div class="lbl">
-Height
-</div>
-
-<input
-class="num"
-id="ch"
-type="number"
-value="1080"
-min="100"
->
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="sec">
-Popular Sizes
-</div>
-
-
-<div class="presets">
-
-
-<button
-class="preset active"
-data-w="1080"
-data-h="1080"
->
-<b>1 : 1</b>
-<small>Square</small>
-</button>
-
-
-<button
-class="preset"
-data-w="1920"
-data-h="1080"
->
-<b>1920 × 1080</b>
-<small>YouTube</small>
-</button>
-
-
-<button
-class="preset"
-data-w="1280"
-data-h="720"
->
-<b>1280 × 720</b>
-<small>Thumbnail</small>
-</button>
-
-
-<!-- IMPORTANT USER REQUESTED SIZE -->
-
-<button
-class="preset"
-data-w="1280"
-data-h="520"
->
-<b>1280 × 520</b>
-<small>Wide Banner</small>
-</button>
-
-
-<button
-class="preset"
-data-w="1080"
-data-h="1920"
->
-<b>9 : 16</b>
-<small>Portrait</small>
-</button>
-
-
-<button
-class="preset"
-data-w="2480"
-data-h="3508"
->
-<b>A4 Portrait</b>
-<small>2480 × 3508</small>
-</button>
-
-
-<button
-class="preset"
-data-w="3508"
-data-h="2480"
->
-<b>A4 Landscape</b>
-<small>3508 × 2480</small>
-</button>
-
-
-<button
-class="preset"
-data-w="1200"
-data-h="900"
->
-<b>4 : 3</b>
-<small>Classic</small>
-</button>
-
-
-<button
-class="preset"
-data-w="1200"
-data-h="628"
->
-<b>1200 × 628</b>
-<small>Social Banner</small>
-</button>
-
-
-</div>
-
-
-<button
-class="create"
-id="create"
-style="margin-top:20px"
->
-Create Design
-</button>
-
+  <div class="devCard">
+   <div class="devPic">
+    <img src="developer_profile.jpg" onerror="this.style.display='none'">
+    <b>AGB</b>
+   </div>
+   <div>
+    <b>Developer</b><br>
+    Abdul Ghafar Baloch<br>
+    <small>03226894360</small>
+   </div>
+  </div>
+ </div>
 </section>
 
-
-<!-- =========================================================
-     EDITOR
-========================================================= -->
-
-<section
-class="editor"
-id="editor"
->
-
-
-<!-- TOP -->
-
-<div class="top">
-
-<b>
-Urdu Design Studio
-</b>
-
-
-<div class="toptools">
-
-<button
-class="tb"
-id="undo"
->
-↶
-</button>
-
-<button
-class="tb"
-id="redo"
->
-↷
-</button>
-
-<button
-class="tb"
-id="layersTop"
->
-▤
-</button>
-
-<button
-class="tb"
-id="save"
->
-💾
-</button>
-
-</div>
-
-</div>
-
-
-<div class="workspace">
-
-
-<div
-class="stage"
-id="stage"
->
-
-<div
-class="canvas"
-id="canvas"
->
-
-<div class="grid"></div>
-
-</div>
-
-</div>
-
-
-<!-- =======================================================
-     EDIT PANEL
-======================================================= -->
-
-<div
-class="panel"
-id="editPanel"
->
-
-<div class="pt">
-
-<span id="ptype">
-Edit Object
-</span>
-
-<button
-class="close"
-data-close
->
-×
-</button>
-
-</div>
-
-
-<div
-class="hint"
-id="hint"
->
-Select an object to edit it.
-</div>
-
-
-<div class="secTitle">
-Transform
-</div>
-
-
-<div class="pgrid">
-
-<button
-class="pbtn"
-id="fit"
->
-Fit Canvas
-</button>
-
-<button
-class="pbtn"
-id="center"
->
-Center
-</button>
-
-<button
-class="pbtn"
-id="rminus"
->
-Rotate −15°
-</button>
-
-<button
-class="pbtn"
-id="rplus"
->
-Rotate +15°
-</button>
-
-</div>
-
-
-<div class="secTitle">
-Style
-</div>
-
-<input
-class="color"
-id="color"
-type="color"
-value="#7044f5"
->
-
-
-<div
-id="textControls"
-style="display:none"
->
-
-<div class="secTitle">
-Text
-</div>
-
-
-<input
-class="range"
-id="fontSize"
-type="range"
-min="8"
-max="300"
-value="40"
->
-
-
-<div class="pgrid">
-
-<button
-class="pbtn"
-id="bold"
->
-Bold
-</button>
-
-<button
-class="pbtn"
-id="right"
->
-Right
-</button>
-
-<button
-class="pbtn"
-id="centerText"
->
-Center
-</button>
-
-<button
-class="pbtn"
-id="left"
->
-Left
-</button>
-
-</div>
-
-
-<select
-class="select"
-id="font"
-style="margin-top:7px"
->
-
-<option>
-Arial
-</option>
-
-<option>
-Noto Nastaliq Urdu
-</option>
-
-<option>
-Noto Naskh Arabic
-</option>
-
-<option>
-serif
-</option>
-
-<option>
-sans-serif
-</option>
-
-</select>
-
-
-<div class="pgrid" style="margin-top:7px">
-
-<button
-class="pbtn"
-id="breakApart"
->
-Break Apart
-</button>
-
-<button
-class="pbtn"
-id="convertShape"
->
-Convert to Shape
-</button>
-
-<button
-class="pbtn"
-id="convert3d"
->
-Convert to 3D
-</button>
-
-<button
-class="pbtn"
-id="patternText"
->
-Pattern
-</button>
-
-<button
-class="pbtn"
-id="textBg"
->
-Text Background
-</button>
-
-<button
-class="pbtn"
-id="splitWords"
->
-Split Words
-</button>
-
-<button
-class="pbtn"
-id="bulletList"
->
-Bullets List
-</button>
-
-<button
-class="pbtn"
-id="blendText"
->
-Blend
-</button>
-
-</div>
-
-</div>
-
-
-<div class="secTitle">
-Object
-</div>
-
-
-<div class="pgrid">
-
-<button
-class="pbtn"
-id="dup"
->
-Duplicate
-</button>
-
-<button
-class="pbtn"
-id="del"
->
-Delete
-</button>
-
-<button
-class="pbtn"
-id="up"
->
-Bring Forward
-</button>
-
-<button
-class="pbtn"
-id="down"
->
-Send Backward
-</button>
-
-<button
-class="pbtn"
-id="opacityBtn"
->
-Opacity
-</button>
-
-<button
-class="pbtn"
-id="powerClipBtn"
->
-PowerClip
-</button>
-
-</div>
-
-</div>
-
-
-<!-- =======================================================
-     LAYERS PANEL
-======================================================= -->
-
-<div
-class="panel"
-id="layerPanel"
->
-
-<div class="pt">
-
-<span>
-Layers
-</span>
-
-<button
-class="close"
-data-close
->
-×
-</button>
-
-</div>
-
-
-<div class="layerTools">
-
-<button
-class="layerTool"
-id="selectAllLayers"
->
-SELECT
-</button>
-
-<button
-class="layerTool"
-id="hideAllLayers"
->
-HIDE ALL
-</button>
-
-<button
-class="layerTool"
-id="lockAllLayers"
->
-LOCK ALL
-</button>
-
-<button
-class="layerTool"
-id="filterLayers"
->
-FILTER
-</button>
-
-</div>
-
-
-<div id="layers"></div>
-
-</div>
-
-</div>
-
-
-<!-- =======================================================
-     EDITOR BOTTOM
-======================================================= -->
-
-<div class="bottom">
-
-<div class="tools">
-
-
-<button
-class="tool"
-id="addNew"
->
-<span>＋</span>
-Add New
-</button>
-
-
-<button
-class="tool"
-id="addText"
->
-<span>T</span>
-Text
-</button>
-
-
-<button
-class="tool"
-id="addImage"
->
-<span>▧</span>
-Image
-</button>
-
-
-<button
-class="tool"
-id="addShape"
->
-<span>◇</span>
-Shape
-</button>
-
-
-<button
-class="tool"
-id="addBg"
->
-<span>◉</span>
-Background
-</button>
-
-
-<button
-class="tool"
-id="edit"
->
-<span>⚙</span>
-Edit
-</button>
-
-
-</div>
-
-</div>
-
+<!-- SETUP -->
+<section id="setup" class="screen">
+ <div class="setupBox">
+  <h2>New Design</h2>
+  <div class="field"><label>Width</label><input id="canvasW" type="number" value="1280"></div>
+  <div class="field"><label>Height</label><input id="canvasH" type="number" value="520"></div>
+
+  <b>Presets</b>
+  <div class="presetGrid">
+   <button class="preset" onclick="preset(1280,520)">1280 × 520</button>
+   <button class="preset" onclick="preset(1080,1080)">1080 × 1080</button>
+   <button class="preset" onclick="preset(1080,1920)">1080 × 1920</button>
+   <button class="preset" onclick="preset(1920,1080)">1920 × 1080</button>
+   <button class="preset" onclick="preset(1200,628)">1200 × 628</button>
+   <button class="preset" onclick="preset(800,1200)">800 × 1200</button>
+  </div>
+
+  <button class="primary" style="width:100%" onclick="createDesign()">Create Design</button>
+  <button style="width:100%;padding:12px;background:#eee;border-radius:10px;margin-top:8px" onclick="showHome()">Cancel</button>
+ </div>
 </section>
 
+<!-- EDITOR -->
+<section id="editor" class="screen">
 
-<!-- =========================================================
-     GENERAL MODAL
-========================================================= -->
+ <div class="editorTop">
+  <button class="toolBtn" onclick="showHome()">⌂</button>
+  <button class="toolBtn" onclick="undo()">↶</button>
+  <button class="toolBtn" onclick="redo()">↷</button>
+  <div class="canvasInfo" id="canvasInfo">1280 × 520</div>
+  <button class="toolBtn" onclick="openLayers()">☷</button>
+  <button class="toolBtn" onclick="exportPNG()">⇩</button>
+ </div>
 
-<div
-class="modal"
-id="modal"
->
+ <div class="workspace" id="workspace">
+  <div class="stageOuter" id="stageOuter">
+   <div id="stage"></div>
+  </div>
+  <button class="powerClipBar" id="powerClipButton" onclick="doPowerClip()">PowerClip</button>
+ </div>
 
-<div class="sheet">
+ <div class="bottomTools">
+  <button onclick="openAddNew()"><span>＋</span>Add</button>
+  <button onclick="addText()"><span>T</span>Text</button>
+  <button onclick="addImage()"><span>▧</span>Image</button>
+  <button onclick="openShapeTools()"><span>◇</span>Shape</button>
+  <button onclick="openLayers()"><span>☷</span>Layers</button>
+  <button onclick="openMoreTools()"><span>•••</span>More</button>
+ </div>
+</section>
 
-<div class="sheetHead">
-
-<b id="modalTitle">
-Tools
-</b>
-
-<button
-class="close"
-id="modalClose"
->
-×
-</button>
-
+<!-- ADD NEW -->
+<div class="overlay" id="addOverlay">
+ <div class="sheet">
+  <div class="sheetHead"><b>Add New</b><button class="close" onclick="closeOverlay('addOverlay')">×</button></div>
+  <div class="sheetGrid">
+   <button class="sheetItem" onclick="addImage()"><span>▧</span>Gallery Pic</button>
+   <button class="sheetItem" onclick="notice('Stock Images library can be added offline.')"><span>▤</span>Stock Images</button>
+   <button class="sheetItem" onclick="addImage()"><span>▣</span>My Folder</button>
+   <button class="sheetItem" onclick="addText()"><span>T</span>Add Text</button>
+   <button class="sheetItem" onclick="notice('Video module reserved for the media phase.')"><span>▶</span>Video</button>
+   <button class="sheetItem" onclick="notice('Audio module reserved for the media phase.')"><span>♪</span>Audio</button>
+   <button class="sheetItem" onclick="notice('AI Images is disabled in the core offline build.')"><span>AI</span>AI Images</button>
+   <button class="sheetItem" onclick="openMoreTools()"><span>⚙</span>Tools</button>
+   <button class="sheetItem" onclick="openShapeTools()"><span>▢</span>Borders</button>
+   <button class="sheetItem" onclick="addTable()"><span>▦</span>Table</button>
+   <button class="sheetItem" onclick="startDraw()"><span>✎</span>Draw</button>
+   <button class="sheetItem" onclick="startDraw()"><span>╱</span>Pen Tool</button>
+   <button class="sheetItem" onclick="notice('Logo library ready for custom assets.')"><span>◉</span>Logos</button>
+   <button class="sheetItem" onclick="addText()"><span>Tx</span>Special Text</button>
+   <button class="sheetItem" onclick="openShapeTools()"><span>◇</span>Shapes</button>
+   <button class="sheetItem" onclick="addText('اردو ڈیزائن')"><span>★</span>Urdu</button>
+  </div>
+ </div>
 </div>
 
-
-<div
-class="sheetGrid"
-id="modalGrid"
->
+<!-- LAYERS -->
+<div class="overlay" id="layersOverlay">
+ <div class="sheet">
+  <div class="sheetHead"><b>Layers</b><button class="close" onclick="closeOverlay('layersOverlay')">×</button></div>
+  <div id="layersList"></div>
+ </div>
 </div>
 
+<!-- SHAPES -->
+<div class="overlay" id="shapeOverlay">
+ <div class="sheet">
+  <div class="sheetHead"><b>Shapes</b><button class="close" onclick="closeOverlay('shapeOverlay')">×</button></div>
+  <div class="panelGrid">
+   <button class="panelBtn" onclick="addShape('rect')">Rectangle</button>
+   <button class="panelBtn" onclick="addShape('circle')">Circle</button>
+   <button class="panelBtn" onclick="addShape('round')">Round</button>
+   <button class="panelBtn" onclick="addShape('star')">Star</button>
+   <button class="panelBtn" onclick="addShape('heart')">Heart</button>
+   <button class="panelBtn" onclick="addShape('triangle')">Triangle</button>
+   <button class="panelBtn" onclick="addShape('diamond')">Diamond</button>
+   <button class="panelBtn" onclick="addShape('line')">Line</button>
+   <button class="panelBtn" onclick="addShape('arrow')">Arrow</button>
+   <button class="panelBtn" onclick="addCustomShape()">Custom PNG/SVG</button>
+  </div>
+ </div>
 </div>
 
+<!-- MORE / OBJECT TOOLS -->
+<div class="overlay" id="moreOverlay">
+ <div class="sheet">
+  <div class="sheetHead"><b>Object Tools</b><button class="close" onclick="closeOverlay('moreOverlay')">×</button></div>
+  <div class="panelGrid">
+   <button class="panelBtn" onclick="duplicateSelected()">Duplicate</button>
+   <button class="panelBtn" onclick="deleteSelected()">Delete</button>
+   <button class="panelBtn" onclick="moveUp()">Move Up</button>
+   <button class="panelBtn" onclick="moveDown()">Move Down</button>
+   <button class="panelBtn" onclick="bringFront()">Bring Front</button>
+   <button class="panelBtn" onclick="sendBack()">Send Back</button>
+   <button class="panelBtn" onclick="toggleLock()">Lock/Unlock</button>
+   <button class="panelBtn" onclick="toggleGrid()">Grid</button>
+   <button class="panelBtn" onclick="alignCenter()">Align Center</button>
+   <button class="panelBtn" onclick="openTextTools()">Text Tools</button>
+   <button class="panelBtn" onclick="groupSelected()">Group</button>
+   <button class="panelBtn" onclick="ungroupSelected()">Ungroup</button>
+  </div>
+ </div>
 </div>
 
+<!-- TEXT TOOLS -->
+<div class="overlay" id="textOverlay">
+ <div class="sheet">
+  <div class="sheetHead"><b>Text Tools</b><button class="close" onclick="closeOverlay('textOverlay')">×</button></div>
 
-<!-- =========================================================
-     TEXT MODAL
-========================================================= -->
+  <div class="panelGrid">
+   <button class="panelBtn" onclick="editText()">Edit</button>
+   <button class="panelBtn" onclick="fontSize()">Size</button>
+   <button class="panelBtn" onclick="fontColor()">Color</button>
+   <button class="panelBtn" onclick="fontSelect()">Font</button>
+  </div>
 
-<div
-class="modal"
-id="textModal"
->
+  <hr>
 
-<div class="sheet">
-
-<div class="sheetHead">
-
-<b>
-Add Text
-</b>
-
-<button
-class="close"
-id="textClose"
->
-×
-</button>
-
+  <div class="panelGrid">
+   <button class="panelBtn" onclick="textStroke()">Stroke</button>
+   <button class="panelBtn" onclick="textShadow()">Shadow</button>
+   <button class="panelBtn" onclick="textGradient()">Gradient</button>
+   <button class="panelBtn" onclick="textOpacity()">Opacity</button>
+   <button class="panelBtn" onclick="breakApart()">Break Apart</button>
+   <button class="panelBtn" onclick="convertShape()">Convert to Shape</button>
+   <button class="panelBtn" onclick="convert3D()">Convert to 3D</button>
+   <button class="panelBtn" onclick="textPattern()">Pattern</button>
+   <button class="panelBtn" onclick="textBackground()">Text Background</button>
+   <button class="panelBtn" onclick="splitWords()">Split Words</button>
+   <button class="panelBtn" onclick="bullets()">Bullets List</button>
+   <button class="panelBtn" onclick="blendText()">Blend</button>
+   <button class="panelBtn" onclick="duplicateSelected()">Duplicate</button>
+   <button class="panelBtn" onclick="deleteSelected()">Delete</button>
+  </div>
+ </div>
 </div>
 
-
-<div class="textModalBox">
-
-<textarea
-class="textArea"
-id="newText"
-placeholder="Write your text..."
-></textarea>
-
-
-<button
-class="create"
-id="createText"
-style="margin-top:10px"
->
-Add Text
-</button>
-
+<!-- MODAL -->
+<div class="modal" id="modal">
+ <div class="modalBox">
+  <h3 id="modalTitle"></h3>
+  <div id="modalBody"></div>
+  <button class="primary" onclick="modalOK()">OK</button>
+  <button style="width:100%;padding:11px;margin-top:7px;border-radius:9px" onclick="closeModal()">Cancel</button>
+ </div>
 </div>
 
-</div>
-
-</div>
-
-
-<!-- =========================================================
-     IMAGE INPUT
-========================================================= -->
-
-<input
-id="file"
-type="file"
-accept="image/*"
->
-
+<input id="imageInput" type="file" accept="image/png,image/jpeg,image/jpg,image/svg+xml" hidden>
+<input id="shapeInput" type="file" accept="image/png,image/svg+xml" hidden>
+<input id="projectInput" type="file" accept=".uds,.json" hidden>
+<input id="cdrInput" type="file" accept=".cdr" hidden>
 
 <script>
-
 /* =========================================================
-   CORE
-========================================================= */
+   URDU DESIGN STUDIO — CORE EDITOR ENGINE
+   ========================================================= */
 
-const $ = id => document.getElementById(id);
+const $=id=>document.getElementById(id);
 
-const home = $("home");
-const setup = $("setup");
-const editor = $("editor");
-const canvas = $("canvas");
-const stage = $("stage");
+let state={
+ width:1280,height:520,
+ bg:"#ffffff",
+ objects:[],
+ selected:[],
+ history:[],
+ future:[],
+ grid:false,
+ projectName:"Untitled Design"
+};
 
-let selected = null;
+let idCounter=1;
+const uid=()=> "obj_"+Date.now()+"_"+(idCounter++);
 
-let history = [];
-let future = [];
-
-let designW = 1080;
-let designH = 1080;
-
-let gesture = null;
-
-let clipShape = null;
-
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-function toast(message){
-
-  const t = document.createElement("div");
-
-  t.className = "toast";
-
-  t.textContent = message;
-
-  document.body.appendChild(t);
-
-  t.style.display = "block";
-
-  setTimeout(()=>{
-    t.remove();
-  },1800);
-
+function screen(id){
+ document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
+ $(id).classList.add("active");
 }
 
+function showHome(){screen("home")}
+function showWelcome(){screen("welcome")}
+function showSetup(){screen("setup")}
+function preset(w,h){$("canvasW").value=w;$("canvasH").value=h}
 
-/* =========================================================
-   HISTORY
-========================================================= */
-
-function snapshot(){
-
-  history.push(canvas.innerHTML);
-
-  if(history.length > 40){
-    history.shift();
-  }
-
-  future = [];
-
+function createDesign(){
+ state.width=parseInt($("canvasW").value)||1280;
+ state.height=parseInt($("canvasH").value)||520;
+ state.objects=[];
+ state.selected=[];
+ state.history=[];
+ state.future=[];
+ $("canvasInfo").textContent=state.width+" × "+state.height;
+ screen("editor");
+ render();
+ saveHistory();
 }
 
-
-/* =========================================================
-   RESTORE
-========================================================= */
-
-function restore(html){
-
-  canvas.innerHTML = html;
-
-  selected = null;
-
-  canvas
-  .querySelectorAll(".obj")
-  .forEach(addObjectEvents);
-
-  refresh();
-
-}
-
-
-/* =========================================================
-   SELECT
-========================================================= */
-
-function select(o){
-
-  document
-  .querySelectorAll(".obj.selected")
-  .forEach(x =>
-    x.classList.remove("selected")
-  );
-
-  selected = o;
-
-  if(o){
-    o.classList.add("selected");
-  }
-
-  refresh();
-
-}
-
-
-/* =========================================================
-   REFRESH
-========================================================= */
-
-function refresh(){
-
-  $("hint").textContent =
-    selected
-    ?
-    "Selected: " +
-    (selected.dataset.name || "Object")
-    :
-    "Select an object to edit it.";
-
-  $("ptype").textContent =
-    selected
-    ?
-    (selected.dataset.name || "Object")
-    :
-    "Edit Object";
-
-  $("textControls").style.display =
-    selected &&
-    selected.classList.contains("textObj")
-    ?
-    "block"
-    :
-    "none";
-
-  if(
-    selected &&
-    selected.classList.contains("textObj")
-  ){
-
-    $("fontSize").value =
-      parseInt(selected.style.fontSize) || 40;
-
-    $("font").value =
-      selected.style.fontFamily || "Arial";
-
-  }
-
-  updateLayers();
-
-}
-
-
-/* =========================================================
-   HANDLE MARKUP
-========================================================= */
-
-function handleMarkup(){
-
-  return `
-  <div class="handles">
-
-    <i class="h nw" data-h="nw"></i>
-    <i class="h n" data-h="n"></i>
-    <i class="h ne" data-h="ne"></i>
-    <i class="h e" data-h="e"></i>
-    <i class="h se" data-h="se"></i>
-    <i class="h s" data-h="s"></i>
-    <i class="h sw" data-h="sw"></i>
-    <i class="h w" data-h="w"></i>
-
-    <i class="rotateLine"></i>
-    <i class="h rh" data-h="rotate"></i>
-
-  </div>
-  `;
-
-}
-
-
-/* =========================================================
-   OBJECT EVENTS
-========================================================= */
-
-function addObjectEvents(o){
-
-  const old =
-    o.querySelector(".handles");
-
-  if(old){
-    old.remove();
-  }
-
-  o.insertAdjacentHTML(
-    "beforeend",
-    handleMarkup()
-  );
-
-  o.addEventListener(
-    "pointerdown",
-    objectDown
-  );
-
-  o.querySelectorAll(".h")
-   .forEach(h =>
-     h.addEventListener(
-       "pointerdown",
-       handleDown
-     )
-   );
-
-  o.addEventListener(
-    "click",
-    e => {
-
-      e.stopPropagation();
-
-      select(o);
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   CREATE OBJECT
-========================================================= */
-
-function make(type){
-
-  let o;
-
-  if(type === "image"){
-    o = document.createElement("img");
-  }else{
-    o = document.createElement("div");
-  }
-
-  o.className =
-    "obj " +
-    (
-      type === "image"
-      ?
-      "imageObj"
-      :
-      type === "text"
-      ?
-      "textObj"
-      :
-      type === "circle"
-      ?
-      "circle"
-      :
-      type === "star"
-      ?
-      "star"
-      :
-      type === "heart"
-      ?
-      "heart"
-      :
-      type === "line"
-      ?
-      "lineShape"
-      :
-      "shape"
-    );
-
-  o.dataset.type = type;
-
-  o.dataset.name =
-    type === "image"
-    ?
-    "Image"
-    :
-    type === "text"
-    ?
-    "Text"
-    :
-    type === "circle"
-    ?
-    "Circle"
-    :
-    type === "star"
-    ?
-    "Star"
-    :
-    type === "heart"
-    ?
-    "Heart"
-    :
-    type === "line"
-    ?
-    "Line"
-    :
-    "Shape";
-
-  o.style.left = "40px";
-  o.style.top = "40px";
-  o.style.zIndex = "10";
-
-
-  if(type === "text"){
-
-    o.textContent = "New Text";
-
-    o.contentEditable = "true";
-
-    o.style.fontSize = "40px";
-
-  }
-
-
-  if(type === "image"){
-
-    o.style.width = "220px";
-    o.style.height = "160px";
-    o.style.objectFit = "contain";
-
-  }
-
-
-  canvas.appendChild(o);
-
-  addObjectEvents(o);
-
-  select(o);
-
-  snapshot();
-
-  return o;
-
-}
-
-
-/* =========================================================
-   MOVE
-========================================================= */
-
-function objectDown(e){
-
-  if(e.target.closest(".h")){
-    return;
-  }
-
-  e.stopPropagation();
-
-  select(this);
-
-  if(this.dataset.locked === "1"){
-    return;
-  }
-
-  gesture = {
-
-    kind:"move",
-
-    o:this,
-
-    sx:e.clientX,
-
-    sy:e.clientY,
-
-    l:parseFloat(this.style.left) || 0,
-
-    t:parseFloat(this.style.top) || 0
-
+/* ---------- HOME SLIDER ---------- */
+const banners=[
+ "home_banner_01.jpg","home_banner_02.jpg","home_banner_03.jpg",
+ "home_banner_04.jpg","home_banner_05.jpg","home_banner_06.jpg",
+ "home_banner_07.jpg"
+];
+
+let slideIndex=0;
+
+function initSlider(){
+ const s=$("slides"),d=$("dots");
+ s.innerHTML="";d.innerHTML="";
+ banners.forEach((src,i)=>{
+  const div=document.createElement("div");
+  div.className="slide";
+  const img=document.createElement("img");
+  img.src=src;
+  img.onerror=()=>{
+   img.style.display="none";
+   const f=document.createElement("div");
+   f.className="slideFallback";
+   f.textContent="Urdu Design Studio";
+   div.appendChild(f);
   };
+  div.appendChild(img);
+  s.appendChild(div);
 
-  this.setPointerCapture?.(
-    e.pointerId
-  );
-
+  const dot=document.createElement("i");
+  dot.className="dot "+(i===0?"on":"");
+  dot.onclick=()=>goSlide(i);
+  d.appendChild(dot);
+ });
 }
 
+function goSlide(i){
+ slideIndex=i;
+ $("slides").style.transform="translateX(-"+i*100+"%)";
+ document.querySelectorAll(".dot").forEach((d,n)=>d.classList.toggle("on",n===i));
+}
+setInterval(()=>goSlide((slideIndex+1)%7),4500);
+initSlider();
 
-/* =========================================================
-   RESIZE / ROTATE
-========================================================= */
+/* ---------- OBJECT CREATION ---------- */
 
-function handleDown(e){
-
-  e.stopPropagation();
-  e.preventDefault();
-
-  const o =
-    this.closest(".obj");
-
-  select(o);
-
-  if(o.dataset.locked === "1"){
-    return;
-  }
-
-  const type =
-    this.dataset.h;
-
-
-  if(type === "rotate"){
-
-    gesture = {
-
-      kind:"rotate",
-
-      o:o,
-
-      sx:e.clientX,
-
-      sy:e.clientY,
-
-      start:
-        parseFloat(o.dataset.rot) || 0
-
-    };
-
-    return;
-
-  }
-
-
-  gesture = {
-
-    kind:"resize",
-
-    o:o,
-
-    type:type,
-
-    sx:e.clientX,
-
-    sy:e.clientY,
-
-    l:parseFloat(o.style.left) || 0,
-
-    t:parseFloat(o.style.top) || 0,
-
-    w:o.offsetWidth,
-
-    h:o.offsetHeight
-
-  };
-
+function baseObj(type){
+ return {
+  id:uid(),type,
+  x:80,y:70,w:260,h:120,
+  rotation:0,opacity:1,
+  locked:false,hidden:false,
+  name:type+" "+(state.objects.length+1),
+  z:state.objects.length
+ };
 }
 
-
-/* =========================================================
-   POINTER MOVE
-========================================================= */
-
-window.addEventListener(
-  "pointermove",
-  e => {
-
-    if(!gesture){
-      return;
-    }
-
-    const g = gesture;
-    const o = g.o;
-
-    const dx =
-      e.clientX - g.sx;
-
-    const dy =
-      e.clientY - g.sy;
-
-
-    if(g.kind === "move"){
-
-      o.style.left =
-        Math.max(
-          0,
-          g.l + dx
-        ) + "px";
-
-      o.style.top =
-        Math.max(
-          0,
-          g.t + dy
-        ) + "px";
-
-      return;
-
-    }
-
-
-    if(g.kind === "rotate"){
-
-      const r =
-        canvas.getBoundingClientRect();
-
-      const cx =
-        r.left +
-        o.offsetLeft +
-        o.offsetWidth / 2;
-
-      const cy =
-        r.top +
-        o.offsetTop +
-        o.offsetHeight / 2;
-
-      const angle =
-        Math.atan2(
-          e.clientY - cy,
-          e.clientX - cx
-        ) *
-        180 /
-        Math.PI +
-        90;
-
-      o.dataset.rot = angle;
-
-      o.style.transform =
-        "rotate(" + angle + "deg)";
-
-      return;
-
-    }
-
-
-    let nw = g.w;
-    let nh = g.h;
-
-    let nl = g.l;
-    let nt = g.t;
-
-    const min = 30;
-
-
-    if(g.type.includes("e")){
-
-      nw =
-        Math.max(
-          min,
-          g.w + dx
-        );
-
-    }
-
-
-    if(g.type.includes("w")){
-
-      nw =
-        Math.max(
-          min,
-          g.w - dx
-        );
-
-      nl =
-        g.l +
-        (g.w - nw);
-
-    }
-
-
-    if(g.type.includes("s")){
-
-      nh =
-        Math.max(
-          min,
-          g.h + dy
-        );
-
-    }
-
-
-    if(g.type.includes("n")){
-
-      nh =
-        Math.max(
-          min,
-          g.h - dy
-        );
-
-      nt =
-        g.t +
-        (g.h - nh);
-
-    }
-
-
-    o.style.width = nw + "px";
-    o.style.height = nh + "px";
-    o.style.left = nl + "px";
-    o.style.top = nt + "px";
-
-  }
-);
-
-
-/* =========================================================
-   POINTER UP
-========================================================= */
-
-window.addEventListener(
-  "pointerup",
-  () => {
-
-    if(gesture){
-
-      snapshot();
-
-      gesture = null;
-
-      refresh();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   CANVAS
-========================================================= */
-
-canvas.addEventListener(
-  "pointerdown",
-  e => {
-
-    if(e.target === canvas){
-
-      select(null);
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   CANVAS SIZE
-========================================================= */
-
-function applyCanvas(){
-
-  canvas.style.width =
-    designW + "px";
-
-  canvas.style.height =
-    designH + "px";
-
-  canvas.dataset.width =
-    designW;
-
-  canvas.dataset.height =
-    designH;
-
+function addText(value="اردو ڈیزائن"){
+ closeAll();
+ const o=baseObj("text");
+ o.text=value;o.w=350;o.h=90;
+ o.fontSize=45;o.fontFamily="Arial";
+ o.color="#222222";o.bold=true;
+ state.objects.push(o);
+ selectOne(o.id);saveHistory();render();
 }
 
-
-/* =========================================================
-   NEW DESIGN
-========================================================= */
-
-function showSetup(){
-
-  home.style.display = "none";
-
-  editor.style.display = "none";
-
-  setup.style.display = "block";
-
+function addImage(){
+ $("imageInput").click();
 }
 
-
-$("newBtn").onclick =
-  showSetup;
-
-$("plusBtn").onclick =
-  showSetup;
-
-
-$("back").onclick = () => {
-
-  setup.style.display = "none";
-
-  editor.style.display = "none";
-
-  home.style.display = "block";
-
+$("imageInput").onchange=e=>{
+ const f=e.target.files[0];if(!f)return;
+ const r=new FileReader();
+ r.onload=()=>{
+  const o=baseObj("image");
+  o.src=r.result;o.w=300;o.h=220;
+  state.objects.push(o);
+  selectOne(o.id);saveHistory();render();
+ };
+ r.readAsDataURL(f);
+ e.target.value="";
 };
 
+function addCustomShape(){
+ $("shapeInput").click();
+}
 
-/* PRESETS */
-
-document
-.querySelectorAll(".preset")
-.forEach(p => {
-
-  p.onclick = () => {
-
-    document
-    .querySelectorAll(".preset")
-    .forEach(x =>
-      x.classList.remove("active")
-    );
-
-    p.classList.add("active");
-
-    $("cw").value =
-      p.dataset.w;
-
-    $("ch").value =
-      p.dataset.h;
-
-  };
-
-});
-
-
-/* CREATE */
-
-$("create").onclick = () => {
-
-  designW =
-    Math.max(
-      100,
-      parseInt($("cw").value) || 1080
-    );
-
-  designH =
-    Math.max(
-      100,
-      parseInt($("ch").value) || 1080
-    );
-
-  history = [];
-
-  future = [];
-
-  selected = null;
-
-  canvas.innerHTML =
-    '<div class="grid"></div>';
-
-  applyCanvas();
-
-  setup.style.display = "none";
-
-  home.style.display = "none";
-
-  editor.style.display = "flex";
-
-  refresh();
-
+$("shapeInput").onchange=e=>{
+ const f=e.target.files[0];if(!f)return;
+ const r=new FileReader();
+ r.onload=()=>{
+  const o=baseObj("customShape");
+  o.src=r.result;o.w=240;o.h=180;
+  state.objects.push(o);
+  selectOne(o.id);saveHistory();render();
+ };
+ r.readAsDataURL(f);
+ e.target.value="";
 };
 
+function addShape(kind){
+ closeAll();
+ const o=baseObj("shape");
+ o.shape=kind;o.w=210;o.h=150;
+ o.color="#6546e5";
+ state.objects.push(o);
+ selectOne(o.id);saveHistory();render();
+}
 
-/* =========================================================
-   ADD TEXT
-========================================================= */
+function addTable(){
+ closeAll();
+ const o=baseObj("table");
+ o.w=350;o.h=180;o.rows=3;o.cols=4;
+ state.objects.push(o);
+ selectOne(o.id);saveHistory();render();
+}
 
-$("addText").onclick = () => {
+/* ---------- RENDER ---------- */
 
-  $("textModal").classList.add("show");
+function render(){
+ const stage=$("stage");
+ stage.innerHTML="";
+ stage.style.width=state.width+"px";
+ stage.style.height=state.height+"px";
+ stage.style.background=state.bg;
+ stage.classList.toggle("gridBg",state.grid);
 
-  $("newText").value = "";
+ const scale=Math.min(
+  ($("workspace").clientWidth-40)/state.width,
+  ($("workspace").clientHeight-40)/state.height,
+  1
+ );
+ stage.style.transform="scale("+scale+")";
+ $("stageOuter").style.width=state.width*scale+"px";
+ $("stageOuter").style.height=state.height*scale+"px";
 
-  setTimeout(
-    () => $("newText").focus(),
-    150
-  );
+ state.objects.sort((a,b)=>a.z-b.z);
 
-};
+ state.objects.forEach(o=>{
+  if(o.hidden)return;
+  const el=document.createElement("div");
+  el.className="obj "+(o.type==="text"?"textObj":"");
+  if(state.selected.includes(o.id))el.classList.add("selected");
+  if(o.locked)el.classList.add("locked");
+  el.dataset.id=o.id;
 
+  el.style.left=o.x+"px";
+  el.style.top=o.y+"px";
+  el.style.width=o.w+"px";
+  el.style.height=o.h+"px";
+  el.style.opacity=o.opacity;
+  el.style.transform="rotate("+o.rotation+"deg)";
 
-$("textClose").onclick = () => {
-
-  $("textModal")
-  .classList.remove("show");
-
-};
-
-
-$("createText").onclick = () => {
-
-  let text =
-    $("newText").value.trim();
-
-  if(!text){
-    text = "New Text";
+  if(o.type==="text"){
+   el.textContent=o.text;
+   el.style.fontSize=o.fontSize+"px";
+   el.style.fontFamily=o.fontFamily;
+   el.style.color=o.color;
+   el.style.fontWeight=o.bold?"bold":"normal";
+   el.style.textAlign=o.align||"center";
+   if(o.stroke)el.style.webkitTextStroke=""+o.stroke+"px "+(o.strokeColor||"#000");
+   if(o.shadow)el.style.textShadow="4px 4px 5px #0008";
+   if(o.gradient)el.style.background="linear-gradient(90deg,#6546e5,#08aaa1)";
+   if(o.gradient)el.style.webkitBackgroundClip="text";
+   if(o.gradient)el.style.webkitTextFillColor="transparent";
+   if(o.background)el.style.backgroundColor=o.background;
+   if(o.effect3d)el.style.textShadow="5px 5px 0 #555,9px 9px 8px #0006";
   }
 
-  const o =
-    make("text");
-
-  o.textContent =
-    text;
-
-  $("textModal")
-  .classList.remove("show");
-
-  select(o);
-
-};
-
-
-/* =========================================================
-   ADD IMAGE
-========================================================= */
-
-$("addImage").onclick = () => {
-
-  $("file").dataset.mode =
-    "image";
-
-  $("file").click();
-
-};
-
-
-/* =========================================================
-   ADD BACKGROUND
-========================================================= */
-
-$("addBg").onclick = () => {
-
-  $("file").dataset.mode =
-    "background";
-
-  $("file").click();
-
-};
-
-
-/* =========================================================
-   FILE INPUT
-========================================================= */
-
-$("file").onchange = e => {
-
-  const file =
-    e.target.files[0];
-
-  if(!file){
-    return;
-  }
-
-  const reader =
-    new FileReader();
-
-  reader.onload = ev => {
-
-    if(
-      e.target.dataset.mode ===
-      "background"
-    ){
-
-      document
-      .querySelectorAll(
-        ".canvasBackground"
-      )
-      .forEach(x => x.remove());
-
+  if(o.type==="image"||o.type==="customShape"){
+   const img=document.createElement("img");
+   img.src=o.src;
+   el.appendChild(img);
+   if(o.clipShape){
+    const sh=getObj(o.clipShape);
+    if(sh){
+     el.style.clipPath=shapeClip(sh);
     }
-
-
-    const o =
-      make("image");
-
-    o.src =
-      ev.target.result;
-
-
-    if(
-      e.target.dataset.mode ===
-      "background"
-    ){
-
-      o.classList.add(
-        "canvasBackground"
-      );
-
-      o.dataset.name =
-        "Background";
-
-      o.style.left =
-        "0px";
-
-      o.style.top =
-        "0px";
-
-      o.style.width =
-        "100%";
-
-      o.style.height =
-        "100%";
-
-      o.style.objectFit =
-        "cover";
-
-      o.style.zIndex =
-        "0";
-
-    }
-
-
-    snapshot();
-
-    refresh();
-
-  };
-
-  reader.readAsDataURL(file);
-
-  e.target.value = "";
-
-};
-
-
-/* =========================================================
-   SHAPES
-========================================================= */
-
-function addShape(type){
-
-  const o =
-    make(type);
-
-  if(type === "line"){
-    o.style.height = "5px";
+   }
   }
 
+  if(o.type==="shape"){
+   el.classList.add("shapeObj");
+   el.innerHTML=shapeHTML(o);
+  }
+
+  if(o.type==="table"){
+   el.innerHTML=tableHTML(o);
+  }
+
+  el.addEventListener("pointerdown",e=>{
+   e.stopPropagation();
+   if(o.locked)return;
+   selectObject(o.id,e);
+   startDrag(e,o);
+  });
+
+  stage.appendChild(el);
+
+  if(state.selected.includes(o.id)){
+   addHandles(el,o);
+  }
+ });
+
+ updatePowerClip();
+ updateLayers();
 }
 
-
-function shapeMenu(){
-
-  openModal(
-    "Shapes",
-    [
-      ["Rectangle","Rectangle"],
-      ["Circle","Circle"],
-      ["Star","Star"],
-      ["Heart","Heart"],
-      ["Line","Line"]
-    ]
-  );
-
+function shapeHTML(o){
+ if(o.shape==="circle")
+  return '<svg width="100%" height="100%"><ellipse cx="50%" cy="50%" rx="47%" ry="47%" fill="'+o.color+'"/></svg>';
+ if(o.shape==="round")
+  return '<svg width="100%" height="100%"><rect x="2%" y="2%" width="96%" height="96%" rx="25" fill="'+o.color+'"/></svg>';
+ if(o.shape==="star")
+  return '<svg width="100%" height="100%" viewBox="0 0 100 100"><polygon points="50,3 61,36 97,36 68,57 79,92 50,71 21,92 32,57 3,36 39,36" fill="'+o.color+'"/></svg>';
+ if(o.shape==="heart")
+  return '<svg width="100%" height="100%" viewBox="0 0 100 100"><path d="M50 90 C10 60 5 35 20 20 C32 8 47 15 50 30 C53 15 68 8 80 20 C95 35 90 60 50 90Z" fill="'+o.color+'"/></svg>';
+ if(o.shape==="triangle")
+  return '<svg width="100%" height="100%" viewBox="0 0 100 100"><polygon points="50,5 95,95 5,95" fill="'+o.color+'"/></svg>';
+ if(o.shape==="diamond")
+  return '<svg width="100%" height="100%" viewBox="0 0 100 100"><polygon points="50,3 97,50 50,97 3,50" fill="'+o.color+'"/></svg>';
+ if(o.shape==="line")
+  return '<svg width="100%" height="100%"><line x1="5%" y1="50%" x2="95%" y2="50%" stroke="'+o.color+'" stroke-width="8"/></svg>';
+ if(o.shape==="arrow")
+  return '<svg width="100%" height="100%" viewBox="0 0 100 100"><path d="M5 50H75V25L95 50 75 75V55H5Z" fill="'+o.color+'"/></svg>';
+ return '<svg width="100%" height="100%"><rect x="2%" y="2%" width="96%" height="96%" rx="4" fill="'+o.color+'"/></svg>';
 }
 
-
-/* =========================================================
-   EDIT PANEL
-========================================================= */
-
-$("edit").onclick = () => {
-
-  closePanels();
-
-  $("editPanel")
-  .classList.add("show");
-
-  refresh();
-
-};
-
-
-/* =========================================================
-   CLOSE PANELS
-========================================================= */
-
-function closePanels(){
-
-  document
-  .querySelectorAll(".panel")
-  .forEach(
-    p =>
-      p.classList.remove("show")
-  );
-
+function tableHTML(o){
+ let h='<table style="width:100%;height:100%;border-collapse:collapse">';
+ for(let r=0;r<o.rows;r++){
+  h+="<tr>";
+  for(let c=0;c<o.cols;c++)
+   h+='<td style="border:2px solid #555;text-align:center">'+(r+1)+","+(c+1)+"</td>";
+  h+="</tr>";
+ }
+ return h+"</table>";
 }
 
-
-document
-.querySelectorAll("[data-close]")
-.forEach(
-  b =>
-    b.onclick =
-      closePanels
-);
-
-
-/* =========================================================
-   EDIT TRANSFORM
-========================================================= */
-
-$("fit").onclick = () => {
-
-  if(!selected){
-    toast("Select an object first");
-    return;
-  }
-
-  selected.style.left = "0px";
-  selected.style.top = "0px";
-  selected.style.width = "100%";
-  selected.style.height = "100%";
-
-  if(
-    selected.classList.contains(
-      "imageObj"
-    )
-  ){
-
-    selected.style.objectFit =
-      "cover";
-
-  }
-
-  snapshot();
-
-  refresh();
-
-};
-
-
-$("center").onclick = () => {
-
-  if(!selected){
-    toast("Select an object first");
-    return;
-  }
-
-  selected.style.left =
-    Math.max(
-      0,
-      (canvas.clientWidth -
-       selected.offsetWidth) / 2
-    ) + "px";
-
-  selected.style.top =
-    Math.max(
-      0,
-      (canvas.clientHeight -
-       selected.offsetHeight) / 2
-    ) + "px";
-
-  snapshot();
-
-  refresh();
-
-};
-
-
-function rotateSelected(deg){
-
-  if(!selected){
-    toast("Select an object first");
-    return;
-  }
-
-  const r =
-    (parseFloat(
-      selected.dataset.rot
-    ) || 0) + deg;
-
-  selected.dataset.rot =
-    r;
-
-  selected.style.transform =
-    "rotate(" + r + "deg)";
-
-  snapshot();
-
-  refresh();
-
+function shapeClip(o){
+ if(o.shape==="circle")return "ellipse(50% 50% at 50% 50%)";
+ if(o.shape==="diamond")return "polygon(50% 0%,100% 50%,50% 100%,0% 50%)";
+ if(o.shape==="triangle")return "polygon(50% 0%,100% 100%,0% 100%)";
+ return "inset(0 round 25px)";
 }
 
-
-$("rminus").onclick =
-  () => rotateSelected(-15);
-
-$("rplus").onclick =
-  () => rotateSelected(15);
-
-
-/* =========================================================
-   TEXT
-========================================================= */
-
-$("fontSize").oninput = e => {
-
-  if(
-    selected &&
-    selected.classList.contains(
-      "textObj"
-    )
-  ){
-
-    selected.style.fontSize =
-      e.target.value + "px";
-
-  }
-
-};
-
-
-$("bold").onclick = () => {
-
-  if(
-    selected &&
-    selected.classList.contains(
-      "textObj"
-    )
-  ){
-
-    selected.style.fontWeight =
-      selected.style.fontWeight ===
-      "900"
-      ?
-      "400"
-      :
-      "900";
-
-    snapshot();
-
-    refresh();
-
-  }
-
-};
-
-
-$("right").onclick = () => {
-
-  if(
-    selected &&
-    selected.classList.contains(
-      "textObj"
-    )
-  ){
-
-    selected.style.textAlign =
-      "right";
-
-  }
-
-};
-
-
-$("centerText").onclick = () => {
-
-  if(
-    selected &&
-    selected.classList.contains(
-      "textObj"
-    )
-  ){
-
-    selected.style.textAlign =
-      "center";
-
-  }
-
-};
-
-
-$("left").onclick = () => {
-
-  if(
-    selected &&
-    selected.classList.contains(
-      "textObj"
-    )
-  ){
-
-    selected.style.textAlign =
-      "left";
-
-  }
-
-};
-
-
-$("font").onchange = e => {
-
-  if(
-    selected &&
-    selected.classList.contains(
-      "textObj"
-    )
-  ){
-
-    selected.style.fontFamily =
-      e.target.value;
-
-  }
-
-};
-
-
-$("color").oninput = e => {
-
-  if(!selected){
-    return;
-  }
-
-  if(
-    selected.classList.contains(
-      "textObj"
-    )
-  ){
-
-    selected.style.color =
-      e.target.value;
-
-  }else{
-
-    selected.style.background =
-      e.target.value;
-
-  }
-
-};
-
-
-/* =========================================================
-   DUPLICATE
-========================================================= */
-
-function duplicateSelected(){
-
-  if(!selected){
-    toast("Select an object first");
-    return;
-  }
-
-  const copy =
-    selected.cloneNode(true);
-
-  copy.classList.remove(
-    "selected"
-  );
-
-  copy.style.left =
-    (
-      parseFloat(
-        selected.style.left
-      ) || 0
-    ) + 25 + "px";
-
-  copy.style.top =
-    (
-      parseFloat(
-        selected.style.top
-      ) || 0
-    ) + 25 + "px";
-
-  copy.dataset.name =
-    (
-      selected.dataset.name ||
-      "Object"
-    ) + " Copy";
-
-  canvas.appendChild(copy);
-
-  addObjectEvents(copy);
-
-  select(copy);
-
-  snapshot();
-
+/* ---------- SELECTION ---------- */
+
+function selectOne(id){
+ state.selected=[id];
+ render();
 }
 
-
-$("dup").onclick =
-  duplicateSelected;
-
-
-/* =========================================================
-   DELETE
-========================================================= */
-
-function deleteSelected(){
-
-  if(!selected){
-    toast("Select an object first");
-    return;
-  }
-
-  selected.remove();
-
-  selected = null;
-
-  snapshot();
-
-  refresh();
-
+function selectObject(id,e){
+ if(e.shiftKey){
+  if(state.selected.includes(id))
+   state.selected=state.selected.filter(x=>x!==id);
+  else state.selected.push(id);
+ }else{
+  if(state.selected.length===1){
+   const a=getObj(state.selected[0]),b=getObj(id);
+   if(a&&b&&((a.type==="shape"||a.type==="customShape")&&b.type==="image")||
+      (b.type==="shape"||b.type==="customShape")&&a.type==="image"){
+    if(!state.selected.includes(id))state.selected.push(id);
+   }else state.selected=[id];
+  }else state.selected=[id];
+ }
+ render();
 }
 
-$("del").onclick =
-  deleteSelected;
-
-
-/* =========================================================
-   Z ORDER
-========================================================= */
-
-$("up").onclick = () => {
-
-  if(!selected){
-    return;
-  }
-
-  const z =
-    parseInt(
-      selected.style.zIndex
-    ) || 1;
-
-  selected.style.zIndex =
-    z + 1;
-
-  snapshot();
-
-  refresh();
-
-};
-
-
-$("down").onclick = () => {
-
-  if(!selected){
-    return;
-  }
-
-  const z =
-    parseInt(
-      selected.style.zIndex
-    ) || 1;
-
-  selected.style.zIndex =
-    Math.max(1,z-1);
-
-  snapshot();
-
-  refresh();
-
-};
-
-
-/* =========================================================
-   OPACITY
-========================================================= */
-
-$("opacityBtn").onclick = () => {
-
-  if(!selected){
-    toast("Select an object first");
-    return;
-  }
-
-  let value =
-    prompt(
-      "Opacity 0-100",
-      Math.round(
-        (
-          parseFloat(
-            selected.style.opacity
-          ) || 1
-        ) * 100
-      )
-    );
-
-  if(value === null){
-    return;
-  }
-
-  value =
-    Math.max(
-      0,
-      Math.min(
-        100,
-        parseInt(value) || 0
-      )
-    );
-
-  selected.style.opacity =
-    value / 100;
-
-  snapshot();
-
-  refresh();
-
-};
-
-
-/* =========================================================
-   BREAK APART
-========================================================= */
-
-function breakApart(){
-
-  if(
-    !selected ||
-    !selected.classList.contains(
-      "textObj"
-    )
-  ){
-
-    toast("Select text first");
-
-    return;
-
-  }
-
-  const text =
-    selected.innerText
-    .trim();
-
-  if(!text){
-    return;
-  }
-
-  const words =
-    text.split(/\s+/);
-
-  const baseLeft =
-    parseFloat(
-      selected.style.left
-    ) || 0;
-
-  const baseTop =
-    parseFloat(
-      selected.style.top
-    ) || 0;
-
-  const size =
-    parseFloat(
-      selected.style.fontSize
-    ) || 40;
-
-  const font =
-    selected.style.fontFamily ||
-    "Arial";
-
-  const color =
-    selected.style.color ||
-    "#222";
-
-  selected.remove();
-
-  words.forEach(
-    (word,i) => {
-
-      const o =
-        make("text");
-
-      o.textContent =
-        word;
-
-      o.style.fontSize =
-        size + "px";
-
-      o.style.fontFamily =
-        font;
-
-      o.style.color =
-        color;
-
-      o.style.left =
-        (
-          baseLeft +
-          i * (size * .9)
-        ) + "px";
-
-      o.style.top =
-        baseTop + "px";
-
-      o.dataset.name =
-        "Text Part " +
-        (i+1);
-
-    }
-  );
-
-  selected = null;
-
-  snapshot();
-
-  refresh();
-
+function addHandles(el,o){
+ ["tl","tr","bl","br"].forEach(p=>{
+  const h=document.createElement("i");
+  h.className="handle h-"+p;
+  h.addEventListener("pointerdown",e=>startResize(e,o,p));
+  el.appendChild(h);
+ });
+ const r=document.createElement("i");
+ r.className="rotateHandle";
+ r.addEventListener("pointerdown",e=>startRotate(e,o));
+ el.appendChild(r);
 }
 
-$("breakApart").onclick =
-  breakApart;
-
-
-/* =========================================================
-   SPLIT WORDS
-========================================================= */
-
-$("splitWords").onclick =
-  breakApart;
-
-
-/* =========================================================
-   BULLETS
-========================================================= */
-
-$("bulletList").onclick = () => {
-
-  if(
-    !selected ||
-    !selected.classList.contains(
-      "textObj"
-    )
-  ){
-
-    toast("Select text first");
-
-    return;
-
-  }
-
-  selected.innerText =
-    "• " +
-    selected.innerText;
-
-  snapshot();
-
-  refresh();
-
-};
-
-
-/* =========================================================
-   TEXT BACKGROUND
-========================================================= */
-
-$("textBg").onclick = () => {
-
-  if(
-    !selected ||
-    !selected.classList.contains(
-      "textObj"
-    )
-  ){
-
-    toast("Select text first");
-
-    return;
-
-  }
-
-  selected.style.background =
-    selected.style.background
-    ?
-    "transparent"
-    :
-    "#ffe66d";
-
-  selected.style.borderRadius =
-    "10px";
-
-  snapshot();
-
-  refresh();
-
-};
-
-
-/* =========================================================
-   PATTERN
-========================================================= */
-
-$("patternText").onclick = () => {
-
-  if(
-    !selected ||
-    !selected.classList.contains(
-      "textObj"
-    )
-  ){
-
-    toast("Select text first");
-
-    return;
-
-  }
-
-  selected.style.background =
-    "repeating-linear-gradient(45deg,#7044f5 0,#7044f5 5px,#b49cff 5px,#b49cff 10px)";
-
-  selected.style.webkitBackgroundClip =
-    "text";
-
-  selected.style.webkitTextFillColor =
-    "transparent";
-
-  snapshot();
-
-};
-
-
-/* =========================================================
-   BLEND
-========================================================= */
-
-$("blendText").onclick = () => {
-
-  if(!selected){
-    return;
-  }
-
-  selected.style.opacity =
-    selected.style.opacity === "0.7"
-    ?
-    "1"
-    :
-    "0.7";
-
-  snapshot();
-
-};
-
-
-/* =========================================================
-   CONVERT TO SHAPE
-========================================================= */
-
-$("convertShape").onclick = () => {
-
-  if(
-    !selected ||
-    !selected.classList.contains(
-      "textObj"
-    )
-  ){
-
-    toast("Select text first");
-
-    return;
-
-  }
-
-  selected.classList.remove(
-    "textObj"
-  );
-
-  selected.classList.add(
-    "shape"
-  );
-
-  selected.contentEditable =
-    "false";
-
-  selected.innerHTML = "";
-
-  selected.dataset.type =
-    "shape";
-
-  selected.dataset.name =
-    "Text Shape";
-
-  snapshot();
-
-  refresh();
-
-};
-
-
-/* =========================================================
-   CONVERT TO 3D
-========================================================= */
-
-$("convert3d").onclick = () => {
-
-  if(!selected){
-    return;
-  }
-
-  selected.style.textShadow =
-    "3px 3px 0 #7044f5,6px 6px 0 #3b258d,9px 9px 15px #0008";
-
-  selected.style.transform =
-    "perspective(400px) rotateX(12deg)";
-
-  snapshot();
-
-  refresh();
-
-};
-
-
-/* =========================================================
-   POWERCLIP
-========================================================= */
-
-function powerClipTool(){
-
-  if(!selected){
-
-    toast("Select an image and a shape");
-
-    return;
-
-  }
-
-  if(
-    selected.classList.contains(
-      "imageObj"
-    )
-  ){
-
-    const shapes =
-      [...canvas.querySelectorAll(
-        ".shape,.circle,.star,.heart"
-      )];
-
-    if(!shapes.length){
-
-      toast("Create a shape first");
-
-      return;
-
-    }
-
-    openModal(
-      "PowerClip Shape",
-      shapes.map(
-        (shape,i) => [
-
-          "Use " +
-          (shape.dataset.name ||
-           "Shape " +
-           (i+1)),
-
-          () => {
-
-            applyPowerClip(
-              selected,
-              shape
-            );
-
-          }
-
-        ]
-      )
-    );
-
-    return;
-
-  }
-
-  toast("Select an image first");
-
+/* ---------- DRAG / RESIZE / ROTATE ---------- */
+
+let drag=null;
+
+function startDrag(e,o){
+ if(o.locked)return;
+ const sx=e.clientX,sy=e.clientY,ox=o.x,oy=o.y;
+ const move=ev=>{
+  const scale=getScale();
+  o.x=ox+(ev.clientX-sx)/scale;
+  o.y=oy+(ev.clientY-sy)/scale;
+  render();
+ };
+ const up=()=>{
+  window.removeEventListener("pointermove",move);
+  window.removeEventListener("pointerup",up);
+  saveHistory();
+ };
+ window.addEventListener("pointermove",move);
+ window.addEventListener("pointerup",up);
 }
 
-
-function applyPowerClip(
-  image,
-  shape
-){
-
-  const rect =
-    shape.getBoundingClientRect();
-
-  const canvasRect =
-    canvas.getBoundingClientRect();
-
-  const left =
-    rect.left -
-    canvasRect.left;
-
-  const top =
-    rect.top -
-    canvasRect.top;
-
-  const width =
-    rect.width;
-
-  const height =
-    rect.height;
-
-  const clipId =
-    "clip_" +
-    Date.now();
-
-  const svgNS =
-    "http://www.w3.org/2000/svg";
-
-  let svg =
-    canvas.querySelector(
-      "#powerClipSVG"
-    );
-
-  if(!svg){
-
-    svg =
-      document.createElementNS(
-        svgNS,
-        "svg"
-      );
-
-    svg.id =
-      "powerClipSVG";
-
-    svg.style.position =
-      "absolute";
-
-    svg.style.width =
-      "0";
-
-    svg.style.height =
-      "0";
-
-    canvas.appendChild(svg);
-
-  }
-
-
-  const cp =
-    document.createElementNS(
-      svgNS,
-      "clipPath"
-    );
-
-  cp.id =
-    clipId;
-
-
-  let useShape;
-
-
-  if(
-    shape.classList.contains(
-      "circle"
-    )
-  ){
-
-    useShape =
-      document.createElementNS(
-        svgNS,
-        "circle"
-      );
-
-    useShape.setAttribute(
-      "cx",
-      width/2
-    );
-
-    useShape.setAttribute(
-      "cy",
-      height/2
-    );
-
-    useShape.setAttribute(
-      "r",
-      Math.min(width,height)/2
-    );
-
-  }else{
-
-    useShape =
-      document.createElementNS(
-        svgNS,
-        "rect"
-      );
-
-    useShape.setAttribute(
-      "x",
-      "0"
-    );
-
-    useShape.setAttribute(
-      "y",
-      "0"
-    );
-
-    useShape.setAttribute(
-      "width",
-      width
-    );
-
-    useShape.setAttribute(
-      "height",
-      height
-    );
-
-    useShape.setAttribute(
-      "rx",
-      "18"
-    );
-
-  }
-
-
-  cp.appendChild(
-    useShape
-  );
-
-  svg.appendChild(
-    cp
-  );
-
-
-  image.style.left =
-    left + "px";
-
-  image.style.top =
-    top + "px";
-
-  image.style.width =
-    width + "px";
-
-  image.style.height =
-    height + "px";
-
-  image.style.objectFit =
-    "cover";
-
-  image.style.clipPath =
-    "url(#" +
-    clipId +
-    ")";
-
-  image.dataset.powerClip =
-    "1";
-
-  image.dataset.clipShape =
-    shape.dataset.name ||
-    "Shape";
-
-
-  shape.style.opacity =
-    "0.18";
-
-  shape.dataset.powerClipContainer =
-    "1";
-
-  snapshot();
-
-  refresh();
-
-  toast("PowerClip applied");
-
+function startResize(e,o,p){
+ e.stopPropagation();
+ const sx=e.clientX,sy=e.clientY;
+ const ow=o.w,oh=o.h,ox=o.x,oy=o.y,scale=getScale();
+ const move=ev=>{
+  let dx=(ev.clientX-sx)/scale,dy=(ev.clientY-sy)/scale;
+  if(p.includes("r"))o.w=Math.max(25,ow+dx);
+  if(p.includes("b"))o.h=Math.max(25,oh+dy);
+  if(p.includes("l")){o.x=ox+dx;o.w=Math.max(25,ow-dx)}
+  if(p.includes("t")){o.y=oy+dy;o.h=Math.max(25,oh-dy)}
+  render();
+ };
+ const up=()=>{
+  window.removeEventListener("pointermove",move);
+  window.removeEventListener("pointerup",up);
+  saveHistory();
+ };
+ window.addEventListener("pointermove",move);
+ window.addEventListener("pointerup",up);
 }
 
+function startRotate(e,o){
+ e.stopPropagation();
+ const rect=$("stage").getBoundingClientRect();
+ const cx=rect.left+(o.x+o.w/2)*getScale();
+ const cy=rect.top+(o.y+o.h/2)*getScale();
+ const move=ev=>{
+  o.rotation=Math.atan2(ev.clientY-cy,ev.clientX-cx)*180/Math.PI+90;
+  render();
+ };
+ const up=()=>{
+  window.removeEventListener("pointermove",move);
+  window.removeEventListener("pointerup",up);
+  saveHistory();
+ };
+ window.addEventListener("pointermove",move);
+ window.addEventListener("pointerup",up);
+}
 
-$("powerClipBtn").onclick =
-  powerClipTool;
+function getScale(){
+ return parseFloat($("stage").style.transform.match(/scale\(([^)]+)\)/)?.[1]||1);
+}
 
-
-/* =========================================================
-   LAYERS
-========================================================= */
-
-$("layersTop").onclick = () => {
-
-  closePanels();
-
-  $("layerPanel")
-  .classList.add("show");
-
-  updateLayers();
-
-};
-
+/* ---------- LAYERS ---------- */
 
 function updateLayers(){
-
-  const box =
-    $("layers");
-
-  if(!box){
-    return;
-  }
-
-  box.innerHTML = "";
-
-
-  const objects =
-    [...canvas.querySelectorAll(
-      ".obj"
-    )].reverse();
-
-
-  objects.forEach(
-    (o,i) => {
-
-      const row =
-        document.createElement(
-          "div"
-        );
-
-      row.className =
-        "layer" +
-        (
-          o === selected
-          ?
-          " active"
-          :
-          ""
-        );
-
-
-      const thumb =
-        document.createElement(
-          "div"
-        );
-
-      thumb.className =
-        "layerThumb";
-
-
-      if(
-        o.tagName === "IMG" &&
-        o.src
-      ){
-
-        const im =
-          document.createElement(
-            "img"
-          );
-
-        im.src =
-          o.src;
-
-        thumb.appendChild(im);
-
-      }else{
-
-        thumb.textContent =
-          o.classList.contains(
-            "textObj"
-          )
-          ?
-          "T"
-          :
-          o.dataset.type ===
-          "circle"
-          ?
-          "○"
-          :
-          "◇";
-
-      }
-
-
-      const name =
-        document.createElement(
-          "div"
-        );
-
-      name.className =
-        "layerName";
-
-      name.textContent =
-        o.dataset.name ||
-        "Object";
-
-
-      const eye =
-        document.createElement(
-          "button"
-        );
-
-      eye.className =
-        "miniBtn";
-
-      eye.textContent =
-        o.style.display ===
-        "none"
-        ?
-        "○"
-        :
-        "◉";
-
-
-      eye.onclick =
-        e => {
-
-          e.stopPropagation();
-
-          o.style.display =
-            o.style.display ===
-            "none"
-            ?
-            ""
-            :
-            "none";
-
-          refresh();
-
-        };
-
-
-      const lock =
-        document.createElement(
-          "button"
-        );
-
-      lock.className =
-        "miniBtn";
-
-      lock.textContent =
-        o.dataset.locked === "1"
-        ?
-        "🔒"
-        :
-        "🔓";
-
-
-      lock.onclick =
-        e => {
-
-          e.stopPropagation();
-
-          o.dataset.locked =
-            o.dataset.locked ===
-            "1"
-            ?
-            "0"
-            :
-            "1";
-
-          refresh();
-
-        };
-
-
-      const more =
-        document.createElement(
-          "button"
-        );
-
-      more.className =
-        "miniBtn";
-
-      more.textContent =
-        "⋮";
-
-
-      more.onclick =
-        e => {
-
-          e.stopPropagation();
-
-          select(o);
-
-          layerMenu();
-
-        };
-
-
-      row.append(
-        thumb,
-        name,
-        eye,
-        lock,
-        more
-      );
-
-
-      row.onclick =
-        () => {
-
-          select(o);
-
-        };
-
-
-      box.appendChild(
-        row
-      );
-
-    }
-  );
-
+ const box=$("layersList");
+ if(!box)return;
+ box.innerHTML="";
+ [...state.objects].sort((a,b)=>b.z-a.z).forEach(o=>{
+  const row=document.createElement("div");
+  row.className="layerRow";
+  row.innerHTML='<div class="layerThumb">'+
+   (o.src?'<img src="'+o.src+'">':o.type==="text"?"T":"◇")+
+   '</div><div class="layerName">'+escapeHTML(o.name)+'</div>';
+  const acts=document.createElement("div");
+  acts.className="layerActions";
+
+  const up=document.createElement("button");up.textContent="↑";up.onclick=()=>{selectOne(o.id);moveUp()};
+  const dn=document.createElement("button");dn.textContent="↓";dn.onclick=()=>{selectOne(o.id);moveDown()};
+  const eye=document.createElement("button");eye.textContent=o.hidden?"○":"●";eye.onclick=()=>{o.hidden=!o.hidden;render();saveHistory()};
+  const lock=document.createElement("button");lock.textContent=o.locked?"🔒":"🔓";lock.onclick=()=>{o.locked=!o.locked;render();saveHistory()};
+  const more=document.createElement("button");more.textContent="⋮";more.onclick=()=>layerMenu(o);
+
+  acts.append(up,dn,eye,lock,more);
+  row.appendChild(acts);
+  row.onclick=()=>selectOne(o.id);
+  box.appendChild(row);
+ });
 }
 
-
-/* =========================================================
-   LAYER 3-DOT MENU
-========================================================= */
-
-function layerMenu(){
-
-  openModal(
-    selected
-    ?
-    selected.dataset.name ||
-    "Layer"
-    :
-    "Layer",
-    [
-      [
-        "Move Up",
-        () => $("up").click()
-      ],
-
-      [
-        "Move Down",
-        () => $("down").click()
-      ],
-
-      [
-        "Bring to Front",
-        () => {
-
-          if(selected){
-            selected.style.zIndex =
-              9999;
-            snapshot();
-            refresh();
-          }
-
-        }
-      ],
-
-      [
-        "Send to Back",
-        () => {
-
-          if(selected){
-            selected.style.zIndex =
-              1;
-            snapshot();
-            refresh();
-          }
-
-        }
-      ],
-
-      [
-        "Duplicate",
-        duplicateSelected
-      ],
-
-      [
-        "Rename",
-        renameSelected
-      ],
-
-      [
-        "Break Apart",
-        breakApart
-      ],
-
-      [
-        "PowerClip",
-        powerClipTool
-      ],
-
-      [
-        "Delete",
-        deleteSelected
-      ]
-    ]
-  );
-
+function layerMenu(o){
+ modal("Layer Actions",
+ `<button class="panelBtn" style="width:100%;margin:4px" onclick="renameObj('${o.id}')">Rename</button>
+  <button class="panelBtn" style="width:100%;margin:4px" onclick="duplicateSelected()">Duplicate</button>
+  <button class="panelBtn" style="width:100%;margin:4px" onclick="deleteSelected()">Delete</button>
+  <button class="panelBtn" style="width:100%;margin:4px" onclick="moveUp()">Move Up</button>
+  <button class="panelBtn" style="width:100%;margin:4px" onclick="moveDown()">Move Down</button>`
+ );
 }
 
+function openLayers(){$("layersOverlay").style.display="block";updateLayers()}
+function openShapeTools(){$("shapeOverlay").style.display="block"}
+function openMoreTools(){$("moreOverlay").style.display="block"}
+function openAddNew(){$("addOverlay").style.display="block"}
+function openTextTools(){$("textOverlay").style.display="block"}
 
-function renameSelected(){
+function closeOverlay(id){$(id).style.display="none"}
+function closeAll(){document.querySelectorAll(".overlay").forEach(x=>x.style.display="none")}
 
-  if(!selected){
-    return;
-  }
+/* ---------- OBJECT ACTIONS ---------- */
 
-  const name =
-    prompt(
-      "Layer name",
-      selected.dataset.name ||
-      "Object"
-    );
+function getObj(id){return state.objects.find(o=>o.id===id)}
+function current(){return getObj(state.selected[0])}
 
-  if(name){
-
-    selected.dataset.name =
-      name;
-
-    refresh();
-
-  }
-
+function deleteSelected(){
+ state.objects=state.objects.filter(o=>!state.selected.includes(o.id));
+ state.selected=[];saveHistory();render();
 }
 
+function duplicateSelected(){
+ const o=current();if(!o)return;
+ const n=JSON.parse(JSON.stringify(o));
+ n.id=uid();n.x+=25;n.y+=25;n.name=o.name+" Copy";n.z=state.objects.length;
+ state.objects.push(n);state.selected=[n.id];saveHistory();render();
+}
 
-/* =========================================================
-   LAYER TOP BUTTONS
-========================================================= */
+function moveUp(){
+ const o=current();if(!o)return;
+ o.z+=1;normalizeZ();saveHistory();render();
+}
+function moveDown(){
+ const o=current();if(!o)return;
+ o.z-=1;normalizeZ();saveHistory();render();
+}
+function bringFront(){
+ const o=current();if(!o)return;
+ o.z=9999;normalizeZ();saveHistory();render();
+}
+function sendBack(){
+ const o=current();if(!o)return;
+ o.z=-1;normalizeZ();saveHistory();render();
+}
+function normalizeZ(){state.objects.sort((a,b)=>a.z-b.z).forEach((o,i)=>o.z=i)}
 
-$("selectAllLayers").onclick = () => {
+function toggleLock(){const o=current();if(o){o.locked=!o.locked;saveHistory();render()}}
+function renameObj(id){
+ const o=getObj(id)||current();if(!o)return;
+ modal("Rename Object",`<input id="modalInput" value="${escapeHTML(o.name)}">`);
+ window.modalAction=()=>{o.name=$("modalInput").value||o.name;closeModal();saveHistory();render()};
+}
 
-  canvas
-  .querySelectorAll(".obj")
-  .forEach(
-    o =>
-      o.classList.add(
-        "selected"
-      )
-  );
+function alignCenter(){
+ const o=current();if(!o)return;
+ o.x=(state.width-o.w)/2;o.y=(state.height-o.h)/2;
+ saveHistory();render();
+}
 
-  toast("All objects selected");
+/* ---------- GROUP ---------- */
 
-};
+function groupSelected(){
+ if(state.selected.length<2){notice("Select two or more objects first.");return}
+ const g=baseObj("group");
+ g.name="Group";
+ g.children=[...state.selected];
+ g.x=0;g.y=0;g.w=state.width;g.h=state.height;
+ state.objects.push(g);
+ state.selected=[g.id];
+ saveHistory();render();
+}
 
+function ungroupSelected(){
+ const g=current();if(!g||g.type!=="group")return;
+ const ids=g.children||[];
+ state.objects=state.objects.filter(o=>o.id!==g.id);
+ state.selected=ids;saveHistory();render();
+}
 
-$("hideAllLayers").onclick = () => {
+/* ---------- TEXT ---------- */
 
-  canvas
-  .querySelectorAll(".obj")
-  .forEach(
-    o =>
-      o.style.display =
-        "none"
-  );
+function editText(){
+ const o=current();if(!o||o.type!=="text"){notice("Select a text object.");return}
+ modal("Edit Text",`<textarea id="modalInput" rows="4">${escapeHTML(o.text)}</textarea>`);
+ window.modalAction=()=>{o.text=$("modalInput").value;closeModal();saveHistory();render()};
+}
 
-  refresh();
+function fontSize(){
+ const o=current();if(!o||o.type!=="text")return;
+ modal("Text Size",`<input id="modalInput" type="number" value="${o.fontSize}">`);
+ window.modalAction=()=>{o.fontSize=parseInt($("modalInput").value)||o.fontSize;closeModal();saveHistory();render()};
+}
+function fontColor(){
+ const o=current();if(!o||o.type!=="text")return;
+ modal("Text Color",`<input id="modalInput" type="color" value="${o.color}">`);
+ window.modalAction=()=>{o.color=$("modalInput").value;closeModal();saveHistory();render()};
+}
+function fontSelect(){
+ const o=current();if(!o||o.type!=="text")return;
+ modal("Font",`<select id="modalInput">
+ <option>Arial</option><option>Tahoma</option><option>Georgia</option>
+ <option>Times New Roman</option><option>Courier New</option>
+ </select>`);
+ window.modalAction=()=>{o.fontFamily=$("modalInput").value;closeModal();saveHistory();render()};
+}
+function textStroke(){
+ const o=current();if(!o||o.type!=="text")return;
+ o.stroke=o.stroke?0:2;o.strokeColor="#000";saveHistory();render();
+}
+function textShadow(){const o=current();if(o){o.shadow=!o.shadow;saveHistory();render()}}
+function textGradient(){const o=current();if(o){o.gradient=!o.gradient;saveHistory();render()}}
+function textOpacity(){
+ const o=current();if(!o)return;
+ modal("Opacity",`<input id="modalInput" type="range" min="0" max="1" step=".05" value="${o.opacity}">`);
+ window.modalAction=()=>{o.opacity=parseFloat($("modalInput").value);closeModal();saveHistory();render()};
+}
+function textBackground(){
+ const o=current();if(o){o.background=o.background?"":"#ffe66d";saveHistory();render()}
+}
+function textPattern(){const o=current();if(o){o.pattern=!o.pattern;saveHistory();render()}}
+function convert3D(){const o=current();if(o){o.effect3d=true;saveHistory();render()}}
+function bullets(){
+ const o=current();if(o&&o.type==="text"){o.text="• "+o.text.replace(/\n/g,"\n• ");saveHistory();render()}
+}
+function blendText(){const o=current();if(o){o.shadow=true;o.stroke=1;saveHistory();render()}}
+function splitWords(){breakApart()}
 
-};
+function breakApart(){
+ const o=current();
+ if(!o||o.type!=="text"){notice("Select a text object.");return}
+ const words=o.text.trim().split(/\s+/);
+ if(words.length<2){notice("Text must contain two or more words.");return}
+ state.objects=state.objects.filter(x=>x.id!==o.id);
+ const ids=[];
+ words.forEach((w,i)=>{
+  const n=JSON.parse(JSON.stringify(o));
+  n.id=uid();n.text=w;n.name="Text Part "+(i+1);
+  n.x=o.x+i*(o.w/words.length);n.y=o.y;
+  n.w=o.w/words.length;n.z=state.objects.length;
+  state.objects.push(n);ids.push(n.id);
+ });
+ state.selected=ids;saveHistory();render();
+}
 
+function convertShape(){
+ const o=current();if(!o||o.type!=="text")return;
+ o.type="shapeText";
+ o.background=o.background||"#6546e5";
+ o.color="#fff";
+ o.name="Converted Shape";
+ saveHistory();render();
+}
 
-$("lockAllLayers").onclick = () => {
+/* ---------- POWERCLIP ---------- */
 
-  canvas
-  .querySelectorAll(".obj")
-  .forEach(
-    o =>
-      o.dataset.locked =
-        "1"
-  );
+function overlaps(a,b){
+ return a.x<b.x+b.w && a.x+a.w>b.x &&
+        a.y<b.y+b.h && a.y+a.h>b.y;
+}
 
-  refresh();
+function updatePowerClip(){
+ const btn=$("powerClipButton");
+ btn.style.display="none";
+ if(state.selected.length!==2)return;
+ const a=getObj(state.selected[0]),b=getObj(state.selected[1]);
+ if(!a||!b)return;
 
-};
+ let img=null,shape=null;
+ if(a.type==="image"&&(b.type==="shape"||b.type==="customShape")){img=a;shape=b}
+ if(b.type==="image"&&(a.type==="shape"||a.type==="customShape")){img=b;shape=a}
 
+ if(img&&shape&&overlaps(img,shape))btn.style.display="block";
+}
 
-$("filterLayers").onclick = () => {
+function doPowerClip(){
+ if(state.selected.length!==2)return;
+ let img,shape;
+ state.selected.map(getObj).forEach(o=>{
+  if(o.type==="image")img=o;
+  if(o.type==="shape"||o.type==="customShape")shape=o;
+ });
+ if(!img||!shape)return;
+ img.clipShape=shape.id;
+ img.x=shape.x;img.y=shape.y;
+ img.w=shape.w;img.h=shape.h;
+ saveHistory();render();
+ notice("PowerClip applied. The image and shape remain separate editable objects.");
+}
 
-  openModal(
-    "Filter Layers",
-    [
-      [
-        "Text",
-        () => {
-          canvas
-          .querySelectorAll(".obj")
-          .forEach(
-            o =>
-              o.style.display =
-                o.classList.contains(
-                  "textObj"
-                )
-                ?
-                ""
-                :
-                "none"
-          );
-        }
-      ],
+/* ---------- DRAW ---------- */
 
-      [
-        "Images",
-        () => {
-          canvas
-          .querySelectorAll(".obj")
-          .forEach(
-            o =>
-              o.style.display =
-                o.classList.contains(
-                  "imageObj"
-                )
-                ?
-                ""
-                :
-                "none"
-          );
-        }
-      ],
+function startDraw(){
+ closeAll();
+ const o=baseObj("shape");
+ o.shape="line";o.x=80;o.y=80;o.w=300;o.h=10;
+ state.objects.push(o);selectOne(o.id);saveHistory();render();
+}
 
-      [
-        "Shapes",
-        () => {
-          canvas
-          .querySelectorAll(".obj")
-          .forEach(
-            o =>
-              o.style.display =
-                o.classList.contains(
-                  "shape"
-                ) ||
-                o.classList.contains(
-                  "circle"
-                ) ||
-                o.classList.contains(
-                  "star"
-                ) ||
-                o.classList.contains(
-                  "heart"
-                )
-                ?
-                ""
-                :
-                "none"
-          );
-        }
-      ],
+/* ---------- GRID ---------- */
 
-      [
-        "Show All",
-        () => {
+function toggleGrid(){
+ state.grid=!state.grid;render();
+}
 
-          canvas
-          .querySelectorAll(".obj")
-          .forEach(
-            o =>
-              o.style.display =
-                ""
-          );
-
-          refresh();
-
-        }
-      ]
-    ]
-  );
-
-};
-
-
-/* =========================================================
-   UNDO
-========================================================= */
-
-$("undo").onclick = () => {
-
-  if(history.length < 2){
-
-    toast("Nothing to undo");
-
-    return;
-
-  }
-
-  const current =
-    history.pop();
-
-  future.push(current);
-
-  restore(
-    history[
-      history.length - 1
-    ]
-  );
-
-};
-
-
-/* =========================================================
-   REDO
-========================================================= */
-
-$("redo").onclick = () => {
-
-  if(!future.length){
-
-    toast("Nothing to redo");
-
-    return;
-
-  }
-
-  const next =
-    future.pop();
-
-  history.push(next);
-
-  restore(next);
-
-};
-
-
-/* =========================================================
-   SAVE PROJECT
-========================================================= */
+/* ---------- SAVE / OPEN ---------- */
 
 function saveProject(){
-
-  const data = {
-
-    version:1,
-
-    width:designW,
-
-    height:designH,
-
-    html:
-      canvas.innerHTML
-
-  };
-
-  localStorage.setItem(
-    "UDS_PROJECT",
-    JSON.stringify(data)
-  );
-
-  toast(
-    "Project saved"
-  );
-
+ localStorage.setItem("UDS_PROJECT",JSON.stringify(state));
+ notice("Project saved on this device.");
 }
 
-
-$("save").onclick =
-  saveProject;
-
-
-/* =========================================================
-   OPEN PROJECT
-========================================================= */
-
-function openProject(data){
-
-  if(
-    !data ||
-    !data.html
-  ){
-
-    toast(
-      "No saved project"
-    );
-
-    return;
-
-  }
-
-  designW =
-    data.width || 1080;
-
-  designH =
-    data.height || 1080;
-
-  canvas.innerHTML =
-    data.html;
-
-  applyCanvas();
-
-  canvas
-  .querySelectorAll(".obj")
-  .forEach(
-    addObjectEvents
-  );
-
-  history =
-    [canvas.innerHTML];
-
-  future = [];
-
-  selected = null;
-
-  home.style.display =
-    "none";
-
-  setup.style.display =
-    "none";
-
-  editor.style.display =
-    "flex";
-
-  refresh();
-
+function openProject(){
+ $("projectInput").click();
 }
 
-
-$("navProjects").onclick = () => {
-
-  const raw =
-    localStorage.getItem(
-      "UDS_PROJECT"
-    );
-
-  if(!raw){
-
-    toast(
-      "No saved designs"
-    );
-
-    return;
-
-  }
-
+$("projectInput").onchange=e=>{
+ const f=e.target.files[0];if(!f)return;
+ const r=new FileReader();
+ r.onload=()=>{
   try{
-
-    openProject(
-      JSON.parse(raw)
-    );
-
-  }catch(e){
-
-    toast(
-      "Project could not be opened"
-    );
-
-  }
-
+   state=JSON.parse(r.result);
+   screen("editor");render();
+  }catch(err){notice("Invalid project file.")}
+ };
+ r.readAsText(f);
 };
 
-
-/* =========================================================
-   HOME NAV
-========================================================= */
-
-$("navHome").onclick = () => {
-
-  closePanels();
-
-  editor.style.display =
-    "none";
-
-  setup.style.display =
-    "none";
-
-  home.style.display =
-    "block";
-
-};
-
-
-$("navTemplates").onclick =
-  showSetup;
-
-
-$("navSettings").onclick = () => {
-
-  openModal(
-    "Settings",
-    [
-      [
-        "Save Project",
-        saveProject
-      ],
-
-      [
-        "Clear Saved Project",
-        () => {
-
-          localStorage.removeItem(
-            "UDS_PROJECT"
-          );
-
-          toast(
-            "Saved project cleared"
-          );
-
-        }
-      ],
-
-      [
-        "Editor Help",
-        () => {
-
-          alert(
-            "Select an object, drag it to move, use the corner handles to resize, and use the top handle to rotate."
-          );
-
-        }
-      ]
-    ]
-  );
-
-};
-
-
-$("settingsBtn").onclick =
-  () =>
-    $("navSettings").click();
-
-
-/* =========================================================
-   ADD NEW MENU
-========================================================= */
-
-$("addNew").onclick = () => {
-
-  openModal(
-    "Add New",
-    [
-
-      [
-        "Gallery Pic",
-        () => $("addImage").click()
-      ],
-
-      [
-        "Stock Images",
-        () => toast("Stock Images library will be connected later")
-      ],
-
-      [
-        "My Folder",
-        () => toast("My Folder will be connected later")
-      ],
-
-      [
-        "Add Text",
-        () => $("addText").click()
-      ],
-
-      [
-        "Video",
-        () => toast("Video tool reserved for the next phase")
-      ],
-
-      [
-        "Audio",
-        () => toast("Audio tool reserved for the next phase")
-      ],
-
-      [
-        "Tools",
-        () => openToolsMenu()
-      ],
-
-      [
-        "Borders",
-        () => toast("Borders library ready for next asset phase")
-      ],
-
-      [
-        "Table",
-        () => toast("Table tool reserved for the next phase")
-      ],
-
-      [
-        "Draw",
-        () => toast("Draw tool reserved for the next phase")
-      ],
-
-      [
-        "Pen Tool",
-        () => toast("Pen Tool reserved for the next phase")
-      ],
-
-      [
-        "Logos",
-        () => toast("Logo library ready for next asset phase")
-      ],
-
-      [
-        "Special Text",
-        () => $("addText").click()
-      ],
-
-      [
-        "Shapes",
-        () => shapeMenu()
-      ],
-
-      [
-        "Calligraphy",
-        () => $("addText").click()
-      ],
-
-      [
-        "Frames",
-        () => toast("Frames library ready for next asset phase")
-      ]
-
-    ]
-  );
-
-};
-
-
-function openToolsMenu(){
-
-  openModal(
-    "Tools",
-    [
-      [
-        "Crop",
-        () => toast("Crop tool reserved for advanced phase")
-      ],
-
-      [
-        "Mask",
-        () => toast("Mask tool reserved for advanced phase")
-      ],
-
-      [
-        "PowerClip",
-        powerClipTool
-      ],
-
-      [
-        "Grid",
-        () => {
-          const g =
-            canvas.querySelector(
-              ".grid"
-            );
-
-          if(g){
-            g.style.opacity =
-              g.style.opacity === "0"
-              ?
-              "1"
-              :
-              "0";
-          }
-        }
-      ],
-
-      [
-        "Align",
-        () => centerSelected()
-      ],
-
-      [
-        "Duplicate",
-        duplicateSelected
-      ]
-    ]
-  );
-
+function downloadProject(){
+ const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+ const a=document.createElement("a");
+ a.href=URL.createObjectURL(blob);
+ a.download=(state.projectName||"UrduDesign")+" .uds";
+ a.click();
 }
 
+/* ---------- UNDO / REDO ---------- */
 
-/* =========================================================
-   HOME BUTTONS
-========================================================= */
-
-$("homeTemplates").onclick =
-  showSetup;
-
-
-$("homeProjects").onclick =
-  () =>
-    $("navProjects").click();
-
-
-$("homeElements").onclick =
-  () =>
-    openModal(
-      "Design Elements",
-      [
-        [
-          "Shape",
-          shapeMenu
-        ],
-
-        [
-          "Text",
-          () => $("addText").click()
-        ],
-
-        [
-          "Image",
-          () => $("addImage").click()
-        ],
-
-        [
-          "Frame",
-          () => toast("Frames library ready")
-        ],
-
-        [
-          "Calligraphy",
-          () => $("addText").click()
-        ],
-
-        [
-          "Symbol",
-          () => toast("Symbols library ready")
-        ]
-      ]
-    );
-
-
-$("homeShapes").onclick =
-  shapeMenu;
-
-
-$("homeFrames").onclick =
-  () =>
-    toast(
-      "Frames library ready"
-    );
-
-
-$("homeBackgrounds").onclick =
-  () =>
-    $("addBg").click();
-
-
-$("homeImport").onclick =
-  () =>
-    $("addImage").click();
-
-
-$("homeText").onclick =
-  () =>
-    $("addText").click();
-
-
-$("homeMore").onclick =
-  () =>
-    $("addNew").click();
-
-
-/* =========================================================
-   GENERAL MODAL
-========================================================= */
-
-function openModal(
-  title,
-  items
-){
-
-  $("modalTitle")
-  .textContent =
-    title;
-
-  const grid =
-    $("modalGrid");
-
-  grid.innerHTML = "";
-
-
-  items.forEach(
-    item => {
-
-      const button =
-        document.createElement(
-          "button"
-        );
-
-      button.className =
-        "sheetBtn";
-
-
-      const label =
-        item[0];
-
-      button.innerHTML =
-        "<b>" +
-        label +
-        "</b>" +
-        "<small>Open</small>";
-
-
-      button.onclick = () => {
-
-        $("modal")
-        .classList.remove(
-          "show"
-        );
-
-        const action =
-          item[1];
-
-        if(typeof action ===
-           "function"){
-
-          action();
-
-        }
-
-      };
-
-
-      grid.appendChild(
-        button
-      );
-
-    }
-  );
-
-
-  $("modal")
-  .classList.add(
-    "show"
-  );
-
+function snapshot(){
+ return JSON.stringify(state.objects);
 }
 
-
-$("modalClose").onclick =
-  () =>
-    $("modal")
-    .classList.remove(
-      "show"
-    );
-
-
-$("modal").addEventListener(
-  "click",
-  e => {
-
-    if(
-      e.target ===
-      $("modal")
-    ){
-
-      $("modal")
-      .classList.remove(
-        "show"
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   HOME SLIDER ENGINE
-========================================================= */
-
-(function(){
-
-  const slider =
-    document.getElementById(
-      "udsSlider"
-    );
-
-  const slides =
-    document.getElementById(
-      "udsSlides"
-    );
-
-  const dots =
-    document.querySelectorAll(
-      "#udsDots .udsDot"
-    );
-
-  const prev =
-    document.getElementById(
-      "udsPrev"
-    );
-
-  const next =
-    document.getElementById(
-      "udsNext"
-    );
-
-  if(
-    !slider ||
-    !slides
-  ){
-    return;
-  }
-
-  let index = 0;
-
-  let timer = null;
-
-  let startX = 0;
-
-  let startY = 0;
-
-
-  function show(i){
-
-    index =
-      (i + 7) % 7;
-
-    slides.style.transform =
-      "translateX(-" +
-      index * 100 +
-      "%)";
-
-
-    dots.forEach(
-      (dot,n) => {
-
-        dot.classList.toggle(
-          "active",
-          n === index
-        );
-
-      }
-    );
-
-  }
-
-
-  function restart(){
-
-    clearInterval(
-      timer
-    );
-
-    timer =
-      setInterval(
-        () =>
-          show(index + 1),
-        4500
-      );
-
-  }
-
-
-  prev.onclick = () => {
-
-    show(index - 1);
-
-    restart();
-
-  };
-
-
-  next.onclick = () => {
-
-    show(index + 1);
-
-    restart();
-
-  };
-
-
-  dots.forEach(
-    dot => {
-
-      dot.onclick = () => {
-
-        show(
-          parseInt(
-            dot.dataset.slide,
-            10
-          ) || 0
-        );
-
-        restart();
-
-      };
-
-    }
-  );
-
-
-  slider.addEventListener(
-    "pointerdown",
-    e => {
-
-      startX =
-        e.clientX;
-
-      startY =
-        e.clientY;
-
-    }
-  );
-
-
-  slider.addEventListener(
-    "pointerup",
-    e => {
-
-      const dx =
-        e.clientX -
-        startX;
-
-      const dy =
-        e.clientY -
-        startY;
-
-
-      if(
-        Math.abs(dx) > 45 &&
-        Math.abs(dx) >
-        Math.abs(dy)
-      ){
-
-        show(
-          index +
-          (
-            dx < 0
-            ?
-            1
-            :
-            -1
-          )
-        );
-
-        restart();
-
-      }
-
-    }
-  );
-
-
-  show(0);
-
-  restart();
-
-})();
-
-
-/* =========================================================
-   EDITOR BACK
-========================================================= */
-
-document.addEventListener(
-  "keydown",
-  e => {
-
-    if(
-      e.key === "Delete" &&
-      selected
-    ){
-
-      deleteSelected();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   DOUBLE CLICK TEXT
-========================================================= */
-
-canvas.addEventListener(
-  "dblclick",
-  e => {
-
-    const text =
-      e.target.closest(
-        ".textObj"
-      );
-
-    if(text){
-
-      select(text);
-
-      text.focus();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   STARTUP
-========================================================= */
-
-applyCanvas();
-
+function saveHistory(){
+ state.history.push(snapshot());
+ if(state.history.length>40)state.history.shift();
+ state.future=[];
+}
+
+function undo(){
+ if(state.history.length<2)return;
+ state.future.push(snapshot());
+ state.history.pop();
+ state.objects=JSON.parse(state.history[state.history.length-1]);
+ state.selected=[];
+ render();
+}
+
+function redo(){
+ if(!state.future.length)return;
+ const s=state.future.pop();
+ state.history.push(s);
+ state.objects=JSON.parse(s);
+ render();
+}
+
+/* ---------- EXPORT ---------- */
+
+function exportPNG(){
+ const svg=
+ `<svg xmlns="http://www.w3.org/2000/svg" width="${state.width}" height="${state.height}">
+ <rect width="100%" height="100%" fill="${state.bg}"/>
+ ${state.objects.filter(o=>!o.hidden).map(svgObject).join("")}
+ </svg>`;
+ const blob=new Blob([svg],{type:"image/svg+xml"});
+ const url=URL.createObjectURL(blob);
+ const img=new Image();
+ img.onload=()=>{
+  const c=document.createElement("canvas");
+  c.width=state.width;c.height=state.height;
+  const ctx=c.getContext("2d");
+  ctx.drawImage(img,0,0);
+  const a=document.createElement("a");
+  a.download="urdu-design.png";
+  a.href=c.toDataURL("image/png");
+  a.click();
+  URL.revokeObjectURL(url);
+ };
+ img.src=url;
+}
+
+function svgObject(o){
+ const t=`translate(${o.x} ${o.y}) rotate(${o.rotation} ${o.w/2} ${o.h/2})`;
+ if(o.type==="text")
+  return `<text x="${o.w/2}" y="${o.h/2}" text-anchor="middle"
+   dominant-baseline="middle" font-size="${o.fontSize}" fill="${o.color}"
+   font-family="${o.fontFamily}" font-weight="${o.bold?'bold':'normal'}">${escapeXML(o.text)}</text>`;
+ if(o.type==="image"||o.type==="customShape")
+  return `<image href="${o.src}" x="0" y="0" width="${o.w}" height="${o.h}" preserveAspectRatio="none"/>`;
+ if(o.type==="shape")
+  return `<g transform="${t}">${shapeSVG(o)}</g>`;
+ return "";
+}
+
+function shapeSVG(o){
+ if(o.shape==="circle")return `<ellipse cx="${o.w/2}" cy="${o.h/2}" rx="${o.w/2-4}" ry="${o.h/2-4}" fill="${o.color}"/>`;
+ if(o.shape==="triangle")return `<polygon points="${o.w/2},2 ${o.w-2},${o.h-2} 2,${o.h-2}" fill="${o.color}"/>`;
+ if(o.shape==="diamond")return `<polygon points="${o.w/2},2 ${o.w-2},${o.h/2} ${o.w/2},${o.h-2} 2,${o.h/2}" fill="${o.color}"/>`;
+ return `<rect x="2" y="2" width="${o.w-4}" height="${o.h-4}" rx="18" fill="${o.color}"/>`;
+}
+
+/* ---------- LIBRARY ---------- */
+
+function openLibrary(type){
+ modal("Offline Library",
+ `<div class="panelGrid">
+  <button class="panelBtn" onclick="addShape('rect')">Rectangle</button>
+  <button class="panelBtn" onclick="addShape('circle')">Circle</button>
+  <button class="panelBtn" onclick="addShape('star')">Star</button>
+  <button class="panelBtn" onclick="addShape('heart')">Heart</button>
+  <button class="panelBtn" onclick="addText('اردو ڈیزائن')">Urdu Text</button>
+  <button class="panelBtn" onclick="addText('Business')">Business</button>
+  <button class="panelBtn" onclick="addText('Wedding')">Wedding</button>
+  <button class="panelBtn" onclick="addText('Sports')">Sports</button>
+ </div>`);
+}
+
+/* ---------- MY DESIGNS ---------- */
+
+function showMyDesigns(){
+ const saved=localStorage.getItem("UDS_PROJECT");
+ if(!saved){
+  notice("No saved designs found on this device.");
+  return;
+ }
+ modal("My Designs",
+ `<div class="layerRow">
+  <div class="layerName">Saved Design</div>
+  <button class="panelBtn" onclick="loadSaved()">Edit Design</button>
+  <button class="panelBtn" onclick="copySaved()">Make Copy</button>
+ </div>
+ <div class="layerRow">
+  <button class="panelBtn" onclick="renameSaved()">Rename</button>
+  <button class="panelBtn" onclick="shareSaved()">Share</button>
+  <button class="panelBtn" onclick="deleteSaved()">Delete Design</button>
+ </div>`);
+}
+
+function loadSaved(){
+ state=JSON.parse(localStorage.getItem("UDS_PROJECT"));
+ closeModal();screen("editor");render();
+}
+function copySaved(){
+ state=JSON.parse(localStorage.getItem("UDS_PROJECT"));
+ state.projectName+=" Copy";
+ localStorage.setItem("UDS_PROJECT",JSON.stringify(state));
+ closeModal();notice("Copy created.");
+}
+function renameSaved(){
+ modal("Rename Design",`<input id="modalInput" value="${state.projectName}">`);
+ window.modalAction=()=>{
+  state.projectName=$("modalInput").value||"Untitled Design";
+  localStorage.setItem("UDS_PROJECT",JSON.stringify(state));
+  closeModal();
+ };
+}
+function deleteSaved(){
+ localStorage.removeItem("UDS_PROJECT");closeModal();notice("Design deleted.");
+}
+function shareSaved(){
+ if(navigator.share)
+  navigator.share({title:"Urdu Design Studio",text:"My design"});
+ else notice("Sharing is not supported by this WebView.");
+}
+
+/* ---------- CDR ---------- */
+
+function openCDR(){
+ $("cdrInput").click();
+}
+$("cdrInput").onchange=e=>{
+ const f=e.target.files[0];
+ if(f)notice("CDR file selected. Native CDR parsing requires the dedicated CDR conversion module; this build does not fake CDR support.");
+};
+
+/* ---------- SETTINGS ---------- */
+
+function settingsPanel(){
+ modal("Settings",
+ `<div class="panelGrid">
+  <button class="panelBtn" onclick="saveProject()">Save Project</button>
+  <button class="panelBtn" onclick="openProject()">Open Project</button>
+  <button class="panelBtn" onclick="downloadProject()">Export Project</button>
+  <button class="panelBtn" onclick="toggleGrid()">Grid</button>
+ </div>`);
+}
+
+/* ---------- MODAL ---------- */
+
+let modalAction=null;
+
+function modal(title,body){
+ $("modalTitle").textContent=title;
+ $("modalBody").innerHTML=body;
+ $("modal").style.display="flex";
+}
+function modalOK(){
+ if(typeof modalAction==="function"){const a=modalAction;modalAction=null;a()}
+ else closeModal();
+}
+function closeModal(){$("modal").style.display="none";modalAction=null}
+function notice(msg){
+ modal("Urdu Design Studio","<p>"+escapeHTML(msg)+"</p>");
+}
+
+function escapeHTML(s){
+ return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+}
+function escapeXML(s){
+ return String(s).replace(/[<>&'"]/g,m=>({"<":"&lt;",">":"&gt;","&":"&amp;","'":"&apos;",'"':"&quot;"}[m]));
+}
+
+/* ---------- STAGE BACKGROUND ---------- */
+
+$("stage").addEventListener("pointerdown",e=>{
+ if(e.target===$("stage")){
+  state.selected=[];
+  render();
+ }
+});
+
+/* ---------- INITIAL PROJECT ---------- */
+
+state.history=[snapshot()];
 </script>
 
 </body>
