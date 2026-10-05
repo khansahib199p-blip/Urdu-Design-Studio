@@ -1,0 +1,4826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Urdu Design Studio</title>
+
+<style>
+*{
+ box-sizing:border-box;
+ -webkit-tap-highlight-color:transparent
+}
+
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f4f6fb;
+ color:#182033;
+ overflow:hidden
+}
+
+button,input,select{
+ font:inherit
+}
+
+button{
+ border:0;
+ cursor:pointer
+}
+
+.screen{
+ display:none;
+ width:100vw;
+ height:100vh
+}
+
+.screen.active{
+ display:flex
+}
+
+/* =========================================================
+   WELCOME
+   ========================================================= */
+
+#welcome{
+ align-items:center;
+ justify-content:center;
+ background:linear-gradient(135deg,#10182e,#5137b8,#08a8a0)
+}
+
+.welcomeBox{
+ width:min(92%,430px);
+ padding:35px 25px;
+ text-align:center;
+ color:white
+}
+
+.brandMark{
+ width:155px;
+ height:155px;
+ border-radius:35px;
+ background:transparent;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ margin:0 auto 22px;
+ overflow:hidden;
+ box-shadow:0 18px 50px #0005
+}
+
+.brandMark img{
+ width:100%;
+ height:100%;
+ object-fit:contain;
+ display:block
+}
+
+.welcomeBox h1{
+ font-size:30px;
+ margin:10px 0
+}
+
+.welcomeBox p{
+ opacity:.9;
+ line-height:1.6
+}
+
+.primary{
+ background:#6546e5;
+ color:white;
+ border-radius:13px;
+ padding:14px 22px;
+ font-weight:bold
+}
+
+.welcomeBox .primary{
+ width:100%;
+ margin-top:20px
+}
+
+/* =========================================================
+   HOME
+   ========================================================= */
+
+#home{
+ flex-direction:column;
+ background:#f6f7fb;
+ overflow:auto
+}
+
+.homeHead{
+ height:65px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 17px;
+ background:white;
+ border-bottom:1px solid #e6e8ef
+}
+
+.homeTitle{
+ font-weight:900;
+ font-size:20px
+}
+
+.homeBody{
+ padding:14px;
+ padding-bottom:35px
+}
+
+.slider{
+ height:185px;
+ background:white;
+ border-radius:20px;
+ overflow:hidden;
+ position:relative;
+ box-shadow:0 8px 30px #18203310
+}
+
+.slides{
+ height:100%;
+ display:flex;
+ transition:.35s
+}
+
+.slide{
+ min-width:100%;
+ height:100%;
+ position:relative;
+ background:#eee;
+ display:flex;
+ align-items:center;
+ justify-content:center
+}
+
+.slide img{
+ width:100%;
+ height:100%;
+ object-fit:cover
+}
+
+.slideFallback{
+ position:absolute;
+ inset:0;
+ background:linear-gradient(135deg,#5e42d9,#08aaa1);
+ color:white;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:23px;
+ font-weight:900
+}
+
+.dots{
+ position:absolute;
+ bottom:9px;
+ left:0;
+ right:0;
+ text-align:center
+}
+
+.dot{
+ display:inline-block;
+ width:7px;
+ height:7px;
+ border-radius:50%;
+ background:#ffffff88;
+ margin:3px
+}
+
+.dot.on{
+ background:white;
+ width:19px;
+ border-radius:8px
+}
+
+.homeGrid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:10px;
+ margin-top:15px
+}
+
+.homeBtn{
+ background:white;
+ border-radius:15px;
+ padding:15px 9px;
+ text-align:center;
+ box-shadow:0 4px 18px #1820330b;
+ font-weight:bold
+}
+
+.homeBtn span{
+ display:block;
+ font-size:25px;
+ margin-bottom:7px
+}
+
+.devCard{
+ margin-top:18px;
+ background:white;
+ border-radius:18px;
+ padding:13px;
+ display:flex;
+ align-items:center;
+ gap:13px
+}
+
+.devPic{
+ width:58px;
+ height:58px;
+ border-radius:50%;
+ overflow:hidden;
+ background:#6546e5;
+ color:white;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-weight:bold
+}
+
+.devPic img{
+ width:100%;
+ height:100%;
+ object-fit:cover
+}
+
+/* =========================================================
+   SETUP
+   ========================================================= */
+
+#setup{
+ align-items:center;
+ justify-content:center;
+ background:#f4f6fb
+}
+
+.setupBox{
+ width:min(92%,450px);
+ background:white;
+ padding:22px;
+ border-radius:20px;
+ box-shadow:0 15px 45px #18203318
+}
+
+.setupBox h2{
+ margin-top:0
+}
+
+.field{
+ margin:10px 0
+}
+
+.field label{
+ display:block;
+ font-size:13px;
+ font-weight:bold;
+ margin-bottom:5px
+}
+
+.field input,
+.field select{
+ width:100%;
+ padding:12px;
+ border:1px solid #dce0e9;
+ border-radius:10px
+}
+
+.presetGrid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:7px;
+ margin:10px 0
+}
+
+.preset{
+ padding:9px 4px;
+ background:#f0f1f7;
+ border-radius:9px;
+ font-size:12px
+}
+
+/* =========================================================
+   EDITOR
+   ========================================================= */
+
+#editor{
+ flex-direction:column;
+ background:#edf0f7
+}
+
+.editorTop{
+ height:58px;
+ background:#121a2f;
+ color:white;
+ display:flex;
+ align-items:center;
+ gap:6px;
+ padding:7px;
+ flex-shrink:0
+}
+
+.toolBtn{
+ min-width:43px;
+ height:43px;
+ border-radius:10px;
+ background:#222d48;
+ color:white;
+ font-size:18px
+}
+
+.toolBtn.active{
+ background:#6546e5
+}
+
+.canvasInfo{
+ flex:1;
+ text-align:center;
+ font-size:12px
+}
+
+.workspace{
+ flex:1;
+ position:relative;
+ overflow:auto;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ padding:20px;
+ background:#dfe3ec
+}
+
+.stageOuter{
+ position:relative;
+ box-shadow:0 12px 35px #0003;
+ background:white
+}
+
+#stage{
+ position:relative;
+ overflow:hidden;
+ background:white;
+ transform-origin:center
+}
+
+.gridBg{
+ background-image:
+  linear-gradient(#0000000d 1px,transparent 1px),
+  linear-gradient(90deg,#0000000d 1px,transparent 1px);
+ background-size:25px 25px
+}
+
+/* CANVAS SELECTED */
+
+#stage.canvasSelected{
+ outline:3px solid #6546e5;
+ outline-offset:4px;
+ box-shadow:
+  0 0 0 7px #6546e522,
+  0 15px 40px #0003
+}
+
+.canvasSelectionLabel{
+ position:absolute;
+ left:50%;
+ top:-32px;
+ transform:translateX(-50%);
+ background:#6546e5;
+ color:white;
+ padding:5px 12px;
+ border-radius:8px;
+ font-size:11px;
+ font-weight:bold;
+ z-index:999;
+ pointer-events:none;
+ white-space:nowrap
+}
+
+.obj{
+ position:absolute;
+ touch-action:none;
+ user-select:none
+}
+
+.obj.selected{
+ outline:2px solid #6546e5
+}
+
+.obj.locked{
+ pointer-events:none
+}
+
+.obj img{
+ width:100%;
+ height:100%;
+ object-fit:contain;
+ pointer-events:none
+}
+
+.textObj{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ white-space:pre-wrap;
+ word-break:break-word;
+ direction:rtl;
+ text-align:center
+}
+
+.shapeObj{
+ display:flex;
+ align-items:center;
+ justify-content:center
+}
+
+.handle{
+ position:absolute;
+ width:13px;
+ height:13px;
+ background:white;
+ border:2px solid #6546e5;
+ border-radius:50%;
+ z-index:100
+}
+
+.h-tl{
+ left:-7px;
+ top:-7px
+}
+
+.h-tr{
+ right:-7px;
+ top:-7px
+}
+
+.h-bl{
+ left:-7px;
+ bottom:-7px
+}
+
+.h-br{
+ right:-7px;
+ bottom:-7px
+}
+
+.rotateHandle{
+ position:absolute;
+ left:50%;
+ top:-35px;
+ transform:translateX(-50%);
+ width:13px;
+ height:13px;
+ border-radius:50%;
+ background:#6546e5
+}
+
+.bottomTools{
+ height:72px;
+ background:white;
+ border-top:1px solid #dfe2ea;
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ flex-shrink:0
+}
+
+.bottomTools button{
+ background:white;
+ font-size:11px;
+ font-weight:bold;
+ color:#263047
+}
+
+.bottomTools span{
+ display:block;
+ font-size:22px;
+ margin-bottom:2px
+}
+
+.powerClipBar{
+ position:absolute;
+ bottom:83px;
+ left:50%;
+ transform:translateX(-50%);
+ background:#6546e5;
+ color:white;
+ border-radius:12px;
+ padding:10px 17px;
+ z-index:500;
+ display:none
+}
+
+/* =========================================================
+   NORMAL SHEETS / PANELS
+   ========================================================= */
+
+.overlay{
+ position:fixed;
+ inset:0;
+ background:#0005;
+ z-index:1000;
+ display:none
+}
+
+.sheet{
+ position:absolute;
+ left:0;
+ right:0;
+ bottom:0;
+ max-height:82vh;
+ background:white;
+ border-radius:22px 22px 0 0;
+ padding:17px;
+ overflow:auto
+}
+
+.sheetHead{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:13px
+}
+
+.sheetGrid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:9px
+}
+
+.sheetItem{
+ background:#f2f3f8;
+ border-radius:12px;
+ padding:12px 5px;
+ text-align:center;
+ font-size:11px;
+ font-weight:bold
+}
+
+.sheetItem span{
+ display:block;
+ font-size:23px;
+ margin-bottom:5px
+}
+
+.panelGrid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:7px
+}
+
+.panelBtn{
+ padding:9px 3px;
+ background:#f1f2f7;
+ border-radius:9px;
+ font-size:11px;
+ font-weight:bold
+}
+
+.close{
+ background:#eef0f5;
+ border-radius:50%;
+ width:35px;
+ height:35px;
+ font-size:20px
+}
+
+.range{
+ width:100%
+}
+
+/* =========================================================
+   MORE SIDE DRAWER
+   ========================================================= */
+
+#moreOverlay{
+ background:#0005;
+ align-items:stretch;
+ justify-content:flex-start
+}
+
+#moreOverlay .sheet{
+ position:absolute;
+ left:0;
+ top:50%;
+ bottom:auto;
+ transform:translateY(-50%);
+ width:min(78vw,310px);
+ height:min(78vh,650px);
+ max-height:78vh;
+ border-radius:0 20px 20px 0;
+ padding:14px 12px;
+ overflow-y:auto;
+ overflow-x:hidden;
+ box-shadow:15px 0 40px #0004
+}
+
+#moreOverlay .sheet::-webkit-scrollbar{
+ width:5px
+}
+
+#moreOverlay .sheet::-webkit-scrollbar-thumb{
+ background:#6546e5;
+ border-radius:10px
+}
+
+#moreOverlay .sheetHead{
+ position:sticky;
+ top:0;
+ z-index:5;
+ background:white;
+ padding:5px 0 14px;
+ margin-bottom:8px
+}
+
+#moreOverlay .panelGrid{
+ display:flex;
+ flex-direction:column;
+ gap:9px
+}
+
+#moreOverlay .panelBtn{
+ width:100%;
+ min-height:52px;
+ padding:13px 15px;
+ background:#f1f2f7;
+ border-radius:13px;
+ font-size:14px;
+ font-weight:700;
+ text-align:left;
+ display:flex;
+ align-items:center;
+ justify-content:flex-start;
+ gap:12px;
+ flex-shrink:0
+}
+
+#moreOverlay .panelBtn span{
+ width:25px;
+ min-width:25px;
+ text-align:center;
+ font-size:18px
+}
+
+#moreOverlay .panelBtn:active{
+ background:#6546e5;
+ color:white;
+ transform:scale(.98)
+}
+
+/* =========================================================
+   LAYERS
+   ========================================================= */
+
+.layerRow{
+ display:flex;
+ align-items:center;
+ gap:7px;
+ padding:9px;
+ background:#f5f6fa;
+ border-radius:10px;
+ margin-bottom:6px
+}
+
+.layerThumb{
+ width:42px;
+ height:35px;
+ background:white;
+ border-radius:6px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ overflow:hidden
+}
+
+.layerThumb img{
+ max-width:100%;
+ max-height:100%
+}
+
+.layerName{
+ flex:1;
+ font-size:12px;
+ font-weight:bold
+}
+
+.layerActions{
+ display:flex;
+ gap:3px
+}
+
+.layerActions button{
+ font-size:10px;
+ background:white;
+ padding:6px;
+ border-radius:6px
+}
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.modal{
+ position:fixed;
+ inset:0;
+ background:#0006;
+ z-index:2000;
+ display:none;
+ align-items:center;
+ justify-content:center
+}
+
+.modalBox{
+ width:min(90%,400px);
+ background:white;
+ border-radius:18px;
+ padding:20px
+}
+
+.modalBox input,
+.modalBox textarea{
+ width:100%;
+ padding:11px;
+ border:1px solid #ddd;
+ border-radius:9px;
+ margin:8px 0
+}
+
+.movePopup{
+ position:absolute;
+ left:50%;
+ top:50%;
+ transform:translate(-50%,-50%);
+ width:min(78vw,280px);
+ background:white;
+ border-radius:18px;
+ padding:14px;
+ box-shadow:0 15px 45px #0004
+}
+
+.movePopup .panelBtn{
+ min-height:55px;
+ font-size:13px
+}
+
+/* =========================================================
+   BEAUTIFUL BUTTON ICONS — VISUAL ONLY
+   ========================================================= */
+
+.udsIcon{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ width:30px;
+ height:30px;
+ min-width:30px;
+ border-radius:10px;
+ background:linear-gradient(135deg,#6546e5,#8a72ff);
+ color:#fff;
+ font-size:15px;
+ font-weight:900;
+ line-height:1;
+ box-shadow:0 4px 10px #6546e52b;
+ text-shadow:0 1px 2px #0003;
+ vertical-align:middle;
+ margin-right:8px;
+ transition:.18s ease
+}
+
+.homeBtn .udsIcon{
+ width:38px;
+ height:38px;
+ min-width:38px;
+ border-radius:12px;
+ margin:0 auto 8px;
+ font-size:19px
+}
+
+.sheetItem .udsIcon{
+ width:34px;
+ height:34px;
+ min-width:34px;
+ border-radius:11px;
+ margin:0 auto 7px;
+ font-size:16px
+}
+
+.panelBtn .udsIcon{
+ width:30px;
+ height:30px;
+ min-width:30px;
+ margin-right:9px
+}
+
+.primary .udsIcon{
+ background:#ffffff25;
+ box-shadow:none;
+ margin-right:7px
+}
+
+.preset .udsIcon{
+ width:24px;
+ height:24px;
+ min-width:24px;
+ border-radius:8px;
+ font-size:12px;
+ margin-right:5px
+}
+
+.layerActions button .udsIcon{
+ width:24px;
+ height:24px;
+ min-width:24px;
+ margin:0;
+ font-size:12px
+}
+
+button:active .udsIcon{
+ transform:scale(.9)
+}
+
+.homeBtn:hover,
+.sheetItem:hover,
+.panelBtn:hover{
+ box-shadow:0 7px 20px #18203318;
+ transform:translateY(-1px)
+}
+
+.homeBtn,
+.sheetItem,
+.panelBtn,
+.primary,
+.preset{
+ transition:.18s ease
+}
+
+.homeBtn .udsIcon,
+.sheetItem .udsIcon{
+ display:flex
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     WELCOME
+     ========================================================= -->
+
+<section id="welcome" class="screen active">
+ <div class="welcomeBox">
+
+  <div class="brandMark">
+   <img src="logo.png" alt="Urdu Design Studio Logo"
+        onerror="this.style.display='none'">
+  </div>
+
+  <h1>Urdu Design Studio</h1>
+
+  <p>Design • Edit • Save</p>
+
+  <p>Make Urdu designing easy and creative.</p>
+
+  <button class="primary" onclick="showHome()">
+   Start Designing
+  </button>
+
+ </div>
+</section>
+
+
+<!-- =========================================================
+     HOME
+     ========================================================= -->
+
+<section id="home" class="screen">
+
+ <div class="homeHead">
+  <div class="homeTitle">
+   Urdu Design Studio
+  </div>
+
+  <button class="toolBtn" onclick="showWelcome()">
+   ⌂
+  </button>
+ </div>
+
+ <div class="homeBody">
+
+  <div class="slider" id="slider">
+   <div class="slides" id="slides"></div>
+   <div class="dots" id="dots"></div>
+  </div>
+
+  <div class="homeGrid">
+
+   <button class="homeBtn" onclick="showSetup()">
+    <span>＋</span>
+    New Design
+   </button>
+
+   <button class="homeBtn" onclick="showMyDesigns()">
+    <span>▣</span>
+    My Designs
+   </button>
+
+   <button class="homeBtn" onclick="openLibrary('templates')">
+    <span>▤</span>
+    Templates
+   </button>
+
+   <button class="homeBtn" onclick="openLibrary('elements')">
+    <span>✦</span>
+    Design Elements
+   </button>
+
+   <button class="homeBtn" onclick="openLibrary('shapes')">
+    <span>◇</span>
+    Shapes
+   </button>
+
+   <button class="homeBtn" onclick="openLibrary('frames')">
+    <span>▢</span>
+    Frames
+   </button>
+
+   <button class="homeBtn" onclick="openLibrary('backgrounds')">
+    <span>◉</span>
+    Backgrounds
+   </button>
+
+   <button class="homeBtn" onclick="addImage()">
+    <span>▧</span>
+    Import Image
+   </button>
+
+   <button class="homeBtn" onclick="openCDR()">
+    <span>◈</span>
+    Open CDR
+   </button>
+
+   <button class="homeBtn" onclick="settingsPanel()">
+    <span>⚙</span>
+    Settings
+   </button>
+
+  </div>
+
+  <div class="devCard">
+
+   <div class="devPic">
+    <img src="developer_profile.jpg"
+         onerror="this.style.display='none'">
+    <b>AGB</b>
+   </div>
+
+   <div>
+    <b>Developer</b><br>
+    Abdul Ghafar Baloch<br>
+    <small>03226894360</small>
+   </div>
+
+  </div>
+
+ </div>
+</section>
+
+
+<!-- =========================================================
+     SETUP
+     ========================================================= -->
+
+<section id="setup" class="screen">
+
+ <div class="setupBox">
+
+  <h2>New Design</h2>
+
+  <div class="field">
+   <label>Width</label>
+   <input id="canvasW" type="number" value="1280">
+  </div>
+
+  <div class="field">
+   <label>Height</label>
+   <input id="canvasH" type="number" value="520">
+  </div>
+
+  <b>Presets</b>
+
+  <div class="presetGrid">
+
+   <button class="preset"
+           onclick="preset(1280,520)">
+    1280 × 520
+   </button>
+
+   <button class="preset"
+           onclick="preset(1080,1080)">
+    1080 × 1080
+   </button>
+
+   <button class="preset"
+           onclick="preset(1080,1920)">
+    1080 × 1920
+   </button>
+
+   <button class="preset"
+           onclick="preset(1920,1080)">
+    1920 × 1080
+   </button>
+
+   <button class="preset"
+           onclick="preset(1200,628)">
+    1200 × 628
+   </button>
+
+   <button class="preset"
+           onclick="preset(800,1200)">
+    800 × 1200
+   </button>
+
+  </div>
+
+  <button class="primary"
+          style="width:100%"
+          onclick="createDesign()">
+   Create Design
+  </button>
+
+  <button
+   style="width:100%;padding:12px;background:#eee;border-radius:10px;margin-top:8px"
+   onclick="showHome()">
+   Cancel
+  </button>
+
+ </div>
+</section>
+
+
+<!-- =========================================================
+     EDITOR
+     ========================================================= -->
+
+<section id="editor" class="screen">
+
+ <div class="editorTop">
+
+  <button class="toolBtn"
+          onclick="showHome()">
+   ⌂
+  </button>
+
+  <button class="toolBtn"
+          onclick="undo()">
+   ↶
+  </button>
+
+  <button class="toolBtn"
+          onclick="redo()">
+   ↷
+  </button>
+
+  <button class="toolBtn"
+          onclick="openMoveTools()"
+          aria-label="Move object"
+          title="Move">
+   ✥
+  </button>
+
+  <div class="canvasInfo" id="canvasInfo">
+   1280 × 520
+  </div>
+
+  <button class="toolBtn"
+          onclick="openLayers()">
+   ☷
+  </button>
+
+  <button class="toolBtn"
+          onclick="exportPNG()">
+   ⇩
+  </button>
+
+ </div>
+
+
+ <div class="workspace" id="workspace">
+
+  <div class="stageOuter" id="stageOuter">
+
+   <div id="stage"></div>
+
+  </div>
+
+  <button class="powerClipBar"
+          id="powerClipButton"
+          onclick="doPowerClip()">
+   PowerClip
+  </button>
+
+ </div>
+
+
+ <div class="bottomTools">
+
+  <button onclick="openAddNew()">
+   <span>＋</span>
+   Add
+  </button>
+
+  <button onclick="addText()">
+   <span>T</span>
+   Text
+  </button>
+
+  <button onclick="resizePage()">
+   <span>↔</span>
+   Resize Page
+  </button>
+
+  <button onclick="pageBackground()">
+   <span>◐</span>
+   Page Background
+  </button>
+
+  <button onclick="openMoreTools()">
+   <span>•••</span>
+   More
+  </button>
+
+ </div>
+
+</section>
+
+
+<!-- =========================================================
+     ADD NEW
+     ========================================================= -->
+
+<div class="overlay" id="addOverlay">
+
+ <div class="sheet">
+
+  <div class="sheetHead">
+   <b>Add New</b>
+
+   <button class="close"
+           onclick="closeOverlay('addOverlay')">
+    ×
+   </button>
+  </div>
+
+  <div class="sheetGrid">
+
+   <button class="sheetItem"
+           onclick="addImage()">
+    <span>▧</span>
+    Gallery Pic
+   </button>
+
+   <button class="sheetItem"
+           onclick="notice('Stock Images library can be added offline.')">
+    <span>▤</span>
+    Stock Images
+   </button>
+
+   <button class="sheetItem"
+           onclick="addImage()">
+    <span>▣</span>
+    My Folder
+   </button>
+
+   <button class="sheetItem"
+           onclick="addText()">
+    <span>T</span>
+    Add Text
+   </button>
+
+   <button class="sheetItem"
+           onclick="notice('Video module reserved for the media phase.')">
+    <span>▶</span>
+    Video
+   </button>
+
+   <button class="sheetItem"
+           onclick="notice('Audio module reserved for the media phase.')">
+    <span>♪</span>
+    Audio
+   </button>
+
+   <button class="sheetItem"
+           onclick="notice('AI Images is disabled in the core offline build.')">
+    <span>AI</span>
+    AI Images
+   </button>
+
+   <button class="sheetItem"
+           onclick="openMoreTools()">
+    <span>⚙</span>
+    Tools
+   </button>
+
+   <button class="sheetItem"
+           onclick="openShapeTools()">
+    <span>▢</span>
+    Borders
+   </button>
+
+   <button class="sheetItem"
+           onclick="addTable()">
+    <span>▦</span>
+    Table
+   </button>
+
+   <button class="sheetItem"
+           onclick="startDraw()">
+    <span>✎</span>
+    Draw
+   </button>
+
+   <button class="sheetItem"
+           onclick="startDraw()">
+    <span>╱</span>
+    Pen Tool
+   </button>
+
+   <button class="sheetItem"
+           onclick="notice('Logo library ready for custom assets.')">
+    <span>◉</span>
+    Logos
+   </button>
+
+   <button class="sheetItem"
+           onclick="addText()">
+    <span>Tx</span>
+    Special Text
+   </button>
+
+   <button class="sheetItem"
+           onclick="openShapeTools()">
+    <span>◇</span>
+    Shapes
+   </button>
+
+   <button class="sheetItem"
+           onclick="addText('اردو ڈیزائن')">
+    <span>★</span>
+    Urdu
+   </button>
+
+  </div>
+ </div>
+</div>
+
+
+<!-- =========================================================
+     LAYERS
+     ========================================================= -->
+
+<div class="overlay" id="layersOverlay">
+
+ <div class="sheet">
+
+  <div class="sheetHead">
+
+   <b>Layers</b>
+
+   <button class="close"
+           onclick="closeOverlay('layersOverlay')">
+    ×
+   </button>
+
+  </div>
+
+  <div id="layersList"></div>
+
+ </div>
+
+</div>
+
+
+<!-- =========================================================
+     SHAPES
+     ========================================================= -->
+
+<div class="overlay" id="shapeOverlay">
+
+ <div class="sheet">
+
+  <div class="sheetHead">
+
+   <b>Shapes</b>
+
+   <button class="close"
+           onclick="closeOverlay('shapeOverlay')">
+    ×
+   </button>
+
+  </div>
+
+  <div class="panelGrid">
+
+   <button class="panelBtn"
+           onclick="addShape('rect')">
+    Rectangle
+   </button>
+
+   <button class="panelBtn"
+           onclick="addShape('circle')">
+    Circle
+   </button>
+
+   <button class="panelBtn"
+           onclick="addShape('round')">
+    Round
+   </button>
+
+   <button class="panelBtn"
+           onclick="addShape('star')">
+    Star
+   </button>
+
+   <button class="panelBtn"
+           onclick="addShape('heart')">
+    Heart
+   </button>
+
+   <button class="panelBtn"
+           onclick="addShape('triangle')">
+    Triangle
+   </button>
+
+   <button class="panelBtn"
+           onclick="addShape('diamond')">
+    Diamond
+   </button>
+
+   <button class="panelBtn"
+           onclick="addShape('line')">
+    Line
+   </button>
+
+   <button class="panelBtn"
+           onclick="addShape('arrow')">
+    Arrow
+   </button>
+
+   <button class="panelBtn"
+           onclick="addCustomShape()">
+    Custom PNG/SVG
+   </button>
+
+  </div>
+
+ </div>
+</div>
+
+
+<!-- =========================================================
+     MORE / OBJECT TOOLS
+     LEFT SCROLLABLE DRAWER
+     ========================================================= -->
+
+<div class="overlay" id="moreOverlay">
+
+ <div class="sheet">
+
+  <div class="sheetHead">
+
+   <b style="font-size:19px">
+    Object Tools
+   </b>
+
+   <button class="close"
+           onclick="closeOverlay('moreOverlay')">
+    ×
+   </button>
+
+  </div>
+
+  <div class="panelGrid">
+
+   <button class="panelBtn"
+           onclick="duplicateSelected()">
+    <span>⧉</span>
+    Duplicate
+   </button>
+
+   <button class="panelBtn"
+           onclick="deleteSelected()">
+    <span>⌫</span>
+    Delete
+   </button>
+
+   <button class="panelBtn"
+           onclick="bringFront()">
+    <span>⇧</span>
+    Bring Front
+   </button>
+
+   <button class="panelBtn"
+           onclick="sendBack()">
+    <span>⇩</span>
+    Send Back
+   </button>
+
+   <button class="panelBtn"
+           onclick="toggleLock()">
+    <span>🔒</span>
+    Lock / Unlock
+   </button>
+
+   <button class="panelBtn"
+           onclick="toggleGrid()">
+    <span>▦</span>
+    Grid
+   </button>
+
+   <button class="panelBtn"
+           onclick="alignCenter()">
+    <span>⊙</span>
+    Align Center
+   </button>
+
+   <button class="panelBtn"
+           onclick="openTextTools()">
+    <span>T</span>
+    Text Tools
+   </button>
+
+   <button class="panelBtn"
+           onclick="groupSelected()">
+    <span>▦</span>
+    Group
+   </button>
+
+   <button class="panelBtn"
+           onclick="ungroupSelected()">
+    <span>⊞</span>
+    Ungroup
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Canvas settings will be available here.')">
+    <span>▣</span>
+    Canvas Settings
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Position and size controls will be available here.')">
+    <span>↔</span>
+    Position & Size
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Opacity controls will be available here.')">
+    <span>◐</span>
+    Opacity
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Rotate controls will be available here.')">
+    <span>⟳</span>
+    Rotate
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Flip controls will be available here.')">
+    <span>⇄</span>
+    Flip
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Effects will be available here.')">
+    <span>✦</span>
+    Effects
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Border and corner controls will be available here.')">
+    <span>□</span>
+    Border / Corners
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Alignment tools will be available here.')">
+    <span>☷</span>
+    Alignment
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Transparency tools will be available here.')">
+    <span>◌</span>
+    Transparency
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Shadow controls will be available here.')">
+    <span>✧</span>
+    Shadow
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('PowerClip controls are available when an image and shape are selected.')">
+    <span>◈</span>
+    PowerClip
+   </button>
+
+  </div>
+
+ </div>
+</div>
+
+
+<!-- =========================================================
+     TEXT TOOLS
+     ========================================================= -->
+
+<div class="overlay" id="textOverlay">
+
+ <div class="sheet">
+
+  <div class="sheetHead">
+
+   <b>Text Tools</b>
+
+   <button class="close"
+           onclick="closeOverlay('textOverlay')">
+    ×
+   </button>
+
+  </div>
+
+  <div class="panelGrid">
+
+   <button class="panelBtn"
+           onclick="editText()">
+    Edit
+   </button>
+
+   <button class="panelBtn"
+           onclick="fontSize()">
+    Size
+   </button>
+
+   <button class="panelBtn"
+           onclick="fontColor()">
+    Color
+   </button>
+
+   <button class="panelBtn"
+           onclick="fontSelect()">
+    Font
+   </button>
+
+  </div>
+
+  <hr>
+
+  <div class="panelGrid">
+
+   <button class="panelBtn"
+           onclick="textStroke()">
+    Stroke
+   </button>
+
+   <button class="panelBtn"
+           onclick="textShadow()">
+    Shadow
+   </button>
+
+   <button class="panelBtn"
+           onclick="textGradient()">
+    Gradient
+   </button>
+
+   <button class="panelBtn"
+           onclick="textOpacity()">
+    Opacity
+   </button>
+
+   <button class="panelBtn"
+           onclick="breakApart()">
+    Break Apart
+   </button>
+
+   <button class="panelBtn"
+           onclick="convertShape()">
+    Convert to Shape
+   </button>
+
+   <button class="panelBtn"
+           onclick="convert3D()">
+    Convert to 3D
+   </button>
+
+   <button class="panelBtn"
+           onclick="textPattern()">
+    Pattern
+   </button>
+
+   <button class="panelBtn"
+           onclick="textBackground()">
+    Text Background
+   </button>
+
+   <button class="panelBtn"
+           onclick="splitWords()">
+    Split Words
+   </button>
+
+   <button class="panelBtn"
+           onclick="bullets()">
+    Bullets List
+   </button>
+
+   <button class="panelBtn"
+           onclick="blendText()">
+    Blend
+   </button>
+
+   <button class="panelBtn"
+           onclick="duplicateSelected()">
+    Duplicate
+   </button>
+
+   <button class="panelBtn"
+           onclick="deleteSelected()">
+    Delete
+   </button>
+
+  </div>
+
+ </div>
+</div>
+
+
+<!-- =========================================================
+     MOVE POPUP
+     ========================================================= -->
+
+<div class="overlay" id="movePopupOverlay" onclick="movePopupOutside(event)" style="background:#0004">
+
+ <div class="movePopup" id="movePopup">
+
+  <div class="sheetHead">
+
+   <b style="font-size:18px">
+    Move
+   </b>
+
+   <button class="close"
+           onclick="closeMoveTools()">
+    ×
+   </button>
+
+  </div>
+
+  <div class="panelGrid"
+       style="grid-template-columns:repeat(3,1fr);gap:8px">
+
+   <div></div>
+
+   <button class="panelBtn"
+           onclick="nudgeSelected(0,-10)">
+    ↑<br>
+    Up
+   </button>
+
+   <div></div>
+
+   <button class="panelBtn"
+           onclick="nudgeSelected(-10,0)">
+    ←<br>
+    Left
+   </button>
+
+   <div class="panelBtn"
+        style="display:flex;align-items:center;justify-content:center">
+    ✥
+   </div>
+
+   <button class="panelBtn"
+           onclick="nudgeSelected(10,0)">
+    →<br>
+    Right
+   </button>
+
+   <div></div>
+
+   <button class="panelBtn"
+           onclick="nudgeSelected(0,10)">
+    ↓<br>
+    Down
+   </button>
+
+   <div></div>
+
+  </div>
+
+ </div>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL
+     ========================================================= -->
+
+<div class="modal" id="modal">
+
+ <div class="modalBox">
+
+  <h3 id="modalTitle"></h3>
+
+  <div id="modalBody"></div>
+
+  <button class="primary"
+          onclick="modalOK()">
+   OK
+  </button>
+
+  <button
+   style="width:100%;padding:11px;margin-top:7px;border-radius:9px"
+   onclick="closeModal()">
+   Cancel
+  </button>
+
+ </div>
+
+</div>
+
+
+<input id="imageInput"
+       type="file"
+       accept="image/png,image/jpeg,image/jpg,image/svg+xml"
+       hidden>
+
+<input id="shapeInput"
+       type="file"
+       accept="image/png,image/svg+xml"
+       hidden>
+
+<input id="projectInput"
+       type="file"
+       accept=".uds,.json"
+       hidden>
+
+<input id="cdrInput"
+       type="file"
+       accept=".cdr"
+       hidden>
+
+
+<script>
+
+/* =========================================================
+   URDU DESIGN STUDIO — CORE EDITOR ENGINE
+   ========================================================= */
+
+const $=id=>document.getElementById(id);
+
+let state={
+ width:1280,
+ height:520,
+ bg:"#ffffff",
+ objects:[],
+ selected:[],
+ canvasSelected:false,
+ history:[],
+ future:[],
+ grid:false,
+ projectName:"Untitled Design"
+};
+
+let idCounter=1;
+
+const uid=()=>{
+ return "obj_"+Date.now()+"_"+(idCounter++);
+};
+
+
+/* =========================================================
+   MOVE TOOL
+   ========================================================= */
+
+function openMoveTools(){
+
+ const o=current();
+
+ if(!o){
+  notice("Select an object first.");
+  return;
+ }
+
+ $("movePopupOverlay").style.display="block";
+}
+
+
+function closeMoveTools(){
+
+ $("movePopupOverlay").style.display="none";
+}
+
+
+function movePopupOutside(e){
+
+ if(e.target===$("movePopupOverlay")){
+  closeMoveTools();
+ }
+}
+
+
+function nudgeSelected(dx,dy){
+
+ const o=current();
+
+ if(!o||o.locked)
+  return;
+
+ o.x+=dx;
+ o.y+=dy;
+
+ saveHistory();
+
+ render();
+}
+
+
+/* =========================================================
+   SCREEN NAVIGATION
+   ========================================================= */
+
+function screen(id){
+ document.querySelectorAll(".screen")
+  .forEach(x=>x.classList.remove("active"));
+
+ $(id).classList.add("active");
+}
+
+function showHome(){
+ screen("home");
+}
+
+function showWelcome(){
+ screen("welcome");
+}
+
+function showSetup(){
+ screen("setup");
+}
+
+function preset(w,h){
+ $("canvasW").value=w;
+ $("canvasH").value=h;
+}
+
+
+/* =========================================================
+   CREATE DESIGN
+   ========================================================= */
+
+function createDesign(){
+
+ state.width=parseInt($("canvasW").value)||1280;
+ state.height=parseInt($("canvasH").value)||520;
+
+ state.objects=[];
+ state.selected=[];
+ state.canvasSelected=false;
+ state.history=[];
+ state.future=[];
+
+ $("canvasInfo").textContent=
+  state.width+" × "+state.height;
+
+ screen("editor");
+
+ render();
+
+ saveHistory();
+}
+
+
+/* =========================================================
+   HOME SLIDER
+   ========================================================= */
+
+const banners=[
+ "home_banner_01.jpg",
+ "home_banner_02.jpg",
+ "home_banner_03.jpg",
+ "home_banner_04.jpg",
+ "home_banner_05.jpg",
+ "home_banner_06.jpg",
+ "home_banner_07.jpg"
+];
+
+let slideIndex=0;
+
+function initSlider(){
+
+ const s=$("slides");
+ const d=$("dots");
+
+ s.innerHTML="";
+ d.innerHTML="";
+
+ banners.forEach((src,i)=>{
+
+  const div=document.createElement("div");
+
+  div.className="slide";
+
+  const img=document.createElement("img");
+
+  img.src=src;
+
+  img.onerror=()=>{
+
+   img.style.display="none";
+
+   const f=document.createElement("div");
+
+   f.className="slideFallback";
+   f.textContent="Urdu Design Studio";
+
+   div.appendChild(f);
+  };
+
+  div.appendChild(img);
+  s.appendChild(div);
+
+  const dot=document.createElement("i");
+
+  dot.className=
+   "dot "+(i===0?"on":"");
+
+  dot.onclick=()=>{
+   goSlide(i);
+  };
+
+  d.appendChild(dot);
+
+ });
+}
+
+function goSlide(i){
+
+ slideIndex=i;
+
+ $("slides").style.transform=
+  "translateX(-"+i*100+"%)";
+
+ document.querySelectorAll(".dot")
+  .forEach((d,n)=>{
+   d.classList.toggle("on",n===i);
+  });
+}
+
+setInterval(()=>{
+ goSlide((slideIndex+1)%7);
+},4500);
+
+initSlider();
+
+
+/* =========================================================
+   OBJECT CREATION
+   ========================================================= */
+
+function baseObj(type){
+
+ return{
+  id:uid(),
+  type,
+  x:80,
+  y:70,
+  w:260,
+  h:120,
+  rotation:0,
+  opacity:1,
+  locked:false,
+  hidden:false,
+  name:type+" "+(state.objects.length+1),
+  z:state.objects.length
+ };
+}
+
+
+function addText(value="اردو ڈیزائن"){
+
+ closeAll();
+
+ state.canvasSelected=false;
+
+ const o=baseObj("text");
+
+ o.text=value;
+ o.w=350;
+ o.h=90;
+ o.fontSize=45;
+ o.fontFamily="Arial";
+ o.color="#222222";
+ o.bold=true;
+
+ state.objects.push(o);
+
+ selectOne(o.id);
+
+ saveHistory();
+
+ render();
+}
+
+
+function addImage(){
+
+ state.canvasSelected=false;
+
+ $("imageInput").click();
+}
+
+
+$("imageInput").onchange=e=>{
+
+ const f=e.target.files[0];
+
+ if(!f)return;
+
+ const r=new FileReader();
+
+ r.onload=()=>{
+
+  const o=baseObj("image");
+
+  o.src=r.result;
+  o.w=300;
+  o.h=220;
+
+  state.objects.push(o);
+
+  selectOne(o.id);
+
+  saveHistory();
+
+  render();
+ };
+
+ r.readAsDataURL(f);
+
+ e.target.value="";
+};
+
+
+function addCustomShape(){
+
+ $("shapeInput").click();
+}
+
+
+$("shapeInput").onchange=e=>{
+
+ const f=e.target.files[0];
+
+ if(!f)return;
+
+ const r=new FileReader();
+
+ r.onload=()=>{
+
+  const o=baseObj("customShape");
+
+  o.src=r.result;
+  o.w=240;
+  o.h=180;
+
+  state.objects.push(o);
+
+  selectOne(o.id);
+
+  saveHistory();
+
+  render();
+ };
+
+ r.readAsDataURL(f);
+
+ e.target.value="";
+};
+
+
+function addShape(kind){
+
+ closeAll();
+
+ state.canvasSelected=false;
+
+ const o=baseObj("shape");
+
+ o.shape=kind;
+ o.w=210;
+ o.h=150;
+ o.color="#6546e5";
+
+ state.objects.push(o);
+
+ selectOne(o.id);
+
+ saveHistory();
+
+ render();
+}
+
+
+function addTable(){
+
+ closeAll();
+
+ state.canvasSelected=false;
+
+ const o=baseObj("table");
+
+ o.w=350;
+ o.h=180;
+ o.rows=3;
+ o.cols=4;
+
+ state.objects.push(o);
+
+ selectOne(o.id);
+
+ saveHistory();
+
+ render();
+}
+
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+
+function render(){
+
+ const stage=$("stage");
+
+ stage.innerHTML="";
+
+ stage.style.width=state.width+"px";
+ stage.style.height=state.height+"px";
+ stage.style.background=state.bg;
+
+ stage.classList.toggle(
+  "gridBg",
+  state.grid
+ );
+
+ stage.classList.toggle(
+  "canvasSelected",
+  state.canvasSelected
+ );
+
+
+ const scale=Math.min(
+  ($("workspace").clientWidth-40)/state.width,
+  ($("workspace").clientHeight-40)/state.height,
+  1
+ );
+
+ stage.style.transform=
+  "scale("+scale+")";
+
+ $("stageOuter").style.width=
+  state.width*scale+"px";
+
+ $("stageOuter").style.height=
+  state.height*scale+"px";
+
+
+ state.objects.sort(
+  (a,b)=>a.z-b.z
+ );
+
+
+ state.objects.forEach(o=>{
+
+  if(o.hidden)return;
+
+  const el=document.createElement("div");
+
+  el.className=
+   "obj "+
+   (o.type==="text"?"textObj":"");
+
+
+  if(state.selected.includes(o.id)){
+   el.classList.add("selected");
+  }
+
+  if(o.locked){
+   el.classList.add("locked");
+  }
+
+  el.dataset.id=o.id;
+
+  el.style.left=o.x+"px";
+  el.style.top=o.y+"px";
+  el.style.width=o.w+"px";
+  el.style.height=o.h+"px";
+  el.style.opacity=o.opacity;
+
+  el.style.transform=
+   "rotate("+o.rotation+"deg)";
+
+
+  if(o.type==="text"){
+
+   el.textContent=o.text;
+
+   el.style.fontSize=
+    o.fontSize+"px";
+
+   el.style.fontFamily=
+    o.fontFamily;
+
+   el.style.color=o.color;
+
+   el.style.fontWeight=
+    o.bold?"bold":"normal";
+
+   el.style.textAlign=
+    o.align||"center";
+
+
+   if(o.stroke)
+    el.style.webkitTextStroke=
+     ""+o.stroke+"px "+
+     (o.strokeColor||"#000");
+
+
+   if(o.shadow)
+    el.style.textShadow=
+     "4px 4px 5px #0008";
+
+
+   if(o.gradient){
+
+    el.style.background=
+     "linear-gradient(90deg,#6546e5,#08aaa1)";
+
+    el.style.webkitBackgroundClip=
+     "text";
+
+    el.style.webkitTextFillColor=
+     "transparent";
+   }
+
+
+   if(o.background)
+    el.style.backgroundColor=
+     o.background;
+
+
+   if(o.effect3d)
+    el.style.textShadow=
+     "5px 5px 0 #555,9px 9px 8px #0006";
+  }
+
+
+  if(o.type==="image"||
+     o.type==="customShape"){
+
+   const img=
+    document.createElement("img");
+
+   img.src=o.src;
+
+   el.appendChild(img);
+
+
+   if(o.clipShape){
+
+    const sh=
+     getObj(o.clipShape);
+
+    if(sh){
+     el.style.clipPath=
+      shapeClip(sh);
+    }
+   }
+  }
+
+
+  if(o.type==="shape"){
+
+   el.classList.add("shapeObj");
+
+   el.innerHTML=
+    shapeHTML(o);
+  }
+
+
+  if(o.type==="table"){
+
+   el.innerHTML=
+    tableHTML(o);
+  }
+
+
+  el.addEventListener(
+   "pointerdown",
+   e=>{
+
+    e.stopPropagation();
+
+    if(o.locked)return;
+
+    state.canvasSelected=false;
+
+    selectObject(o.id,e);
+
+    startDrag(e,o);
+   }
+  );
+
+
+  stage.appendChild(el);
+
+
+  if(state.selected.includes(o.id)){
+   addHandles(el,o);
+  }
+
+ });
+
+
+ updatePowerClip();
+
+ updateLayers();
+}
+
+
+/* =========================================================
+   SHAPES
+   ========================================================= */
+
+function shapeHTML(o){
+
+ if(o.shape==="circle")
+
+  return '<svg width="100%" height="100%">'+
+   '<ellipse cx="50%" cy="50%" rx="47%" ry="47%" fill="'+
+   o.color+'"/></svg>';
+
+
+ if(o.shape==="round")
+
+  return '<svg width="100%" height="100%">'+
+   '<rect x="2%" y="2%" width="96%" height="96%" rx="25" fill="'+
+   o.color+'"/></svg>';
+
+
+ if(o.shape==="star")
+
+  return '<svg width="100%" height="100%" viewBox="0 0 100 100">'+
+   '<polygon points="50,3 61,36 97,36 68,57 79,92 50,71 21,92 32,57 3,36 39,36" fill="'+
+   o.color+'"/></svg>';
+
+
+ if(o.shape==="heart")
+
+  return '<svg width="100%" height="100%" viewBox="0 0 100 100">'+
+   '<path d="M50 90 C10 60 5 35 20 20 C32 8 47 15 50 30 C53 15 68 8 80 20 C95 35 90 60 50 90Z" fill="'+
+   o.color+'"/></svg>';
+
+
+ if(o.shape==="triangle")
+
+  return '<svg width="100%" height="100%" viewBox="0 0 100 100">'+
+   '<polygon points="50,5 95,95 5,95" fill="'+
+   o.color+'"/></svg>';
+
+
+ if(o.shape==="diamond")
+
+  return '<svg width="100%" height="100%" viewBox="0 0 100 100">'+
+   '<polygon points="50,3 97,50 50,97 3,50" fill="'+
+   o.color+'"/></svg>';
+
+
+ if(o.shape==="line")
+
+  return '<svg width="100%" height="100%">'+
+   '<line x1="5%" y1="50%" x2="95%" y2="50%" stroke="'+
+   o.color+'" stroke-width="8"/></svg>';
+
+
+ if(o.shape==="arrow")
+
+  return '<svg width="100%" height="100%" viewBox="0 0 100 100">'+
+   '<path d="M5 50H75V25L95 50 75 75V55H5Z" fill="'+
+   o.color+'"/></svg>';
+
+
+ return '<svg width="100%" height="100%">'+
+  '<rect x="2%" y="2%" width="96%" height="96%" rx="4" fill="'+
+  o.color+'"/></svg>';
+}
+
+
+function tableHTML(o){
+
+ let h=
+  '<table style="width:100%;height:100%;border-collapse:collapse">';
+
+ for(let r=0;r<o.rows;r++){
+
+  h+="<tr>";
+
+  for(let c=0;c<o.cols;c++)
+
+   h+=
+    '<td style="border:2px solid #555;text-align:center">'+
+    (r+1)+","+(c+1)+
+    "</td>";
+
+  h+="</tr>";
+ }
+
+ return h+"</table>";
+}
+
+
+function shapeClip(o){
+
+ if(o.shape==="circle")
+  return "ellipse(50% 50% at 50% 50%)";
+
+ if(o.shape==="diamond")
+  return "polygon(50% 0%,100% 50%,50% 100%,0% 50%)";
+
+ if(o.shape==="triangle")
+  return "polygon(50% 0%,100% 100%,0% 100%)";
+
+ return "inset(0 round 25px)";
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+function selectOne(id){
+
+ state.canvasSelected=false;
+
+ state.selected=[id];
+
+ render();
+}
+
+
+function selectObject(id,e){
+
+ state.canvasSelected=false;
+
+ if(e.shiftKey){
+
+  if(state.selected.includes(id))
+
+   state.selected=
+    state.selected.filter(
+     x=>x!==id
+    );
+
+  else
+
+   state.selected.push(id);
+
+ }else{
+
+  if(state.selected.length===1){
+
+   const a=
+    getObj(state.selected[0]);
+
+   const b=
+    getObj(id);
+
+
+   if(
+    a&&b&&
+    (
+     (
+      a.type==="shape"||
+      a.type==="customShape"
+     )&&
+     b.type==="image"
+    )||
+    (
+     (
+      b.type==="shape"||
+      b.type==="customShape"
+     )&&
+     a.type==="image"
+    )
+   ){
+
+    if(!state.selected.includes(id))
+     state.selected.push(id);
+
+   }else{
+
+    state.selected=[id];
+   }
+
+  }else{
+
+   state.selected=[id];
+  }
+ }
+
+ render();
+}
+
+
+function addHandles(el,o){
+
+ ["tl","tr","bl","br"].forEach(p=>{
+
+  const h=
+   document.createElement("i");
+
+  h.className=
+   "handle h-"+p;
+
+  h.addEventListener(
+   "pointerdown",
+   e=>startResize(e,o,p)
+  );
+
+  el.appendChild(h);
+ });
+
+
+ const r=
+  document.createElement("i");
+
+ r.className="rotateHandle";
+
+ r.addEventListener(
+  "pointerdown",
+  e=>startRotate(e,o)
+ );
+
+ el.appendChild(r);
+}
+
+
+/* =========================================================
+   DRAG / RESIZE / ROTATE
+   ========================================================= */
+
+function startDrag(e,o){
+
+ if(o.locked)return;
+
+ const sx=e.clientX;
+ const sy=e.clientY;
+
+ const ox=o.x;
+ const oy=o.y;
+
+ const move=ev=>{
+
+  const scale=getScale();
+
+  o.x=
+   ox+(ev.clientX-sx)/scale;
+
+  o.y=
+   oy+(ev.clientY-sy)/scale;
+
+  render();
+ };
+
+
+ const up=()=>{
+
+  window.removeEventListener(
+   "pointermove",
+   move
+  );
+
+  window.removeEventListener(
+   "pointerup",
+   up
+  );
+
+  saveHistory();
+ };
+
+
+ window.addEventListener(
+  "pointermove",
+  move
+ );
+
+ window.addEventListener(
+  "pointerup",
+  up
+);
+}
+
+
+function startResize(e,o,p){
+
+ e.stopPropagation();
+
+ const sx=e.clientX;
+ const sy=e.clientY;
+
+ const ow=o.w;
+ const oh=o.h;
+
+ const ox=o.x;
+ const oy=o.y;
+
+ const scale=getScale();
+
+
+ const move=ev=>{
+
+  let dx=
+   (ev.clientX-sx)/scale;
+
+  let dy=
+   (ev.clientY-sy)/scale;
+
+
+  if(p.includes("r"))
+   o.w=Math.max(25,ow+dx);
+
+
+  if(p.includes("b"))
+   o.h=Math.max(25,oh+dy);
+
+
+  if(p.includes("l")){
+
+   o.x=ox+dx;
+
+   o.w=
+    Math.max(25,ow-dx);
+  }
+
+
+  if(p.includes("t")){
+
+   o.y=oy+dy;
+
+   o.h=
+    Math.max(25,oh-dy);
+  }
+
+  render();
+ };
+
+
+ const up=()=>{
+
+  window.removeEventListener(
+   "pointermove",
+   move
+  );
+
+  window.removeEventListener(
+   "pointerup",
+   up
+  );
+
+  saveHistory();
+ };
+
+
+ window.addEventListener(
+  "pointermove",
+  move
+ );
+
+ window.addEventListener(
+  "pointerup",
+  up
+);
+}
+
+
+function startRotate(e,o){
+
+ e.stopPropagation();
+
+ const rect=
+  $("stage").getBoundingClientRect();
+
+ const cx=
+  rect.left+
+  (o.x+o.w/2)*getScale();
+
+ const cy=
+  rect.top+
+  (o.y+o.h/2)*getScale();
+
+
+ const move=ev=>{
+
+  o.rotation=
+   Math.atan2(
+    ev.clientY-cy,
+    ev.clientX-cx
+   )*180/Math.PI+90;
+
+  render();
+ };
+
+
+ const up=()=>{
+
+  window.removeEventListener(
+   "pointermove",
+   move
+  );
+
+  window.removeEventListener(
+   "pointerup",
+   up
+  );
+
+  saveHistory();
+ };
+
+
+ window.addEventListener(
+  "pointermove",
+  move
+ );
+
+ window.addEventListener(
+  "pointerup",
+  up
+);
+}
+
+
+function getScale(){
+
+ return parseFloat(
+  $("stage")
+   .style
+   .transform
+   .match(/scale\(([^)]+)\)/)?.[1]||1
+ );
+}
+
+
+/* =========================================================
+   LAYERS
+   ========================================================= */
+
+function updateLayers(){
+
+ const box=$("layersList");
+
+ if(!box)return;
+
+ box.innerHTML="";
+
+
+ [...state.objects]
+  .sort((a,b)=>b.z-a.z)
+  .forEach(o=>{
+
+   const row=
+    document.createElement("div");
+
+   row.className="layerRow";
+
+
+   row.innerHTML=
+    '<div class="layerThumb">'+
+    (
+     o.src
+      ?'<img src="'+o.src+'">'
+      :o.type==="text"
+       ?"T"
+       :"◇"
+    )+
+    '</div>'+
+    '<div class="layerName">'+
+    escapeHTML(o.name)+
+    '</div>';
+
+
+   const acts=
+    document.createElement("div");
+
+   acts.className=
+    "layerActions";
+
+
+   const up=
+    document.createElement("button");
+
+   up.textContent="↑";
+
+   up.onclick=()=>{
+    selectOne(o.id);
+    moveUp();
+   };
+
+
+   const dn=
+    document.createElement("button");
+
+   dn.textContent="↓";
+
+   dn.onclick=()=>{
+    selectOne(o.id);
+    moveDown();
+   };
+
+
+   const eye=
+    document.createElement("button");
+
+   eye.textContent=
+    o.hidden?"○":"●";
+
+   eye.onclick=()=>{
+    o.hidden=!o.hidden;
+    render();
+    saveHistory();
+   };
+
+
+   const lock=
+    document.createElement("button");
+
+   lock.textContent=
+    o.locked?"🔒":"🔓";
+
+   lock.onclick=()=>{
+    o.locked=!o.locked;
+    render();
+    saveHistory();
+   };
+
+
+   const more=
+    document.createElement("button");
+
+   more.textContent="⋮";
+
+   more.onclick=()=>{
+    layerMenu(o);
+   };
+
+
+   acts.append(
+    up,
+    dn,
+    eye,
+    lock,
+    more
+   );
+
+   row.appendChild(acts);
+
+
+   row.onclick=()=>{
+    selectOne(o.id);
+   };
+
+
+   box.appendChild(row);
+  });
+}
+
+
+function layerMenu(o){
+
+ modal(
+  "Layer Actions",
+
+  `<button class="panelBtn"
+    style="width:100%;margin:4px"
+    onclick="renameObj('${o.id}')">
+    Rename
+   </button>
+
+   <button class="panelBtn"
+    style="width:100%;margin:4px"
+    onclick="duplicateSelected()">
+    Duplicate
+   </button>
+
+   <button class="panelBtn"
+    style="width:100%;margin:4px"
+    onclick="deleteSelected()">
+    Delete
+   </button>
+
+   <button class="panelBtn"
+    style="width:100%;margin:4px"
+    onclick="moveUp()">
+    Move Up
+   </button>
+
+   <button class="panelBtn"
+    style="width:100%;margin:4px"
+    onclick="moveDown()">
+    Move Down
+   </button>`
+ );
+}
+
+
+function openLayers(){
+
+ $("layersOverlay").style.display="block";
+
+ updateLayers();
+}
+
+
+function resizePage(){
+
+ modal(
+  "Resize Page",
+  `<label style="display:block;font-weight:bold;margin-top:4px">Width</label>
+   <input id="resizeW" type="number" min="1" value="${state.width}">
+
+   <label style="display:block;font-weight:bold;margin-top:4px">Height</label>
+   <input id="resizeH" type="number" min="1" value="${state.height}">
+
+   <div style="font-size:11px;color:#687086;margin-top:4px">
+    Enter the new page size in pixels.
+   </div>`
+ );
+
+ modalAction=()=>{
+
+  const w=parseInt($("resizeW").value);
+  const h=parseInt($("resizeH").value);
+
+  if(!w||!h||w<1||h<1){
+   notice("Please enter a valid page size.");
+   return;
+  }
+
+  state.width=w;
+  state.height=h;
+
+  $("canvasInfo").textContent=
+   state.width+" × "+state.height;
+
+  saveHistory();
+  render();
+ };
+}
+
+
+function pageBackground(){
+
+ modal(
+  "Page Background",
+  `<label style="display:block;font-weight:bold;margin-top:4px">Background Color</label>
+   <input id="pageBgColor" type="color" value="${state.bg}"
+    style="height:52px;padding:4px;cursor:pointer">
+
+   <label style="display:block;font-weight:bold;margin-top:10px">Color Value</label>
+   <input id="pageBgText" type="text" value="${state.bg}"
+    placeholder="#ffffff">`
+ );
+
+ const color=$("pageBgColor");
+ const text=$("pageBgText");
+
+ color.oninput=()=>{
+  text.value=color.value;
+ };
+
+ text.oninput=()=>{
+  const v=text.value.trim();
+  if(/^#[0-9a-fA-F]{6}$/.test(v)){
+   color.value=v;
+  }
+ };
+
+ modalAction=()=>{
+
+  const v=text.value.trim();
+
+  if(!/^#[0-9a-fA-F]{6}$/.test(v)){
+   notice("Please enter a valid color such as #ffffff.");
+   return;
+  }
+
+  state.bg=v;
+
+  saveHistory();
+  render();
+ };
+}
+
+
+function openShapeTools(){
+ $("shapeOverlay").style.display="block";
+}
+
+
+function openMoreTools(){
+ $("moreOverlay").style.display="block";
+}
+
+
+function openAddNew(){
+ $("addOverlay").style.display="block";
+}
+
+
+function openTextTools(){
+ $("textOverlay").style.display="block";
+}
+
+
+function closeOverlay(id){
+ $(id).style.display="none";
+}
+
+
+function closeAll(){
+
+ document
+  .querySelectorAll(".overlay")
+  .forEach(x=>{
+   x.style.display="none";
+  });
+}
+
+
+/* =========================================================
+   OBJECT ACTIONS
+   ========================================================= */
+
+function getObj(id){
+ return state.objects.find(
+  o=>o.id===id
+ );
+}
+
+
+function current(){
+ return getObj(
+  state.selected[0]
+ );
+}
+
+
+function deleteSelected(){
+
+ state.objects=
+  state.objects.filter(
+   o=>!state.selected.includes(o.id)
+  );
+
+ state.selected=[];
+
+ state.canvasSelected=false;
+
+ saveHistory();
+
+ render();
+}
+
+
+function duplicateSelected(){
+
+ const o=current();
+
+ if(!o)return;
+
+ const n=
+  JSON.parse(
+   JSON.stringify(o)
+  );
+
+ n.id=uid();
+ n.x+=25;
+ n.y+=25;
+ n.name=o.name+" Copy";
+ n.z=state.objects.length;
+
+ state.objects.push(n);
+
+ state.selected=[n.id];
+
+ saveHistory();
+
+ render();
+}
+
+
+function moveUp(){
+
+ const o=current();
+
+ if(!o)return;
+
+ o.z+=1;
+
+ normalizeZ();
+
+ saveHistory();
+
+ render();
+}
+
+
+function moveDown(){
+
+ const o=current();
+
+ if(!o)return;
+
+ o.z-=1;
+
+ normalizeZ();
+
+ saveHistory();
+
+ render();
+}
+
+
+function bringFront(){
+
+ const o=current();
+
+ if(!o)return;
+
+ o.z=9999;
+
+ normalizeZ();
+
+ saveHistory();
+
+ render();
+}
+
+
+function sendBack(){
+
+ const o=current();
+
+ if(!o)return;
+
+ o.z=-1;
+
+ normalizeZ();
+
+ saveHistory();
+
+ render();
+}
+
+
+function normalizeZ(){
+
+ state.objects
+  .sort((a,b)=>a.z-b.z)
+  .forEach((o,i)=>{
+   o.z=i;
+  });
+}
+
+
+function toggleLock(){
+
+ const o=current();
+
+ if(o){
+
+  o.locked=!o.locked;
+
+  saveHistory();
+
+  render();
+ }
+}
+
+
+function renameObj(id){
+
+ const o=
+  getObj(id)||current();
+
+ if(!o)return;
+
+
+ modal(
+  "Rename Object",
+  `<input id="modalInput"
+   value="${escapeHTML(o.name)}">`
+ );
+
+
+ window.modalAction=()=>{
+
+  o.name=
+   $("modalInput").value||
+   o.name;
+
+  closeModal();
+
+  saveHistory();
+
+  render();
+ };
+}
+
+
+function alignCenter(){
+
+ const o=current();
+
+ if(!o)return;
+
+ o.x=
+  (state.width-o.w)/2;
+
+ o.y=
+  (state.height-o.h)/2;
+
+ saveHistory();
+
+ render();
+}
+
+
+/* =========================================================
+   GROUP
+   ========================================================= */
+
+function groupSelected(){
+
+ if(state.selected.length<2){
+
+  notice(
+   "Select two or more objects first."
+  );
+
+  return;
+ }
+
+
+ const g=
+  baseObj("group");
+
+ g.name="Group";
+
+ g.children=
+  [...state.selected];
+
+ g.x=0;
+ g.y=0;
+ g.w=state.width;
+ g.h=state.height;
+
+ state.objects.push(g);
+
+ state.selected=[g.id];
+
+ saveHistory();
+
+ render();
+}
+
+
+function ungroupSelected(){
+
+ const g=current();
+
+ if(
+  !g||
+  g.type!=="group"
+ )return;
+
+ const ids=
+  g.children||[];
+
+ state.objects=
+  state.objects.filter(
+   o=>o.id!==g.id
+  );
+
+ state.selected=ids;
+
+ saveHistory();
+
+ render();
+}
+
+
+/* =========================================================
+   TEXT
+   ========================================================= */
+
+function editText(){
+
+ const o=current();
+
+ if(
+  !o||
+  o.type!=="text"
+ ){
+
+  notice(
+   "Select a text object."
+  );
+
+  return;
+ }
+
+
+ modal(
+  "Edit Text",
+  `<textarea id="modalInput"
+   rows="4">${escapeHTML(o.text)}</textarea>`
+ );
+
+
+ window.modalAction=()=>{
+
+  o.text=
+   $("modalInput").value;
+
+  closeModal();
+
+  saveHistory();
+
+  render();
+ };
+}
+
+
+function fontSize(){
+
+ const o=current();
+
+ if(
+  !o||
+  o.type!=="text"
+ )return;
+
+
+ modal(
+  "Text Size",
+  `<input id="modalInput"
+   type="number"
+   value="${o.fontSize}">`
+ );
+
+
+ window.modalAction=()=>{
+
+  o.fontSize=
+   parseInt(
+    $("modalInput").value
+   )||o.fontSize;
+
+  closeModal();
+
+  saveHistory();
+
+  render();
+ };
+}
+
+
+function fontColor(){
+
+ const o=current();
+
+ if(
+  !o||
+  o.type!=="text"
+ )return;
+
+
+ modal(
+  "Text Color",
+  `<input id="modalInput"
+   type="color"
+   value="${o.color}">`
+ );
+
+
+ window.modalAction=()=>{
+
+  o.color=
+   $("modalInput").value;
+
+  closeModal();
+
+  saveHistory();
+
+  render();
+ };
+}
+
+
+function fontSelect(){
+
+ const o=current();
+
+ if(
+  !o||
+  o.type!=="text"
+ )return;
+
+
+ modal(
+  "Font",
+
+  `<select id="modalInput">
+
+   <option>Arial</option>
+   <option>Tahoma</option>
+   <option>Georgia</option>
+   <option>Times New Roman</option>
+   <option>Courier New</option>
+
+  </select>`
+ );
+
+
+ window.modalAction=()=>{
+
+  o.fontFamily=
+   $("modalInput").value;
+
+  closeModal();
+
+  saveHistory();
+
+  render();
+ };
+}
+
+
+function textStroke(){
+
+ const o=current();
+
+ if(
+  !o||
+  o.type!=="text"
+ )return;
+
+ o.stroke=
+  o.stroke?0:2;
+
+ o.strokeColor="#000";
+
+ saveHistory();
+
+ render();
+}
+
+
+function textShadow(){
+
+ const o=current();
+
+ if(o){
+
+  o.shadow=!o.shadow;
+
+  saveHistory();
+
+  render();
+ }
+}
+
+
+function textGradient(){
+
+ const o=current();
+
+ if(o){
+
+  o.gradient=!o.gradient;
+
+  saveHistory();
+
+  render();
+ }
+}
+
+
+function textOpacity(){
+
+ const o=current();
+
+ if(!o)return;
+
+
+ modal(
+  "Opacity",
+
+  `<input id="modalInput"
+   type="range"
+   min="0"
+   max="1"
+   step=".05"
+   value="${o.opacity}">`
+ );
+
+
+ window.modalAction=()=>{
+
+  o.opacity=
+   parseFloat(
+    $("modalInput").value
+   );
+
+  closeModal();
+
+  saveHistory();
+
+  render();
+ };
+}
+
+
+function textBackground(){
+
+ const o=current();
+
+ if(o){
+
+  o.background=
+   o.background
+    ?""
+    :"#ffe66d";
+
+  saveHistory();
+
+  render();
+ }
+}
+
+
+function textPattern(){
+
+ const o=current();
+
+ if(o){
+
+  o.pattern=!o.pattern;
+
+  saveHistory();
+
+  render();
+ }
+}
+
+
+function convert3D(){
+
+ const o=current();
+
+ if(o){
+
+  o.effect3d=true;
+
+  saveHistory();
+
+  render();
+ }
+}
+
+
+function bullets(){
+
+ const o=current();
+
+ if(
+  o&&
+  o.type==="text"
+ ){
+
+  o.text=
+   "• "+
+   o.text.replace(
+    /\n/g,
+    "\n• "
+   );
+
+  saveHistory();
+
+  render();
+ }
+}
+
+
+function blendText(){
+
+ const o=current();
+
+ if(o){
+
+  o.shadow=true;
+  o.stroke=1;
+
+  saveHistory();
+
+  render();
+ }
+}
+
+
+function splitWords(){
+ breakApart();
+}
+
+
+function breakApart(){
+
+ const o=current();
+
+ if(
+  !o||
+  o.type!=="text"
+ ){
+
+  notice(
+   "Select a text object."
+  );
+
+  return;
+ }
+
+
+ const words=
+  o.text.trim().split(/\s+/);
+
+
+ if(words.length<2){
+
+  notice(
+   "Text must contain two or more words."
+  );
+
+  return;
+ }
+
+
+ state.objects=
+  state.objects.filter(
+   x=>x.id!==o.id
+  );
+
+
+ const ids=[];
+
+
+ words.forEach((w,i)=>{
+
+  const n=
+   JSON.parse(
+    JSON.stringify(o)
+   );
+
+  n.id=uid();
+
+  n.text=w;
+
+  n.name=
+   "Text Part "+(i+1);
+
+  n.x=
+   o.x+
+   i*(o.w/words.length);
+
+  n.y=o.y;
+
+  n.w=
+   o.w/words.length;
+
+  n.z=
+   state.objects.length;
+
+  state.objects.push(n);
+
+  ids.push(n.id);
+ });
+
+
+ state.selected=ids;
+
+ saveHistory();
+
+ render();
+}
+
+
+function convertShape(){
+
+ const o=current();
+
+ if(
+  !o||
+  o.type!=="text"
+ )return;
+
+ o.type="shapeText";
+
+ o.background=
+  o.background||
+  "#6546e5";
+
+ o.color="#fff";
+
+ o.name=
+  "Converted Shape";
+
+ saveHistory();
+
+ render();
+}
+
+
+/* =========================================================
+   POWERCLIP
+   ========================================================= */
+
+function overlaps(a,b){
+
+ return(
+  a.x<b.x+b.w&&
+  a.x+a.w>b.x&&
+  a.y<b.y+b.h&&
+  a.y+a.h>b.y
+ );
+}
+
+
+function updatePowerClip(){
+
+ const btn=
+  $("powerClipButton");
+
+ btn.style.display="none";
+
+ if(state.selected.length!==2)
+  return;
+
+
+ const a=
+  getObj(state.selected[0]);
+
+ const b=
+  getObj(state.selected[1]);
+
+ if(!a||!b)return;
+
+
+ let img=null;
+ let shape=null;
+
+
+ if(
+  a.type==="image"&&
+  (
+   b.type==="shape"||
+   b.type==="customShape"
+  )
+ ){
+
+  img=a;
+  shape=b;
+ }
+
+
+ if(
+  b.type==="image"&&
+  (
+   a.type==="shape"||
+   a.type==="customShape"
+  )
+ ){
+
+  img=b;
+  shape=a;
+ }
+
+
+ if(
+  img&&
+  shape&&
+  overlaps(img,shape)
+ ){
+
+  btn.style.display="block";
+ }
+}
+
+
+function doPowerClip(){
+
+ if(
+  state.selected.length!==2
+ )return;
+
+
+ let img;
+ let shape;
+
+
+ state.selected
+  .map(getObj)
+  .forEach(o=>{
+
+   if(o.type==="image")
+    img=o;
+
+   if(
+    o.type==="shape"||
+    o.type==="customShape"
+   )
+    shape=o;
+  });
+
+
+ if(!img||!shape)return;
+
+
+ img.clipShape=
+  shape.id;
+
+ img.x=shape.x;
+ img.y=shape.y;
+
+ img.w=shape.w;
+ img.h=shape.h;
+
+ saveHistory();
+
+ render();
+
+ notice(
+  "PowerClip applied. The image and shape remain separate editable objects."
+ );
+}
+
+
+/* =========================================================
+   DRAW
+   ========================================================= */
+
+function startDraw(){
+
+ closeAll();
+
+ state.canvasSelected=false;
+
+ const o=
+  baseObj("shape");
+
+ o.shape="line";
+
+ o.x=80;
+ o.y=80;
+ o.w=300;
+ o.h=10;
+
+ state.objects.push(o);
+
+ selectOne(o.id);
+
+ saveHistory();
+
+ render();
+}
+
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+function toggleGrid(){
+
+ state.grid=!state.grid;
+
+ render();
+}
+
+
+/* =========================================================
+   SAVE / OPEN
+   ========================================================= */
+
+function saveProject(){
+
+ localStorage.setItem(
+  "UDS_PROJECT",
+  JSON.stringify(state)
+ );
+
+ notice(
+  "Project saved on this device."
+ );
+}
+
+
+function openProject(){
+
+ $("projectInput").click();
+}
+
+
+$("projectInput").onchange=e=>{
+
+ const f=e.target.files[0];
+
+ if(!f)return;
+
+ const r=
+  new FileReader();
+
+ r.onload=()=>{
+
+  try{
+
+   state=
+    JSON.parse(
+     r.result
+    );
+
+   if(!state.canvasSelected)
+    state.canvasSelected=false;
+
+   screen("editor");
+
+   render();
+
+  }catch(err){
+
+   notice(
+    "Invalid project file."
+   );
+  }
+ };
+
+ r.readAsText(f);
+};
+
+
+function downloadProject(){
+
+ const blob=
+  new Blob(
+   [
+    JSON.stringify(
+     state,
+     null,
+     2
+    )
+   ],
+   {
+    type:"application/json"
+   }
+  );
+
+
+ const a=
+  document.createElement("a");
+
+ a.href=
+  URL.createObjectURL(blob);
+
+ a.download=
+  (state.projectName||
+   "UrduDesign")+".uds";
+
+ a.click();
+}
+
+
+/* =========================================================
+   UNDO / REDO
+   ========================================================= */
+
+function snapshot(){
+
+ return JSON.stringify(
+  state.objects
+ );
+}
+
+
+function saveHistory(){
+
+ state.history.push(
+  snapshot()
+ );
+
+ if(
+  state.history.length>40
+ )
+  state.history.shift();
+
+ state.future=[];
+}
+
+
+function undo(){
+
+ if(
+  state.history.length<2
+ )
+  return;
+
+
+ state.future.push(
+  snapshot()
+ );
+
+ state.history.pop();
+
+
+ state.objects=
+  JSON.parse(
+   state.history[
+    state.history.length-1
+   ]
+  );
+
+
+ state.selected=[];
+
+ state.canvasSelected=false;
+
+ render();
+}
+
+
+function redo(){
+
+ if(!state.future.length)
+  return;
+
+
+ const s=
+  state.future.pop();
+
+ state.history.push(s);
+
+ state.objects=
+  JSON.parse(s);
+
+ state.canvasSelected=false;
+
+ render();
+}
+
+
+/* =========================================================
+   EXPORT
+   ========================================================= */
+
+function exportPNG(){
+
+ const svg=
+  `<svg xmlns="http://www.w3.org/2000/svg"
+   width="${state.width}"
+   height="${state.height}">
+
+   <rect width="100%"
+    height="100%"
+    fill="${state.bg}"/>
+
+   ${state.objects
+    .filter(o=>!o.hidden)
+    .map(svgObject)
+    .join("")}
+
+  </svg>`;
+
+
+ const blob=
+  new Blob(
+   [svg],
+   {
+    type:"image/svg+xml"
+   }
+  );
+
+
+ const url=
+  URL.createObjectURL(blob);
+
+ const img=
+  new Image();
+
+
+ img.onload=()=>{
+
+  const c=
+   document.createElement("canvas");
+
+  c.width=state.width;
+  c.height=state.height;
+
+  const ctx=
+   c.getContext("2d");
+
+  ctx.drawImage(img,0,0);
+
+  const a=
+   document.createElement("a");
+
+  a.download=
+   "urdu-design.png";
+
+  a.href=
+   c.toDataURL(
+    "image/png"
+   );
+
+  a.click();
+
+  URL.revokeObjectURL(url);
+ };
+
+
+ img.src=url;
+}
+
+
+function svgObject(o){
+
+ const t=
+  `translate(${o.x} ${o.y})
+   rotate(${o.rotation}
+   ${o.w/2}
+   ${o.h/2})`;
+
+
+ if(o.type==="text")
+
+  return `<text
+   x="${o.w/2}"
+   y="${o.h/2}"
+   text-anchor="middle"
+   dominant-baseline="middle"
+   font-size="${o.fontSize}"
+   fill="${o.color}"
+   font-family="${o.fontFamily}"
+   font-weight="${o.bold?'bold':'normal'}">
+   ${escapeXML(o.text)}
+   </text>`;
+
+
+ if(
+  o.type==="image"||
+  o.type==="customShape"
+ )
+
+  return `<image
+   href="${o.src}"
+   x="0"
+   y="0"
+   width="${o.w}"
+   height="${o.h}"
+   preserveAspectRatio="none"/>`;
+
+
+ if(o.type==="shape")
+
+  return `<g transform="${t}">
+   ${shapeSVG(o)}
+   </g>`;
+
+
+ return "";
+}
+
+
+function shapeSVG(o){
+
+ if(o.shape==="circle")
+
+  return `<ellipse
+   cx="${o.w/2}"
+   cy="${o.h/2}"
+   rx="${o.w/2-4}"
+   ry="${o.h/2-4}"
+   fill="${o.color}"/>`;
+
+
+ if(o.shape==="triangle")
+
+  return `<polygon
+   points="${o.w/2},2
+   ${o.w-2},${o.h-2}
+   2,${o.h-2}"
+   fill="${o.color}"/>`;
+
+
+ if(o.shape==="diamond")
+
+  return `<polygon
+   points="${o.w/2},2
+   ${o.w-2},${o.h/2}
+   ${o.w/2},${o.h-2}
+   2,${o.h/2}"
+   fill="${o.color}"/>`;
+
+
+ return `<rect
+   x="2"
+   y="2"
+   width="${o.w-4}"
+   height="${o.h-4}"
+   rx="18"
+   fill="${o.color}"/>`;
+}
+
+
+/* =========================================================
+   LIBRARY
+   ========================================================= */
+
+function openLibrary(type){
+
+ modal(
+  "Offline Library",
+
+  `<div class="panelGrid">
+
+   <button class="panelBtn"
+    onclick="addShape('rect')">
+    Rectangle
+   </button>
+
+   <button class="panelBtn"
+    onclick="addShape('circle')">
+    Circle
+   </button>
+
+   <button class="panelBtn"
+    onclick="addShape('star')">
+    Star
+   </button>
+
+   <button class="panelBtn"
+    onclick="addShape('heart')">
+    Heart
+   </button>
+
+   <button class="panelBtn"
+    onclick="addText('اردو ڈیزائن')">
+    Urdu Text
+   </button>
+
+   <button class="panelBtn"
+    onclick="addText('Business')">
+    Business
+   </button>
+
+   <button class="panelBtn"
+    onclick="addText('Wedding')">
+    Wedding
+   </button>
+
+   <button class="panelBtn"
+    onclick="addText('Sports')">
+    Sports
+   </button>
+
+  </div>`
+ );
+}
+
+
+/* =========================================================
+   MY DESIGNS
+   ========================================================= */
+
+function showMyDesigns(){
+
+ const saved=
+  localStorage.getItem(
+   "UDS_PROJECT"
+  );
+
+
+ if(!saved){
+
+  notice(
+   "No saved designs found on this device."
+  );
+
+  return;
+ }
+
+
+ modal(
+  "My Designs",
+
+  `<div class="layerRow">
+
+   <div class="layerName">
+    Saved Design
+   </div>
+
+   <button class="panelBtn"
+    onclick="loadSaved()">
+    Edit Design
+   </button>
+
+   <button class="panelBtn"
+    onclick="copySaved()">
+    Make Copy
+   </button>
+
+  </div>
+
+  <div class="layerRow">
+
+   <button class="panelBtn"
+    onclick="renameSaved()">
+    Rename
+   </button>
+
+   <button class="panelBtn"
+    onclick="shareSaved()">
+    Share
+   </button>
+
+   <button class="panelBtn"
+    onclick="deleteSaved()">
+    Delete Design
+   </button>
+
+  </div>`
+ );
+}
+
+
+function loadSaved(){
+
+ state=
+  JSON.parse(
+   localStorage.getItem(
+    "UDS_PROJECT"
+   )
+  );
+
+ closeModal();
+
+ screen("editor");
+
+ render();
+}
+
+
+function copySaved(){
+
+ state=
+  JSON.parse(
+   localStorage.getItem(
+    "UDS_PROJECT"
+   )
+  );
+
+ state.projectName+=" Copy";
+
+ localStorage.setItem(
+  "UDS_PROJECT",
+  JSON.stringify(state)
+ );
+
+ closeModal();
+
+ notice(
+  "Copy created."
+ );
+}
+
+
+function renameSaved(){
+
+ modal(
+  "Rename Design",
+  `<input id="modalInput"
+   value="${state.projectName}">`
+ );
+
+
+ window.modalAction=()=>{
+
+  state.projectName=
+   $("modalInput").value||
+   "Untitled Design";
+
+  localStorage.setItem(
+   "UDS_PROJECT",
+   JSON.stringify(state)
+  );
+
+  closeModal();
+ };
+}
+
+
+function deleteSaved(){
+
+ localStorage.removeItem(
+  "UDS_PROJECT"
+ );
+
+ closeModal();
+
+ notice(
+  "Design deleted."
+ );
+}
+
+
+function shareSaved(){
+
+ if(navigator.share)
+
+  navigator.share({
+   title:"Urdu Design Studio",
+   text:"My design"
+  });
+
+ else
+
+  notice(
+   "Sharing is not supported by this WebView."
+  );
+}
+
+
+/* =========================================================
+   CDR
+   ========================================================= */
+
+function openCDR(){
+
+ $("cdrInput").click();
+}
+
+
+$("cdrInput").onchange=e=>{
+
+ const f=e.target.files[0];
+
+ if(f)
+
+  notice(
+   "CDR file selected. Native CDR parsing requires the dedicated CDR conversion module; this build does not fake CDR support."
+  );
+};
+
+
+/* =========================================================
+   SETTINGS
+   ========================================================= */
+
+function settingsPanel(){
+
+ modal(
+  "Settings",
+
+  `<div class="panelGrid">
+
+   <button class="panelBtn"
+    onclick="saveProject()">
+    Save Project
+   </button>
+
+   <button class="panelBtn"
+    onclick="openProject()">
+    Open Project
+   </button>
+
+   <button class="panelBtn"
+    onclick="downloadProject()">
+    Export Project
+   </button>
+
+   <button class="panelBtn"
+    onclick="toggleGrid()">
+    Grid
+   </button>
+
+  </div>`
+ );
+}
+
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+let modalAction=null;
+
+
+function modal(title,body){
+
+ $("modalTitle").textContent=
+  title;
+
+ $("modalBody").innerHTML=
+  body;
+
+ $("modal").style.display=
+  "flex";
+}
+
+
+function modalOK(){
+
+ if(
+  typeof modalAction==="function"
+ ){
+
+  const a=
+   modalAction;
+
+  modalAction=null;
+
+  a();
+
+ }else{
+
+  closeModal();
+ }
+}
+
+
+function closeModal(){
+
+ $("modal").style.display=
+  "none";
+
+ modalAction=null;
+}
+
+
+function notice(msg){
+
+ modal(
+  "Urdu Design Studio",
+  "<p>"+
+  escapeHTML(msg)+
+  "</p>"
+ );
+}
+
+
+function escapeHTML(s){
+
+ return String(s).replace(
+  /[&<>"']/g,
+
+  m=>({
+   "&":"&amp;",
+   "<":"&lt;",
+   ">":"&gt;",
+   '"':"&quot;",
+   "'":"&#039;"
+  }[m])
+ );
+}
+
+
+function escapeXML(s){
+
+ return String(s).replace(
+  /[<>&'"]/g,
+
+  m=>({
+   "<":"&lt;",
+   ">":"&gt;",
+   "&":"&amp;",
+   "'":"&apos;",
+   '"':"&quot;"
+  }[m])
+ );
+}
+
+
+/* =========================================================
+   CANVAS SELECT / DESELECT
+   ========================================================= */
+
+$("stage").addEventListener(
+ "pointerdown",
+ e=>{
+
+  if(e.target===$("stage")){
+
+   state.selected=[];
+
+   state.canvasSelected=
+    !state.canvasSelected;
+
+   render();
+  }
+ }
+);
+
+
+/* =========================================================
+   CLICK OUTSIDE MORE DRAWER
+   ========================================================= */
+
+$("moreOverlay").addEventListener(
+ "pointerdown",
+ e=>{
+
+  if(e.target===$("moreOverlay")){
+
+   closeOverlay(
+    "moreOverlay"
+   );
+  }
+ }
+);
+
+
+/* =========================================================
+   INITIAL PROJECT
+   ========================================================= */
+
+state.history=[
+ snapshot()
+];
+
+
+/* =========================================================
+   BUTTON ICON DECORATOR — VISUAL ONLY
+   ========================================================= */
+
+function decorateButtons(){
+
+ const iconMap={
+  "Start Designing":"✦",
+  "New Design":"＋",
+  "My Designs":"▣",
+  "Templates":"▤",
+  "Design Elements":"✦",
+  "Shapes":"◇",
+  "Frames":"▢",
+  "Backgrounds":"◉",
+  "Import Image":"▧",
+  "Open CDR":"◈",
+  "Settings":"⚙",
+  "Add":"＋",
+  "Text":"T",
+  "Image":"▧",
+  "Shape":"◇",
+  "Layers":"☷",
+  "More":"•••",
+  "Gallery Pic":"▧",
+  "Stock Images":"▤",
+  "My Folder":"▣",
+  "Add Text":"T",
+  "Video":"▶",
+  "Audio":"♪",
+  "AI Images":"AI",
+  "Tools":"⚙",
+  "Borders":"□",
+  "Table":"▦",
+  "Draw":"✎",
+  "Pen Tool":"⌁",
+  "Logos":"◉",
+  "Special Text":"T✦",
+  "Urdu":"ع",
+  "Save Project":"▣",
+  "Open Project":"↗",
+  "Export Project":"⇩",
+  "Edit":"✎",
+  "Size":"↕",
+  "Color":"●",
+  "Font":"Aa",
+  "Stroke":"▣",
+  "Shadow":"✧",
+  "Gradient":"◐",
+  "Opacity":"◌",
+  "Break Apart":"✂",
+  "Convert to Shape":"◇",
+  "Convert to 3D":"◈",
+  "Pattern":"▦",
+  "Text Background":"▰",
+  "Split Words":"↔",
+  "Bullets List":"•",
+  "Blend":"✦",
+  "Rectangle":"□",
+  "Circle":"○",
+  "Round":"▢",
+  "Star":"★",
+  "Heart":"♥",
+  "Triangle":"△",
+  "Diamond":"◇",
+  "Line":"╱",
+  "Arrow":"➜",
+  "Custom PNG/SVG":"▧",
+  "Duplicate":"⧉",
+  "Delete":"⌫",
+  "Bring Front":"⇧",
+  "Send Back":"⇩",
+  "Lock / Unlock":"🔒",
+  "Grid":"▦",
+  "Align Center":"⊙",
+  "Text Tools":"T",
+  "Group":"▦",
+  "Ungroup":"⊞",
+  "Canvas Settings":"▣",
+  "Position & Size":"↔",
+  "Rotate":"⟳",
+  "Flip":"⇄",
+  "Effects":"✦",
+  "Border / Corners":"□",
+  "Alignment":"☷",
+  "Transparency":"◌",
+  "PowerClip":"◈",
+  "Up":"↑",
+  "Down":"↓",
+  "Left":"←",
+  "Right":"→",
+  "OK":"✓",
+  "Cancel":"×",
+  "Edit Design":"✎",
+  "Make Copy":"⧉",
+  "Rename":"✎",
+  "Share":"↗",
+  "Delete Design":"⌫",
+  "Developer":"◆"
+ };
+
+ document.querySelectorAll(
+  ".homeBtn,.sheetItem,.panelBtn,.primary,.preset"
+ ).forEach(btn=>{
+
+  if(btn.querySelector(".udsIcon")) return;
+
+  /* Existing custom icon spans are already beautiful. */
+  if(btn.querySelector("span")) return;
+
+  const label=(btn.textContent||"")
+   .replace(/\s+/g," ")
+   .trim();
+
+  if(!label) return;
+
+  let icon=iconMap[label];
+
+  if(!icon){
+   for(const key of Object.keys(iconMap)){
+    if(label.includes(key)){
+     icon=iconMap[key];
+     break;
+    }
+   }
+  }
+
+  if(!icon) icon="✦";
+
+  const i=document.createElement("span");
+  i.className="udsIcon";
+  i.textContent=icon;
+  i.setAttribute("aria-hidden","true");
+
+  btn.insertBefore(i,btn.firstChild);
+ });
+}
+
+/* Run after the complete interface has been parsed. */
+if(document.readyState==="loading"){
+ document.addEventListener("DOMContentLoaded",decorateButtons);
+}else{
+ decorateButtons();
+}
+
+</script>
+
+</body>
+</html>
