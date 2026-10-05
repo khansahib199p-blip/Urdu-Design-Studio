@@ -1,0 +1,4390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Urdu Design Studio</title>
+
+<style>
+*{
+ box-sizing:border-box;
+ -webkit-tap-highlight-color:transparent
+}
+
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f4f6fb;
+ color:#182033;
+ overflow:hidden
+}
+
+button,input,select{
+ font:inherit
+}
+
+button{
+ border:0;
+ cursor:pointer
+}
+
+.screen{
+ display:none;
+ width:100vw;
+ height:100vh
+}
+
+.screen.active{
+ display:flex
+}
+
+/* =========================================================
+   WELCOME
+   ========================================================= */
+
+#welcome{
+ align-items:center;
+ justify-content:center;
+ background:linear-gradient(135deg,#10182e,#5137b8,#08a8a0)
+}
+
+.welcomeBox{
+ width:min(92%,430px);
+ padding:35px 25px;
+ text-align:center;
+ color:white
+}
+
+.brandMark{
+ width:155px;
+ height:155px;
+ border-radius:35px;
+ background:transparent;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ margin:0 auto 22px;
+ overflow:hidden;
+ box-shadow:0 18px 50px #0005
+}
+
+.brandMark img{
+ width:100%;
+ height:100%;
+ object-fit:contain;
+ display:block
+}
+
+.welcomeBox h1{
+ font-size:30px;
+ margin:10px 0
+}
+
+.welcomeBox p{
+ opacity:.9;
+ line-height:1.6
+}
+
+.primary{
+ background:#6546e5;
+ color:white;
+ border-radius:13px;
+ padding:14px 22px;
+ font-weight:bold
+}
+
+.welcomeBox .primary{
+ width:100%;
+ margin-top:20px
+}
+
+/* =========================================================
+   HOME
+   ========================================================= */
+
+#home{
+ flex-direction:column;
+ background:#f6f7fb;
+ overflow:auto
+}
+
+.homeHead{
+ height:65px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 17px;
+ background:white;
+ border-bottom:1px solid #e6e8ef
+}
+
+.homeTitle{
+ font-weight:900;
+ font-size:20px
+}
+
+.homeBody{
+ padding:14px;
+ padding-bottom:35px
+}
+
+.slider{
+ height:185px;
+ background:white;
+ border-radius:20px;
+ overflow:hidden;
+ position:relative;
+ box-shadow:0 8px 30px #18203310
+}
+
+.slides{
+ height:100%;
+ display:flex;
+ transition:.35s
+}
+
+.slide{
+ min-width:100%;
+ height:100%;
+ position:relative;
+ background:#eee;
+ display:flex;
+ align-items:center;
+ justify-content:center
+}
+
+.slide img{
+ width:100%;
+ height:100%;
+ object-fit:cover
+}
+
+.slideFallback{
+ position:absolute;
+ inset:0;
+ background:linear-gradient(135deg,#5e42d9,#08aaa1);
+ color:white;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:23px;
+ font-weight:900
+}
+
+.dots{
+ position:absolute;
+ bottom:9px;
+ left:0;
+ right:0;
+ text-align:center
+}
+
+.dot{
+ display:inline-block;
+ width:7px;
+ height:7px;
+ border-radius:50%;
+ background:#ffffff88;
+ margin:3px
+}
+
+.dot.on{
+ background:white;
+ width:19px;
+ border-radius:8px
+}
+
+.homeGrid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:10px;
+ margin-top:15px
+}
+
+.homeBtn{
+ background:white;
+ border-radius:15px;
+ padding:15px 9px;
+ text-align:center;
+ box-shadow:0 4px 18px #1820330b;
+ font-weight:bold
+}
+
+.homeBtn span{
+ display:block;
+ font-size:25px;
+ margin-bottom:7px
+}
+
+.devCard{
+ margin-top:18px;
+ background:white;
+ border-radius:18px;
+ padding:13px;
+ display:flex;
+ align-items:center;
+ gap:13px
+}
+
+.devPic{
+ width:58px;
+ height:58px;
+ border-radius:50%;
+ overflow:hidden;
+ background:#6546e5;
+ color:white;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-weight:bold
+}
+
+.devPic img{
+ width:100%;
+ height:100%;
+ object-fit:cover
+}
+
+/* =========================================================
+   SETUP
+   ========================================================= */
+
+#setup{
+ align-items:center;
+ justify-content:center;
+ background:#f4f6fb
+}
+
+.setupBox{
+ width:min(92%,450px);
+ background:white;
+ padding:22px;
+ border-radius:20px;
+ box-shadow:0 15px 45px #18203318
+}
+
+.setupBox h2{
+ margin-top:0
+}
+
+.field{
+ margin:10px 0
+}
+
+.field label{
+ display:block;
+ font-size:13px;
+ font-weight:bold;
+ margin-bottom:5px
+}
+
+.field input,
+.field select{
+ width:100%;
+ padding:12px;
+ border:1px solid #dce0e9;
+ border-radius:10px
+}
+
+.presetGrid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:7px;
+ margin:10px 0
+}
+
+.preset{
+ padding:9px 4px;
+ background:#f0f1f7;
+ border-radius:9px;
+ font-size:12px
+}
+
+/* =========================================================
+   EDITOR
+   ========================================================= */
+
+#editor{
+ flex-direction:column;
+ background:#edf0f7
+}
+
+.editorTop{
+ height:58px;
+ background:#121a2f;
+ color:white;
+ display:flex;
+ align-items:center;
+ gap:6px;
+ padding:7px;
+ flex-shrink:0
+}
+
+.toolBtn{
+ min-width:43px;
+ height:43px;
+ border-radius:10px;
+ background:#222d48;
+ color:white;
+ font-size:18px
+}
+
+.toolBtn.active{
+ background:#6546e5
+}
+
+.canvasInfo{
+ flex:1;
+ text-align:center;
+ font-size:12px
+}
+
+.workspace{
+ flex:1;
+ position:relative;
+ overflow:auto;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ padding:20px;
+ background:#dfe3ec
+}
+
+.stageOuter{
+ position:relative;
+ box-shadow:0 12px 35px #0003;
+ background:white
+}
+
+#stage{
+ position:relative;
+ overflow:hidden;
+ background:white;
+ transform-origin:center
+}
+
+.gridBg{
+ background-image:
+  linear-gradient(#0000000d 1px,transparent 1px),
+  linear-gradient(90deg,#0000000d 1px,transparent 1px);
+ background-size:25px 25px
+}
+
+/* CANVAS SELECTED */
+
+#stage.canvasSelected{
+ outline:3px solid #6546e5;
+ outline-offset:4px;
+ box-shadow:
+  0 0 0 7px #6546e522,
+  0 15px 40px #0003
+}
+
+.canvasSelectionLabel{
+ position:absolute;
+ left:50%;
+ top:-32px;
+ transform:translateX(-50%);
+ background:#6546e5;
+ color:white;
+ padding:5px 12px;
+ border-radius:8px;
+ font-size:11px;
+ font-weight:bold;
+ z-index:999;
+ pointer-events:none;
+ white-space:nowrap
+}
+
+.obj{
+ position:absolute;
+ touch-action:none;
+ user-select:none
+}
+
+.obj.selected{
+ outline:2px solid #6546e5
+}
+
+.obj.locked{
+ pointer-events:none
+}
+
+.obj img{
+ width:100%;
+ height:100%;
+ object-fit:contain;
+ pointer-events:none
+}
+
+.textObj{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ white-space:pre-wrap;
+ word-break:break-word;
+ direction:rtl;
+ text-align:center
+}
+
+.shapeObj{
+ display:flex;
+ align-items:center;
+ justify-content:center
+}
+
+.handle{
+ position:absolute;
+ width:13px;
+ height:13px;
+ background:white;
+ border:2px solid #6546e5;
+ border-radius:50%;
+ z-index:100
+}
+
+.h-tl{
+ left:-7px;
+ top:-7px
+}
+
+.h-tr{
+ right:-7px;
+ top:-7px
+}
+
+.h-bl{
+ left:-7px;
+ bottom:-7px
+}
+
+.h-br{
+ right:-7px;
+ bottom:-7px
+}
+
+.rotateHandle{
+ position:absolute;
+ left:50%;
+ top:-35px;
+ transform:translateX(-50%);
+ width:13px;
+ height:13px;
+ border-radius:50%;
+ background:#6546e5
+}
+
+.bottomTools{
+ height:72px;
+ background:white;
+ border-top:1px solid #dfe2ea;
+ display:grid;
+ grid-template-columns:repeat(6,1fr);
+ flex-shrink:0
+}
+
+.bottomTools button{
+ background:white;
+ font-size:11px;
+ font-weight:bold;
+ color:#263047
+}
+
+.bottomTools .buttonIcon{
+display:block;
+width:30px;
+height:30px;
+margin:0 auto 2px;
+object-fit:contain;
+border-radius:8px
+}
+
+.primary .buttonIcon{
+width:30px;
+height:30px;
+vertical-align:middle;
+margin-right:6px;
+border-radius:8px
+}
+
+.powerClipBar{
+ position:absolute;
+ bottom:83px;
+ left:50%;
+ transform:translateX(-50%);
+ background:#6546e5;
+ color:white;
+ border-radius:12px;
+ padding:10px 17px;
+ z-index:500;
+ display:none
+}
+
+/* =========================================================
+   NORMAL SHEETS / PANELS
+   ========================================================= */
+
+.overlay{
+ position:fixed;
+ inset:0;
+ background:#0005;
+ z-index:1000;
+ display:none
+}
+
+.sheet{
+ position:absolute;
+ left:0;
+ right:0;
+ bottom:0;
+ max-height:82vh;
+ background:white;
+ border-radius:22px 22px 0 0;
+ padding:17px;
+ overflow:auto
+}
+
+.sheetHead{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:13px
+}
+
+.sheetGrid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:9px
+}
+
+.sheetItem{
+ background:#f2f3f8;
+ border-radius:12px;
+ padding:12px 5px;
+ text-align:center;
+ font-size:11px;
+ font-weight:bold
+}
+
+.sheetItem span{
+ display:block;
+ font-size:23px;
+ margin-bottom:5px
+}
+
+.panelGrid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:7px
+}
+
+.panelBtn{
+ padding:9px 3px;
+ background:#f1f2f7;
+ border-radius:9px;
+ font-size:11px;
+ font-weight:bold
+}
+
+.close{
+ background:#eef0f5;
+ border-radius:50%;
+ width:35px;
+ height:35px;
+ font-size:20px
+}
+
+.range{
+ width:100%
+}
+
+/* =========================================================
+   MORE SIDE DRAWER
+   ========================================================= */
+
+#moreOverlay{
+ background:#0005;
+ align-items:stretch;
+ justify-content:flex-start
+}
+
+#moreOverlay .sheet{
+ position:absolute;
+ left:0;
+ top:0;
+ bottom:0;
+ width:min(88vw,360px);
+ height:100vh;
+ max-height:none;
+ border-radius:0 22px 22px 0;
+ padding:18px 14px;
+ overflow-y:auto;
+ overflow-x:hidden;
+ box-shadow:15px 0 40px #0004
+}
+
+#moreOverlay .sheet::-webkit-scrollbar{
+ width:5px
+}
+
+#moreOverlay .sheet::-webkit-scrollbar-thumb{
+ background:#6546e5;
+ border-radius:10px
+}
+
+#moreOverlay .sheetHead{
+ position:sticky;
+ top:0;
+ z-index:5;
+ background:white;
+ padding:5px 0 14px;
+ margin-bottom:8px
+}
+
+#moreOverlay .panelGrid{
+ display:flex;
+ flex-direction:column;
+ gap:9px
+}
+
+#moreOverlay .panelBtn{
+ width:100%;
+ min-height:52px;
+ padding:13px 15px;
+ background:#f1f2f7;
+ border-radius:13px;
+ font-size:14px;
+ font-weight:700;
+ text-align:left;
+ display:flex;
+ align-items:center;
+ justify-content:flex-start;
+ gap:12px;
+ flex-shrink:0
+}
+
+#moreOverlay .panelBtn span{
+ width:25px;
+ min-width:25px;
+ text-align:center;
+ font-size:18px
+}
+
+#moreOverlay .panelBtn:active{
+ background:#6546e5;
+ color:white;
+ transform:scale(.98)
+}
+
+/* =========================================================
+   LAYERS
+   ========================================================= */
+
+.layerRow{
+ display:flex;
+ align-items:center;
+ gap:7px;
+ padding:9px;
+ background:#f5f6fa;
+ border-radius:10px;
+ margin-bottom:6px
+}
+
+.layerThumb{
+ width:42px;
+ height:35px;
+ background:white;
+ border-radius:6px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ overflow:hidden
+}
+
+.layerThumb img{
+ max-width:100%;
+ max-height:100%
+}
+
+.layerName{
+ flex:1;
+ font-size:12px;
+ font-weight:bold
+}
+
+.layerActions{
+ display:flex;
+ gap:3px
+}
+
+.layerActions button{
+ font-size:10px;
+ background:white;
+ padding:6px;
+ border-radius:6px
+}
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.modal{
+ position:fixed;
+ inset:0;
+ background:#0006;
+ z-index:2000;
+ display:none;
+ align-items:center;
+ justify-content:center
+}
+
+.modalBox{
+ width:min(90%,400px);
+ background:white;
+ border-radius:18px;
+ padding:20px
+}
+
+.modalBox input,
+.modalBox textarea{
+ width:100%;
+ padding:11px;
+ border:1px solid #ddd;
+ border-radius:9px;
+ margin:8px 0
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     WELCOME
+     ========================================================= -->
+
+<section id="welcome" class="screen active">
+ <div class="welcomeBox">
+
+  <div class="brandMark">
+   <img src="logo.png" alt="Urdu Design Studio Logo"
+        onerror="this.style.display='none'">
+  </div>
+
+  <h1>Urdu Design Studio</h1>
+
+  <p>Design • Edit • Save</p>
+
+  <p>Make Urdu designing easy and creative.</p>
+
+  <button class="primary" onclick="showHome()">
+   Start Designing
+  </button>
+
+ </div>
+</section>
+
+
+<!-- =========================================================
+     HOME
+     ========================================================= -->
+
+<section id="home" class="screen">
+
+ <div class="homeHead">
+  <div class="homeTitle">
+   Urdu Design Studio
+  </div>
+
+  <button class="toolBtn" onclick="showWelcome()">
+   ⌂
+  </button>
+ </div>
+
+ <div class="homeBody">
+
+  <div class="slider" id="slider">
+   <div class="slides" id="slides"></div>
+   <div class="dots" id="dots"></div>
+  </div>
+
+  <div class="homeGrid">
+
+   <button class="homeBtn" onclick="showSetup()">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAC6ElEQVR42u3cuW7UYBTFcduajkgpgEdIKGigIZO8DiAKOkTHMhmWDtGyvw5bAx0JPAIIKSLUoQkKMnbsTOzxcn//PpPonvOdez47SZIAAICIpMv8Zlvz3wdGXo+3szPp4A2wtU3wxgyx3Y4hWvnQTcK3xruGjZASPrYRUsLHNsKpDbA5I37nJpgvboKM+MPnNDqkhI+dBic2wHS2T/ye836+krZigOl94g/GBA/qmSAzqthkTv84qatXRvzYJqjcE9N7xB98H3hY3gcmVV9M/cAdYMPpHwXH6egWEJzS3bBx1+kfGx8e/d8FJIAO4PSH6QIFuk6Kmz/9ozBx97MCwABHXLnzy/kfMXl9JYAOkFv/zr8OgOi3gJHz8fFKxZ7clwCImgA6QKgZSAAJkDe/CIg0AwkgAXQAHQBhYQAGgA7w7/rTAULNQAJYAWAAMACUwMMGZCiRZuBdQKH+3gWAAaAD6AASAOFKICLNQAJIABGgA8A1EAwAHSBJDvxGSKgZSAArAFZAR3x6strLoXTxc12+vec5QOziYQWgF7cAM4kUABJAAogAHQCeA8AKWD6XbnVz9/38dLWXP1c/bgHeBXgXAB0ADADPAdzJJQCi3QLMxN8FQAcQARIADICIJdAOiDQDHUAHgA4ABgADwC3AfwuPNgMJYAWAAaADHC1AQ/EgCIFvASLAfwuHDqADSAAwAAKugABcvPmT8qW3AB3ACgADIKoBvjw7mxrLeMnrO4l+D1YCC/XnAB0AcQ2w8/ycHjBCinQtfxBkC8ReATsvpMCoTn+JnjpAcCpP+YUbPyyDgbN7TJpXvwwif+xr4O5LXWDQp79Cv6yJD8EwxT9RCWSC8YlfrwPoA7FvAXnWr39ng57z9dX52rpmbX44+i3+QgkgDcYhfCMGSJIkWb/GBJ2L/3rxVM66/OboVvxGEkAaDFP4VgzwlzVGaI1vDSduq/G9dpURGhP+TTurdqn7myG6FxwAgEP+APY+4q+CRhTLAAAAAElFTkSuQmCC" alt="">
+    New Design
+   </button>
+
+   <button class="homeBtn" onclick="showMyDesigns()">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAEoElEQVR42u2d6VIUMRSF0139ALLMoPg+ikvJUmIVy7DpYymoIAwDslju7+NWCvgG4w+VYpue9JLkJvlOVRclTifmnnPPvcnMtEoBAAAAIEYkNidbefK7S8j1sPr0WuK9ACBcviASiI9bCLUOtgzx1rBWkxBqGWT5McQ7E8KzakJIId9vVI1/CvlxiyApN+EJxIstCQOJUQEsr0C+eBGs6ougkACWIN8bPNcUQUqo4kZK9ocJXb60bGJpGfK9LQVr+aUghfzAnaAPf/QA9ABkf8wukOXd2IX+eB1gcYnsDwm9+MxxAPiP1gEWl45hP0gXuMxrRvLjACBiZBgADnAOC4vU/5Bxkd/Mdfq/eDFAc7Z4IqsEQLybWLgQQgbxcQshhXy5QnDiAF3eABABWzxYc4CXLwdhVWC8MgmLXVg4hmgp5wC2Fxkz+f3Wb0Mc6ZXnAHVfvRbfOjYzn2fXQisnCQzzwXsBkQMBRI7sKsexttUp+Pr19atrYqsVbh/Rte4AFnuAImP0Iv9UGL73Ao56gEx6BqxvDBZ6XWs+7l0FPQCoKgA5/qab/ZedgBqgO5fYHmB9Y6hC2RiC/7I9gORdgKTuOdxdAKAJBBEfBFED4qoBOAAlQCbmZ4+c3Bu9ACTtcOZKEDk3e8QpQIG5wusBQvtIo+H1ZEq4AuZmfimllHq1Naz1uvBglg9vmsA8gsMl38U20FMRAM4BqACcA4DKDoABRGUAOEDs8OYzgZKuzfZwMCdBOEBBbG4Pn/sZngOAvuT3+jMCAAHsAiw+H8CnZxFsdRo9XWHm0U9vY4QDVCBf9+8pAUKIMjmmryJIQyPf52zkHKDkdZH0rU7DyLhaIuQcwHLm7zQK/b7quKbuE+MAPhlAv2Bv7TSMjKsjAl8+EuatA7Q1SWoXJLNdUwa3PXECL3uAUqRW/beW2sTTA9Sf+bsNY/eVHdvWeNFvA6sGNO9+U2RJF4Ho5wOcveoK5N9xzIxdZE6eD1BgrvZus2ZCmubqvu6cUnsAiflvhJDXTdX999MW2AaWwLZBgrYtku9iPu+bQIkBC21NYnuAEMk/JwLOAXICtBcu+ZQAyBe1TlG7gNgyf3uvKXAX4EgBnUhtv7PXlPasYPtfDuvsj0Rdhzv7zb4xCrYHiJ38qJtAyHcP5/93MNCqkvYEYJv/6Ykf0XO8czDiin87JSCP5LzFx06+jeTIpAcB2HYAQ9+pnx7H6gu55vgPK0+l5LuBOIBlVQNRccpcLW7nkLovIUGcPR/g4YPvSimldt9cj574/7FwgSzmxQOaQARACOIG7wXgACBmJFf9cur+N3wgUOy9vZHgAKDPNpD8pwcAEfcASik1de8rPhBa/X83muAAQM8BlFJq8i4uEAr2348m9ACgmAB6qQaEkf04AFBaGT55h17A2+z/kO/iaR2DAD/JL1QCEEF45CtV8BNB1IFIe4CzmBijH5COg4/6bl3K1ifGviACseTfTIw6AEIIg/hazgHKTgpkkF/ZAU6d4DZO4Iz8T9WSsNYMHkcI1nD4qR73NWLhCEE+8UYFgBDkE29FAJcEcQtBaBP+mQYbAACAUfwBrwRFexUt6noAAAAASUVORK5CYII=" alt="">
+    My Designs
+   </button>
+
+   <button class="homeBtn" onclick="openLibrary('templates')">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAADj0lEQVR42u2cu24TQRiFZ1arXT8Nl6RBVNAgQuyQ0CAqRIO48yxAEO4o6UJIAiQVHRUJl6fJ0iwFkSzZWe2ud+af2/dJbmfkOWfO+deyrRQAAACkiJbcrDj4U3Pk3fg7vqCDNwCC+28IjfBpG8HoYsU+wosZYWLGCNqM8L8R3pkRLg7SMEP8sBl6/hnip22CpeKj2EN4bytho18l6P7i/0J8701wqbOuGeJHWAk9dMp7rYz80dE5KopPP5E/tCq4fblV3wzxI66CDrpliJ+2CdpnAORPdwYodk+QP5Z5YHNFD34MhIQSoPjI7Y8uBbYWU4AEIAHOu/3H1m5/tbnCqbdQ7p5YTIFV7SwBEN+/c8oaH/0MvxB/CRNY0MHJDFBtIb6v57ZggGLnR23ddtADs1r813dGfu5+4Jf+Fsldvrdy59hcXN5Ztba2xD7z60qRK6cRUId7dcT2qYUNgP4p6c8ngamDARKHGYAZAP2ZAYAZAJgBziJHsANs7iX1PmzvY3l9EoAKAAwAzADMAMwAQAUAFUAFUAFABQAGAGYAy1R3rwS5tug+zACAAUCyAjgUr5D/XYCcA8oP38118b2r1taW2Gd+XSk9qAAqwGEF8J1A5+uTACQAEZByBJAAJAABkPIMQAVQAUAFEAA8BgIJoJRSSgtGgM29pN6H7X00MwAwAzADkADA5wBEABWA/lQAUAFEAAkAzAAEAAkAzABEQMAVcHr/WpBri+5DBQAGAMkK4LdhXlFLzwCCjN5/M9fFD65bW1tin/l1qQDAABD7DMC/hDlfnwSgAoAKoAKoAKACAAMAMwAzADMAUAGQbgUI7s4Xgpyvz1fCEncAFcAMAMwANAAzAA5gBgAqQDYATh/eCHJt0X3irgDwrgKqRzc1hx4v8/pmjaYz+BpNjzj5JRhNj4xr4WwIxAR+nlemJCLg7DWaHqJsJ/EPrWkwT2Pfl+++Mg3G1v+P13SHpwAeBlKicQaonqzxNBDT7W/QM3f6KQQ4p/WWl2+/4ILQb//TW7p3BUDiM0AX90DYt79TBcyq4DNVEJz466369rrd5TYmCEb8Z+udtGUG4CmgH+X2ASng/e0fa2sGUEqp8g0m8Fb852NtNQEwQhzCG5kBlt0U/BB/cALMkmCfJHAm/mSQhkZvcPkaI4gJ/2JiRDsrEY4R/BfeqgEwgv/CixhgwRCv9jBEV8FfbjBgAwCATf4B+qki6Fhieh8AAAAASUVORK5CYII=" alt="">
+    Templates
+   </button>
+
+   <button class="homeBtn" onclick="openLibrary('elements')">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAEpUlEQVR42u2d2U8TURjF7zSC2lb4u9zihhuKvriBmhiwVOOuQVGhMVHB7UVFwO3B/e9SWtwexgcUSzttZ7tzt99JGpJ2OjO953znfN8waYUAAAAAgIvwsjxY75fLPkseDl/XX/aMFwCE6y8ITw7xlyBemhCueNoKAOLNE0IqO+n9DPHKhLAhmRBykG82kq5/DvLdFkEs++j9dBHidY2EjVc9qQLogXzt8S2CCHKQbx+i8JRjudxGaKvo+Uj1GxcFmzpHgReO/AuQb6wIrnmJIgDyDe8HOvBHD0AP0EY9H6h+a6Jgc3AU4ACOI0f1O9ILtOBzVct3+PDvrAP0vD8P+za6QACvgQ4A+/QAwBEE9wBYgLvXAda9Owf9lmNhy5hHBAAEAIJ6AAIABwBOTwFYABEAiADgqANgADgAcFoAPo9Oj4WtY2Z/BqaANOBb6gCgLRa2XV/xlzEQE8ABnKn+7det+0wIgCmAMSDMI6j6l54zewygB/hH5o4bMWOh/fvWvT1LBJgAGUTpTj4CkEiYCeQHRoDrU2DxL3HVmJFQNIT41g7g+zx8XxTfnIlO/pszZnw+IiACoRK2pQeIiWrfOKqUHwGaj68ZHi+K4Kp940b+N9AYB6juHF/xF0iaAsyYA9SdY/F1uU6UN42foXJmVP9N9Q3h6/IK8hvFQA+QUWYtC0J2/teJrviq3HK74qvy0usZnZdzPUB1l7rqryc3zLaMgRYJIw6hJopA60vBtQ4kc/OSjCnApC+H4ous7I2A2u5bqWwDIl8HUEdoFvstvByFdRVjYGFe/cIX5ke5u81X5ADLBAghantuCRXHBaF6APkSLMyXMiS/RMm3sYCcOjsuWXEMeoAkfcGcPIIKcyUKXbceoCVRQoja3tup7g8Ydh0gDeIgP5UIUHezYmH2dHzyZ09zM2saN4Vq9p/f0NAhWmv9E6a1AHpdCl7sn1DyXiIAKBWvs2Ngav6v0bkv9k9wR5Bz1b/P3Php+r2AtTPDvppFnGz7ev7FSKht67fL+hw7Qea5RcH3/RWzfi+gceFULWSS4+pCfiO0/oKI/MxIx9cW909mev75mZHmYyb4HEwBLRYs7KKpWNwox9SZfG0EUF9RcRasXjBRq1OmCHQnv0UEqMmA/PPhVPaxOFDR52ZRA25a1eK28LUpkC9jX2lcljDvQhAIN0oNVJqE1yi+xm0QgKWoJz5ICIb1ABAamvhnw21f+36gov16Nl0JXPP0FBKwHD8O3uGXQwECAPQAAAfAAbAABAD/RADAATAAHADQA2ABTAGACABEAMABAAIANIHAYnhBT65+chIVWIqfh+56RABoFwGEAE0gcLsHEEKI7scnMALL8OvwPQ8HAOEEEKQWYFf1t2wC6QZxgCXVHMEFrKj+NjzSAzAFdEb3o+OEgbHVf99LLAAhhOh+iAiMI//o/Y785tLcGTCLfHoAICJXdRdRoD1+R3DrWLbe9WAIEehK/rEpT6oDIAQ7iE+lB4h7UKAH+YkdYNkJpnECZeQPJivCVCsYIZhDvBQB/BfCIEKQRvx0qpxJzXCEoC/xmQigSRBTCCI04UPTNNgAAABk4g+LHq0kZR+OUwAAAABJRU5ErkJggg==" alt="">
+    Design Elements
+   </button>
+
+   <button class="homeBtn" onclick="openLibrary('shapes')">
+    <img class="buttonIcon" src="data:image/png;base64,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" alt="">
+    Shapes
+   </button>
+
+   <button class="homeBtn" onclick="openLibrary('frames')">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAD7klEQVR42u2dy08TYRTFZyazVaAro1A0gaR7Y8DXXg2vneLjr1PB7oxP9j6AVNYmxgct4bGSUv+AcaFitEP7zeN73Pl+h3Tbztxz7rnnfk2HIAAAAACAjwhNftiP6w8SSq6GU28ehuIFAOHuCyLUQ/x9iNcmhEehswLoQbwxnC5JCKW8Se8axFsTwttiQoggXzaK1j+CfL9FEEK83yMhswB6V+9BvusiePdYmdcI8is4EjLwFGd5Y9ivHpSt4ugK3S8NI++Hj4II8qsLFd4iyPdbBAoZAP69zQBHl+/CflXywPpKWHgNBB45QJfurxxGU1wAB8ABUrp/lu6vrAts/OsCMcnfb8Q2P3xkfQUG/m5c/ggA4k+uiWkh9GWAw5llrf4/ugH5w9Cd1SuCsc3V0MoWAPnu1SlKD4DlvyA/jwgSTa9BGYAFwB0kVhxAg5o3VyHT0brFtm+yO7MM0RYbhKNgz9HnAInhDJCQOazWJ7aSPEidztSHEeA5EAAZgAng81kADoADyMFY64mYaz28dEdmBkg0/A12OLU/SeT/EavJ+uTlI0qdOfq+ewjyfF6t1RRpr7VW00h9ivDhfAaofZBJvpTrJwQSAuWtgd8v3na347ea5a5yrIHAqAMkhi0gz+clwk6PilxvwncBgAxg+xpt3CMZALAGAgsjgBng1QwgA3ieAWL495p/MgAhEBACmQFkABTgqQIYAYwADIARAP+sgYA1EJABAhk/D5b2k+Ii15uwBQAEANgC2AI4B0ABjACg3QGwAK8sgBHACACsgYAMwARgDUQBHiqALcBzBZABCIGAEMgE4BwA4AC/BccTQly4R1P3igPgAGQAzgGE4czHp7QuIwDoEYBjzwo+aCyJLvBBY0nWs4JdfFr4fmNRJPn7jUWBTwt3uJjSyJe5BVBU1kAxK5IP4CgYIABgMgMwA3yaAfzvYNfpJwMABACqew5w9tMzWHDKATScPe9NL1DpHNibXtD+XYADWwCwuSFF5tQ8D58O1itKWzt0vXanEIEKdqfmtfIwUADjX16Eum8O2KvP//zGNm/y3OfnMG65MWJb4ePXTc/BvJPnACwCHp8DBEEw/vVlSGmqhzReY3sbKHDWAYIgCCZwgUrhJD4HbwHYQOUxtMt3LtxCBtK7/9urMPMIAJ5nABX1ANndrzQCjkfBeUaBOPK3hzdvpu7uIAIxqG+rOTcZgC0gGzqTN3EB17u//VqZ10jnmwO3yc/lALhBNYgvJQPgBrLJL+wAx05Qxwmskd8p1oSldnAbIRjDZKcc99Vi4e36DYSgjfi1UjnTOsMRgrvEGxFAnyAmEIQy4TtrBGwAAAA68RMi+H0oLLe0rwAAAABJRU5ErkJggg==" alt="">
+    Frames
+   </button>
+
+   <button class="homeBtn" onclick="openLibrary('backgrounds')">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAADW0lEQVR42u3byU4UURjF8Vud3oFC8G0cFiYuXLhwgTg8iDiACBKheRAHNMYYE03UBMe3MU6wbjfNArvtgaquW1X3909q2xXuOfd85166QwAAACmSlfmynRsHXUs+HjcfzWS1NwDBq2+IjPBpGyEjfNpGKORDdq4TPpoRHuczQm4DdIgfneUcJmgRv/7k0SEjfNppMLEBOteIX3kTPBnfBC3iN3AkTKBTy3KlzdhR0bm6b/fXbRQ8nc0KSQDi13QUjKHbSIdsE7/23BqSBDqADjBk9y/Z/Y1Jgd3BKSABEqdl96fB//SUADrAALdcsfsb2wWeHe0CEiBx2mW8ZHl3xkofk87SQfkGkP/VYdpa9I2ArcX9buj23lzUg3wOKPDZWjza73QAHcAASHkItOmfdglox/zbthf3CXx4Pn8+G+W9OkDiMIAS+M/IKbEDdPWN6GskAYwAMAB0gCj3ADpA9DWSAEYAjIBI3H4xS4GkOwCid4D+iyAOqJj+09VDBzAC4o2Ah5f/UKDHnZcnHAPhGAgGQDrHQAeO6GskASSAAEg4ACSABBABOgAcA8EA0AFCKPW72ndfnaDAyA7gv4FgAJQ2AvxaJ6kJEPc7gZuXflO4x8rrk0YAGADxj4FlDjgCxF4jCWAEgAGgA8S4B3DnEH+NJIARACPADEh2BkgACRCP1TdzFNABULEOYFGq1QEkAMpMgDIDYOPiLwr0uPd2LkYASAAJEDMC9A0dAI6BYADoANABUIl7gG6J5hYBsdfICDAC4BQAHSAGa+/mKZD0MRA6AHQApNoB1i/8pMBhH3o/Xw0D+FZ4xSqADgAGAAOggfcA9z/MUyDyPUA7xHQAojvACDACBEDKI6AvAdb3FrJu771FPcinf5HP+t5CZgRgWAksnrXzP6x0rQwgt5Nh4AjY+Hh0TqAZDNJVB5AA47sFzdr9o0ugLpBuAoQQwsYnKdCI3T9Ex5HHQCGQcAKEEMIDKVBrRuk3trir574Lg7qJ//lUljsBJvkw1Et89wAIE+/q1bNGQeV3/5fx07o1zQ9HtcU/VgJIg2YIX4gBQghhhQmis5kjlQuJ85UzTBBN/K/5RnKh85wR6iP8VAzACPURfqoGYITqC1+KAfoMcZohxhb8m+M2AGCq/AVspUiGmagATwAAAABJRU5ErkJggg==" alt="">
+    Backgrounds
+   </button>
+
+   <button class="homeBtn" onclick="addImage()">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAE6klEQVR42u2c224TVxSG94x8a9J63ooCBYFEIU4gpIUkNlCpB3gEepJAAlqIcMLpgkiFAC1v5UPLA0wvAgUsz3n2cX2/NIpie/Z47+9fa689Mx6lEEIIISRRkcmDJW+epgx5OY0PL0feGyB58wTgrRmiH3ljAMD7Y4QI8LKN0Eojyd+At2aEL5oZIWoO/zHwrZtgpTbHGPj+qwmHWs5J/gK8s9ngSLVsEAM/sGxQkU9UrfFHwPcmE6xGWjIACkulM0Dymuj3LgscLc4CMfADrgdKcIuKG3kIfO8zwblMzp3CvcEvtwbovSL6Q9Hk2OIswCpAuGKiX4ayeGbXACn8xWaA3std6IeYBRZwpQYQrg5LPwyAA6gBPpon9negH3IdMMe3Y/sLjb88Lx5K8nLXoSnAUPyPjwN+PgiS/V0HDKDZAePjaxAvCIpkf8fueQDg2zbCmsUMQAnohtLAMsD4BNHv4nh1lAMpIHkxEgz6gtU0ENvupGT4Rf3PN4cuA6QatqzOPx/pOZ5nW/J8lJ8ENPLo2JwAqDftjxFXA4VrwTLQYFxWPNbk5PrC13t/Pgg4BaRkgDz4Re+hystAf8Av+lzQ2YAaABlYBqbtb3nzW85WJ7VPTq7r6YPureYYNT2WsxlgcuprK/uSAZD0ZWAgZzlCOcuUmjYADhDlAKYAagCEAeYzjqGrgXn79Pa2a3eqt7ft31XBGmPUxrFi5aoDVKp6e/drwL+v/LwubMcBTAEsA91eBPSeHWSByemLpT4XnDTz8CYD5AEOFr6NDODyWYDPBYJOTRuAm8JkWaADf2oAxIkghAH+Tzme3+xgYJt+dYkbQqRqembjk79MAQLhZ/2PARA1QKg1QFa0T89sUAMEn/rPbjZ6nynAEVA62/TVBHFo8H2ORmqAuvPzHPTp2U0t7ZYyITWA4chf3qr0etN2de3HFKBhsG1B9MkEzt4UWrSVHeTp8paWdts+ro4x8v6m0Kxt2q8G6eDzTb9rHXl4U6jr+Kf9Qb2I7A+0td3kmJYTgF81wKwhoLz9Zy3D192uuBqgrYGc9Qfa2q5yTIdrAAcjf2XgdHuuHrPmMtDFFKALSGoYjA+/DHKM/2xlqDEqh4azwJApoNKArQ5VaHKtTzEDJbtvTv4wZLZ6WYWvtOXPBbIMlAH/XT+pAeYG5ZwM+C71N2YwZPfbiaeFz85fUZKVa4LQnxYuHb7oKQD4nAdAzp0HSM3+aP+znVviIczWroZdA+RBzu28cPgmgsPqM4IwQcEiyUoNoOk5iEsjUn0VLY1uGXkmJUUgqwBDKUClaml0kxEvFf03lanH0nbsdE6pfy58C+mMsbG8DDTU2QfvjLCOEd6PhRvnAQR1Hlm/IQS5ZwD4S18FIAyAxCha9OKh7d+YCALVv998FxWvAsDPFIAwAJJaAyil1KF7vzIRhDb/X/o+IgOgcgZY5BYUVvRnrwJYDFADvFf3D2oB3/V2Izubl7gaCH/Ry8C3Gz9QC3gd/fn8SsPt/v4LqcA3+JvFwRu32RjyC37JGoB6QHQN8KmrfiQLeBH95TnVAtq9+zOpwFX4W9WCtFFEYwR/wbdigAMT/IQJrMO/VptjK3N69w4msAZ/cK0Rw1aLOozgD3gtBsAI/oDXaoAPRriBEVoDf10LK6Pr+u5tDFEa+PA651wQQgjp1H9M9vDPv5wDMgAAAABJRU5ErkJggg==" alt="">
+    Import Image
+   </button>
+
+   <button class="homeBtn" onclick="openCDR()">
+    <img class="buttonIcon" src="data:image/png;base64,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" alt="">
+    Open CDR
+   </button>
+
+   <button class="homeBtn" onclick="settingsPanel()">
+    <img class="buttonIcon" src="data:image/png;base64,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" alt="">
+    Settings
+   </button>
+
+  </div>
+
+  <div class="devCard">
+
+   <div class="devPic">
+    <img src="developer_profile.jpg"
+         onerror="this.style.display='none'">
+    <b>AGB</b>
+   </div>
+
+   <div>
+    <b>Developer</b><br>
+    Abdul Ghafar Baloch<br>
+    <small>03226894360</small>
+   </div>
+
+  </div>
+
+ </div>
+</section>
+
+
+<!-- =========================================================
+     SETUP
+     ========================================================= -->
+
+<section id="setup" class="screen">
+
+ <div class="setupBox">
+
+  <h2>New Design</h2>
+
+  <div class="field">
+   <label>Width</label>
+   <input id="canvasW" type="number" value="1280">
+  </div>
+
+  <div class="field">
+   <label>Height</label>
+   <input id="canvasH" type="number" value="520">
+  </div>
+
+  <b>Presets</b>
+
+  <div class="presetGrid">
+
+   <button class="preset"
+           onclick="preset(1280,520)">
+    1280 × 520
+   </button>
+
+   <button class="preset"
+           onclick="preset(1080,1080)">
+    1080 × 1080
+   </button>
+
+   <button class="preset"
+           onclick="preset(1080,1920)">
+    1080 × 1920
+   </button>
+
+   <button class="preset"
+           onclick="preset(1920,1080)">
+    1920 × 1080
+   </button>
+
+   <button class="preset"
+           onclick="preset(1200,628)">
+    1200 × 628
+   </button>
+
+   <button class="preset"
+           onclick="preset(800,1200)">
+    800 × 1200
+   </button>
+
+  </div>
+
+  <button class="primary"
+          style="width:100%"
+          onclick="createDesign()">
+   Create Design
+  </button>
+
+  <button
+   style="width:100%;padding:12px;background:#eee;border-radius:10px;margin-top:8px"
+   onclick="showHome()">
+   Cancel
+  </button>
+
+ </div>
+</section>
+
+
+<!-- =========================================================
+     EDITOR
+     ========================================================= -->
+
+<section id="editor" class="screen">
+
+ <div class="editorTop">
+
+  <button class="toolBtn"
+          onclick="showHome()">
+   ⌂
+  </button>
+
+  <button class="toolBtn"
+          onclick="undo()">
+   ↶
+  </button>
+
+  <button class="toolBtn"
+          onclick="redo()">
+   ↷
+  </button>
+
+  <div class="canvasInfo" id="canvasInfo">
+   1280 × 520
+  </div>
+
+  <button class="toolBtn"
+          onclick="openLayers()">
+   ☷
+  </button>
+
+  <button class="toolBtn"
+          onclick="exportPNG()">
+   ⇩
+  </button>
+
+ </div>
+
+
+ <div class="workspace" id="workspace">
+
+  <div class="stageOuter" id="stageOuter">
+
+   <div id="stage"></div>
+
+  </div>
+
+  <button class="powerClipBar"
+          id="powerClipButton"
+          onclick="doPowerClip()">
+   PowerClip
+  </button>
+
+ </div>
+
+
+ <div class="bottomTools">
+
+  <button onclick="openAddNew()">
+   <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAADCElEQVR42u3c204TURjF8Zmmt8XAvJWneGvwEC+MFb3zAI/gMd4oYozBE/EWFXkrNJEHwAtj1Kal03bKdO/v978s6dDstfb61p7CFAUAAIhIeZK/rNrfObLk9Tg4vVomb4Bq/yPBGzPEpTIZAxA+HSOUhI9thEYuUn0jfGtGODObEcrZxf9A/NZNcHlqHTvET59ZdJjKOdUe4Rc2Dc5OlgYd4meWBhPqU0528ffETyYJrpRzSQDkRe0EqL7a/cmlwLnxKdAhfsZ9oIZu5fiLvCN+8klwdaTO3bHvJn/cDrDyxe7Phe/nh6eAU0BwOnZ/DEbpOboDHNE/bAKsfH5L/RxTYIiuOkBwuo5+DMABOsA/c2J3m/o594ABfXUAI0D6MwAHMEAkDi5cO/bn1e62ERCaQGugBBoBIiDyGkgACSAAIq9Bl/6xh6ARYAQM2l8GRFoDCRAcBmAA6AA6gA4AIwBGQOFOULA18GVQcAcYAToAdAATQAfgAB0ARoAAiLYGEkACCIDIa6AEBreADqADIDIMoAQOxp8ZEGkNWv3v4B8X+wu5KG18ruVPW0YAGAA6gN4hAcAAYADoADpA1vcBlnc22znnr64t5OcyArAII8Ci+KNQDohrAPJ7RhB0ABEgAaAEigAjgP5GABgAOoAZoAPQ3wgAAyD3EWAGeFIoGAAMAB1AB5AAiJUA9n/0ZwRxgDuBiJwAIqDwqFjoAAJAAkAHyJNTb55R3giAEQAGiE457MWl108Ngkz5ef1OOaYE6gFGABgAgTtAURTF0qsnBkFu8//G3VICoJ4BhrkFee3+0acAhwEd4A+9LV0gdQ77o9O8xpNC6R/6GHjYv6cLJL37j9evtri9l49FQWri3xy/eTtNXgxpiV+zA+gDoTvA/666LwWS2P31dZpK0N7mI1GwqOKvTbZJZ9rRjJCu8I0Y4LcJHjJB6+KvT61jIzO994IJWhP/1vpMGjZa6hghHeHnYgBGSEf4uRrgrxEeMEJjwm/MRasTPdf3njNEbcFvb7jnAgCYJ78ACljuXhYeAv8AAAAASUVORK5CYII=" alt="">
+   Add
+  </button>
+
+  <button onclick="addText()">
+   <img class="buttonIcon" src="data:image/png;base64,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" alt="">
+   Text
+  </button>
+
+  <button onclick="addImage()">
+   <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAEoElEQVR42u2d6VIUMRSF0139ALLMoPg+ikvJUmIVy7DpYymoIAwDslju7+NWCvgG4w+VYpue9JLkJvlOVRclTifmnnPPvcnMtEoBAAAAIEYkNidbefK7S8j1sPr0WuK9ACBcviASiI9bCLUOtgzx1rBWkxBqGWT5McQ7E8KzakJIId9vVI1/CvlxiyApN+EJxIstCQOJUQEsr0C+eBGs6ougkACWIN8bPNcUQUqo4kZK9ocJXb60bGJpGfK9LQVr+aUghfzAnaAPf/QA9ABkf8wukOXd2IX+eB1gcYnsDwm9+MxxAPiP1gEWl45hP0gXuMxrRvLjACBiZBgADnAOC4vU/5Bxkd/Mdfq/eDFAc7Z4IqsEQLybWLgQQgbxcQshhXy5QnDiAF3eABABWzxYc4CXLwdhVWC8MgmLXVg4hmgp5wC2Fxkz+f3Wb0Mc6ZXnAHVfvRbfOjYzn2fXQisnCQzzwXsBkQMBRI7sKsexttUp+Pr19atrYqsVbh/Rte4AFnuAImP0Iv9UGL73Ao56gEx6BqxvDBZ6XWs+7l0FPQCoKgA5/qab/ZedgBqgO5fYHmB9Y6hC2RiC/7I9gORdgKTuOdxdAKAJBBEfBFED4qoBOAAlQCbmZ4+c3Bu9ACTtcOZKEDk3e8QpQIG5wusBQvtIo+H1ZEq4AuZmfimllHq1Naz1uvBglg9vmsA8gsMl38U20FMRAM4BqACcA4DKDoABRGUAOEDs8OYzgZKuzfZwMCdBOEBBbG4Pn/sZngOAvuT3+jMCAAHsAiw+H8CnZxFsdRo9XWHm0U9vY4QDVCBf9+8pAUKIMjmmryJIQyPf52zkHKDkdZH0rU7DyLhaIuQcwHLm7zQK/b7quKbuE+MAPhlAv2Bv7TSMjKsjAl8+EuatA7Q1SWoXJLNdUwa3PXECL3uAUqRW/beW2sTTA9Sf+bsNY/eVHdvWeNFvA6sGNO9+U2RJF4Ho5wOcveoK5N9xzIxdZE6eD1BgrvZus2ZCmubqvu6cUnsAiflvhJDXTdX999MW2AaWwLZBgrYtku9iPu+bQIkBC21NYnuAEMk/JwLOAXICtBcu+ZQAyBe1TlG7gNgyf3uvKXAX4EgBnUhtv7PXlPasYPtfDuvsj0Rdhzv7zb4xCrYHiJ38qJtAyHcP5/93MNCqkvYEYJv/6Ykf0XO8czDiin87JSCP5LzFx06+jeTIpAcB2HYAQ9+pnx7H6gu55vgPK0+l5LuBOIBlVQNRccpcLW7nkLovIUGcPR/g4YPvSimldt9cj574/7FwgSzmxQOaQARACOIG7wXgACBmJFf9cur+N3wgUOy9vZHgAKDPNpD8pwcAEfcASik1de8rPhBa/X83muAAQM8BlFJq8i4uEAr2348m9ACgmAB6qQaEkf04AFBaGT55h17A2+z/kO/iaR2DAD/JL1QCEEF45CtV8BNB1IFIe4CzmBijH5COg4/6bl3K1ifGviACseTfTIw6AEIIg/hazgHKTgpkkF/ZAU6d4DZO4Iz8T9WSsNYMHkcI1nD4qR73NWLhCEE+8UYFgBDkE29FAJcEcQtBaBP+mQYbAACAUfwBrwRFexUt6noAAAAASUVORK5CYII=" alt="">
+   Image
+  </button>
+
+  <button onclick="openShapeTools()">
+   <img class="buttonIcon" src="data:image/png;base64,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" alt="">
+   Shape
+  </button>
+
+  <button onclick="openLayers()">
+   <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAEoElEQVR42u2d6VIUMRSF0139ALLMoPg+ikvJUmIVy7DpYymoIAwDslju7+NWCvgG4w+VYpue9JLkJvlOVRclTifmnnPPvcnMtEoBAAAAIEYkNidbefK7S8j1sPr0WuK9ACBcviASiI9bCLUOtgzx1rBWkxBqGWT5McQ7E8KzakJIId9vVI1/CvlxiyApN+EJxIstCQOJUQEsr0C+eBGs6ougkACWIN8bPNcUQUqo4kZK9ocJXb60bGJpGfK9LQVr+aUghfzAnaAPf/QA9ABkf8wukOXd2IX+eB1gcYnsDwm9+MxxAPiP1gEWl45hP0gXuMxrRvLjACBiZBgADnAOC4vU/5Bxkd/Mdfq/eDFAc7Z4IqsEQLybWLgQQgbxcQshhXy5QnDiAF3eABABWzxYc4CXLwdhVWC8MgmLXVg4hmgp5wC2Fxkz+f3Wb0Mc6ZXnAHVfvRbfOjYzn2fXQisnCQzzwXsBkQMBRI7sKsexttUp+Pr19atrYqsVbh/Rte4AFnuAImP0Iv9UGL73Ao56gEx6BqxvDBZ6XWs+7l0FPQCoKgA5/qab/ZedgBqgO5fYHmB9Y6hC2RiC/7I9gORdgKTuOdxdAKAJBBEfBFED4qoBOAAlQCbmZ4+c3Bu9ACTtcOZKEDk3e8QpQIG5wusBQvtIo+H1ZEq4AuZmfimllHq1Naz1uvBglg9vmsA8gsMl38U20FMRAM4BqACcA4DKDoABRGUAOEDs8OYzgZKuzfZwMCdBOEBBbG4Pn/sZngOAvuT3+jMCAAHsAiw+H8CnZxFsdRo9XWHm0U9vY4QDVCBf9+8pAUKIMjmmryJIQyPf52zkHKDkdZH0rU7DyLhaIuQcwHLm7zQK/b7quKbuE+MAPhlAv2Bv7TSMjKsjAl8+EuatA7Q1SWoXJLNdUwa3PXECL3uAUqRW/beW2sTTA9Sf+bsNY/eVHdvWeNFvA6sGNO9+U2RJF4Ho5wOcveoK5N9xzIxdZE6eD1BgrvZus2ZCmubqvu6cUnsAiflvhJDXTdX999MW2AaWwLZBgrYtku9iPu+bQIkBC21NYnuAEMk/JwLOAXICtBcu+ZQAyBe1TlG7gNgyf3uvKXAX4EgBnUhtv7PXlPasYPtfDuvsj0Rdhzv7zb4xCrYHiJ38qJtAyHcP5/93MNCqkvYEYJv/6Ykf0XO8czDiin87JSCP5LzFx06+jeTIpAcB2HYAQ9+pnx7H6gu55vgPK0+l5LuBOIBlVQNRccpcLW7nkLovIUGcPR/g4YPvSimldt9cj574/7FwgSzmxQOaQARACOIG7wXgACBmJFf9cur+N3wgUOy9vZHgAKDPNpD8pwcAEfcASik1de8rPhBa/X83muAAQM8BlFJq8i4uEAr2348m9ACgmAB6qQaEkf04AFBaGT55h17A2+z/kO/iaR2DAD/JL1QCEEF45CtV8BNB1IFIe4CzmBijH5COg4/6bl3K1ifGviACseTfTIw6AEIIg/hazgHKTgpkkF/ZAU6d4DZO4Iz8T9WSsNYMHkcI1nD4qR73NWLhCEE+8UYFgBDkE29FAJcEcQtBaBP+mQYbAACAUfwBrwRFexUt6noAAAAASUVORK5CYII=" alt="">
+   Layers
+  </button>
+
+  <button onclick="openMoreTools()">
+   <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAADLklEQVR42u3byU8UQRzF8a6JYASFv8st3iTRqxuoJ1EPbqjxINGTAm5Xx+jN/e9yAaMe2oMJJk7PTM9Md0931+eb9IUwVFLv1Xu/aiBJAABAjIQqF1v8vJba8nx8ObgWGm8AgtffEKEc4W8RvjQj3A61NQDhm2eEQn7I4ifCT80IhyYzQof4zWbS/e8QP24TjBUfix9vEr6ulXD4TijVAAvErz1fRzBBh/jtYxSdOrYrbnJHxcIHp79xVXBkeBWEfOLfIH5jTXA3TFQBxG/4PDBEPzOAGWCAe947/a2pgqPZVSABIqfj9EcyC/TRc0/fT6T0jzYBFt5dp34bUyBD18wEoL4ZAJGQPQOIgHjfAxx4e438LefbsXtBBYABkDUDKAAJgKhvASJABUAFINIEEAASAGYAuAVABUAFQAKAAWAIhBkAKgAMgHZXgAaIfgZgARUABoBrICQA4ksAESABYAaABECkM8B0+H78fs/X9r+5ar2S6fn38LnXVyotge2Mjfmf+QI3qu3r5WFnaX3Av4enaWVPns3Z3UTrFffUYQbYXlov9ftjW88QiIIMkJb/jOv27aV16xXxSAAMuAbW/U1Qaj0zAMpLAAEQ1XpTSYD5V5d9rsDPqQAUeQ2s5m3UfHd1tNPRXbVeFW8C0wqfuZybNNddtV45rwF6fxm07+WlqYyBOyceZG6M9Yrnx8mHoXYGwHQM4C+CDIHwIkgESABIAAEgAcAAiL0CdEDUBiC/CgADwDUQkRqAA1QAGABmAEgAGAKhAqACEE0CCAAJADMA3AKgAqACIAHAADAEop2ErC/ufXGRC1rKz1OPggrAoApQAoZAxD0DJEmSzD6/IAhaxq/Tj4MEQD4DZLkF7Tr9fYdA06AE+OuaM1KgFad/gI5mALeA4cw+O68MGnv6N8LEBkiSJJl9ygSNE//sxlB9O0X+MDRLfDMAkpFP9YwqqD2/R0jrsWJ95skKE9RV/HObodQEYIR2CF/IDDDuoqiH+BMnwG4SbEmCqYm/PNkhLPQEM0JzhC/FAP+MsMwIpQm/VahmpXY4I9RX+EoM0GOITYbILfjKlgEbAFAmfwD7jgd3l9k88QAAAABJRU5ErkJggg==" alt="">
+   More
+  </button>
+
+ </div>
+
+</section>
+
+
+<!-- =========================================================
+     ADD NEW
+     ========================================================= -->
+
+<div class="overlay" id="addOverlay">
+
+ <div class="sheet">
+
+  <div class="sheetHead">
+   <b>Add New</b>
+
+   <button class="close"
+           onclick="closeOverlay('addOverlay')">
+    ×
+   </button>
+  </div>
+
+  <div class="sheetGrid">
+
+   <button class="sheetItem"
+           onclick="addImage()">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAEoElEQVR42u2d6VIUMRSF0139ALLMoPg+ikvJUmIVy7DpYymoIAwDslju7+NWCvgG4w+VYpue9JLkJvlOVRclTifmnnPPvcnMtEoBAAAAIEYkNidbefK7S8j1sPr0WuK9ACBcviASiI9bCLUOtgzx1rBWkxBqGWT5McQ7E8KzakJIId9vVI1/CvlxiyApN+EJxIstCQOJUQEsr0C+eBGs6ougkACWIN8bPNcUQUqo4kZK9ocJXb60bGJpGfK9LQVr+aUghfzAnaAPf/QA9ABkf8wukOXd2IX+eB1gcYnsDwm9+MxxAPiP1gEWl45hP0gXuMxrRvLjACBiZBgADnAOC4vU/5Bxkd/Mdfq/eDFAc7Z4IqsEQLybWLgQQgbxcQshhXy5QnDiAF3eABABWzxYc4CXLwdhVWC8MgmLXVg4hmgp5wC2Fxkz+f3Wb0Mc6ZXnAHVfvRbfOjYzn2fXQisnCQzzwXsBkQMBRI7sKsexttUp+Pr19atrYqsVbh/Rte4AFnuAImP0Iv9UGL73Ao56gEx6BqxvDBZ6XWs+7l0FPQCoKgA5/qab/ZedgBqgO5fYHmB9Y6hC2RiC/7I9gORdgKTuOdxdAKAJBBEfBFED4qoBOAAlQCbmZ4+c3Bu9ACTtcOZKEDk3e8QpQIG5wusBQvtIo+H1ZEq4AuZmfimllHq1Naz1uvBglg9vmsA8gsMl38U20FMRAM4BqACcA4DKDoABRGUAOEDs8OYzgZKuzfZwMCdBOEBBbG4Pn/sZngOAvuT3+jMCAAHsAiw+H8CnZxFsdRo9XWHm0U9vY4QDVCBf9+8pAUKIMjmmryJIQyPf52zkHKDkdZH0rU7DyLhaIuQcwHLm7zQK/b7quKbuE+MAPhlAv2Bv7TSMjKsjAl8+EuatA7Q1SWoXJLNdUwa3PXECL3uAUqRW/beW2sTTA9Sf+bsNY/eVHdvWeNFvA6sGNO9+U2RJF4Ho5wOcveoK5N9xzIxdZE6eD1BgrvZus2ZCmubqvu6cUnsAiflvhJDXTdX999MW2AaWwLZBgrYtku9iPu+bQIkBC21NYnuAEMk/JwLOAXICtBcu+ZQAyBe1TlG7gNgyf3uvKXAX4EgBnUhtv7PXlPasYPtfDuvsj0Rdhzv7zb4xCrYHiJ38qJtAyHcP5/93MNCqkvYEYJv/6Ykf0XO8czDiin87JSCP5LzFx06+jeTIpAcB2HYAQ9+pnx7H6gu55vgPK0+l5LuBOIBlVQNRccpcLW7nkLovIUGcPR/g4YPvSimldt9cj574/7FwgSzmxQOaQARACOIG7wXgACBmJFf9cur+N3wgUOy9vZHgAKDPNpD8pwcAEfcASik1de8rPhBa/X83muAAQM8BlFJq8i4uEAr2348m9ACgmAB6qQaEkf04AFBaGT55h17A2+z/kO/iaR2DAD/JL1QCEEF45CtV8BNB1IFIe4CzmBijH5COg4/6bl3K1ifGviACseTfTIw6AEIIg/hazgHKTgpkkF/ZAU6d4DZO4Iz8T9WSsNYMHkcI1nD4qR73NWLhCEE+8UYFgBDkE29FAJcEcQtBaBP+mQYbAACAUfwBrwRFexUt6noAAAAASUVORK5CYII=" alt="">
+    Gallery Pic
+   </button>
+
+   <button class="sheetItem"
+           onclick="notice('Stock Images library can be added offline.')">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAEvElEQVR42u2d2U4UQRiFuydkep7GDZdEYQCXRGVRMZoYdpfE3WdR8UbwzqiJiAroDXhloomA29N0ezNeECUMM93V0137d5LOhMx0lf2fU+c/VQYmCAAAAADgI0KVk1VXfjcouRj+DO0JrRcAhJsviBDi/RZCqYNVlyFemRCGyxFCWA7xvyBemxD2FuKwAvl2o2j9K5Dvtwg6so/qEsQb2xJG8rWEMD/5PyHfeBHsE+a1AvkOtoQcPHXlGhn6nYOwVVTf/4B+21rBuf2Z/FYg3+FWIMBbBfL9FkF2BoB+fzNA9d136HclD5w/EBbeBgKPHKD6ltXvnAtc2O0COAAO0Gr1b7L6nXWB7hAHABnbQNa/N8AByABN/X9xg/Xveg4YPRi2bwGK6U9Gu70nJFrcNCwDQLyWWugQQpfqBJiMHoTxTCFsaAyBDXkX5OdYJBJ5YBcA1AsgucjqN7FeyjNAyxT8Zt1jog+lvNvQ4AAyen/KQ0YL63L7neFXtLCeLg6XM0Daw3t1DqCxDoRAz9HiJFBhBmhw6qy7Rl021SK5dLi1hb7+hlBcbwHtyM96D1juAKLk/vscbuB7BnAtV0h+HqNbQHL5iJJ7yACOkI8IaAHutQKfWwBgGwgQACADkAH8c4Do1Vct99ICLBcB5BduASrtzZIxtbYA1QIwTAHRyy9BEARBcuWo0OfcA+cAmQS7Sz4tYCfRLzwkWjIfnAPgAK6lQCwABwAebwMxgKIOIPk3EaTPJf9Kxo5ZXiNaQMdIxnp2vNqOCgYgfjWTnoz12G4AOAAhsAmhwmQWWpQC4/He1i1hvCeoPf9sbY1wgALki75PBlDU3+LxXjljioqEDKBxlU707ngFHp0DNJO+9XP544qJ0PZzAMv4jyfqbcioSxk3WwR1WoAy25+sF3q/7PvKup8WIGLPgkXe+lz545Y9L0fBuYrbJ/XzfodAww2gUzLjyT5pYxeZkwyQp6BTfdLuLzq26nG9ywBlFXJrHDlj55mTbWCOueKp/pIJ6Rf798mckxaguZ1M9+94JQQaTpRtY5swX4e7gEb5V1t7S7/PxdUZT/eXWqOifBjrAPHMgLvtx6Bnq1AgDoIg3+PnNCoD+Lby45kBMsD/Ylw97ud2VPNzVyiC38+v/Y9ExddOkMQyauSsA0A+uwCgGdq/L6D27JP3JOh0QiXbwNr8WvrDy9jqWHKlkV+bX5O+DTTiG0Pi6yfxYtczQJoLAH310vsXQkDK9k+bA8j7Bfva3CrEiqz+udUgUPT98V16Hi4I4hunYLpNbbzYBiIEvcQbkwFqT2kLhh0EkQLZBgKPHQADoAUAj1tAcvN0SFncRTO/rbeBmAAhEHibAbAA7x0guXWGHOBi/2/Ba/ujYEzA7wyQ3MYFnFr9bfjM+M8gbMB1ZK7y6MlHVGD76r9zNmQbCDoTQJp6gN2rX6gFbLeCD7QC68gfzOQ31+qOZhGBNeTfHRTilgzALiAfotkVXMD41T8UShNAEARB9BgRGEv+vaFQqgMgBDeILyUDdDopMIP8wg6w7QTLOIE28ocLcVjqCo4eIQRlxN8fLoU7KRaOEMwnXqoAEIL5xCsRwC5BPFxCEKKEPxghYAMAAJCJv++679qrY8JFAAAAAElFTkSuQmCC" alt="">
+    Stock Images
+   </button>
+
+   <button class="sheetItem"
+           onclick="addImage()">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAD40lEQVR42u2dyW/TQByFZywaEqlJ/i62lrZ36IGtBSRzK5SlQNocqQRt2CTSe9m3v4sYqQUO5kApQnVsJzPjzPJ9UoRUiUSZ9+b93thSLAQAAACEiKzyw9pf11KWvBzfTqxJ5w2A4PYbQpoR/h7CGzPCfWmtARDePSNoeZP2F4SfmBFOqhkhQny3UV3/CPHDNsFY8dH+fBfhbR0Jpx5IowZoIb71DEYwQYT4/jGKThHLFTalo6L1id3v3Cg4XTwKZDnx7yC+syZ4KJVGAOI73gcK9KMD0AFy3POR3e/NKDiTPQpIgMCJ2P2BdIEheh4b+j9S9A82AVofbqO+jymQoWtmAqA+HQACIbsDEAHhXgdovl9Ffs9JZtclIwAKjoEeMZjpVN22HS6BqT+vwUxnMn3G9rUJ4RQwmO389y+UHgF0QD0R4KoBPNB/cHYd/cfuAIgf9ghwOQASS8RPXTaAzzTfrbLlfe0AyVz+7m++RXxvTwHJ3EaB+LdQ2oYRUCSUb5+rNK4qMq2xEZDMb7C9NJi2+casEbgZZLsRDG8kDBC4CaLsEqj5jgNoMoF+bYzcDUzmuyhmxARd7gaC5cfAZGEyu7/5+qYfu7xg/ZKFrtbvWvm9gGlPhDK5Pt8LTKBTo4wOkKq98r7c7or6+wfwmt5dyVdNo0Z0gMDBAJTACksAlwesW0cSgAQgAkKOABKABCAA6ADAMRAYAUyA8CZAVgcwKBM/PGXdOjIC6ABAB6AEcAwEEoAICDACSAASgACgAwDHQGAEHMQLVwLtHwGpOQNQAYKqAIwAOgDQAZgBHAOBBCACQowAEoAEIADoAMAxEBgBB/HCpWD7RwCXgqkAjADAAMAxkBmg2wA4ICgHVDoC9s49QjvL1iny+cshfjFHHh5d78fK+bJ3HpFN0di5ofwe+4ubPDwahhpA/eeoGzsxK2tk98fCiZ+LF6kQjT4m0Cp+P3bv4dGYwP51jAwFwOGrjgmUqPdjk0+Pr+axcX9NsL+4iaIjrplpKr0UXH9FGtiGF08OBa3HQAg7AQgAEgAwAFACIQRk1h+Pv7yOCzzlx4XHkhEAeSOAIUAJhLA7gBBC1F5cIwg84+fFJ5IEgHIGyHIL+LX7h5ZA2iAJ8Mc1l0gBL3Z/jo50AE4BxdSeX2UYOLv7t6SyAYQQovYMEzgn/uWtQn0jnW8GbolPBwAx8q6eYhRYz68R0nqsWJ96uowJbBX/yrY0mgAYwQ/htXSAcT8U7BBfOQEOk6BHEkxM/CW1Tah1B2MEd4Q3YoB/RljCCMaE72nVzOgMxwj2Cl+JAY4YYhtDlBZ8uUfBBgAAk/wGTR0LHM8Ut+cAAAAASUVORK5CYII=" alt="">
+    My Folder
+   </button>
+
+   <button class="sheetItem"
+           onclick="addText()">
+    <img class="buttonIcon" src="data:image/png;base64,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" alt="">
+    Add Text
+   </button>
+
+   <button class="sheetItem"
+           onclick="notice('Video module reserved for the media phase.')">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAETklEQVR42u2cSU8UURSFuyq9VaGRhYRBF2DEGRNx3KsJRJkiDr/OgUE2zuwdITbKUo0KTYIiEAR/QLloQYFuqKLrjfc7SW0gKdL3O+/ce4vuzmQQQgghJFGBzj/2++LtiJLH064XdwLnDQBw+w0RqAF/C/DKjHA3sNYAK4DXpt0pGSGVm6xcALwxI7yszAgh8N1WpfUPgS/bBAHgZbeExAZYOX8T+Lab4NW92FxD4HvYEhJwyia5MfT9U+yoWD7H6XdNe15v3wpC4PurONxC4Ms2QYwZAP5iZ4Dlszeg78s88OZ+UPEaiAQlwC9Ov3eqKpECJAAJUOL0n+H0e5sCb9enQJbJX7ZoARgAMQP8p6X2fvLfc1WPDQQkACo3BBIAsg2gkX/V2AAEVlfv9n5bEgDwJmui2wgh8O00gpcGAL59ddpkgChScwE/uQlUsWALcEbqWWgZAqvHB8v+bun0dfGYy9WnenxQeX2MPggCvvk6GH0OQLcxXyMeBQsXBhCu7ObE0ZfLET3AeI2YAZgBEDMAwgDrIifta6t4U3Dl3g0pu7eyS2eNJCRALj+UyeWHOOLSt4BcfiizeKqPLUDyDFCTH87U5Ic57tLXwFUTLLb1uRQBJEDqRpgYztRMkAji10BMYPwNIZE1Jlhs6xXZA3gUvGaEB0UjnOyVxL/UGiiS/z8jvC8aYcESI6iuEY+Cy2jvXyMwBAo3ge9GYAZIkAYLJwy0Bd0zAA7YwggfVo3Q402NaAE7MsIILUBgAJQ0wcLxHqdrxBpYqREmi0aYV2QE1kBHVDs5kqmddK81YAAFRnB8BtAYzFHktQnmj3VbX6MsZzZ9pQKeFgB8Iy2ALWBn+qkIfKTbADggIfij3U7XiBnAVvDGtgAiIAb8Lm9qRAtIAv5Il/4/SgsQCt5cC0ASwLMGbqM5S+CzBuoGf9iyU887gnSBv2ZpFvG/AKHg9SgEvmyJnAHmWh0Cz3MAoeDNrYH+fU/gj9arzgLiG0IEw2cGqAT8IU/A8w0hguGzBiJagHTp/2QQ3xbOFoCYARAzADMAayCiBSjUvo8PIWC4DsHGH8y2dERqXuQjSCfU94OdSu5b9+lxUH4NpC/b0/41sNDWAmZbOiFqYb1CH18U8C0eAjGBXfUx8hxgtrn4Ius+MxhurIluGX1b+GxzB+QlPwdA5sUaSAKsV/2XJwFl8Vcb+dICaAGlRB+QbQD4y94C6r8+ZQ7wsf+X4Fr2o2GEgPDnAA2kgFcqx3PrD4cSA95r21M+c+AKNnD99H97FiRuAUj4DBDHPcjt0x+rBay1gv20AufgT21/eBOd7gImcEaNU/GSmxmALSCZCk2XSQHbT//089hcQ5U3R3bD31ECkAZ+gE9lBiAN3IZfcQKsJUEjSWAMfqGyQ5jqCZ7GCNrUVEgnfZVE+HTjJYygDPxoqsyU9nCMYC94LQbYZIgGDBEb+MwoAzZCCCGV+gOoWD4Osa16dAAAAABJRU5ErkJggg==" alt="">
+    Video
+   </button>
+
+   <button class="sheetItem"
+           onclick="notice('Audio module reserved for the media phase.')">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAEKUlEQVR42u2cWU/bQBSFx1bfQKTQf9NFKoHS7bXQ5Ye0VCLBSZBK+CFdKK8tFKn78m/amKo8uy+VEkjq2PGM587Md5BfkLDH95x7zp0JoBQAAAAAQkRU58P2Hp1mlLwYHj+fi5wXAITLF0QE8WELIYL4sIWg5SZ7DyHemhBeVBNCZQH0Id86nlQQQQz57qMKDxHEh+0GpQXQfwD54kXwsrgIYsj3MBJK8BRTrrBR2Cr69//Q/a5Fwav5SIsDQL6jUVCAt6kK2YV857GZ4wTMAMwAOd2/Qfd74wL7k10ABwgcMd0fBv7HJw5gbAs25+4MsLtO989E+v5Z0vsbp/JmgddnZ4EL0KaXdNeAAAIkfaoA8P9J26jypLtQx7EZ4Nk98n+Yl9U6fXf9VOR7PT0YzgFEgGbSPYiALEDS5w3dOXNQAIHwv3kwb/4hmZMOAOmBRwBEhgSOgnGAc7HFJlDfCJDhAAABAAQAOAcIcwjAAQACAAgAMAMwAzgigAwFaORffi2JACKACGAbCNgFAAQAmAGYAZgBQNgOgAEEZQA4AA6ABTADALaBAAEAZgCl+L1wrTMAnwYCBACcigASIKgEwAGIAIAAADPASHBRFH1DAA4AnHMAoA1bbxbGvrdz9zcCQBRyxMA5gAAx9O7YEwIzgAC03i4gAESwIEQAWSb/8lkENdcPB5AmgsMGuwAJhbH9rr3bJwggJNLlnAMIiNjWEcS3Dhuqd8u8C4ibASDfsgPYNIC2QPK7/7rQxtoyGwKA/CHpttfWPmqMrcXLGaD9zj753ZsnSiQyzx3AJvliSeccANLrQhxq9wPB5wDOj9YOrZfPAoiA84Kr56t9bGlrddwovdbOWmplrZ211Ejtw44Al94xs+AAgF0AmGTHN1Ivn4cAcIAJuVPHZTtbZ7g6q/V0ZWc1ra32OMAs5Dh8fzERUPeL6nyuqbXbqAkOIIQsWw0xfhDk+W9361x/sqKHtGQltVZ3qw6gq4A2n5espDPft8rP6gJ/HGpAXMn7i2JEPw3R+W9sNwe1m3NewVx1G9Hzy4fFyP45wMiVNM2SkzRTK+8l9sqfAeysKmkODJE/gPEcBYjaBuoWgSlR+YRYiAEM42BZD2nJ8oBGLxAB0aTita//EvGJeefjYumf2V6m6/PQ/bQUObMNHCUzTwyQHsA5ACTXKQD+UVTAQ6BSqvt5KaI0Hub/BF75NBAHKK4W4Ff3Tx8CmQXCdQCllOp+wQW86P4cHqduAzGBgB1AKaV6uIDTmMZfYXJb135iBq6R//VSVNkBytwMuEU+5wBAle7q1lWiQHz3fyvu1rHJmwPZ5M/kALiBH8RrEYBSSm0hAuvYqeDKWux86woisEb+92qRrDXPEYI7xBsRAEJwh3ijAkAI8omvRQBjgriMIAoT/oPtNgAAAKP4CzIcMN3ACJgUAAAAAElFTkSuQmCC" alt="">
+    Audio
+   </button>
+
+   <button class="sheetItem"
+           onclick="notice('AI Images is disabled in the core offline build.')">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAEj0lEQVR42u2c104bQRiFdy1ujVzeKu2CBEhCiURCNVylwCOk3gRTQxSwA4lFIqXyVthWeADnwiG4rL1rb5n5Z74jrSzBltk55z//mXVxHAAAAADYCDfJi+XPjhtMeTCcX5tyxQsgf/YRwiMTxLQrRgAQL0cILsTbLYRITpL/DfHKhHA9nBDc8OSXIV+5CGaG5jEF+fIRhoehlJP/BfHausGNwdwgBfmGucGA/LiDnbwE+WKcYNaNxQGAWQjsAPmfVL84F7jp7wIpyDc4DwTgzfU/yRHki3eCBz15HvE9GvrtzQC5H1S/Kaje8nYBVgGWI0X124FefPbOAA34t9YBct8PYd9EF/DglQxgOUZY+iEAFEAGaOkT3z7Avsk5oINfMgAtAPdHACiADABwAAwABwA4ABaAAwAyALDVARpsvtv52Jzo8dMCQL8WQA/oh+rth83XsTkn9/U9IRAgAOuqHwEAMoB11X/nkacj5L4cGCYACI70ON0FQguIkSgJ7tAtAIuf8OROoyMsd3og4kkQbwZ1Efeuae3j86GOZxVgiBBMJh8BREioRPLFZYDq+Lzad076Qei7QSlZd5Ls+KoTwXNAc195ChDTAqoTC22vILYngQJGrXCMucr+lSgnF8QvoEQ4QNdEKyK+lfxOMUiFiE8EeQki7mu2ii5b2e+5X7ay72T/CSGJcUU9n9o/CKpNLirrA9nK3kD7NsfakO0A2pd/qzBivG72814ix2i4DNSo+u8uEtMJgSDhZaAePax2bymQQ2Q/7cJipAJQSGgS50UwilqADhMP+QodoJWAuNwA4iNZBjZi37InO8mRf7KTyD2J2nRYBSQhgiSFRgbQjCDI1zAD9COqdn8Z4m3JAJ654Hg7PPnH2/R3KRmgJ4EKjsUBQDQPpaZWTGgB6rYwE1ibWrHtI4t8MUSnsdemCyLnT6tPBEVBv+qx16YL/EaQbaj/r34TngMocrD6TP9JzJS3fPetTxfa9kt6jH6CiHNsRq8COidO1USGua6O5GsfAjPlou//6jOriY4/Uy56XHP4+2AZ6JFMMqWikykVAx2XKRUTH3/XNfuRH/A+rP5QaH12tX3CBq3KS8F0nCtWJwgwzmHuxdoM0EpinKQADTNAprSp5bkkP5iSlwGEbfXZtXbhHW06maPNjta2xhdDbEAr8V5CIAMYTHwvsqWIgF8KHZb8w7eR7IMDAAQAEAAgAwAcAKh3AOrf+hbApNACgMUOgAXgAIAMAHAAQAYAtABACwAIAJgK1+uPo+/e0AgMxZ/5x65PCCQH0AIAAgAWZwDHcZzRvdc0AtP6/+ITFwcAwQTgpRZgVvX3XgWwGCADXCK9SxaQjoul3m4e4LeC4d/qZeDF0lOygOjq789fYHLTO6+wAmnkL/sXbyrKkwFZ5AfMAOQBqzNAu6qe4QIiqj84T0MRmt5+iRXoSv7KYEUaqqIRglziIxFAUwQvEIFy8teH5jGSnp7eQgTKyC+sh+Iw0lCHEOQQH4sAEIIc4mMVwJUQniOEyIjfiIWrRNf16SKCCEz46gbPXAAAAMSJvwYAHs6U7FeCAAAAAElFTkSuQmCC" alt="">
+    AI Images
+   </button>
+
+   <button class="sheetItem"
+           onclick="openMoreTools()">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAHUUlEQVR42u1d+VcTSRDu4fG/qbtvgWVBrkA4fMolAkElLpADUXDlkCMsvJUrQGDVNbq4x183+0MiG0ky3T3TR3V3fbx5KJlMV9X3dXV1Z3pCCAKBQCAQCBfhqWxsKLHiY8jZ8Hb1qWe8AAankXBROFiTIwgPiXdbCB4S77YQPDHELyPx2oQw62kVwMAUkq8bh+vhRdCA5JuPKDx4SLzb2cDjJ/8lkg9eBElPigAGJpF8Y0SwwSaCRp6LIvv2gTkD9E++QP4Nw9HGMyq/DUi+vWDhjaqQ/kdIvvGZ4E39TECtAWxj/2gjGdBjXjonjsAhIP5oyS9JwKaDJnf7jhKPEWoAhIMZID6x5FvZIdxLAIT4ZT55agAXKz8fM0AJfRPPfXu7g6MpgPhlXrEGQFCHAFdn/g76jRkAZwHfovfhou8Te3+CE4D9P70PF33MAIgAAWgoUE8255ybBCj1OSAGDbqnQidbc4QQUv7thgLU+1w/BlWfEsXGs8pq4fzWPKlRgyhtrx5k2aHa51o43V7wtAsgiAxRAeEhXIUgVPgcXQBj8gWQ36YT0zu+KO3akcUQwjaZPnMLYCdQABk1GWB7gSEgWaHXEy+ErBZfowsg5WmfBrI4zBK4/PaCFvJZ24ZG/k1UZYAeRRmgYjyinhOrEaBTTaTz2BnWN9k4C8wAimcksbEsm0gq3gOR/Jt2MpE/lsV1AEJ8EhvLUAKVuT73dAcm+RUFFrdPoNYBekbTvr7gpeoEqvZr3CmaQgrNljDtBfmkC2e5dP1ZQLdGAZTHp8p6pOpvvOgREOyo7dfySSfOAwUwktb+qfhZLkV6RjPX/+YO+mhGqm1h7Kn0SbsAdgMFkAJzW8RZLs0Z6DTaxiSAjP51ANFQHWBIhEZBg/45QO2Dp4d1j6a12NjNIYKzXBrkbbFVQ0DXyIL2IeA8l2EkPgUnrRpkc2E3C2ch6ObBHMiRFKi7rrtHUuxCAZQCjKwBWIONdoWoATRXp8QFQPKzRhEI847dihoF9F23XSNsS9VQ4gymBijs0j8U6hpeMGIXVtcwXQSF3SzWADxgCSraa2gNUPg1S1wEBL9B1AA0dA7PG7kLp3OYfh+g7ng31qwBoMHmTZuafWvU7f/F3iKYdjsfzGuxQ0e7xhSBooNzsbdYV3RBr0GxX3oG8IHlW1H2XO49584OHQ/mjPJRTAaA9MQWQfbwkF8lGkN8NHId4HI/mJiO+3PEBtD8oMVBcQ1gV/ePGtzS+21LAxJmAZf7SwShNn4d93+WsBDkhzukFEd+tEOUKC/3lyLbAik+Rk0DEcoXgiBNA9EW2TZhBsAMUD2ugNE32iLdJqszQPu9Z6CuY3UN0H4vyf2ed7/RvqEDSrfzFYg1qcUz62uAqIHVRYw+AShckGofStIzhIpFOFrnj3jQMl37UBLOZwHQ7gYS0Ubb0Gwo7tuGZo3xUdwdQZbiqwjev11mPtcFgK8BWAjjFUI9goNeg2K//FmA4sK7bXCWvD9YVl6Etw3C6OW67QB/RxBUm2zxzYhp4IeDFSPJNcFuEAL4afApcREQ/IbzfACW3mTQt7Qx9X6IewN17aJpHXhCF8HhihE7gj4c0slvHXgCdHcwcPxx+Arts7UIZMkCNgCSn+CeEcTcywCO+8y9H/YzgvRa19r/mE0ER69AsV+yh6H39z8GpYCqx8S1xGdArLp8PPqF+dwfGUXjsp2VKB6/hv+kUJ5g8ZDgOvkMRaD+dFoKrB+CDNU2wrUv/BDQl9A6BHw8fv1/r4nPfPN/5t4Wn1FiX6jMJtE25iHgZLX+08KbNQqgWCO4LfGZmn9nRYuAgBcjki7Dpij4BFEAQUGOKoIwgRdNOiQRUAQw7asnf5UhYAnmc3WjJZ7g8km9ANbgPCyaKVB9ievzW/oSsMkv28piZ/F4FeKHQeqO4gmd/Oa+RNX7moGK4KatLHYWT1ZhfV9AU6+aIeATI/kirqOCeBW+isLn/JoXIIApXz75awwBmRZ+TfHET2v1ObwA1gMEEJtSkwHy9QPS3Dst5brCiA9pnyyfuQVwCkAA9QIiMhAixSDKLtk+RxbADwoFUB6PKusPZW3RINMWlT7Xwp/BAphUvg7wOb9OmnqnlLZXn/gpK33+VgAb17yDeFh0U0xPIGrCd8tnfESM4zBiZ5DaBOCW/1UZ4OrsjYf9wl7c5LdR5zgINAW4nQEQjtcAmAJ8zABX55ueQdvwhG49sNnvq/NNjzEDOJwEsAYo4UthE2cDFqEen43YHbAGCFDNloc1gPnHl8KWxzkLsLtDfN81gWMC6zrAXxdbWAsYDBp/zOR+1znuYzhNI3+byi9X776DIjAGfzOQz1YD4NqA1eAe3+90jKEMoPf+yx1mXhtkXhwBm/xQGQCzgR3ECxEAIYTcvosi0I1/fg+flYWk89t3R1EE2sjPReJQ6HiOQjCHeCkCQCGYQ7xUAXzFrXYUgij8+y4nhSulU7pb7SMoCGbCd3G6jUAgEAiZ+A/3O8E5V1SPYgAAAABJRU5ErkJggg==" alt="">
+    Tools
+   </button>
+
+   <button class="sheetItem"
+           onclick="openShapeTools()">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAD5UlEQVR42u2c2U4UQRSGuztz57jg8ghgYnAnMvA6akxMEHeM2zBKjLijJu6vo2Lc0Qj6CBqRGbweb1zHabpm6OpTVef7bwhJM0Pq++uc/1R3OooQQgghpFFxkV82XPveZMnN9Li6IvbeAMPjAM/NEON2DGHlQ4cAb01PcjZCDHjdRogBr9sIyzbAUBX44iaodW+CBPj+azkcYsDrrgYdG6BSXQS+43paK8dWDFA5C3xvTHDOzAQJS6VbCbs/TJnySoCv2wSZfaJyBvje54Hz6XmglPXH0FecAQbZ/UFoKY5MAcqV2hsGT7P7Q9P0xP9ZgApABmD3q8kCbbiW2id/+GtRidmPFoAwwB/tOtVg/wesVr6lov+B6YkyFLLDmlwGaLL/xVUkAzIAGQBhAMQ5AGcALoUASQNIjScnF9Vxfnah7F4FkDoG5vhZZi3IAGQARzIABUBkLagAjIEIAyAywO/2I9SLQ7gH8fziymjgRMOrtaAC5Aj/75+0AIXw037HAIrg+2YCDGABvk8m4CCoW/iT2XAHxhrOrwX3ArrQi8lVmdfsHKt7sRa0AMfgkwGATwZwEv4lA/jH696tBRXANfjSFYAC8K9eGsDfkTP8IteCCuAYfDKAK/AvG8A/Vvd+LagArsFnDAQ+BgC+4BQg9GRGU/iJkFdXVmdes/3oQnBrQQVwDD4tAPgYAPicA9iHf9UA/pGF4NdCZQVwGr74FBB4AXhtAH+bMHzuBSiGTwawBf+aAfzDjsAnAyiGzxgIfAwAfMEpIJB7AW+ur8m8Zuuhb05C4V6AYvi0AOBjAOBzDtA5/BsG8A96Ap9zAMXwxacAz0z/1gD+Fs/gcy9AMXwygCn8KQP4o57CJwMohs8YCHzhEOjuG0Jmpnoyr9k8Ou89lCIZeJMBZm4awD8wH8a2JAMohk8G6Bwu8BWEwDTIwFc0BbTCBr6NKcDxt4X3j8xH7271RP0j4cLnbeEGJkCKDYAwALKVAXhJlAshgAqAxKYA3hbuQAHgsXCkLQO8v70WGmQAxBiIMACSnAII4/IRgAyA5KYAy9q0/yur7nIG+HBnXcyyhKtWviXpORQ52AI4lmUMRJoNMHt3PTkgQLXjmj4F0AV0t4DZe1SBoHZ/Ck8ygHJl7vKN+77QDDzX3BLVPPskEPy6x8C5+2QBr3d/Br8kjw9BfsLvKARigvDgm2UA8oDuKaBVfXs/YwPH9fHBBmOuic0PR27D76oCUA3CAJ+LAaIoivr2YAJx+A+7r8qJ5JcjWfi5VACqgZ/grRjgl3oxgjV9yrniWi3fvbsxQm7gH9lptYX2bwwhDxwhhBD6qR+pv5BpyQiFvQAAAABJRU5ErkJggg==" alt="">
+    Borders
+   </button>
+
+   <button class="sheetItem"
+           onclick="addTable()">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAADcUlEQVR42u2c205TQRSGZ3b6AFYJEXwfRcHI4cIYE9uij6V0NwEPCeAheMD3wRBjgDfY3hhiWtru3T2z5rC+L+kVYU3Y/z//WjMN2xgAAADQiJVcbPfVVcUjr8fe61s2eQMgePyGsAiv2whOiw0QXoyhIyM4KTJ4ifDBjPCmnREKxE+bts+/QHzdJrCLLXiJ8NG2hK71aoDBLuJHb4K9+iZoZIA+4idDWdMEBY9KNwW7P0/q6lUrJvoDxE+2FQxnt4IC8TNPgjn6MQMwA7D7NadAZ9YvVsivNwF6fXZ/TkzTc0YCoL8G7M1uufCmfjns8tTn92xvtUflbTu/BVR+PojfYJN40iDYMbAsET/G51VIBADiL24CzwEwaYAXvQumv4wZ17fD8B85nvXoBD2b9txNu6NR11ttiXXG60rBdwHKwQDKmWgBleAXAD7Xkvo7fK/juz4JQAsADADMAEHuAapEa0uuU5EAgAFA7hhIB9DUAZgBmAGAGQCYAegBSnsAM4DyGYBTgPJTADMAQyAwBNIDmAFCsP/2TpK1Q6xDC4D8TgEQvsPwfwHKHRD0JvD5sz/Oah28W/JWW2Kd8bpSejADcA8ADIHcA6i9ByABSAACQHEAkAAkABHADAAcAwEDADOA4f0Asa3D+wEAAwAGAO4BuAcgAUDgFEAAaAoAEoAEIAKYAYBjINAC6AEae0DQGeD94XKStUXXyfn9AMAxEBgCQe09wNPt385qfThe9lZbYp3xutwDAC0AArQAbgE03QLwXYB6B3ATqNwBzAAMgcAQSAdgBkB/nacAWgAzADAD0APU9gASgBYAGACYAa5bDu8HiGod3g8AGAAwAOR4D3D45W6StUXX4R4ARA1wdLJiq3/Gc/WBdgHg8nN0smLFE2Dn8TlKRvrcChHbVcbsbGCCRuJvnHvRIegMgAnie0522g+213/RvjPj+Ouq5RQA9RLAGGO2HpECufDx26rlHgCaGWCaayCP3U8CgKm1w7ceMgsku/u/z07xwkURSFP8Ri0AE+QnvjE3/nfwdOgDSmeA/9lcYx6InU8/6qf1QrG+uXaGCaIV/571mgAYIQ/hndwDLLooxCF+6wS4ToIHJEEw8U/bbUKnO/gJRhDj86mb9PUS4RghfuG9GgAjxC+8iAEmDHEfQ9QW/CcDNgAAeOUv67UPWM3aofQAAAAASUVORK5CYII=" alt="">
+    Table
+   </button>
+
+   <button class="sheetItem"
+           onclick="startDraw()">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAEQUlEQVR42u2dZ08UURiFZzZkd3+NDbB30agUFaxUCxi7v0XFD2BX7IkF0MReATX2XzPjF/ygCQns7pQ75d77PifZEAK7sPOc95x3hpBxHIQQQghJlJvlDyuO/57mkIfTn5Z5rvEGALj+hnABL9sIib5YcQzwmRmhNRkjuMmA/wX43IwwX4lhAfhmS/X4F4Av2wSx4qM4CnhtK6EtWiW40eH/BL72JlgQmmsB+BZWQgROdZFeGfzWKXRUFB//AL9pVbBtYSDfAvAtroIQ3ArAl22C4B0A/HJ3gOKj7+C3ZR/YvshVPg1EghKg+JDpty4FdsxNARKABKg0/d+YfmtToN4lAVDAaSDzL0YkADvArP5/8JX5t30PaG9wq1cA+KkAJNoA0zwSevjt9Zr+brUMALdEHn57g+M4/z/qy58KSEN+R0PNz9kBBMHX3QTsAEl2fgDkf19nB7Cz8zsaQyZEIzuAdbG/szHV72cHsAi+biaocCWQS4GhIe5aHPu5pftfSADgYwDgYwDgswOYAn/3kvjw73025UIQkgIfAwiHTwWEgb9naXz4dz9p//5IAMHwMYBw+BhAOHx2gErw9y6LD//OlHHvlwQQDB8DCIdfpQIEwt+nAP/2lNHvvcL/Bk4Lg79cAf6k8e9fdAVIhy+6AvxOBfi3Jq05DiITAPiCdwC/c4UC/AnrjkdB1uQDX+wO4HcpwL85Ye1QiKgAv2ulAvyPVqei9RUAfMEV4HcrwB+xH77VCQD8mAngWhABXveq2M8tj3zI9obKJIBe8KXJqh3A61GAf0MefKsSAPiCrwN4PasV4L93JMv4CvB6FeBflw3f+AoAvuAK8HrXKMB/B3mTEwD4gncAr08B/jXgG50AwBe8A3h9axXgv4W0yRXg7VeAfxX4RlcA8AUbAPi5VIAeHeAdWBcf/pU3kDU5AYAv2ADAF2wA4AveAbyD6+PDv/wakiYnAPAFGwD4givAO7QhPvxLr6BncgIAX7ABgC/YAMAXvgOUL750vP6mWM9DllRAVJjAt3AJBKquBsjpDpY194b+Ju5Omt2dQzV0gOM43kAT5FI47nW5XQcY2Bi+Li68IKszOwvQREDP7TQwg+k/XH36y8OAzzkB8vlzcHn4OTQkVIB3eBPQpVdAeQjwYiugPPSMo67zhSD/yGaXw2KvZvOtvANw81C5CYA4CyACpCeAf3QLe4CN/V+Ba/XrAISA7B3AP0YKWDX9VXgGXAkkBmxX4JSXzj/FBaZP//GtLqeBKJ4BarkHmT39oSpgpgqeUAXGwW8O5BtpukuDmMAY+CeaQ7FlB+AsIJpKg+OkgPbT3+KmZgDHcZzSOUygLfyTLW6qCYAR7ACfyA4Q94ciPeArJ8BMEoyRBLnBb1VimOgEl85ihMzAn2pNhF0qEY4R9AefqgEwgv7gMzHAHEOcGcUQYYGfbmPBRgghlKb+ArmlI1oZxNiOAAAAAElFTkSuQmCC" alt="">
+    Draw
+   </button>
+
+   <button class="sheetItem"
+           onclick="startDraw()">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAEhklEQVR42u2dV1MTURiGdzOAUSm/ywbBrih4YQN1wEKzohLsZUYB24C9YRn77zKQxHKBFwwqsJvsnt1Nzjnf887shZkhkH3e732/E5zgOAghhBCSKLeS36zp29AstzyYvq8aco03AMD1N4SbDPgzgE/MCGddbQ0AePOMEMuTNH0FfNWMsDqaEVLAN1tR738K+LJNoBQfTV9OA17XSlhzzk3UAI3A1165ECZIAd8+heGU4nbJVuCoaPzM9BtXBWvLV4EbDP4p4BtrgvNupAoAvuH7QBl+7ADsACXc84npt6YK1nlXAQkgXCmmX8gu4MOzxvcrZuEvNgEaP56Evo0p4MHVMwGgzw6AhMh7ByAC5L4P0PDhBPgt13RL1qUCEAZIUrnmYUMNMMsV9ZqHn2se1vNnJAESnPyW4ZL/NqACGGHVyw/23ON6RgAVEFfst2TLJEOWChBfD5ms/hXAMIe/woDNZbI6BQAJEPlNFYWpns5klb6OY6BmV1SI05msjjsAZINc063xTPDc8+h0CkCB1PD+eHw10jpCBZh4NbyL2QQcAw1MgjhNsH5EgwRAokxQ470EonDQLsRopsEqGwD+4eBviBH+28GK//xUgGD4GEA4fM8KoAHKayZG+PVVhO+zA2CBkvA3XowP/puBqr8eKiBh+H6QdYCPASoEfzFsXeB7G4C3eJdcSvCnBhY8R/3UgOfj/I8g3Sd/kyL8EI/rtQRyDvgP/iUF+P1GvUYSQDB8n2Mg8Gc2K8B/3W/kayUBBMPHAMLhe1aA1AbIK8BfaTh8nx1AngXyWy6Hh/+qz4rXLr4CJMMXbwDp8EUfA/NbFeC/7LPuPohMAOCXSgDLIyC/9YoC/F5r70dK1uQDX+wOkN+mAP9Fr/VDISIBgC/YAMAPXQH2dEB++9Xw8J8fE3UisvZ3AQUF+CuEwbe2AoAv2ADAF3wMLLQpwH8mF75VCQD8uBLAwAgotF1TgH/UQRYkAPAF7wCFHQrwnwLfigQAvmADAD/RCtC7Awo7r4eH/+QIpIMaQGf8RQX4y4FvRwUAX7ABgC/4GFhsV4D/GPjqBtDIAcX2GwrwD0PVhgoAvmADAF/wDlDsUID/CPhWJADwBS+BxY6bCvB7IGhDBRR3KcB/CHwrKgD4miVAJQPghwL8NPDtSYCwMIFfCQNU+HNr05PBoKYne/jcYlv/cmh6srsM/G6o2f6XQ/1MUM4cyPAKWFAHEwthpye6GVZpHxc/b4LFZkCWvg9QygSoGu8E8nHhouR6PbjswSFcYKl+7r7lal8BqKoVQAmwBCLZO4DjOE7d/YMEgWX6tee2SwKgYAbwcguya/p9l0C2QRJgzjV7SQErpr8ER3YATgHlVXfvAGVg7PSPupEN4DiOU3cXExgHf99oWb6pOJ8MmQWfHQA5oae6lirQXr9DpLVSrNfe6cIEusLfP+YmmgAYwQ7wsewAqt8U6QE/cgL8TYJxkqBq8DujDWGsE4wRzAGfiAH+GaETIyQGfjxWZol2OEbQF3xFDLDEEGMYIjDwrnEWbIQQQknqD84CND4BMv/IAAAAAElFTkSuQmCC" alt="">
+    Pen Tool
+   </button>
+
+   <button class="sheetItem"
+           onclick="notice('Logo library ready for custom assets.')">
+    <img class="buttonIcon" src="data:image/png;base64,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" alt="">
+    Logos
+   </button>
+
+   <button class="sheetItem"
+           onclick="addText()">
+    <img class="buttonIcon" src="data:image/png;base64,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" alt="">
+    Special Text
+   </button>
+
+   <button class="sheetItem"
+           onclick="openShapeTools()">
+    <img class="buttonIcon" src="data:image/png;base64,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" alt="">
+    Shapes
+   </button>
+
+   <button class="sheetItem"
+           onclick="addText('اردو ڈیزائن')">
+    <img class="buttonIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAACzUlEQVR42u3dO24TURiG4XNGiYSAAoWCvXCR6NgA9x6JFXCREgqDBE5FxRK4L4L7TiiJFAlLVAwlAuzxmBnHM+d/3pKAI8/3nu//Z2KUlAAAQETyUX6z/Zuz2iVvx53nJ/LoBRD48IXIgo8tQhZ8bBF6eZH9G4LfmAgvuonQWYCp8DfO3Q4SVMIfP11yyIKP3QYrCzC9LvzBS/CyvQSV8AscCSvkVLlcsWldFdNr353+sY2CVydzLw0g/JGOgha5LTXkifBHz72GJrAD2AEaTv9Vp7+YFng9vwU0QHAqpz8Gi/LUAHaAObZccfqL3QXe/LkLaAA7ACKzNe8P9X/gHeDxZfO/dO6//b0HGAFGgAFAAPm7CwABQACE3wFqO4AGAAFAAHgOAA0AAoAAsAMghgA1A4I3QMGcOlOlW0+PL/z67LBOz27PjIBSyTml7WOL/zPU9o94I9AS6C4ABIAlMMRtYN3T39EAKPg5gALQALADqAANAAKAAIi2AxQ8BNu8t2Cfi9cARgCMgCgNaAJoABAABEDDbWDwK2IHAAFAAHgOUN549xxAA4AAaL4NDDwD6uSngTACQAAE3gEKfrc+FawBsKQBFIAGgB2gTA6+/kyTS4dS1wAgAAgAHwnTAC6BBvirAFSAEQAjAAQAAWAHgAYAAUAAhNgB/O5gDQACgADwHAARBWCAEQAjAEGY+1sUH1w8oEGhTN7tZCMABMDCuwB7QPgGmLzfyS5NgfN/Tq5GgAZobwvKOv2LdwC7gAZIKaXJBy1QxOlvyHFr2T9WAsGfAzzUAqNmWX6tw9278E0ZjC38j6dz5wZY5cUwrvA9B0Ba+VTvnTcKBn/6P7Vv62qdL45hh/9fDaANygi+FwFSSmmXBBvnUYdW7qXOd8+RYGPhf+42knud50QYT/BrEYAI4wl+rQIQYfjBH4kA/whxlhCtA//idhsAsFZ+Addq0S49DKshAAAAAElFTkSuQmCC" alt="">
+    Urdu
+   </button>
+
+  </div>
+ </div>
+</div>
+
+
+<!-- =========================================================
+     LAYERS
+     ========================================================= -->
+
+<div class="overlay" id="layersOverlay">
+
+ <div class="sheet">
+
+  <div class="sheetHead">
+
+   <b>Layers</b>
+
+   <button class="close"
+           onclick="closeOverlay('layersOverlay')">
+    ×
+   </button>
+
+  </div>
+
+  <div id="layersList"></div>
+
+ </div>
+
+</div>
+
+
+<!-- =========================================================
+     SHAPES
+     ========================================================= -->
+
+<div class="overlay" id="shapeOverlay">
+
+ <div class="sheet">
+
+  <div class="sheetHead">
+
+   <b>Shapes</b>
+
+   <button class="close"
+           onclick="closeOverlay('shapeOverlay')">
+    ×
+   </button>
+
+  </div>
+
+  <div class="panelGrid">
+
+   <button class="panelBtn"
+           onclick="addShape('rect')">
+    Rectangle
+   </button>
+
+   <button class="panelBtn"
+           onclick="addShape('circle')">
+    Circle
+   </button>
+
+   <button class="panelBtn"
+           onclick="addShape('round')">
+    Round
+   </button>
+
+   <button class="panelBtn"
+           onclick="addShape('star')">
+    Star
+   </button>
+
+   <button class="panelBtn"
+           onclick="addShape('heart')">
+    Heart
+   </button>
+
+   <button class="panelBtn"
+           onclick="addShape('triangle')">
+    Triangle
+   </button>
+
+   <button class="panelBtn"
+           onclick="addShape('diamond')">
+    Diamond
+   </button>
+
+   <button class="panelBtn"
+           onclick="addShape('line')">
+    Line
+   </button>
+
+   <button class="panelBtn"
+           onclick="addShape('arrow')">
+    Arrow
+   </button>
+
+   <button class="panelBtn"
+           onclick="addCustomShape()">
+    Custom PNG/SVG
+   </button>
+
+  </div>
+
+ </div>
+</div>
+
+
+<!-- =========================================================
+     MORE / OBJECT TOOLS
+     LEFT SCROLLABLE DRAWER
+     ========================================================= -->
+
+<div class="overlay" id="moreOverlay">
+
+ <div class="sheet">
+
+  <div class="sheetHead">
+
+   <b style="font-size:19px">
+    Object Tools
+   </b>
+
+   <button class="close"
+           onclick="closeOverlay('moreOverlay')">
+    ×
+   </button>
+
+  </div>
+
+  <div class="panelGrid">
+
+   <button class="panelBtn"
+           onclick="duplicateSelected()">
+    <span>⧉</span>
+    Duplicate
+   </button>
+
+   <button class="panelBtn"
+           onclick="deleteSelected()">
+    <span>⌫</span>
+    Delete
+   </button>
+
+   <button class="panelBtn"
+           onclick="moveUp()">
+    <span>↑</span>
+    Move Up
+   </button>
+
+   <button class="panelBtn"
+           onclick="moveDown()">
+    <span>↓</span>
+    Move Down
+   </button>
+
+   <button class="panelBtn"
+           onclick="bringFront()">
+    <span>⇧</span>
+    Bring Front
+   </button>
+
+   <button class="panelBtn"
+           onclick="sendBack()">
+    <span>⇩</span>
+    Send Back
+   </button>
+
+   <button class="panelBtn"
+           onclick="toggleLock()">
+    <span>🔒</span>
+    Lock / Unlock
+   </button>
+
+   <button class="panelBtn"
+           onclick="toggleGrid()">
+    <span>▦</span>
+    Grid
+   </button>
+
+   <button class="panelBtn"
+           onclick="alignCenter()">
+    <span>⊙</span>
+    Align Center
+   </button>
+
+   <button class="panelBtn"
+           onclick="openTextTools()">
+    <span>T</span>
+    Text Tools
+   </button>
+
+   <button class="panelBtn"
+           onclick="groupSelected()">
+    <span>▦</span>
+    Group
+   </button>
+
+   <button class="panelBtn"
+           onclick="ungroupSelected()">
+    <span>⊞</span>
+    Ungroup
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Canvas settings will be available here.')">
+    <span>▣</span>
+    Canvas Settings
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Position and size controls will be available here.')">
+    <span>↔</span>
+    Position & Size
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Opacity controls will be available here.')">
+    <span>◐</span>
+    Opacity
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Rotate controls will be available here.')">
+    <span>⟳</span>
+    Rotate
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Flip controls will be available here.')">
+    <span>⇄</span>
+    Flip
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Effects will be available here.')">
+    <span>✦</span>
+    Effects
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Border and corner controls will be available here.')">
+    <span>□</span>
+    Border / Corners
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Alignment tools will be available here.')">
+    <span>☷</span>
+    Alignment
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Transparency tools will be available here.')">
+    <span>◌</span>
+    Transparency
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('Shadow controls will be available here.')">
+    <span>✧</span>
+    Shadow
+   </button>
+
+   <button class="panelBtn"
+           onclick="notice('PowerClip controls are available when an image and shape are selected.')">
+    <span>◈</span>
+    PowerClip
+   </button>
+
+  </div>
+
+ </div>
+</div>
+
+
+<!-- =========================================================
+     TEXT TOOLS
+     ========================================================= -->
+
+<div class="overlay" id="textOverlay">
+
+ <div class="sheet">
+
+  <div class="sheetHead">
+
+   <b>Text Tools</b>
+
+   <button class="close"
+           onclick="closeOverlay('textOverlay')">
+    ×
+   </button>
+
+  </div>
+
+  <div class="panelGrid">
+
+   <button class="panelBtn"
+           onclick="editText()">
+    Edit
+   </button>
+
+   <button class="panelBtn"
+           onclick="fontSize()">
+    Size
+   </button>
+
+   <button class="panelBtn"
+           onclick="fontColor()">
+    Color
+   </button>
+
+   <button class="panelBtn"
+           onclick="fontSelect()">
+    Font
+   </button>
+
+  </div>
+
+  <hr>
+
+  <div class="panelGrid">
+
+   <button class="panelBtn"
+           onclick="textStroke()">
+    Stroke
+   </button>
+
+   <button class="panelBtn"
+           onclick="textShadow()">
+    Shadow
+   </button>
+
+   <button class="panelBtn"
+           onclick="textGradient()">
+    Gradient
+   </button>
+
+   <button class="panelBtn"
+           onclick="textOpacity()">
+    Opacity
+   </button>
+
+   <button class="panelBtn"
+           onclick="breakApart()">
+    Break Apart
+   </button>
+
+   <button class="panelBtn"
+           onclick="convertShape()">
+    Convert to Shape
+   </button>
+
+   <button class="panelBtn"
+           onclick="convert3D()">
+    Convert to 3D
+   </button>
+
+   <button class="panelBtn"
+           onclick="textPattern()">
+    Pattern
+   </button>
+
+   <button class="panelBtn"
+           onclick="textBackground()">
+    Text Background
+   </button>
+
+   <button class="panelBtn"
+           onclick="splitWords()">
+    Split Words
+   </button>
+
+   <button class="panelBtn"
+           onclick="bullets()">
+    Bullets List
+   </button>
+
+   <button class="panelBtn"
+           onclick="blendText()">
+    Blend
+   </button>
+
+   <button class="panelBtn"
+           onclick="duplicateSelected()">
+    Duplicate
+   </button>
+
+   <button class="panelBtn"
+           onclick="deleteSelected()">
+    Delete
+   </button>
+
+  </div>
+
+ </div>
+</div>
+
+
+<!-- =========================================================
+     MODAL
+     ========================================================= -->
+
+<div class="modal" id="modal">
+
+ <div class="modalBox">
+
+  <h3 id="modalTitle"></h3>
+
+  <div id="modalBody"></div>
+
+  <button class="primary"
+          onclick="modalOK()">
+   OK
+  </button>
+
+  <button
+   style="width:100%;padding:11px;margin-top:7px;border-radius:9px"
+   onclick="closeModal()">
+   Cancel
+  </button>
+
+ </div>
+
+</div>
+
+
+<input id="imageInput"
+       type="file"
+       accept="image/png,image/jpeg,image/jpg,image/svg+xml"
+       hidden>
+
+<input id="shapeInput"
+       type="file"
+       accept="image/png,image/svg+xml"
+       hidden>
+
+<input id="projectInput"
+       type="file"
+       accept=".uds,.json"
+       hidden>
+
+<input id="cdrInput"
+       type="file"
+       accept=".cdr"
+       hidden>
+
+
+<script>
+
+/* =========================================================
+   URDU DESIGN STUDIO — CORE EDITOR ENGINE
+   ========================================================= */
+
+const $=id=>document.getElementById(id);
+
+let state={
+ width:1280,
+ height:520,
+ bg:"#ffffff",
+ objects:[],
+ selected:[],
+ canvasSelected:false,
+ history:[],
+ future:[],
+ grid:false,
+ projectName:"Untitled Design"
+};
+
+let idCounter=1;
+
+const uid=()=>{
+ return "obj_"+Date.now()+"_"+(idCounter++);
+};
+
+
+/* =========================================================
+   SCREEN NAVIGATION
+   ========================================================= */
+
+function screen(id){
+ document.querySelectorAll(".screen")
+  .forEach(x=>x.classList.remove("active"));
+
+ $(id).classList.add("active");
+}
+
+function showHome(){
+ screen("home");
+}
+
+function showWelcome(){
+ screen("welcome");
+}
+
+function showSetup(){
+ screen("setup");
+}
+
+function preset(w,h){
+ $("canvasW").value=w;
+ $("canvasH").value=h;
+}
+
+
+/* =========================================================
+   CREATE DESIGN
+   ========================================================= */
+
+function createDesign(){
+
+ state.width=parseInt($("canvasW").value)||1280;
+ state.height=parseInt($("canvasH").value)||520;
+
+ state.objects=[];
+ state.selected=[];
+ state.canvasSelected=false;
+ state.history=[];
+ state.future=[];
+
+ $("canvasInfo").textContent=
+  state.width+" × "+state.height;
+
+ screen("editor");
+
+ render();
+
+ saveHistory();
+}
+
+
+/* =========================================================
+   HOME SLIDER
+   ========================================================= */
+
+const banners=[
+ "home_banner_01.jpg",
+ "home_banner_02.jpg",
+ "home_banner_03.jpg",
+ "home_banner_04.jpg",
+ "home_banner_05.jpg",
+ "home_banner_06.jpg",
+ "home_banner_07.jpg"
+];
+
+let slideIndex=0;
+
+function initSlider(){
+
+ const s=$("slides");
+ const d=$("dots");
+
+ s.innerHTML="";
+ d.innerHTML="";
+
+ banners.forEach((src,i)=>{
+
+  const div=document.createElement("div");
+
+  div.className="slide";
+
+  const img=document.createElement("img");
+
+  img.src=src;
+
+  img.onerror=()=>{
+
+   img.style.display="none";
+
+   const f=document.createElement("div");
+
+   f.className="slideFallback";
+   f.textContent="Urdu Design Studio";
+
+   div.appendChild(f);
+  };
+
+  div.appendChild(img);
+  s.appendChild(div);
+
+  const dot=document.createElement("i");
+
+  dot.className=
+   "dot "+(i===0?"on":"");
+
+  dot.onclick=()=>{
+   goSlide(i);
+  };
+
+  d.appendChild(dot);
+
+ });
+}
+
+function goSlide(i){
+
+ slideIndex=i;
+
+ $("slides").style.transform=
+  "translateX(-"+i*100+"%)";
+
+ document.querySelectorAll(".dot")
+  .forEach((d,n)=>{
+   d.classList.toggle("on",n===i);
+  });
+}
+
+setInterval(()=>{
+ goSlide((slideIndex+1)%7);
+},4500);
+
+initSlider();
+
+
+/* =========================================================
+   OBJECT CREATION
+   ========================================================= */
+
+function baseObj(type){
+
+ return{
+  id:uid(),
+  type,
+  x:80,
+  y:70,
+  w:260,
+  h:120,
+  rotation:0,
+  opacity:1,
+  locked:false,
+  hidden:false,
+  name:type+" "+(state.objects.length+1),
+  z:state.objects.length
+ };
+}
+
+
+function addText(value="اردو ڈیزائن"){
+
+ closeAll();
+
+ state.canvasSelected=false;
+
+ const o=baseObj("text");
+
+ o.text=value;
+ o.w=350;
+ o.h=90;
+ o.fontSize=45;
+ o.fontFamily="Arial";
+ o.color="#222222";
+ o.bold=true;
+
+ state.objects.push(o);
+
+ selectOne(o.id);
+
+ saveHistory();
+
+ render();
+}
+
+
+function addImage(){
+
+ state.canvasSelected=false;
+
+ $("imageInput").click();
+}
+
+
+$("imageInput").onchange=e=>{
+
+ const f=e.target.files[0];
+
+ if(!f)return;
+
+ const r=new FileReader();
+
+ r.onload=()=>{
+
+  const o=baseObj("image");
+
+  o.src=r.result;
+  o.w=300;
+  o.h=220;
+
+  state.objects.push(o);
+
+  selectOne(o.id);
+
+  saveHistory();
+
+  render();
+ };
+
+ r.readAsDataURL(f);
+
+ e.target.value="";
+};
+
+
+function addCustomShape(){
+
+ $("shapeInput").click();
+}
+
+
+$("shapeInput").onchange=e=>{
+
+ const f=e.target.files[0];
+
+ if(!f)return;
+
+ const r=new FileReader();
+
+ r.onload=()=>{
+
+  const o=baseObj("customShape");
+
+  o.src=r.result;
+  o.w=240;
+  o.h=180;
+
+  state.objects.push(o);
+
+  selectOne(o.id);
+
+  saveHistory();
+
+  render();
+ };
+
+ r.readAsDataURL(f);
+
+ e.target.value="";
+};
+
+
+function addShape(kind){
+
+ closeAll();
+
+ state.canvasSelected=false;
+
+ const o=baseObj("shape");
+
+ o.shape=kind;
+ o.w=210;
+ o.h=150;
+ o.color="#6546e5";
+
+ state.objects.push(o);
+
+ selectOne(o.id);
+
+ saveHistory();
+
+ render();
+}
+
+
+function addTable(){
+
+ closeAll();
+
+ state.canvasSelected=false;
+
+ const o=baseObj("table");
+
+ o.w=350;
+ o.h=180;
+ o.rows=3;
+ o.cols=4;
+
+ state.objects.push(o);
+
+ selectOne(o.id);
+
+ saveHistory();
+
+ render();
+}
+
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+
+function render(){
+
+ const stage=$("stage");
+
+ stage.innerHTML="";
+
+ stage.style.width=state.width+"px";
+ stage.style.height=state.height+"px";
+ stage.style.background=state.bg;
+
+ stage.classList.toggle(
+  "gridBg",
+  state.grid
+ );
+
+ stage.classList.toggle(
+  "canvasSelected",
+  state.canvasSelected
+ );
+
+
+ const scale=Math.min(
+  ($("workspace").clientWidth-40)/state.width,
+  ($("workspace").clientHeight-40)/state.height,
+  1
+ );
+
+ stage.style.transform=
+  "scale("+scale+")";
+
+ $("stageOuter").style.width=
+  state.width*scale+"px";
+
+ $("stageOuter").style.height=
+  state.height*scale+"px";
+
+
+ state.objects.sort(
+  (a,b)=>a.z-b.z
+ );
+
+
+ state.objects.forEach(o=>{
+
+  if(o.hidden)return;
+
+  const el=document.createElement("div");
+
+  el.className=
+   "obj "+
+   (o.type==="text"?"textObj":"");
+
+
+  if(state.selected.includes(o.id)){
+   el.classList.add("selected");
+  }
+
+  if(o.locked){
+   el.classList.add("locked");
+  }
+
+  el.dataset.id=o.id;
+
+  el.style.left=o.x+"px";
+  el.style.top=o.y+"px";
+  el.style.width=o.w+"px";
+  el.style.height=o.h+"px";
+  el.style.opacity=o.opacity;
+
+  el.style.transform=
+   "rotate("+o.rotation+"deg)";
+
+
+  if(o.type==="text"){
+
+   el.textContent=o.text;
+
+   el.style.fontSize=
+    o.fontSize+"px";
+
+   el.style.fontFamily=
+    o.fontFamily;
+
+   el.style.color=o.color;
+
+   el.style.fontWeight=
+    o.bold?"bold":"normal";
+
+   el.style.textAlign=
+    o.align||"center";
+
+
+   if(o.stroke)
+    el.style.webkitTextStroke=
+     ""+o.stroke+"px "+
+     (o.strokeColor||"#000");
+
+
+   if(o.shadow)
+    el.style.textShadow=
+     "4px 4px 5px #0008";
+
+
+   if(o.gradient){
+
+    el.style.background=
+     "linear-gradient(90deg,#6546e5,#08aaa1)";
+
+    el.style.webkitBackgroundClip=
+     "text";
+
+    el.style.webkitTextFillColor=
+     "transparent";
+   }
+
+
+   if(o.background)
+    el.style.backgroundColor=
+     o.background;
+
+
+   if(o.effect3d)
+    el.style.textShadow=
+     "5px 5px 0 #555,9px 9px 8px #0006";
+  }
+
+
+  if(o.type==="image"||
+     o.type==="customShape"){
+
+   const img=
+    document.createElement("img");
+
+   img.src=o.src;
+
+   el.appendChild(img);
+
+
+   if(o.clipShape){
+
+    const sh=
+     getObj(o.clipShape);
+
+    if(sh){
+     el.style.clipPath=
+      shapeClip(sh);
+    }
+   }
+  }
+
+
+  if(o.type==="shape"){
+
+   el.classList.add("shapeObj");
+
+   el.innerHTML=
+    shapeHTML(o);
+  }
+
+
+  if(o.type==="table"){
+
+   el.innerHTML=
+    tableHTML(o);
+  }
+
+
+  el.addEventListener(
+   "pointerdown",
+   e=>{
+
+    e.stopPropagation();
+
+    if(o.locked)return;
+
+    state.canvasSelected=false;
+
+    selectObject(o.id,e);
+
+    startDrag(e,o);
+   }
+  );
+
+
+  stage.appendChild(el);
+
+
+  if(state.selected.includes(o.id)){
+   addHandles(el,o);
+  }
+
+ });
+
+
+ updatePowerClip();
+
+ updateLayers();
+}
+
+
+/* =========================================================
+   SHAPES
+   ========================================================= */
+
+function shapeHTML(o){
+
+ if(o.shape==="circle")
+
+  return '<svg width="100%" height="100%">'+
+   '<ellipse cx="50%" cy="50%" rx="47%" ry="47%" fill="'+
+   o.color+'"/></svg>';
+
+
+ if(o.shape==="round")
+
+  return '<svg width="100%" height="100%">'+
+   '<rect x="2%" y="2%" width="96%" height="96%" rx="25" fill="'+
+   o.color+'"/></svg>';
+
+
+ if(o.shape==="star")
+
+  return '<svg width="100%" height="100%" viewBox="0 0 100 100">'+
+   '<polygon points="50,3 61,36 97,36 68,57 79,92 50,71 21,92 32,57 3,36 39,36" fill="'+
+   o.color+'"/></svg>';
+
+
+ if(o.shape==="heart")
+
+  return '<svg width="100%" height="100%" viewBox="0 0 100 100">'+
+   '<path d="M50 90 C10 60 5 35 20 20 C32 8 47 15 50 30 C53 15 68 8 80 20 C95 35 90 60 50 90Z" fill="'+
+   o.color+'"/></svg>';
+
+
+ if(o.shape==="triangle")
+
+  return '<svg width="100%" height="100%" viewBox="0 0 100 100">'+
+   '<polygon points="50,5 95,95 5,95" fill="'+
+   o.color+'"/></svg>';
+
+
+ if(o.shape==="diamond")
+
+  return '<svg width="100%" height="100%" viewBox="0 0 100 100">'+
+   '<polygon points="50,3 97,50 50,97 3,50" fill="'+
+   o.color+'"/></svg>';
+
+
+ if(o.shape==="line")
+
+  return '<svg width="100%" height="100%">'+
+   '<line x1="5%" y1="50%" x2="95%" y2="50%" stroke="'+
+   o.color+'" stroke-width="8"/></svg>';
+
+
+ if(o.shape==="arrow")
+
+  return '<svg width="100%" height="100%" viewBox="0 0 100 100">'+
+   '<path d="M5 50H75V25L95 50 75 75V55H5Z" fill="'+
+   o.color+'"/></svg>';
+
+
+ return '<svg width="100%" height="100%">'+
+  '<rect x="2%" y="2%" width="96%" height="96%" rx="4" fill="'+
+  o.color+'"/></svg>';
+}
+
+
+function tableHTML(o){
+
+ let h=
+  '<table style="width:100%;height:100%;border-collapse:collapse">';
+
+ for(let r=0;r<o.rows;r++){
+
+  h+="<tr>";
+
+  for(let c=0;c<o.cols;c++)
+
+   h+=
+    '<td style="border:2px solid #555;text-align:center">'+
+    (r+1)+","+(c+1)+
+    "</td>";
+
+  h+="</tr>";
+ }
+
+ return h+"</table>";
+}
+
+
+function shapeClip(o){
+
+ if(o.shape==="circle")
+  return "ellipse(50% 50% at 50% 50%)";
+
+ if(o.shape==="diamond")
+  return "polygon(50% 0%,100% 50%,50% 100%,0% 50%)";
+
+ if(o.shape==="triangle")
+  return "polygon(50% 0%,100% 100%,0% 100%)";
+
+ return "inset(0 round 25px)";
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+function selectOne(id){
+
+ state.canvasSelected=false;
+
+ state.selected=[id];
+
+ render();
+}
+
+
+function selectObject(id,e){
+
+ state.canvasSelected=false;
+
+ if(e.shiftKey){
+
+  if(state.selected.includes(id))
+
+   state.selected=
+    state.selected.filter(
+     x=>x!==id
+    );
+
+  else
+
+   state.selected.push(id);
+
+ }else{
+
+  if(state.selected.length===1){
+
+   const a=
+    getObj(state.selected[0]);
+
+   const b=
+    getObj(id);
+
+
+   if(
+    a&&b&&
+    (
+     (
+      a.type==="shape"||
+      a.type==="customShape"
+     )&&
+     b.type==="image"
+    )||
+    (
+     (
+      b.type==="shape"||
+      b.type==="customShape"
+     )&&
+     a.type==="image"
+    )
+   ){
+
+    if(!state.selected.includes(id))
+     state.selected.push(id);
+
+   }else{
+
+    state.selected=[id];
+   }
+
+  }else{
+
+   state.selected=[id];
+  }
+ }
+
+ render();
+}
+
+
+function addHandles(el,o){
+
+ ["tl","tr","bl","br"].forEach(p=>{
+
+  const h=
+   document.createElement("i");
+
+  h.className=
+   "handle h-"+p;
+
+  h.addEventListener(
+   "pointerdown",
+   e=>startResize(e,o,p)
+  );
+
+  el.appendChild(h);
+ });
+
+
+ const r=
+  document.createElement("i");
+
+ r.className="rotateHandle";
+
+ r.addEventListener(
+  "pointerdown",
+  e=>startRotate(e,o)
+ );
+
+ el.appendChild(r);
+}
+
+
+/* =========================================================
+   DRAG / RESIZE / ROTATE
+   ========================================================= */
+
+function startDrag(e,o){
+
+ if(o.locked)return;
+
+ const sx=e.clientX;
+ const sy=e.clientY;
+
+ const ox=o.x;
+ const oy=o.y;
+
+ const move=ev=>{
+
+  const scale=getScale();
+
+  o.x=
+   ox+(ev.clientX-sx)/scale;
+
+  o.y=
+   oy+(ev.clientY-sy)/scale;
+
+  render();
+ };
+
+
+ const up=()=>{
+
+  window.removeEventListener(
+   "pointermove",
+   move
+  );
+
+  window.removeEventListener(
+   "pointerup",
+   up
+  );
+
+  saveHistory();
+ };
+
+
+ window.addEventListener(
+  "pointermove",
+  move
+ );
+
+ window.addEventListener(
+  "pointerup",
+  up
+);
+}
+
+
+function startResize(e,o,p){
+
+ e.stopPropagation();
+
+ const sx=e.clientX;
+ const sy=e.clientY;
+
+ const ow=o.w;
+ const oh=o.h;
+
+ const ox=o.x;
+ const oy=o.y;
+
+ const scale=getScale();
+
+
+ const move=ev=>{
+
+  let dx=
+   (ev.clientX-sx)/scale;
+
+  let dy=
+   (ev.clientY-sy)/scale;
+
+
+  if(p.includes("r"))
+   o.w=Math.max(25,ow+dx);
+
+
+  if(p.includes("b"))
+   o.h=Math.max(25,oh+dy);
+
+
+  if(p.includes("l")){
+
+   o.x=ox+dx;
+
+   o.w=
+    Math.max(25,ow-dx);
+  }
+
+
+  if(p.includes("t")){
+
+   o.y=oy+dy;
+
+   o.h=
+    Math.max(25,oh-dy);
+  }
+
+  render();
+ };
+
+
+ const up=()=>{
+
+  window.removeEventListener(
+   "pointermove",
+   move
+  );
+
+  window.removeEventListener(
+   "pointerup",
+   up
+  );
+
+  saveHistory();
+ };
+
+
+ window.addEventListener(
+  "pointermove",
+  move
+ );
+
+ window.addEventListener(
+  "pointerup",
+  up
+);
+}
+
+
+function startRotate(e,o){
+
+ e.stopPropagation();
+
+ const rect=
+  $("stage").getBoundingClientRect();
+
+ const cx=
+  rect.left+
+  (o.x+o.w/2)*getScale();
+
+ const cy=
+  rect.top+
+  (o.y+o.h/2)*getScale();
+
+
+ const move=ev=>{
+
+  o.rotation=
+   Math.atan2(
+    ev.clientY-cy,
+    ev.clientX-cx
+   )*180/Math.PI+90;
+
+  render();
+ };
+
+
+ const up=()=>{
+
+  window.removeEventListener(
+   "pointermove",
+   move
+  );
+
+  window.removeEventListener(
+   "pointerup",
+   up
+  );
+
+  saveHistory();
+ };
+
+
+ window.addEventListener(
+  "pointermove",
+  move
+ );
+
+ window.addEventListener(
+  "pointerup",
+  up
+);
+}
+
+
+function getScale(){
+
+ return parseFloat(
+  $("stage")
+   .style
+   .transform
+   .match(/scale\(([^)]+)\)/)?.[1]||1
+ );
+}
+
+
+/* =========================================================
+   LAYERS
+   ========================================================= */
+
+function updateLayers(){
+
+ const box=$("layersList");
+
+ if(!box)return;
+
+ box.innerHTML="";
+
+
+ [...state.objects]
+  .sort((a,b)=>b.z-a.z)
+  .forEach(o=>{
+
+   const row=
+    document.createElement("div");
+
+   row.className="layerRow";
+
+
+   row.innerHTML=
+    '<div class="layerThumb">'+
+    (
+     o.src
+      ?'<img src="'+o.src+'">'
+      :o.type==="text"
+       ?"T"
+       :"◇"
+    )+
+    '</div>'+
+    '<div class="layerName">'+
+    escapeHTML(o.name)+
+    '</div>';
+
+
+   const acts=
+    document.createElement("div");
+
+   acts.className=
+    "layerActions";
+
+
+   const up=
+    document.createElement("button");
+
+   up.textContent="↑";
+
+   up.onclick=()=>{
+    selectOne(o.id);
+    moveUp();
+   };
+
+
+   const dn=
+    document.createElement("button");
+
+   dn.textContent="↓";
+
+   dn.onclick=()=>{
+    selectOne(o.id);
+    moveDown();
+   };
+
+
+   const eye=
+    document.createElement("button");
+
+   eye.textContent=
+    o.hidden?"○":"●";
+
+   eye.onclick=()=>{
+    o.hidden=!o.hidden;
+    render();
+    saveHistory();
+   };
+
+
+   const lock=
+    document.createElement("button");
+
+   lock.textContent=
+    o.locked?"🔒":"🔓";
+
+   lock.onclick=()=>{
+    o.locked=!o.locked;
+    render();
+    saveHistory();
+   };
+
+
+   const more=
+    document.createElement("button");
+
+   more.textContent="⋮";
+
+   more.onclick=()=>{
+    layerMenu(o);
+   };
+
+
+   acts.append(
+    up,
+    dn,
+    eye,
+    lock,
+    more
+   );
+
+   row.appendChild(acts);
+
+
+   row.onclick=()=>{
+    selectOne(o.id);
+   };
+
+
+   box.appendChild(row);
+  });
+}
+
+
+function layerMenu(o){
+
+ modal(
+  "Layer Actions",
+
+  `<button class="panelBtn"
+    style="width:100%;margin:4px"
+    onclick="renameObj('${o.id}')">
+    Rename
+   </button>
+
+   <button class="panelBtn"
+    style="width:100%;margin:4px"
+    onclick="duplicateSelected()">
+    Duplicate
+   </button>
+
+   <button class="panelBtn"
+    style="width:100%;margin:4px"
+    onclick="deleteSelected()">
+    Delete
+   </button>
+
+   <button class="panelBtn"
+    style="width:100%;margin:4px"
+    onclick="moveUp()">
+    Move Up
+   </button>
+
+   <button class="panelBtn"
+    style="width:100%;margin:4px"
+    onclick="moveDown()">
+    Move Down
+   </button>`
+ );
+}
+
+
+function openLayers(){
+
+ $("layersOverlay").style.display="block";
+
+ updateLayers();
+}
+
+
+function openShapeTools(){
+ $("shapeOverlay").style.display="block";
+}
+
+
+function openMoreTools(){
+ $("moreOverlay").style.display="block";
+}
+
+
+function openAddNew(){
+ $("addOverlay").style.display="block";
+}
+
+
+function openTextTools(){
+ $("textOverlay").style.display="block";
+}
+
+
+function closeOverlay(id){
+ $(id).style.display="none";
+}
+
+
+function closeAll(){
+
+ document
+  .querySelectorAll(".overlay")
+  .forEach(x=>{
+   x.style.display="none";
+  });
+}
+
+
+/* =========================================================
+   OBJECT ACTIONS
+   ========================================================= */
+
+function getObj(id){
+ return state.objects.find(
+  o=>o.id===id
+ );
+}
+
+
+function current(){
+ return getObj(
+  state.selected[0]
+ );
+}
+
+
+function deleteSelected(){
+
+ state.objects=
+  state.objects.filter(
+   o=>!state.selected.includes(o.id)
+  );
+
+ state.selected=[];
+
+ state.canvasSelected=false;
+
+ saveHistory();
+
+ render();
+}
+
+
+function duplicateSelected(){
+
+ const o=current();
+
+ if(!o)return;
+
+ const n=
+  JSON.parse(
+   JSON.stringify(o)
+  );
+
+ n.id=uid();
+ n.x+=25;
+ n.y+=25;
+ n.name=o.name+" Copy";
+ n.z=state.objects.length;
+
+ state.objects.push(n);
+
+ state.selected=[n.id];
+
+ saveHistory();
+
+ render();
+}
+
+
+function moveUp(){
+
+ const o=current();
+
+ if(!o)return;
+
+ o.z+=1;
+
+ normalizeZ();
+
+ saveHistory();
+
+ render();
+}
+
+
+function moveDown(){
+
+ const o=current();
+
+ if(!o)return;
+
+ o.z-=1;
+
+ normalizeZ();
+
+ saveHistory();
+
+ render();
+}
+
+
+function bringFront(){
+
+ const o=current();
+
+ if(!o)return;
+
+ o.z=9999;
+
+ normalizeZ();
+
+ saveHistory();
+
+ render();
+}
+
+
+function sendBack(){
+
+ const o=current();
+
+ if(!o)return;
+
+ o.z=-1;
+
+ normalizeZ();
+
+ saveHistory();
+
+ render();
+}
+
+
+function normalizeZ(){
+
+ state.objects
+  .sort((a,b)=>a.z-b.z)
+  .forEach((o,i)=>{
+   o.z=i;
+  });
+}
+
+
+function toggleLock(){
+
+ const o=current();
+
+ if(o){
+
+  o.locked=!o.locked;
+
+  saveHistory();
+
+  render();
+ }
+}
+
+
+function renameObj(id){
+
+ const o=
+  getObj(id)||current();
+
+ if(!o)return;
+
+
+ modal(
+  "Rename Object",
+  `<input id="modalInput"
+   value="${escapeHTML(o.name)}">`
+ );
+
+
+ window.modalAction=()=>{
+
+  o.name=
+   $("modalInput").value||
+   o.name;
+
+  closeModal();
+
+  saveHistory();
+
+  render();
+ };
+}
+
+
+function alignCenter(){
+
+ const o=current();
+
+ if(!o)return;
+
+ o.x=
+  (state.width-o.w)/2;
+
+ o.y=
+  (state.height-o.h)/2;
+
+ saveHistory();
+
+ render();
+}
+
+
+/* =========================================================
+   GROUP
+   ========================================================= */
+
+function groupSelected(){
+
+ if(state.selected.length<2){
+
+  notice(
+   "Select two or more objects first."
+  );
+
+  return;
+ }
+
+
+ const g=
+  baseObj("group");
+
+ g.name="Group";
+
+ g.children=
+  [...state.selected];
+
+ g.x=0;
+ g.y=0;
+ g.w=state.width;
+ g.h=state.height;
+
+ state.objects.push(g);
+
+ state.selected=[g.id];
+
+ saveHistory();
+
+ render();
+}
+
+
+function ungroupSelected(){
+
+ const g=current();
+
+ if(
+  !g||
+  g.type!=="group"
+ )return;
+
+ const ids=
+  g.children||[];
+
+ state.objects=
+  state.objects.filter(
+   o=>o.id!==g.id
+  );
+
+ state.selected=ids;
+
+ saveHistory();
+
+ render();
+}
+
+
+/* =========================================================
+   TEXT
+   ========================================================= */
+
+function editText(){
+
+ const o=current();
+
+ if(
+  !o||
+  o.type!=="text"
+ ){
+
+  notice(
+   "Select a text object."
+  );
+
+  return;
+ }
+
+
+ modal(
+  "Edit Text",
+  `<textarea id="modalInput"
+   rows="4">${escapeHTML(o.text)}</textarea>`
+ );
+
+
+ window.modalAction=()=>{
+
+  o.text=
+   $("modalInput").value;
+
+  closeModal();
+
+  saveHistory();
+
+  render();
+ };
+}
+
+
+function fontSize(){
+
+ const o=current();
+
+ if(
+  !o||
+  o.type!=="text"
+ )return;
+
+
+ modal(
+  "Text Size",
+  `<input id="modalInput"
+   type="number"
+   value="${o.fontSize}">`
+ );
+
+
+ window.modalAction=()=>{
+
+  o.fontSize=
+   parseInt(
+    $("modalInput").value
+   )||o.fontSize;
+
+  closeModal();
+
+  saveHistory();
+
+  render();
+ };
+}
+
+
+function fontColor(){
+
+ const o=current();
+
+ if(
+  !o||
+  o.type!=="text"
+ )return;
+
+
+ modal(
+  "Text Color",
+  `<input id="modalInput"
+   type="color"
+   value="${o.color}">`
+ );
+
+
+ window.modalAction=()=>{
+
+  o.color=
+   $("modalInput").value;
+
+  closeModal();
+
+  saveHistory();
+
+  render();
+ };
+}
+
+
+function fontSelect(){
+
+ const o=current();
+
+ if(
+  !o||
+  o.type!=="text"
+ )return;
+
+
+ modal(
+  "Font",
+
+  `<select id="modalInput">
+
+   <option>Arial</option>
+   <option>Tahoma</option>
+   <option>Georgia</option>
+   <option>Times New Roman</option>
+   <option>Courier New</option>
+
+  </select>`
+ );
+
+
+ window.modalAction=()=>{
+
+  o.fontFamily=
+   $("modalInput").value;
+
+  closeModal();
+
+  saveHistory();
+
+  render();
+ };
+}
+
+
+function textStroke(){
+
+ const o=current();
+
+ if(
+  !o||
+  o.type!=="text"
+ )return;
+
+ o.stroke=
+  o.stroke?0:2;
+
+ o.strokeColor="#000";
+
+ saveHistory();
+
+ render();
+}
+
+
+function textShadow(){
+
+ const o=current();
+
+ if(o){
+
+  o.shadow=!o.shadow;
+
+  saveHistory();
+
+  render();
+ }
+}
+
+
+function textGradient(){
+
+ const o=current();
+
+ if(o){
+
+  o.gradient=!o.gradient;
+
+  saveHistory();
+
+  render();
+ }
+}
+
+
+function textOpacity(){
+
+ const o=current();
+
+ if(!o)return;
+
+
+ modal(
+  "Opacity",
+
+  `<input id="modalInput"
+   type="range"
+   min="0"
+   max="1"
+   step=".05"
+   value="${o.opacity}">`
+ );
+
+
+ window.modalAction=()=>{
+
+  o.opacity=
+   parseFloat(
+    $("modalInput").value
+   );
+
+  closeModal();
+
+  saveHistory();
+
+  render();
+ };
+}
+
+
+function textBackground(){
+
+ const o=current();
+
+ if(o){
+
+  o.background=
+   o.background
+    ?""
+    :"#ffe66d";
+
+  saveHistory();
+
+  render();
+ }
+}
+
+
+function textPattern(){
+
+ const o=current();
+
+ if(o){
+
+  o.pattern=!o.pattern;
+
+  saveHistory();
+
+  render();
+ }
+}
+
+
+function convert3D(){
+
+ const o=current();
+
+ if(o){
+
+  o.effect3d=true;
+
+  saveHistory();
+
+  render();
+ }
+}
+
+
+function bullets(){
+
+ const o=current();
+
+ if(
+  o&&
+  o.type==="text"
+ ){
+
+  o.text=
+   "• "+
+   o.text.replace(
+    /\n/g,
+    "\n• "
+   );
+
+  saveHistory();
+
+  render();
+ }
+}
+
+
+function blendText(){
+
+ const o=current();
+
+ if(o){
+
+  o.shadow=true;
+  o.stroke=1;
+
+  saveHistory();
+
+  render();
+ }
+}
+
+
+function splitWords(){
+ breakApart();
+}
+
+
+function breakApart(){
+
+ const o=current();
+
+ if(
+  !o||
+  o.type!=="text"
+ ){
+
+  notice(
+   "Select a text object."
+  );
+
+  return;
+ }
+
+
+ const words=
+  o.text.trim().split(/\s+/);
+
+
+ if(words.length<2){
+
+  notice(
+   "Text must contain two or more words."
+  );
+
+  return;
+ }
+
+
+ state.objects=
+  state.objects.filter(
+   x=>x.id!==o.id
+  );
+
+
+ const ids=[];
+
+
+ words.forEach((w,i)=>{
+
+  const n=
+   JSON.parse(
+    JSON.stringify(o)
+   );
+
+  n.id=uid();
+
+  n.text=w;
+
+  n.name=
+   "Text Part "+(i+1);
+
+  n.x=
+   o.x+
+   i*(o.w/words.length);
+
+  n.y=o.y;
+
+  n.w=
+   o.w/words.length;
+
+  n.z=
+   state.objects.length;
+
+  state.objects.push(n);
+
+  ids.push(n.id);
+ });
+
+
+ state.selected=ids;
+
+ saveHistory();
+
+ render();
+}
+
+
+function convertShape(){
+
+ const o=current();
+
+ if(
+  !o||
+  o.type!=="text"
+ )return;
+
+ o.type="shapeText";
+
+ o.background=
+  o.background||
+  "#6546e5";
+
+ o.color="#fff";
+
+ o.name=
+  "Converted Shape";
+
+ saveHistory();
+
+ render();
+}
+
+
+/* =========================================================
+   POWERCLIP
+   ========================================================= */
+
+function overlaps(a,b){
+
+ return(
+  a.x<b.x+b.w&&
+  a.x+a.w>b.x&&
+  a.y<b.y+b.h&&
+  a.y+a.h>b.y
+ );
+}
+
+
+function updatePowerClip(){
+
+ const btn=
+  $("powerClipButton");
+
+ btn.style.display="none";
+
+ if(state.selected.length!==2)
+  return;
+
+
+ const a=
+  getObj(state.selected[0]);
+
+ const b=
+  getObj(state.selected[1]);
+
+ if(!a||!b)return;
+
+
+ let img=null;
+ let shape=null;
+
+
+ if(
+  a.type==="image"&&
+  (
+   b.type==="shape"||
+   b.type==="customShape"
+  )
+ ){
+
+  img=a;
+  shape=b;
+ }
+
+
+ if(
+  b.type==="image"&&
+  (
+   a.type==="shape"||
+   a.type==="customShape"
+  )
+ ){
+
+  img=b;
+  shape=a;
+ }
+
+
+ if(
+  img&&
+  shape&&
+  overlaps(img,shape)
+ ){
+
+  btn.style.display="block";
+ }
+}
+
+
+function doPowerClip(){
+
+ if(
+  state.selected.length!==2
+ )return;
+
+
+ let img;
+ let shape;
+
+
+ state.selected
+  .map(getObj)
+  .forEach(o=>{
+
+   if(o.type==="image")
+    img=o;
+
+   if(
+    o.type==="shape"||
+    o.type==="customShape"
+   )
+    shape=o;
+  });
+
+
+ if(!img||!shape)return;
+
+
+ img.clipShape=
+  shape.id;
+
+ img.x=shape.x;
+ img.y=shape.y;
+
+ img.w=shape.w;
+ img.h=shape.h;
+
+ saveHistory();
+
+ render();
+
+ notice(
+  "PowerClip applied. The image and shape remain separate editable objects."
+ );
+}
+
+
+/* =========================================================
+   DRAW
+   ========================================================= */
+
+function startDraw(){
+
+ closeAll();
+
+ state.canvasSelected=false;
+
+ const o=
+  baseObj("shape");
+
+ o.shape="line";
+
+ o.x=80;
+ o.y=80;
+ o.w=300;
+ o.h=10;
+
+ state.objects.push(o);
+
+ selectOne(o.id);
+
+ saveHistory();
+
+ render();
+}
+
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+function toggleGrid(){
+
+ state.grid=!state.grid;
+
+ render();
+}
+
+
+/* =========================================================
+   SAVE / OPEN
+   ========================================================= */
+
+function saveProject(){
+
+ localStorage.setItem(
+  "UDS_PROJECT",
+  JSON.stringify(state)
+ );
+
+ notice(
+  "Project saved on this device."
+ );
+}
+
+
+function openProject(){
+
+ $("projectInput").click();
+}
+
+
+$("projectInput").onchange=e=>{
+
+ const f=e.target.files[0];
+
+ if(!f)return;
+
+ const r=
+  new FileReader();
+
+ r.onload=()=>{
+
+  try{
+
+   state=
+    JSON.parse(
+     r.result
+    );
+
+   if(!state.canvasSelected)
+    state.canvasSelected=false;
+
+   screen("editor");
+
+   render();
+
+  }catch(err){
+
+   notice(
+    "Invalid project file."
+   );
+  }
+ };
+
+ r.readAsText(f);
+};
+
+
+function downloadProject(){
+
+ const blob=
+  new Blob(
+   [
+    JSON.stringify(
+     state,
+     null,
+     2
+    )
+   ],
+   {
+    type:"application/json"
+   }
+  );
+
+
+ const a=
+  document.createElement("a");
+
+ a.href=
+  URL.createObjectURL(blob);
+
+ a.download=
+  (state.projectName||
+   "UrduDesign")+".uds";
+
+ a.click();
+}
+
+
+/* =========================================================
+   UNDO / REDO
+   ========================================================= */
+
+function snapshot(){
+
+ return JSON.stringify(
+  state.objects
+ );
+}
+
+
+function saveHistory(){
+
+ state.history.push(
+  snapshot()
+ );
+
+ if(
+  state.history.length>40
+ )
+  state.history.shift();
+
+ state.future=[];
+}
+
+
+function undo(){
+
+ if(
+  state.history.length<2
+ )
+  return;
+
+
+ state.future.push(
+  snapshot()
+ );
+
+ state.history.pop();
+
+
+ state.objects=
+  JSON.parse(
+   state.history[
+    state.history.length-1
+   ]
+  );
+
+
+ state.selected=[];
+
+ state.canvasSelected=false;
+
+ render();
+}
+
+
+function redo(){
+
+ if(!state.future.length)
+  return;
+
+
+ const s=
+  state.future.pop();
+
+ state.history.push(s);
+
+ state.objects=
+  JSON.parse(s);
+
+ state.canvasSelected=false;
+
+ render();
+}
+
+
+/* =========================================================
+   EXPORT
+   ========================================================= */
+
+function exportPNG(){
+
+ const svg=
+  `<svg xmlns="http://www.w3.org/2000/svg"
+   width="${state.width}"
+   height="${state.height}">
+
+   <rect width="100%"
+    height="100%"
+    fill="${state.bg}"/>
+
+   ${state.objects
+    .filter(o=>!o.hidden)
+    .map(svgObject)
+    .join("")}
+
+  </svg>`;
+
+
+ const blob=
+  new Blob(
+   [svg],
+   {
+    type:"image/svg+xml"
+   }
+  );
+
+
+ const url=
+  URL.createObjectURL(blob);
+
+ const img=
+  new Image();
+
+
+ img.onload=()=>{
+
+  const c=
+   document.createElement("canvas");
+
+  c.width=state.width;
+  c.height=state.height;
+
+  const ctx=
+   c.getContext("2d");
+
+  ctx.drawImage(img,0,0);
+
+  const a=
+   document.createElement("a");
+
+  a.download=
+   "urdu-design.png";
+
+  a.href=
+   c.toDataURL(
+    "image/png"
+   );
+
+  a.click();
+
+  URL.revokeObjectURL(url);
+ };
+
+
+ img.src=url;
+}
+
+
+function svgObject(o){
+
+ const t=
+  `translate(${o.x} ${o.y})
+   rotate(${o.rotation}
+   ${o.w/2}
+   ${o.h/2})`;
+
+
+ if(o.type==="text")
+
+  return `<text
+   x="${o.w/2}"
+   y="${o.h/2}"
+   text-anchor="middle"
+   dominant-baseline="middle"
+   font-size="${o.fontSize}"
+   fill="${o.color}"
+   font-family="${o.fontFamily}"
+   font-weight="${o.bold?'bold':'normal'}">
+   ${escapeXML(o.text)}
+   </text>`;
+
+
+ if(
+  o.type==="image"||
+  o.type==="customShape"
+ )
+
+  return `<image
+   href="${o.src}"
+   x="0"
+   y="0"
+   width="${o.w}"
+   height="${o.h}"
+   preserveAspectRatio="none"/>`;
+
+
+ if(o.type==="shape")
+
+  return `<g transform="${t}">
+   ${shapeSVG(o)}
+   </g>`;
+
+
+ return "";
+}
+
+
+function shapeSVG(o){
+
+ if(o.shape==="circle")
+
+  return `<ellipse
+   cx="${o.w/2}"
+   cy="${o.h/2}"
+   rx="${o.w/2-4}"
+   ry="${o.h/2-4}"
+   fill="${o.color}"/>`;
+
+
+ if(o.shape==="triangle")
+
+  return `<polygon
+   points="${o.w/2},2
+   ${o.w-2},${o.h-2}
+   2,${o.h-2}"
+   fill="${o.color}"/>`;
+
+
+ if(o.shape==="diamond")
+
+  return `<polygon
+   points="${o.w/2},2
+   ${o.w-2},${o.h/2}
+   ${o.w/2},${o.h-2}
+   2,${o.h/2}"
+   fill="${o.color}"/>`;
+
+
+ return `<rect
+   x="2"
+   y="2"
+   width="${o.w-4}"
+   height="${o.h-4}"
+   rx="18"
+   fill="${o.color}"/>`;
+}
+
+
+/* =========================================================
+   LIBRARY
+   ========================================================= */
+
+function openLibrary(type){
+
+ modal(
+  "Offline Library",
+
+  `<div class="panelGrid">
+
+   <button class="panelBtn"
+    onclick="addShape('rect')">
+    Rectangle
+   </button>
+
+   <button class="panelBtn"
+    onclick="addShape('circle')">
+    Circle
+   </button>
+
+   <button class="panelBtn"
+    onclick="addShape('star')">
+    Star
+   </button>
+
+   <button class="panelBtn"
+    onclick="addShape('heart')">
+    Heart
+   </button>
+
+   <button class="panelBtn"
+    onclick="addText('اردو ڈیزائن')">
+    Urdu Text
+   </button>
+
+   <button class="panelBtn"
+    onclick="addText('Business')">
+    Business
+   </button>
+
+   <button class="panelBtn"
+    onclick="addText('Wedding')">
+    Wedding
+   </button>
+
+   <button class="panelBtn"
+    onclick="addText('Sports')">
+    Sports
+   </button>
+
+  </div>`
+ );
+}
+
+
+/* =========================================================
+   MY DESIGNS
+   ========================================================= */
+
+function showMyDesigns(){
+
+ const saved=
+  localStorage.getItem(
+   "UDS_PROJECT"
+  );
+
+
+ if(!saved){
+
+  notice(
+   "No saved designs found on this device."
+  );
+
+  return;
+ }
+
+
+ modal(
+  "My Designs",
+
+  `<div class="layerRow">
+
+   <div class="layerName">
+    Saved Design
+   </div>
+
+   <button class="panelBtn"
+    onclick="loadSaved()">
+    Edit Design
+   </button>
+
+   <button class="panelBtn"
+    onclick="copySaved()">
+    Make Copy
+   </button>
+
+  </div>
+
+  <div class="layerRow">
+
+   <button class="panelBtn"
+    onclick="renameSaved()">
+    Rename
+   </button>
+
+   <button class="panelBtn"
+    onclick="shareSaved()">
+    Share
+   </button>
+
+   <button class="panelBtn"
+    onclick="deleteSaved()">
+    Delete Design
+   </button>
+
+  </div>`
+ );
+}
+
+
+function loadSaved(){
+
+ state=
+  JSON.parse(
+   localStorage.getItem(
+    "UDS_PROJECT"
+   )
+  );
+
+ closeModal();
+
+ screen("editor");
+
+ render();
+}
+
+
+function copySaved(){
+
+ state=
+  JSON.parse(
+   localStorage.getItem(
+    "UDS_PROJECT"
+   )
+  );
+
+ state.projectName+=" Copy";
+
+ localStorage.setItem(
+  "UDS_PROJECT",
+  JSON.stringify(state)
+ );
+
+ closeModal();
+
+ notice(
+  "Copy created."
+ );
+}
+
+
+function renameSaved(){
+
+ modal(
+  "Rename Design",
+  `<input id="modalInput"
+   value="${state.projectName}">`
+ );
+
+
+ window.modalAction=()=>{
+
+  state.projectName=
+   $("modalInput").value||
+   "Untitled Design";
+
+  localStorage.setItem(
+   "UDS_PROJECT",
+   JSON.stringify(state)
+  );
+
+  closeModal();
+ };
+}
+
+
+function deleteSaved(){
+
+ localStorage.removeItem(
+  "UDS_PROJECT"
+ );
+
+ closeModal();
+
+ notice(
+  "Design deleted."
+ );
+}
+
+
+function shareSaved(){
+
+ if(navigator.share)
+
+  navigator.share({
+   title:"Urdu Design Studio",
+   text:"My design"
+  });
+
+ else
+
+  notice(
+   "Sharing is not supported by this WebView."
+  );
+}
+
+
+/* =========================================================
+   CDR
+   ========================================================= */
+
+function openCDR(){
+
+ $("cdrInput").click();
+}
+
+
+$("cdrInput").onchange=e=>{
+
+ const f=e.target.files[0];
+
+ if(f)
+
+  notice(
+   "CDR file selected. Native CDR parsing requires the dedicated CDR conversion module; this build does not fake CDR support."
+  );
+};
+
+
+/* =========================================================
+   SETTINGS
+   ========================================================= */
+
+function settingsPanel(){
+
+ modal(
+  "Settings",
+
+  `<div class="panelGrid">
+
+   <button class="panelBtn"
+    onclick="saveProject()">
+    Save Project
+   </button>
+
+   <button class="panelBtn"
+    onclick="openProject()">
+    Open Project
+   </button>
+
+   <button class="panelBtn"
+    onclick="downloadProject()">
+    Export Project
+   </button>
+
+   <button class="panelBtn"
+    onclick="toggleGrid()">
+    Grid
+   </button>
+
+  </div>`
+ );
+}
+
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+let modalAction=null;
+
+
+function modal(title,body){
+
+ $("modalTitle").textContent=
+  title;
+
+ $("modalBody").innerHTML=
+  body;
+
+ $("modal").style.display=
+  "flex";
+}
+
+
+function modalOK(){
+
+ if(
+  typeof modalAction==="function"
+ ){
+
+  const a=
+   modalAction;
+
+  modalAction=null;
+
+  a();
+
+ }else{
+
+  closeModal();
+ }
+}
+
+
+function closeModal(){
+
+ $("modal").style.display=
+  "none";
+
+ modalAction=null;
+}
+
+
+function notice(msg){
+
+ modal(
+  "Urdu Design Studio",
+  "<p>"+
+  escapeHTML(msg)+
+  "</p>"
+ );
+}
+
+
+function escapeHTML(s){
+
+ return String(s).replace(
+  /[&<>"']/g,
+
+  m=>({
+   "&":"&amp;",
+   "<":"&lt;",
+   ">":"&gt;",
+   '"':"&quot;",
+   "'":"&#039;"
+  }[m])
+ );
+}
+
+
+function escapeXML(s){
+
+ return String(s).replace(
+  /[<>&'"]/g,
+
+  m=>({
+   "<":"&lt;",
+   ">":"&gt;",
+   "&":"&amp;",
+   "'":"&apos;",
+   '"':"&quot;"
+  }[m])
+ );
+}
+
+
+/* =========================================================
+   CANVAS SELECT / DESELECT
+   ========================================================= */
+
+$("stage").addEventListener(
+ "pointerdown",
+ e=>{
+
+  if(e.target===$("stage")){
+
+   state.selected=[];
+
+   state.canvasSelected=
+    !state.canvasSelected;
+
+   render();
+  }
+ }
+);
+
+
+/* =========================================================
+   CLICK OUTSIDE MORE DRAWER
+   ========================================================= */
+
+$("moreOverlay").addEventListener(
+ "pointerdown",
+ e=>{
+
+  if(e.target===$("moreOverlay")){
+
+   closeOverlay(
+    "moreOverlay"
+   );
+  }
+ }
+);
+
+
+/* =========================================================
+   INITIAL PROJECT
+   ========================================================= */
+
+state.history=[
+ snapshot()
+];
+
+</script>
+
+</body>
+</html>
