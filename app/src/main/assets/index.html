@@ -600,13 +600,14 @@ button{
 #moreOverlay .sheet{
  position:absolute;
  left:0;
- top:0;
- bottom:0;
- width:min(88vw,360px);
- height:100vh;
- max-height:none;
- border-radius:0 22px 22px 0;
- padding:18px 14px;
+ top:50%;
+ bottom:auto;
+ transform:translateY(-50%);
+ width:min(78vw,310px);
+ height:min(78vh,650px);
+ max-height:78vh;
+ border-radius:0 20px 20px 0;
+ padding:14px 12px;
  overflow-y:auto;
  overflow-x:hidden;
  box-shadow:15px 0 40px #0004
@@ -742,6 +743,24 @@ button{
  border-radius:9px;
  margin:8px 0
 }
+
+.movePopup{
+ position:absolute;
+ left:50%;
+ top:50%;
+ transform:translate(-50%,-50%);
+ width:min(78vw,280px);
+ background:white;
+ border-radius:18px;
+ padding:14px;
+ box-shadow:0 15px 45px #0004
+}
+
+.movePopup .panelBtn{
+ min-height:55px;
+ font-size:13px
+}
+
 </style>
 </head>
 
@@ -963,6 +982,13 @@ button{
   <button class="toolBtn"
           onclick="redo()">
    ↷
+  </button>
+
+  <button class="toolBtn"
+          onclick="openMoveTools()"
+          aria-label="Move object"
+          title="Move">
+   ✥
   </button>
 
   <div class="canvasInfo" id="canvasInfo">
@@ -1296,18 +1322,6 @@ button{
    </button>
 
    <button class="panelBtn"
-           onclick="moveUp()">
-    <span>↑</span>
-    Move Up
-   </button>
-
-   <button class="panelBtn"
-           onclick="moveDown()">
-    <span>↓</span>
-    Move Down
-   </button>
-
-   <button class="panelBtn"
            onclick="bringFront()">
     <span>⇧</span>
     Bring Front
@@ -1551,6 +1565,74 @@ button{
 
 
 <!-- =========================================================
+     MOVE POPUP
+     ========================================================= -->
+
+<div class="overlay" id="movePopupOverlay" onclick="movePopupOutside(event)" style="background:#0004">
+
+ <div class="movePopup" id="movePopup">
+
+  <div class="sheetHead">
+
+   <b style="font-size:18px">
+    Move
+   </b>
+
+   <button class="close"
+           onclick="closeMoveTools()">
+    ×
+   </button>
+
+  </div>
+
+  <div class="panelGrid"
+       style="grid-template-columns:repeat(3,1fr);gap:8px">
+
+   <div></div>
+
+   <button class="panelBtn"
+           onclick="nudgeSelected(0,-10)">
+    ↑<br>
+    Up
+   </button>
+
+   <div></div>
+
+   <button class="panelBtn"
+           onclick="nudgeSelected(-10,0)">
+    ←<br>
+    Left
+   </button>
+
+   <div class="panelBtn"
+        style="display:flex;align-items:center;justify-content:center">
+    ✥
+   </div>
+
+   <button class="panelBtn"
+           onclick="nudgeSelected(10,0)">
+    →<br>
+    Right
+   </button>
+
+   <div></div>
+
+   <button class="panelBtn"
+           onclick="nudgeSelected(0,10)">
+    ↓<br>
+    Down
+   </button>
+
+   <div></div>
+
+  </div>
+
+ </div>
+
+</div>
+
+
+<!-- =========================================================
      MODAL
      ========================================================= -->
 
@@ -1625,6 +1707,53 @@ let idCounter=1;
 const uid=()=>{
  return "obj_"+Date.now()+"_"+(idCounter++);
 };
+
+
+/* =========================================================
+   MOVE TOOL
+   ========================================================= */
+
+function openMoveTools(){
+
+ const o=current();
+
+ if(!o){
+  notice("Select an object first.");
+  return;
+ }
+
+ $("movePopupOverlay").style.display="block";
+}
+
+
+function closeMoveTools(){
+
+ $("movePopupOverlay").style.display="none";
+}
+
+
+function movePopupOutside(e){
+
+ if(e.target===$("movePopupOverlay")){
+  closeMoveTools();
+ }
+}
+
+
+function nudgeSelected(dx,dy){
+
+ const o=current();
+
+ if(!o||o.locked)
+  return;
+
+ o.x+=dx;
+ o.y+=dy;
+
+ saveHistory();
+
+ render();
+}
 
 
 /* =========================================================
