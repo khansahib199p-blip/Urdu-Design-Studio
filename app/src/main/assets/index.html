@@ -761,6 +761,102 @@ button{
  font-size:13px
 }
 
+/* =========================================================
+   BEAUTIFUL BUTTON ICONS — VISUAL ONLY
+   ========================================================= */
+
+.udsIcon{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ width:30px;
+ height:30px;
+ min-width:30px;
+ border-radius:10px;
+ background:linear-gradient(135deg,#6546e5,#8a72ff);
+ color:#fff;
+ font-size:15px;
+ font-weight:900;
+ line-height:1;
+ box-shadow:0 4px 10px #6546e52b;
+ text-shadow:0 1px 2px #0003;
+ vertical-align:middle;
+ margin-right:8px;
+ transition:.18s ease
+}
+
+.homeBtn .udsIcon{
+ width:38px;
+ height:38px;
+ min-width:38px;
+ border-radius:12px;
+ margin:0 auto 8px;
+ font-size:19px
+}
+
+.sheetItem .udsIcon{
+ width:34px;
+ height:34px;
+ min-width:34px;
+ border-radius:11px;
+ margin:0 auto 7px;
+ font-size:16px
+}
+
+.panelBtn .udsIcon{
+ width:30px;
+ height:30px;
+ min-width:30px;
+ margin-right:9px
+}
+
+.primary .udsIcon{
+ background:#ffffff25;
+ box-shadow:none;
+ margin-right:7px
+}
+
+.preset .udsIcon{
+ width:24px;
+ height:24px;
+ min-width:24px;
+ border-radius:8px;
+ font-size:12px;
+ margin-right:5px
+}
+
+.layerActions button .udsIcon{
+ width:24px;
+ height:24px;
+ min-width:24px;
+ margin:0;
+ font-size:12px
+}
+
+button:active .udsIcon{
+ transform:scale(.9)
+}
+
+.homeBtn:hover,
+.sheetItem:hover,
+.panelBtn:hover{
+ box-shadow:0 7px 20px #18203318;
+ transform:translateY(-1px)
+}
+
+.homeBtn,
+.sheetItem,
+.panelBtn,
+.primary,
+.preset{
+ transition:.18s ease
+}
+
+.homeBtn .udsIcon,
+.sheetItem .udsIcon{
+ display:flex
+}
+
 </style>
 </head>
 
@@ -4501,6 +4597,152 @@ $("moreOverlay").addEventListener(
 state.history=[
  snapshot()
 ];
+
+
+/* =========================================================
+   BUTTON ICON DECORATOR — VISUAL ONLY
+   ========================================================= */
+
+function decorateButtons(){
+
+ const iconMap={
+  "Start Designing":"✦",
+  "New Design":"＋",
+  "My Designs":"▣",
+  "Templates":"▤",
+  "Design Elements":"✦",
+  "Shapes":"◇",
+  "Frames":"▢",
+  "Backgrounds":"◉",
+  "Import Image":"▧",
+  "Open CDR":"◈",
+  "Settings":"⚙",
+  "Add":"＋",
+  "Text":"T",
+  "Image":"▧",
+  "Shape":"◇",
+  "Layers":"☷",
+  "More":"•••",
+  "Gallery Pic":"▧",
+  "Stock Images":"▤",
+  "My Folder":"▣",
+  "Add Text":"T",
+  "Video":"▶",
+  "Audio":"♪",
+  "AI Images":"AI",
+  "Tools":"⚙",
+  "Borders":"□",
+  "Table":"▦",
+  "Draw":"✎",
+  "Pen Tool":"⌁",
+  "Logos":"◉",
+  "Special Text":"T✦",
+  "Urdu":"ع",
+  "Save Project":"▣",
+  "Open Project":"↗",
+  "Export Project":"⇩",
+  "Edit":"✎",
+  "Size":"↕",
+  "Color":"●",
+  "Font":"Aa",
+  "Stroke":"▣",
+  "Shadow":"✧",
+  "Gradient":"◐",
+  "Opacity":"◌",
+  "Break Apart":"✂",
+  "Convert to Shape":"◇",
+  "Convert to 3D":"◈",
+  "Pattern":"▦",
+  "Text Background":"▰",
+  "Split Words":"↔",
+  "Bullets List":"•",
+  "Blend":"✦",
+  "Rectangle":"□",
+  "Circle":"○",
+  "Round":"▢",
+  "Star":"★",
+  "Heart":"♥",
+  "Triangle":"△",
+  "Diamond":"◇",
+  "Line":"╱",
+  "Arrow":"➜",
+  "Custom PNG/SVG":"▧",
+  "Duplicate":"⧉",
+  "Delete":"⌫",
+  "Bring Front":"⇧",
+  "Send Back":"⇩",
+  "Lock / Unlock":"🔒",
+  "Grid":"▦",
+  "Align Center":"⊙",
+  "Text Tools":"T",
+  "Group":"▦",
+  "Ungroup":"⊞",
+  "Canvas Settings":"▣",
+  "Position & Size":"↔",
+  "Rotate":"⟳",
+  "Flip":"⇄",
+  "Effects":"✦",
+  "Border / Corners":"□",
+  "Alignment":"☷",
+  "Transparency":"◌",
+  "PowerClip":"◈",
+  "Up":"↑",
+  "Down":"↓",
+  "Left":"←",
+  "Right":"→",
+  "OK":"✓",
+  "Cancel":"×",
+  "Edit Design":"✎",
+  "Make Copy":"⧉",
+  "Rename":"✎",
+  "Share":"↗",
+  "Delete Design":"⌫",
+  "Developer":"◆"
+ };
+
+ document.querySelectorAll(
+  ".homeBtn,.sheetItem,.panelBtn,.primary,.preset"
+ ).forEach(btn=>{
+
+  if(btn.querySelector(".udsIcon")) return;
+
+  /* Existing custom icon spans are already beautiful. */
+  if(btn.querySelector("span")) return;
+
+  const label=(btn.textContent||"")
+   .replace(/\s+/g," ")
+   .trim();
+
+  if(!label) return;
+
+  let icon=iconMap[label];
+
+  if(!icon){
+   for(const key of Object.keys(iconMap)){
+    if(label.includes(key)){
+     icon=iconMap[key];
+     break;
+    }
+   }
+  }
+
+  if(!icon) icon="✦";
+
+  const i=document.createElement("span");
+  i.className="udsIcon";
+  i.textContent=icon;
+  i.setAttribute("aria-hidden","true");
+
+  btn.insertBefore(i,btn.firstChild);
+ });
+}
+
+/* Run after the complete interface has been parsed. */
+if(document.readyState==="loading"){
+ document.addEventListener("DOMContentLoaded",decorateButtons);
+}else{
+ decorateButtons();
+}
 
 </script>
 
